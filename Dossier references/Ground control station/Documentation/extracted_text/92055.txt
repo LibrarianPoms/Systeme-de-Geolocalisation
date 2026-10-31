@@ -1,0 +1,49 @@
+=== PAGE 1 ===
+INTRA DEFENSE | General
+1.1. Ground Control Station
+1.1.1. Overview
+The GCS has a portable form, contained in a ruggedized case for rapid and easy transport. However,
+the GCS also has a configuration that is a permanent or semi-permanent installation in a building.
+The datalink consists of a ground radio unit and its antennas. For extended range, the antennas are
+mounted on a pan-tilt tracker unit that points the antennas at the aircraft to take advantage of high
+gain directional antennas.
+GSS is based on Human Machine Interface (HMI), which is the mission management system
+developed by Intra Defense Technologies for unmanned aircraft. This interface provides
+infrastructure and common functions that are required within tactical mission management systems
+with adaptation and customizations depending on the project specific requirements.
+1.1.2. Capabilities
+The following tasks are possible using the GCS:
+• Authentication and authorization
+• Flight planning on map and loading onto the UAV’s mission computer
+• Tracking UAV on moving map
+• Visualization of flight and mission data
+• Monitoring subsystems’ status
+• Displaying and listing alerts, warnings, and information conditions
+• Generation of mission commands
+• Mission checklist management
+• Data link control
+• Mission data recording
+• Payload control and management
+INTRA DEFENSE | General
+
+=== PAGE 2 ===
+INTRA DEFENSE | General
+1.1.3. Mobile Ground Control Station (MGCS)
+Figure 1 Ground Control Station (portable version)
+GCS Case
+• X
+• Size: 560 mm x 450 mm x 265 mm (closed)
+• Housing Material: PP
+• IP Rating: IP67 (closed)
+• Working Environment: -20°C to 60°C
+• Color: Matt Black
+• Portable Features: Open and play, three proof delivery, With handle.
+• battery & Working Time: Smart battery management system, 9 hrs endurance.
+• Battery charges for 5 hours (could be operated while charging)
+• Transmitter Solution with Tracking Antenna
+• Ground terminal
+• Air terminal
+• Tracking gimbal
+• Gimbal tripod
+• Panel antenna
+INTRA DEFENSE | General

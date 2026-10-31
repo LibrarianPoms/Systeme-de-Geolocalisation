@@ -1,0 +1,731 @@
+=== PAGE 1 ===
+AR.Drone de Parrot Dossier Technique
+AR.Drone de Parrot
+Dossier Technique
+Société DMS - Département STI 1/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 2 ===
+AR.Drone de Parrot Dossier Technique
+Table des matières
+I.Définition du produit réel..........................................................................................................................7
+A.Présentation générale du produit réel................................................................................................7
+1.Définition.......................................................................................................................................7
+2.Historiques....................................................................................................................................8
+2.1.Évolution des hélicoptères.....................................................................................................8
+2.2.Évolution des systèmes de drones......................................................................................11
+2.3.Évolution des modèles réduits d'hélicoptères......................................................................13
+3.Présentation technique, commerciale, économique et environnementale...................................15
+3.1.Présentation technique........................................................................................................15
+3.1.1.Moteur et énergie.........................................................................................................15
+3.1.2.Vidéo............................................................................................................................16
+3.1.3.Ordinateur embarqué...................................................................................................17
+3.1.4.Centrale Inertielle.........................................................................................................18
+3.1.5.Autres caractéristiques générales................................................................................19
+3.1.6.Données échangées avec l'AR.Drone..........................................................................20
+3.1.7.Kit de développement logiciel.......................................................................................21
+3.2.Présentation commerciale...................................................................................................22
+3.2.1.Cible commerciale et secteur d'activité.........................................................................22
+3.2.2.Étapes de la campagne commerciales.........................................................................22
+3.2.3.Résultats .....................................................................................................................23
+3.3.Présentation économique....................................................................................................24
+3.3.1.La société Parrot..........................................................................................................24
+3.3.2.Données financières.....................................................................................................24
+4.Gamme de produits.....................................................................................................................25
+5.Législation / Sécurité...................................................................................................................26
+5.1.Législation............................................................................................................................26
+5.1.1.Réglementation sur l'aéromodélisme............................................................................26
+5.1.2.Réglementation sur les jeux vidéo................................................................................26
+5.2.Sécurité................................................................................................................................27
+5.2.1.Consignes de sécurité..................................................................................................27
+5.2.2.Procédure de consignation...........................................................................................28
+6.Les principaux fabricants.............................................................................................................29
+B.Expression fonctionnelle du produit réel..........................................................................................31
+1.Analyse SysML du système AR.Drone........................................................................................31
+1.1.Définition des environnements.............................................................................................31
+1.2.Définition du contexte du système à étudier........................................................................32
+1.3.Catalogue des acteurs pour l'AR.Drone...............................................................................32
+1.4.Diagramme de cas d'utilisation simplifié de l'AR.Drone........................................................33
+1.4.1.Le cas d'utilisation........................................................................................................33
+1.4.2.Relations entre acteurs et cas d'utilisation....................................................................33
+1.4.3.Recherche des cas d'utilisation....................................................................................34
+1.4.3.1.Cas d'utilisation pour l'acteur Station-Sol..............................................................34
+1.4.3.2.Cas d'utilisation pour l'acteur Pilote......................................................................44
+1.4.3.3.Relations entre cas d'utilisation : l'inclusion..........................................................48
+1.4.3.4.Relations entre cas d'utilisation : l'extension.........................................................50
+1.5. Diagramme détaillé de cas d'utilisation de l'AR.Drone........................................................53
+1.6.Étude du comportement du système....................................................................................55
+1.6.1.Introduction au diagramme de séquence.....................................................................55
+1.6.2. Diagramme de séquence « système »........................................................................56
+1.6.3.Diagramme de séquence « système » du cas d'utilisation « Piloter l'AR.Drone »........58
+1.6.4.Diagrammes d'états......................................................................................................60
+1.6.5.Diagramme d'état du cas d'utilisation « Autopiloter »...................................................62
+1.7.Modélisation des exigences.................................................................................................63
+Société DMS - Département STI 2/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 3 ===
+AR.Drone de Parrot Dossier Technique
+1.7.1.Introduction au diagramme d'exigences.......................................................................63
+1.7.2.Diagramme d'exigences du système AR.Drone...........................................................65
+1.7.2.1.Diagramme d'exigences global.............................................................................65
+1.7.2.2.Diagramme d'exigences Performance..................................................................65
+1.7.2.3.Diagramme d'exigences Ergonomie.....................................................................66
+1.7.2.4.Diagramme d'exigences Maintenance..................................................................66
+1.8.Modélisation de l'architecture du système............................................................................67
+1.8.1.Notion de bloc..............................................................................................................67
+1.8.2.Diagramme de définition de blocs du système AR.Drone.............................................68
+1.8.3.Diagramme de bloc interne du système AR.Drone.......................................................69
+1.8.4.Décomposition de l'AR.Drone.......................................................................................70
+1.8.5.Diagramme de bloc interne de l'AR.Drone...................................................................73
+1.8.6.Diagramme de bloc interne de la carte moteur de l'AR.Drone......................................75
+1.8.7.Diagramme de bloc interne de la carte de navigation de l'AR.Drone............................77
+1.9.Diagramme des cas d'utilisation de la Station-Sol................................................................79
+2.Modélisation 3D...........................................................................................................................82
+2.1.Plans d'ensemble.................................................................................................................82
+2.2.Ressources Solidworks........................................................................................................82
+C.Définition des solutions en réponses aux fonctions techniques.......................................................88
+1.Définition des solutions................................................................................................................88
+1.1.Solution pour la communication entre la Station-sol et l'AR.Drone......................................88
+1.1.1.Les différents types de réseaux sans fil........................................................................88
+1.1.2.Les équipements Wi-Fi.................................................................................................89
+1.1.3.Comparaison réseau filaire LAN - réseau sans fil WLAN.............................................90
+1.1.4.Principales normes pour les réseaux sans fil................................................................90
+1.1.5.Aspect physique de la transmission sans fil.................................................................91
+1.1.6.Caractéristiques d'un réseau Wi-Fi...............................................................................93
+II. Définition du produit didactique...........................................................................................................96
+A.L'AR.Drone didactique.....................................................................................................................96
+1.Identification du produit...............................................................................................................96
+2.Présentation générale de l'AR.Drone didactique.........................................................................97
+3.Déclaration de conformité CE......................................................................................................99
+4.Notice d'instruction du produit didactique..................................................................................100
+4.1.Mise en service de l'équipement........................................................................................100
+4.1.1.Contenu du colis.........................................................................................................100
+4.1.2.Manutention................................................................................................................103
+4.1.3.Assemblage et raccordement.....................................................................................103
+4.1.4.Première mise en service...........................................................................................104
+4.1.4.1.Documentation sur DVD.....................................................................................104
+4.1.4.2.iPad....................................................................................................................105
+4.1.4.3.Téléchargement des applications SAE AR.Drone sur l'App Store.......................105
+4.1.4.4.Gestion des licences ..........................................................................................108
+4.1.4.5.Les applications iPad..........................................................................................109
+4.1.4.6.AR.Drone............................................................................................................119
+4.1.4.7.Maquette didactique AR.Drone...........................................................................123
+4.2.Notice d'utilisation..............................................................................................................125
+4.2.1.Configuration « Sustenter »........................................................................................125
+4.2.1.1.Mise en service...................................................................................................125
+4.2.1.2.Réglages et Instrumentation...............................................................................125
+4.2.1.3.Logiciel...............................................................................................................126
+4.2.1.4.Description informatique.....................................................................................126
+4.2.1.5.Description des fonctionnalités...........................................................................126
+4.2.1.6.Procédure d'arrêt d'urgence et remise en service...............................................126
+4.2.2.Configuration « Orienter »..........................................................................................127
+4.2.2.1.Mise en service...................................................................................................127
+4.2.2.2.Réglages et Instrumentation...............................................................................127
+Société DMS - Département STI 3/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 4 ===
+AR.Drone de Parrot Dossier Technique
+4.2.2.3.Logiciel...............................................................................................................128
+4.2.2.4.Description informatique.....................................................................................128
+4.2.2.5.Description des fonctionnalités...........................................................................129
+4.2.2.6.Procédure d'arrêt d'urgence et remise en service...............................................130
+4.2.3.Configuration «Energie».............................................................................................131
+4.2.3.1.Mise en service...................................................................................................131
+4.2.3.2.Réglages et Instrumentation...............................................................................131
+4.2.3.3.Logiciel...............................................................................................................132
+4.2.3.4.Description informatique.....................................................................................132
+4.2.3.5.Description des fonctionnalités...........................................................................132
+4.2.3.6.Procédure d'arrêt d'urgence et remise en service...............................................132
+4.2.4.Configuration «Altitude».............................................................................................133
+4.2.4.1.Mise en service...................................................................................................133
+4.2.4.2.Réglages et Instrumentation...............................................................................133
+4.2.4.3.Logiciel...............................................................................................................135
+4.2.4.4.Description informatique.....................................................................................135
+4.2.4.5.Description des fonctionnalités...........................................................................135
+4.2.5.Configuration «Communiquer»...................................................................................136
+4.2.5.1.Mise en service...................................................................................................136
+4.2.5.2.Application « Se connecter »..............................................................................136
+4.2.5.2.1.Description informatique..............................................................................136
+4.2.5.2.2.Description des fonctionnalités....................................................................137
+4.2.5.3.Application « Analyser ».....................................................................................137
+4.2.5.3.1.Description informatique..............................................................................137
+4.2.5.3.2.Description des fonctionnalités....................................................................138
+4.2.5.4.Application « Commander »................................................................................140
+4.2.5.4.1.Description informatique..............................................................................140
+4.2.5.4.2.Description des fonctionnalités....................................................................140
+4.3.Entretien de l'équipement..................................................................................................143
+4.3.1.Nettoyage...................................................................................................................143
+4.3.2.Charge de la batterie..................................................................................................143
+4.4.Sécurité..............................................................................................................................144
+4.4.1.Consignes de sécurité................................................................................................144
+4.4.2.Procédure de consignation.........................................................................................145
+4.5.Maintenance Corrective.....................................................................................................146
+5.Documents Techniques.............................................................................................................147
+5.1.Approche fonctionnelle......................................................................................................147
+5.1.1.Représentation Chaîne d'énergie / Chaîne d'information...........................................148
+5.2.Schémas électriques / électroniques..................................................................................149
+5.2.1.Câblage alimentation carte mère................................................................................149
+5.2.2.Câblage des points de mesure U, V et W du moteur brushless »...............................150
+5.2.3.Câblage des points de mesure VA, VB et VR du capteur à ultrasons.........................150
+II.ANNEXES..........................................................................................................................................152
+A.Spécifications de la carte mère......................................................................................................153
+B.Spécifications de la carte de navigation.........................................................................................156
+C.Atmel AT73C246...........................................................................................................................159
+1.Atmel analog companion chip enables ARM9-based multimedia solutions...............................159
+D.Spécifications du chipset Wifi - Atheros AR6102G........................................................................167
+E.Spécifications du gyroscope DG-500.............................................................................................168
+1.DG-500 Integrated Dual-Axis Gyroscope .................................................................................168
+1.1.Overview............................................................................................................................168
+1.2.Applications.......................................................................................................................168
+1.3.Features.............................................................................................................................168
+Benefits........................................................................................................................................169
+F.Spécifications du gyroscope XV-3500...........................................................................................170
+G.BMA150........................................................................................................................................171
+Société DMS - Département STI 4/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 5 ===
+AR.Drone de Parrot Dossier Technique
+H. Les moteurs Brushless.................................................................................................................172
+1.Le moteur brushless : Introduction............................................................................................172
+1.1.Composition du moteur brushless : ...................................................................................172
+1.2.Fonctionnement du moteur brushless simple: ...................................................................172
+2.Commande des moteurs brushless...........................................................................................172
+2.1.Moteur brushless en régime établi : ..................................................................................172
+2.2.Démarrage d’un moteur brushless : ..................................................................................173
+2.3.Principe de commutation des moteurs brushless : ............................................................173
+2.3.1.Moteurs brushless à Capteurs à effet hall : ...............................................................173
+2.3.2.Moteurs brushless à régulation basée sur la fcem : ...................................................173
+2.4.Régulation de vitesse d’un moteur brushless ....................................................................173
+3.Les différents types de moteurs brushless................................................................................173
+3.1.Moteurs brushless ourtunner : ..........................................................................................174
+3.2.Moteurs brushless inrunner ...............................................................................................174
+3.3.Moteurs brushless disques ...............................................................................................174
+III.Bibliographie - Licence......................................................................................................................175
+Société DMS - Département STI 5/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 6 ===
+AR.Drone de Parrot Dossier Technique
+Cette page a été laissée intentionnellement blanche
+Société DMS - Département STI 6/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 7 ===
+AR.Drone de Parrot Dossier Technique
+I. Définition du produit réel
+A. Présentation générale du produit réel
+1. Définition
+L'AR.Drone de la société Parrot, est le premier quadricoptère piloté par un iPhone/iPod-Touch/iPad
+ainsi que par la plupart des appareils mobiles Wi-Fi basé sur Android. L'AR.Drone n'est pas simplement
+un quadricoptère télécommandé, c'est aussi le coeur d'une plate-forme de jeu à réalité augmentée
+multijoueur.
+Il est conçu pour une utilisation en extérieur et en intérieur grâce à une carène prévue pour le
+protéger des chocs et pour éviter le contact avec les hélices en rotation.
+Fig. 2: L'AR.Drone avec carène
+Fig. 1: l'AR.Drone
+Fig. 3: Présentation d'un jeu pour l'AR.Drone sur Parrot.com
+En plus du pilotage intuitif de l'AR.Drone par de simples mouvements appliqués au mobile, les
+caméras embarquées nous permettent d'avoir une vision en direct de l'aéronef sur l'écran du mobile à
+quelques dizaines de mètres grâce au réseau Wi-Fi établi entre l'AR.Drone et son mobile de pilotage.
+L'AR.Drone possède deux caméras, une frontale et l'autre verticale, pour donner une impression de
+perception en profondeur lors du vol et il est possible de sélectionner l'une ou l'autre des caméras (ou
+les deux) depuis l'application de pilotage.
+Société DMS - Département STI 7/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 8 ===
+AR.Drone de Parrot Dossier Technique
+L'AR.Drone dispose aussi de plusieurs fonctionnalités d'auto-pilotage permettant le décollage,
+l'atterrissage et le vol stationnaire. Le pilote automatique assure aussi le contrôle de l'AR.Drone en cas
+de perte de connexion Wi-Fi avec le mobile de pilotage.
+Si l'AR.Drone est utilisé avec un jeu à réalité augmentée, plusieurs fonctions de reconnaissances de
+formes permettent la détection de marqueurs placés au sol ou sur d'autres drones facilitant ainsi le
+guidage de l'aéronef.
+2. Historiques
+2.1. Évolution des hélicoptères
+L'inspiration
+L'idée Léonard a été, comme Icare, fasciné par
+le vol. Il a produit de nombreuses études
+Léonard de sur ce phénomène en s'inspirant de la
+Vinci nature, dont les prémices d'hélicoptère
+1487 - 1490 nommées la « vis aérienne »
+Société DMS - Département STI 8/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 9 ===
+AR.Drone de Parrot Dossier Technique
+Maquettes • Prise de vue en juin 1863, tirage
+d'hélicoptère postérieur (vers 1900) par Paul
+de Ponton Nadar d'après le négatif original
+d'Amécourt • BnF, Estampes et Photographie.
+1863 Eo 15 folio, tome 2. Acquisition
+1949, fonds Nadar
+Premiers Vols Paul Cornu inventa et fit décoller un
+1907 - 1950 engin plus lourd que l'air près de Lisieux
+en 1907.
+Paul Cornu
+1907
+Louis Breguet Le Gyroplane Laboratoire vola pendant
+René Dorand une heure à 100 Km en 1936.
+1935
+Société DMS - Département STI 9/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 10 ===
+AR.Drone de Parrot Dossier Technique
+Double rotors La question de la suppression du
+ou simple couple engendré par le rotor principal est
+rotor ? primordiale pour pouvoir piloter
+l'hélicoptère : si un seul rotor soutient
+l'appareil, celui-ci tournera dans le sens
+inverse de la rotation du rotor, rendant
+l'appareil incontrôlable.
+Jusqu'à la Deuxième Guerre Mondiale,
+la seule solution retenue a été celle de
+l'utilisation de 2 rotors de sustentation,
+l'un tournant dans le sens inverse de
+l'autre afin de neutraliser l'effet de couple.
+La complexité et les coûts engendrés
+par cette solution a freiné la production en
+série des hélicoptères.
+On doit la solution à un ingénieur
+américain d'origine russe, Igor Sikorsky
+(à gauche sur la photo). Il eu l'idée de
+compenser le couple du rotor principal par
+un rotor secondaire dit « anti-couple »,
+placé verticalement au bout de la queue
+de l'appareil. Cette innovation permit de
+simplifier la mécanique et de réduire les
+coûts facilitant ainsi la production en série
+des hélicoptères.
+Les appareils Le premier hélicoptère dénommé
+opérationnels Alouette fut le SE 3120, triplace, qui
+effectua son premier vol le 31 août 1951.
+Depuis 1950
+Les dernières L'EC225 est un hélicoptère de la
+générations classe 11 tonnes fabriqué par Eurocopter
+qui a effectué son premier vol en
+novembre 2000.
+Nombre de pales : 5 sur le rotor
+principal et 4 sur le rotor anti-couple
+Société DMS - Département STI 10/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 11 ===
+AR.Drone de Parrot Dossier Technique
+2.2. Évolution des systèmes de drones
+L'histoire des UAS (Unmanned Aircraft System ou Système d'Aéronefs non habités) débute avec la
+première Guerre Mondiale avec la mise au point d'appareils capables de voler sans pilote (torpilles
+volantes).
+Les systèmes Pour l'auto-pilotage, les premiers
+de drones engins étaient composés de gyroscopes
+pour la stabilisation et la direction, d'un
+baromètre pour réguler l'altitude, de
+servo-moteurs pour contrôler les ailerons
+et la gouverne ainsi que d 'équipements
+de mesure de distance.
+L'évolution des systèmes de drone à
+globalement suivi l'évolution de l'aviation.
+La maturité et la miniaturisation des
+technologies associées depuis les années
+80 ont permis de développer ce domaine
+et de diminuer les coûts de fabrication et
+d'exploitation.
+Cantonnés pendant longtemps dans le
+domaine militaire, les systèmes de drone
+se sont vus confier de nombreuses autres
+missions civiles.
+Les missions La majorité des fonctions que l'on
+trouve sur les systèmes de drones sont
+liées à la prise de mesures à distance
+(capteurs électromagnétiques,
+biologiques, chimiques, etc.).
+Les principales missions confiées aux
+systèmes de drone sont :
+• Environnementales
+• Météorologiques
+• Recherches scientifiques
+• Humanitaires
+• Militaires
+• Sécurité intérieure (Police,
+Gendarmerie, Douanes et gardes-
+côtes)
+• Sécurité civile (recherche,
+secours , etc.)
+Société DMS - Département STI 11/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 12 ===
+AR.Drone de Parrot Dossier Technique
+Exemples de • Surveillance des zones sensibles
+missions
+• Inspection d'Ouvrages d'Art
+• Photographie aérienne
+• Cartographie, recherche et
+exploitation de pétrole, de gaz et
+de minerais
+• Cinéma
+• Surveillance de sites industriels,
+d'infrastructures routières et
+ferroviaires
+• Formation au vol
+• etc.
+Société DMS - Département STI 12/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 13 ===
+AR.Drone de Parrot Dossier Technique
+2.3. Évolution des modèles réduits d'hélicoptères
+Les modèles réduits d'hélicoptères ont bénéficié des mêmes avancés technologiques que leurs aînés
+en matière de matériaux, de miniaturisation et de puissance des systèmes électroniques puis
+informatiques embarqués.
+Les Pionniers Le premier véritable hélicoptère
+radiocommandé a été conçu en 1969
+par Dieter Schlüter. Ce modèle a gagné
+le concours Harsewinkel. Il a réussi à
+faire voler son hélicoptère sur deux vols
+de 5 secondes, à 3 mètres du sol.
+Le premier modèle commercialisé a
+été le Bell Huet cobra Schlüter, qui a
+établi un nouveau record (non officiel)
+avec un vol de 10 minutes 36 secondes.
+Hélicoptère Ces hélicoptères sont
+birotor particulièrement destinés à
+contrarotatif l'apprentissage du pilotage d'hélicoptère
+radio-commandé. Ils sont plus stables et
+plus simples à contrôler que les
+hélicoptères normaux. Ils possèdent
+deux rotors de sustentation coaxiaux
+(tournant autour du même axe) tournant
+en sens inverse et ne possèdent pas de
+rotor de queue.
+Société DMS - Département STI 13/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 14 ===
+AR.Drone de Parrot Dossier Technique
+Hélicoptère Ce modèle possède deux rotors de
+birotor en sustentation l'un derrière l'autre. Ce
+tandem système dans lequel les rotors tournent
+en sens inverse permet d'annuler le
+couple de réaction du rotor sur la cellule.
+Hélicoptère La miniaturisation des systèmes de
+3 rotors stabilisation et l'informatique embarquée
+sur l'appareil permettent d'augmenter le
+nombre de rotor afin d'améliorer la
+stabilité, la réactivité et le confort de
+pilotage.
+Quadricoptère Famille de drones dont fait partie le
+fameux AR.Drone...
+Sa mise au point a nécessité 5 ans
+de travail et a abouti au dépôt d'une
+vingtaine de brevets.
+Hélicoptère Toutes les configurations sont
+6 rotors permises.
+Société DMS - Département STI 14/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 15 ===
+AR.Drone de Parrot Dossier Technique
+3. Présentation technique, commerciale, économique et
+environnementale
+3.1. Présentation technique
+3.1.1. Moteur et énergie
+La propulsion de l'AR.Drone est assurée par quatre moteurs alimentés par une batterie Lithium
+polymère.
+Moteurs • 4 moteurs brushless
+brushless
+• 35 000 tr/min
+• Puissance : 15W
+Batterie • 3 cellules
+Lithium
+• 11,1 V
+polymère
+• 1000 mAh
+• Temps de charge : 90 mn
+Société DMS - Département STI 15/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 16 ===
+AR.Drone de Parrot Dossier Technique
+3.1.2. Vidéo
+Le pilote est plongé dans le jeu à réalité augmentée grâce à deux caméras (frontale et verticale) dont
+les images sont diffusées sur l'iPhone en temps réel.
+Caméra • Diagonale de la lentille 93°, capteur
+frontale CMOS.
+• Résolution 640x480 pixels (VGA)
+• 15 images/sec.
+• Retour vidéo sur l'écran de
+iPhone/iPod-Touch/iPad.
+• Détection des tags 2D et 3D pour la
+Réalité Augmentée.
+Caméra • Caméra haute vitesse, diagonale
+verticale de la lentille 64°, capteur CMOS.
+• Résolution 176x144 pixels (QCIF).
+• 60 images/sec.
+• Permet la stabilisation.
+Société DMS - Département STI 16/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 17 ===
+AR.Drone de Parrot Dossier Technique
+3.1.3. Ordinateur embarqué
+L'intelligence de l'AR.Drone est concentrée dans la carte mère sous la forme de composants
+électroniques et de logiciels embarqués. La puissance de calcul de cet ordinateur embarqué, permet
+d'assurer des mouvement fluides et contrôlés de l'AR.Drone ainsi que la compression et la diffusion des
+vidéos des deux caméras.
+Carte mère • ARM9 468MHz, DDR 128 Mo à
+200 MHz
+Communications • Wi-Fi b/g
+• USB Haute Vitesse
+Système • Linux OS
+d'exploitation
+Société DMS - Département STI 17/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 18 ===
+AR.Drone de Parrot Dossier Technique
+3.1.4. Centrale Inertielle
+L'AR.Drone embarque un altimètre ultrason et une centrale inertielle basée sur des accéléromètres et
+des gyroscopes qui lui permet de se stabiliser (vol stationnaire) et de contrôler finement ses
+déplacements.
+Altimètre • Fréquence d'émission : 40 Khz
+ultrason
+• Portée : 6 m
+• Stabilisation verticale
+Centrale • Capteurs Mems
+inertielle
+• Accéléromètre 3 axes
+• Gyroscope 2 axes
+• Gyroscope de précision 1 axe pour
+le lacet.
+Société DMS - Département STI 18/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 19 ===
+AR.Drone de Parrot Dossier Technique
+3.1.5. Autres caractéristiques générales
+Sécurité • Blocage automatique des hélices
+en cas de contact
+Structure • Tube de carbone
+Performances • Poids total de l'AR.Drone :
+◦ 360 g sans carène
+◦ 400 g avec carène
+• Vitesse de déplacement :
+◦ 5 m/s ; 18 km/h
+• Temps de vol : 12 minutes
+Société DMS - Département STI 19/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 20 ===
+AR.Drone de Parrot Dossier Technique
+3.1.6. Données échangées avec l'AR.Drone
+L'AR.Drone échange en permanence des données avec le logiciel de pilotage exécuté sur l'iPhone.
+Commandes et • Commande du drone
+données de
+◦ Décollage, atterrissage
+navigation
+◦ Gauche/Droite,
+Avancer/Reculer
+◦ Pivot droit et gauche
+• Réception des données de
+navigation
+◦ Mesures inertielles (altitude,
+angles, vitesses XYZ,
+estimation du déplacement)
+◦ Niveau batterie
+◦ Détection des tags 2D et 3D
+Réception du • Décodage des trames vidéo
+flux vidéo (motion JPEG)
+Configuration • Configuration intérieur/extérieur
+de l'AR.Drone
+• Paramètres de vol
+Société DMS - Département STI 20/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 21 ===
+AR.Drone de Parrot Dossier Technique
+3.1.7. Kit de développement logiciel
+La société Parrot met à la disposition des développeurs amateurs et professionnels la documentation,
+les interfaces logicielles et des exemples permettant de créer des logiciels de pilotage de l'AR.Drone.
+API du drone • https://projects.ardrone.org
+• ArDroneLib (Code Source en C)
+◦ Configuration du drone
+◦ Récupération de la vidéo et des
+NavData
+◦ Envoi des commandes
+Code Source • Apple IOS (iPhone/iPod/iPad)
+d'exemples
+◦ FreeFlight (avec ihm)
+• Linux :
+◦ Ardrone_navigation (interface
+de paramétrage complet)
+• Windows :
+◦ Interface de pilotage
+• Android :
+◦ Interface de pilotage
+Société DMS - Département STI 21/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 22 ===
+AR.Drone de Parrot Dossier Technique
+3.2. Présentation commerciale
+3.2.1. Cible commerciale et secteur d'activité
+La cible principale de l'AR.Drone est la catégorie des Hommes de 15 à 30 ans dans le secteur des
+Loisirs et des Télécommunications.
+Fig. 4: Campagne de lancement de l'AR.Drone
+sur Internet : « Pilots Wanted »
+3.2.2. Étapes de la campagne commerciales
+L'aventure de la commercialisation de l'AR.Drone commence quelques mois avant le rendez-vous
+majeur de la profession : le salon CES (Consumer Electronic Show) de Las Vegas au début de l'année
+2010.
+Fig. 5: Annonce CES 2011
+Société DMS - Département STI 22/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 23 ===
+AR.Drone de Parrot Dossier Technique
+L'idée est de faire connaître le produit en créant un buzz très fort sur Internet et fédérer une
+communauté de fans afin de préparer la commercialisation.
+L'équipe marketing de Parrot a misé dès le départ sur la vidéo et les réseaux sociaux YouTube,
+Facebook et Twitter.
+Fig. 6: Bannière YouTube sur parrot.com
+Peu de temps avant le salon CES, quelques blogueurs sont invités en avant-première dans les locaux
+de Parrot à Paris sous le sceaux de la confidentialité.
+Dans le même temps, les outils web (site web, blog, liste de diffusion, etc.) sont préparés et calibrés
+pour recevoir un fort trafic. Le référencement auprès des moteurs de recherche est aussi soigné.
+Dès le lancement, le buzz média a été important et le trafic du site est multiplié par 10. Le 6 janvier
+2010, le passage sur CNN et ABC accélère le lancement entrainant un plantage du serveur Web de la
+société... Les infrastructures réseaux sont alors immédiatement mise à niveau pour absorber le trafic sur
+le site parrot.com.
+L'audience de la vidéo principale de l'AR .Drone sur YouTube grimpe rapidement à plus d'un million
+de vues sans investissement dans de la publicité en ligne.
+Jusqu'au lancement de l'AR.Drone en France en aout 2010, Parrot, accompagné par une agence de
+publicité renommée, a continué la promotion du drone (chaîne YouTube dédiée à l'AR.Drone, campagne
+interactive « AR.DRONE PILOTS WANTED », partenariat avec le site d'actualité hightech Gizmodo,
+etc.).
+En aout 2010, le site de e-commerce dédié aux pièces détachées de l'AR.Drone est mis en place.
+3.2.3. Résultats
+En janvier 2010, la vidéo principale de l'AR.Drone a été vue plus d'un million de fois et l'ensemble des
+vidéos ont été vues plus de deux millions de fois en quelques jours. A la fin de l'année 2010, Parrot
+comptait plus de 8 millions de vidéos vues.
+En 2011, Parrot compte environ 100 000 fans sur Facebook et près de 9000 followers suivent
+l'actualité de la société sur Twitter.
+Société DMS - Département STI 23/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 24 ===
+AR.Drone de Parrot Dossier Technique
+3.3. Présentation économique
+3.3.1. La société Parrot
+En 2011, la société emploie environ 500 personnes rassemblées au siège parisien, en bordure du
+canal Saint-Martin. La Recherche-Développement absorbe 35% des effectifs et environ 15% du chiffre
+d'affaires.
+Les points forts de la société sont les compétences dans les technologies sans fil dans le domaine de
+l'acoustique et du traitement du signal (Bluetooth, Wi-Fi), ainsi que le succès de l'AR.Drone.
+3.3.2. Données financières
+En M € 2008 2009 2010
+Chiffre d'Affaire (CA) 206 168 241
+Résultat net 14 9 27
+La société Parrot, spécialiste des périphériques sans fil pour téléphones mobiles, a annoncé pour la
+fin 2010 un résultat en hausse de près de 60% sous l'impulsion des bonnes performances de
+l'AR.Drone.
+Commercialisé à partir d'aout 2010, l'AR.Drone a connu un succès commercial immédiat. La
+valorisation de l'entreprise a aussi augmenté durant la même période comme on peut l'observer sur le
+cours de l'action Parrot en 2010.
+Fin 2010, les ventes de l'AR.Drone représentent 30% de son chiffre d’affaires Grand Public, qui
+totalise près de 75% de l’activité.
+Société DMS - Département STI 24/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010
+
+=== PAGE 25 ===
+AR.Drone de Parrot Dossier Technique
+4. Gamme de produits
+L'AR.Drone est, pour l'instant, le seul produit de ce type proposé par la société Parrot. La société
+Parrot développe d'autres produits autour de l'AR.Drone comme :
+• Les logiciels de jeux.
+• Les accessoires
+• Les pièces détachées
+Fig. 7: Gamme de logiciels
+Fig. 9: Les pièces détachées
+Fig. 8: Les nouveaux accessoires
+Société DMS - Département STI 25/175
+Aéroparc St Martin - 12 rue Caulet - Bat C03 - 31300 TOULOUSE – ( : + 33 (0)5 62 88 72 72 & : + 33 (0)5 62 88 72 79
+Site internet : www.dmseducation.com Email : info@dmseducation.com
+Ce document et les logiciels fournis sont protégés par les droits de la propriété intellectuelle et ne peuvent pas être copiés sans accord préalable écrit de DMS.
+Copyright DMS 2010

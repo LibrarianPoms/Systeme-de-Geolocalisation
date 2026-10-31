@@ -1,0 +1,744 @@
+=== PAGE 1 ===
+ResultsinEngineering23(2024)102498
+Contents lists available at ScienceDirect
+Results in Engineering
+journal homepage: www.sciencedirect.com/journal/results-in-engineering
+Autopilot drone in construction: A proof of concept for handling
+lightweight instruments and materials
+Zeiab Imania, Perry Forsytheb, Alireza Ahmadian Fard Finib, Mojtaba Maghrebic,*,
+Travis S. Wallerd
+aDepartment of Computer Engineering, Ferdowsi University of Mashhad, Iran
+bSchool of Built Environment, University of Technology Sydney, Australia
+cDepartment of Civil Engineering, Ferdowsi University of Mashhad, Iran
+dChair of Transportation Modelling and Simulation, Technische Universita¨t Dresden, Germany
+A R T I C L E I N F O A B S T R A C T
+Keywords: Applications of Unmanned Aerial Vehicles (UAVs) in construction have been increased in recent years mainly for
+Drone purposes of automatically collecting field data. In the market, there is a growing opportunity for using UAVs in
+UAV material handling. On the other side, vertical transportation in construction sites is a crucial challenge that leads
+Autopilot
+to a drop in productivity efficiency. This paper presents a proof of concept for automating the lifting procedure of
+GPS calibration
+lightweight instruments and materials in construction sites. To do so, a platform is developed that could auto-
+matically manage material/instrument handling requests via an autopilot drone. The aircraft position is tracked
+with an onboard GPS module which is not accurate in urban areas. So inaccurate GPS signals could deviate the
+drone from the predefined path. To tackle this problem, a machine vision algorithm is utilized to calibrate the
+real-time position of the aircraft. A self-supervised learning algorithm is integrated into the system to handling
+collision avoidance during the flight. Finally, the developed methods are tested with an UAV in a real world
+environment to demonstrate the potentials of hiring autopilot drones in construction.
+1. Introduction construction sites (we call them Vertical Transportation Equipment in this
+paper). To address the ever-growing demand for vertical transportation,
+As the population of urban areas grows, demand for high-rise increasing the number of Vertical Transportation Equipment might be a
+building has been increased [1] which lead to a great request for ver- quick solution in a high-rise construction project. However, due to cost
+tical transportation of materials, equipment, and workers in high-rise and space limitations, increasing the number of Vertical Transportation
+construction sites. Equipment in a site is technically impossible [4]. To tackle this problem,
+The most important challenge with vertical transportation is time. a number of studies have been tried to optimize the Vertical Trans-
+Lack of proper time management in vertical transportation can cause portation Equipment operation in order to increase their transportation
+bad effects on the efficiency of the manufacturing process. These effects capacities [3–6].
+could be summarized as follows. Maybe a drone-based method could be considered as a practical
+solution for vertical transportation. The recent development in tech-
+• Vertical transportation of workers might be a bottleneck in con- nology brought a big market for UAVs in different industries such as
+struction sites in the peak time (at the beginning and the end of a military [7,8], commercial freight [9,10], agriculture [11,12], disaster
+working day) [2]. A recent study shows that around 20 % of workers’ management [13–15], wildlife monitoring [16], mining [17], cinema
+time is wasted waiting for vertical transportation. [18], and construction [19].
+• If the materials and equipment can’t be delivered at the right time, it Particularly in construction, due to the convenient features like the
+causes a substantial delay in the construction progress [3]. ability to reach hard-to-access areas and the cost-effective price of the
+UAVs, they are utilized in the automation of different processes.
+Tower cranes, lifts, and hoists are used for vertical transportation in
+* Corresponding author.
+E-mail address: mojtabamaghrebi@um.ac.ir (M. Maghrebi).
+https://doi.org/10.1016/j.rineng.2024.102498
+Received 22 December 2023; Received in revised form 27 June 2024; Accepted 1 July 2024
+Availableonline2July2024
+2590-1230/©2024TheAuthors. PublishedbyElsevierB.V.ThisisanopenaccessarticleundertheCCBY-NClicense(http://creativecommons.org/licenses/by-
+nc/4.0/).
+
+=== PAGE 2 ===
+Z. Imani et al. R e s u l t s i n E n g i n e e r i ng23(2024)102498
+• Data Gathering [20–23]. light-weight LiDAR sensors to avoid the corners and deadlocks. Usenko
+• Progress Monitoring [24,25]. et al. [36] proposed a system that tries to move in a predefined trajectory
+• Safety Control [26,27]. with the least deviation while avoiding unpredicted obstacles. They used
+• Mapping and Surveying [28–30]. an occupancy model of the environment which is made with the help of
+• Real-scale Structure Building [31]. an RGB_D camera. Similarly, Brunner et al. [35] used depth images to
+make the occupancy map to prevent collisions in a delivery drone in an
+To the best of our knowledge, no research is attempted to automate urban area. Wang et al. [37] combined RGB_D camera with a
+the vertical transportation in construction sites relying on the current deep-learning-based object detection algorithm to design a system that
+potentials of the UAVs. UAVs can be utilized as a low-cost, safe, and could retrieve related information about the obstacles’ classes, the 3D
+autonomous solution for purpose of vertical transportation. spatial position of obstacles and tries to optimally avoid them.
+In this paper, a proof of concept for lifting lightweight instruments Nowadays most UAVs are equipped with a light-weight monocular
+and materials on construction sites is presented which examines the camera and using extra depth sensors can increase their weight, energy
+current technical challenges of using a drone on a construction site as consumption, and cost. So, many researchers have attempted to provide
+transportation equipment. To do so a platform is developed that could safe navigation for UAVs that are equipped with a monocular camera.
+automatically manage material/instrument handling requests via an The algorithms used in the area of autonomous navigation for UAVs can
+autopilot drone. The platform consists of a mobile application that is be grouped as follows.
+designed for defining a mission and automatically controlling the UAV
+through the transportation operation. The aircraft position is tracked • classical image processing [38,39].
+with an onboard GPS module which is not accurate in urban areas [32]. • deep-learning-based approaches [40,41].
+To prevent the aircraft from deviating from its path, due to inaccurate • reinforcement learning [42,43].
+GPS signals, a machine vision algorithm is developed to calibrate the
+aircraft’s position. Also, a self-supervised algorithm named Monodepth2 Among the classical image processing algorithms that have been
+[33] is integrated into the system for collision avoidance. Some attempts hired to detect obstacles can refer to Saha et al. [39] which used the
+are done to increase the accuracy of Monodepth2. Speeded Up Robust Features (SURF) algorithm to design a mathematical
+In summary, this paper tries to emphasize the potential applications model for detecting the obstacles and estimating the relative distance to
+of using drone-based solutions for vertical transportation, as well as, them. Likely, Al-Kaff et al. [38] investigated the changes in the convex
+includes a practical demonstration for the proposed idea. hull around the extracted features from the detected obstacles in order to
+This paper offers more than a proof of concept, where the proposed avoid collisions.
+idea is tested and implemented in a case study. This include, developing Always classical image processing algorithms do not lead to prom-
+User Interface (UI), User Experience (UX), real-time calculation modules ising results because of different shapes and positions of obstacles. So, to
+and image processing techniques which are seamlessly interconnected increase the accuracy, deep-learning-based approaches are proposed.
+via a cross-platform mobile application. The developed modules are Padhy et al. [41] used a Convolutional Neural Network (CNN) model to
+Mission definition, Threshold, Depth Estimation, Calibration, and navigate in a corridor without any collision to the walls. Kouris et al.
+Collision Avoidance that are encapsulated in the mobile app to reflect [40] used a regression CNN trained by images of an environment labeled
+the practicality of the proposed method. with the distances to predict the distance to obstacles.
+The rest of the paper is organized as follows: Section 2 is a summary Deep-learning-based navigation methods are accurate but need a
+of the proposed methods in autonomous navigation and auto-landing of large amount of labeled data for training the system. To overcome this
+the UAVs. Section 3 describes the implementation of the system that is limitation, the drone can learn by itself from the surrounding environ-
+consists of the mobile application and algorithms. Section 4 presents the ment using Reinforcement Learning (RL). Given that in RL methods, the
+results of the real-world experiments and sections 5 and 6 are the dis- drone itself learns the navigation, though the safety of the drone has to
+cussion and conclusion. be considered during the learning time. Anwar et al. [42] proposed a
+system based on an end-to-end reinforcement learning algorithm that
+2. Related works could navigate in an indoor environment. They generated a reward
+function based on the information of one monocular camera. Also, they
+Autonomous navigation and auto-landing are two important subjects designed a virtual crash reward for safety purposes during the learning
+in the drone controlling system that have received considerable atten- time. Shin et al. [43] used the combination of a supervised segmentation
+tion in the last two decades. Autonomous navigation of the UAVs means network and an Actor-Critic network running on an RL platform to
+flying in an environment based on a pre-defined path or some moving navigate the drone in a simulated environment. Their achieved results in
+strategies while avoiding the unpredicted obstacles getting in the way of both the simulation environment and the matching real-world experi-
+the UAV. Auto-landing is the operation of correct landing on an ments are admissible, but the errors increased when the locations of the
+appropriate area that is doing in known or sometimes unknown envi- obstacles were changed.
+ronments. The next two sub-sections describe a summary of the most Rather than the methods mentioned above, there is another
+recent studies that have been conducted in i) Autonomous navigation approach that mainly uses a depth map of the surrounding environment
+and, ii) Auto-landing. for detecting/avoiding obstacles. Monocular RGB cameras have no
+depth information, Laina et al. [44] proposed a single-scale CNN ar-
+chitecture that follows residual learning to get the depth map of a single
+2.1. Autonomous navigation image. Their model outperforms the previous approaches [45–48] in
+quality of the results, training time, and also, the amount of data needed
+Autonomous navigation of UAVs is an important subject in the safe for training. Godard et al. [33] proposed a self-supervised monocular
+utilization of these aerial robots which are used in a great number of depth estimation model that despite its simplicity, achieved acceptable
+applications in recent years. Some approaches are based on the depth results. Singla et al. [49] proposed a deep RL method for UAVs’ safe
+information of an environment that is provided by sensors (such as navigation in unknown environments. The idea was to use the relevant
+LiDAR [34]) or cameras (such as RGB_D camera [35–37]). Devos et al. information about the environment to have a better performance in
+[34] designed a system that could help the UAVs equipped with two
+2
+
+=== PAGE 3 ===
+Z. Imani et al. R e s u l t s i n E n g i n e e r i ng23(2024)102498
+Fig. 1. The system overview.
+obstacle avoidance. A Recurrent Neural Network (RNN) with temporal ’X’ letter surrounded by a circle is used as a landing marker for landing
+attention was also used to collect and store the information gathered on a moving platform [50,51].
+over time. To have more information from the environment they used a Fiducial markers are widely used as guidance in landing and locali-
+conditional Generative Adversarial Network (cGAN) to make the depth zation. These markers are fast to detect and robust against noises [60].
+map of a monocular view. Producing the depth map could lead to an Sani et al. [58] used an ArUco1 marker as the landing marker and used
+enhancement in the accuracy of collision detection and avoidance the Inertial Measurement Unit (IMU) data to reach the marker when it is
+because it provides more information about the surrounding not in the field view to provide auto-landing. Wubben et al. [59] pro-
+environment. posed a method that could detect an ArUco marker from a high distance
+up to 30 m and perform an accurate landing. An AprilTag2 is used in
+Refs. [55–57] as a landing marker on a moving vehicle.
+2.2. Auto-landing
+Marker-less approaches are not so accurate but can be used for
+landing in unknown environments and during emergency events. These
+Due to the widespread use of UAVs in various industries, and the
+methods could find an appropriate landing area in an environment
+important role of auto-landing in UAV applications, this issue has been without any pre-knowledge. Fo¨rster et al. [61] proposed a method that
+considered in a great number of studies. The auto-landing methods can
+used a bottom-facing monocular camera to properly find a landing po-
+be categorized into i) marker-based and, ii) marker-less approaches.
+sition beneath the drone. Chung et al. [62] developed an optic flow
+Marker-based approaches use a marker as the landing station. The
+contour module that could explore the below surface to see if it is flat
+markers can be grouped based on the shapes which are used in them; i-a)
+and appropriate for landing or it includes obstacles. They also used an
+self-designed markers [50–54], and i-b) fiducial markers [55–59]. The
+object detector that could detect the objects pass by beneath the drone.
+self-designed markers usually contain geometric shapes (such as circles
+Yang et al. [63] used the Simultaneous Localization and Mapping
+or ellipses) and letters (such as ’H’, ’T’, or ’X’). Garcia-Pulido et al. [52]
+(SLAM) based method in combination with a grid map to find the
+developed an image processing-based algorithm to detect a landing
+appropriate landing zone for the drone in emergencies.
+marker that consists of four circles and three ellipses. This approach
+State-of-the-art autopilot drones consist of algorithms that provide
+could perform the landing procedure even if part of the landing marker
+autonomous navigation and auto-landing, as has been mentioned above.
+is not completely distinguishable in the camera view, but has difficulties
+This paper tries to propose a platform that could handle an autopilot
+in the environments that contain elliptical shapes. Nguyen et al. [53]
+drone in construction. The platform consists of a computer vision al-
+and Truong et al. [54] utilized deep learning-based methods to detect a
+gorithm along with a monocular depth map generator for autonomous
+marker that consists of three nested circles each is divided into 8 parts.
+Nguyen et al. [53] proposed a method that is capable of detecting the
+landing marker in different lighting conditions and works with less
+computation time. The errors increase when the landing marker is 1 A square shape marker with a black border that contains an identifier as a
+moving at a high speed in the image view. Truong et al. [54] used an binary matrix.
+image super-resolution (SR) reconstruction method that works well with 2 A square shape marker with a black border that contains an encoded data
+low-resolution images captured by a cheap camera. In other studies, an (4–12 bits) as a binary matrix.
+3
+
+=== PAGE 4 ===
+Z. Imani et al. R e s u l t s i n E n g i n e e r i ng23(2024)102498
+Fig. 2. The mobile application chart.
+and safe navigation and also, a self-designed marker-based auto-landing consists of a mobile application that is in charge of controlling the drone
+approach. through a flight. It provides a chance for a user to define a material/
+instrument supply mission.
+3. Methodology The user should define the target floor number and the home position
+in the mobile application. Then, a path to the destination is calculated in
+This paper proposing a proof of concept for using an autopilot drone the application and the aircraft will automatically follow the defined
+to lift material/instrument in construction sites. Due to the large scope of pass up to the desired floor. The aircraft position is tracked with an
+autopilot drones, this work is focused on automatic maneuvering by onboard GPS module during the flight. Due to inaccurate GPS signals in
+calculating flight commands, obstacle avoidance, and auto-landing. To the urban areas [32], the aircraft should update its altitude with a QR
+do so, a platform is developed which is depicted in Fig. 1. The platform code that is attached to the surrounding environment. The floor number
+4
+
+=== PAGE 5 ===
+Z. Imani et al. R e s u l t s i n E n g i n e e r i ng23(2024)102498
+Fig. 3. Mission controller page of the mobile application.
+is encoded in the QR code. After finding the target floor by decoding the have complete control over the procedure of the platform. The setting
+QR code information, the aircraft will rotate its camera to view down- page is presented in Fig. 2 (5). The two important pages of the appli-
+ward and search for the landing marker which assists the drone to up- cation (mission controller and setting) are described completely in the
+date its real-time position. Finally, the 3D position of the aircraft following paragraphs.
+(include latitude, longitude, and altitude) will be updated based on the Fig. 3; shows the mission controller page of the application. On this
+information acquired from its environment. So, the drone does not only page, (a) a real-time video is shown at the top of the page, and the user
+rely on the information of GPS signal for maneuvering and utilizes the assistant functions are grouped on the rest of the page. The first group of
+camera to increase accuracy. The valid spatial information provides a functions below the camera view is for the drone’s flight control func-
+chance for the drone to land in the desired position. tions consists of (b) takeoff, (c) land, and (d,e) mission start/stop. The
+Rather than correcting unreliable GPS signals during a flight, this second group of functions on the left side of the page is for working with
+paper has covered another practical challenge which is automatically the drone’s camera, which consists of (f) taking pictures and (g,h) start/
+detected and avoided obstacles during a flight. The developed platform stop recording the video. The last group of functions on the right side of
+is able to handle the events when there is a high risk of collision between the page is dedicated to controlling the drone vision-based procedures
+the drone and an object. During the flight, if a high-risk event is detec- consists of (i) searching for the QR code, (j) automatic landing on the
+ted, the platform automatically cancels the mission and the drone will be landing marker, (k) checking for collision during flight, and (l)
+landed in a near safe area. canceling the automatic operations. The user can leave a note in the
+In the following sections, the mobile application module and utilized dedicated message box (m). The setting page will be open by pressing
+algorithms are described in detail. the setting bar (n).
+Fig. 4 shows the settings which are done once before starting the
+mission. On this page, the user can (a) specify the target floor number
+3.1. Mobile application and (b) the speed of the aircraft during flight, (c) set the home position
+and, (d) change the gimbal settings.
+The mobile application is in charge of mission definition for trans- The next section describes the algorithms that were developed to
+ferring the material/instrument, and automatically performing the handle autonomous navigation and auto-landing tasks.
+mission utilizing an aircraft. As it has been shown in Fig. 1, the mobile
+application is designed to getting the home position and the target floor
+number to define a new mission as well as providing a machine vision 3.2. Methods and algorithms
+algorithm for autonomous navigation and auto-landing. A review of the
+mobile application is presented in Fig. 2. The application consists of four In this study, two kinds of markers are used for calibrating the 3D
+different pages. Fig. 2 (1) shows the initial page of the application. The position (include latitude, longitude, and altitude) of the aircraft during
+app does not open until it connects to the drone’s remote controller via a flight. After detecting each marker, a machine vision algorithm is used
+Wi-Fi connection (Fig. 2 (2)). After connecting to the remote controller, for estimating the aircraft distance to the marker. This distance is used
+the model of the aircraft can be shown on the next page (Fig. 2 (3)). The during the calibration procedure.
+user can go to the main part of the application by pressing the Mission As it has been shown in Fig. 1 the vision-based algorithms are divided
+button. Fig. 2 (4) is the mission controller page that assists the user to into four main parts, which consist of:
+5
+
+=== PAGE 6 ===
+Z. Imani et al. R e s u l t s i n E n g i n e e r i ng23(2024)102498
+Fig. 4. Setting page of the mobile application.
+• Threshold (Search) different lighting conditions and during the movement of the aircraft.
+• Depth Estimation Depth Estimation is performed for Calibration purposes. Calibration is the
+• Calibration procedure of utilizing the Threshold and Depth Estimation algorithms in
+• Collision avoidance order to compute the flight commands for autonomous navigation and
+auto-landing. Also, a self-supervised algorithm named Monodepth2 [33]
+A Threshold algorithm is implemented to detect the color markers in is utilized to ensure drone safety through autonomous navigation.
+Fig. 5. Calibration markers. a) The QR code, b) The landing marker.
+6
+
+=== PAGE 7 ===
+Z. Imani et al. R e s u l t s i n E n g i n e e r i ng23(2024)102498
+Monodepth2 supplies the depth map from the mounted RGB camera on 3.2.2. Threshold
+the drone for checking a high risk of collision in front of the aircraft. Due to the different lighting conditions in the outdoor environment
+Also, brightness adjustment is used to increase the accuracy of the depth and also the image motion blur caused by the movement of the aircraft, a
+estimation approach. In other words, the proposed method can detect color pattern is used to facilitate the searching procedure for the
+any obstacle (stationary or mobile) in different lighting conditions while markers. The color pattern is used rather than grayscale because it can
+aircraft is flying. When an obstacle is detected, first the aircraft is work better in different lighting conditions. The Threshold is done in HSV
+stopped at the current aerial position and then due to safety issues the Color Space rather than RGB. Unlike RGB, color and intensity infor-
+mission is cancelled and aircraft safely is returned, under autopilot mation are separate in HSV so the Threshold will have better perfor-
+control, to the home point where the flight was started. mance [64].
+The Threshold algorithm which is shown in Algorithm 1 finds the
+3.2.1. Markers border between two specific colors. The chosen colors are blue and or-
+Two different kinds of markers are used for calibrating the position of ange, which have high contrast with each other. This method could
+the aircraft. One is used as the navigation guides and the other is used as provide fast marker detection in different lighting conditions and also is
+the landing marker. robust against noises. The similar colors in the environment cannot
+Quick Response (QR) code is a famous 2D marker that can store in- make noise in the threshold approach unless the blue and orange colors
+formation and also is simple and fast to detect. In this study, each floor are exactly next to each other.
+number in the target building is encoded via QR code and labeled to the In the next section of the paper, the Depth Estimation unit is explained
+corresponding floor in the construction site. The user specifies the floor that is designed to find the distance to the wall and also the altitude of
+number to which he wants to send the material/instrument in the the aircraft during the auto-landing.
+application. QR codes help the drone to distinguish the right floor and 3.2.3. Depth estimation
+correct the mission if GPS signals are not accurate. As it has been shown in Fig. 1 after traversing the user-defined path
+As it has been shown in Fig. 5 (a), a specific color pattern square is up to the target floor, the aircraft needs to calibrate its coordinates with
+used around the marker to facilitate the Threshold algorithm. The QR the corresponding markers. This process could assist the drone to land
+code is a 15 ×15 cm square with two colored squares with a size of 26 × on the target delivery station properly. To do so a machine vision al-
+26 cm and 35 ×35 cm around. gorithm is implemented that computes the distance to the markers.
+In this study, a self-design marker is used as the landing marker to The distance from the aircraft to pre-defined markers is estimated by
+determine the exact location of the landing area for the aircraft so that it solving the Perspective-n-Point problem [65]. This algorithm tries to find
+can calibrate itself with it. This marker consists of five nested squares the relative 3D position of the camera in the world-coordinate with the
+(Fig. 5 (b)). The inner squares are captured in shorter distances while the help of i) three or more points of a known object in the field and, ii) the
+bigger squares are not complete in the image view. Also, the bigger corresponding 2D coordinates acquired from the captured image. To
+squares can be detected from far distances when the inner ones are not find the 3D position of the camera in the world coordinate the camera
+so clear and distinguishable. The marker is designed in a specific color extrinsic matrix [R|t] (consists of rotation R and translation t matrix)
+pattern to facilitate the Threshold algorithm. The size of the smallest and needs to be computed using Eq. (1).
+the biggest squares are 7 ×7 cm and 35 ×35 cm, respectively.
+w×p=K×[R|t]×P (1)
+The next section describes the Threshold algorithm that is used to
+detect markers in different situations covering blur images caused by
+In the above equation, K is the camera intrinsic matrix, which is consist
+drone motion and color change in different outdoor lighting conditions.
+of the camera focal length (f), the skew parameter which is zero if the
+image axes are perpendicular (s), number of pixels in the( x and) y-di-
+rection (mx and my), and the principal point of the camera ( px‚py ) (Eq.
+7
+
+=== PAGE 8 ===
+Z. Imani et al. R e s u l t s i n E n g i n e e r i ng23(2024)102498
+Fig. 6. Perspective-n-Point problem.
+(2)). The fx and fy are the camera focal length in pixel and (u0‚v0 )is the The Depth Estimation algorithm is utilized to get the distance to the
+principal point of the camera in pixel (Eq. (3)). QR code and the landing marker during the autonomous navigation and
+⎡ ⎤⎡ ⎤ auto-landing. This module is used in the Calibration algorithm which is
+K=⎣ m
+0
+x
+m
+0
+y
+0
+0
+⎦⎣
+0
+f s/
+f
+mx p
+p
+x
+y
+⎦
+(2)
+explained in the next section.
+0 0 1 0 0 1
+3.2.4. Calibration
+⎡ ⎤
+The aircraft position is calibrated with two kinds of markers during
+K=⎣ f
+0
+x
+f
+s
+y
+u
+v0
+0⎦
+(3)
+the flight for correcting the errors that might be happened because of the
+0 0 1 inaccurate GPS signals. This Calibration process is performed after the
+aircraft reached the right floor and during landing operation (Fig. 1).
+[R|t]matrix is the [3 ×4] camera extrinsic matrix where R is the [3 ×3] Each floor has a labeled QR code that stores the floor number so the
+camera rotation matrix (Eq. (5)) that is the product of the rotation aircraft can find the right floor by searching and scanning the markers.
+matrix on the X, Y, and Z-axis (Eq. (4)) and t is the [3 × 1] camera When the aircraft gets closer to the targeted floor, the algorithm starts
+translation matrix. the searching procedure. To do so the aircraft moves on a square-shape
+⎡ ⎤⎡ ⎤⎡ ⎤
+1 0 0 cosϕ 0 sinϕ cosγ (cid:0) sinγ 0
+Y-axisZ-axisX-axisR=⎣ 0 cosθ (cid:0) sinθ⎦⎣ 0 1 0 ⎦⎣ sinγ cosγ 0 ⎦ (4)
+0 sinθ cosθ (cid:0) sinϕ 0 cosϕ 0 0 1
+⎡ ⎤
+cosϕcosγ (cid:0) cosϕsinγ sinϕ
+R=⎣ cosθsinγ+cosγsinθsinϕ cosθcosγ(cid:0) sinθsinϕsinγ (cid:0) cosϕsinθ⎦ (5)
+sinθsinγ(cid:0) cosθcosγsinϕ cosγsinθ+cosθsinϕsinγ cosθcosϕ
+P is the 3D points of the specific object in the world coordinate that is path parallel to the wall and runs the Threshold algorithm to find the QR
+represented as [x y z 1]T. Also, p is their 2D corresponding pro- code. The aircraft increases its distance to the wall gradually to see more
+jection in the image that is represented as [u v 1]T. Also, w is a scale space and this process continues till the algorithm finds the corre-
+sponding marker.
+factor for image points.
+After detecting one QR code, the information will be compared with
+After calculating the camera extrinsic matrix, the camera center in
+the target floor number defined in the flight mission. If the QR code
+the world-coordinate can be calculated using Eq. (6):
+matches with the drone task, the aircraft calibrates its coordinate with
+C= (cid:0) R (cid:0)1×t (6) the marker and starts the landing process, otherwise, the aircraft will
+continue the searching procedure.
+The rotation performed on the camera can be undone using the in-
+After finding the right marker, the aircraft adjusts its coordinates
+verse of the rotation matrix. The distance from the aircraft to the marker
+with the QR code utilizing the Depth Estimation algorithm.
+is also determined by the third element of the center vector C. A visual
+When the distance to the QR code is computed, the aircraft moves
+view of the algorithm is shown in Fig. 6.
+close to the marker with a certain distance (e.g. in this study we set the
+8
+
+=== PAGE 9 ===
+Z. Imani et al. R e s u l t s i n E n g i n e e r i ng23(2024)102498
+Fig. 7. Calibration flowchart.
+distance 3 m) and then changes its camera view to downward. The 3.2.5. Collision avoidance
+landing marker is located on a platform along with the QR code. Similar Determining distances to the surrounding objects is necessitated
+to the previous step, the aircraft moves on a square-shape path parallel during an autonomous flight, in order to avoid collisions. As it was
+to the ground while running the Threshold algorithm and gradually in- previously mentioned, there are two main approaches for obstacle
+crease its altitude to see more area. This process continues till the avoidance.
+aircraft detects the landing marker.
+After detecting the landing marker, the aircraft coordinates its po- 1 The approaches using depth sensors (such as LiDAR and RGB_D
+sition with the center of the landing marker. Due to the inaccuracy of camera).
+GPS signals, the Depth Estimation algorithm is utilized for estimating the 2 The approaches using a monocular camera.
+altitude of the aircraft during the auto-landing operation. Then the
+drone reduces its altitude until reaching a certain distance (e.g. in this This study tries to provide a low-cost and accurate solution. So,
+study we set the distance 50 cm) above the landing marker. Now is the instead of using drones with high costs and features, we focused on
+time that the application sends the landing command to the drone and developing the software of the platform. To do so we target micro UAVs
+the aircraft starts the landing procedure. After receiving the landing which are easily available out-of-shelf. If the developed framework
+command, the aircraft reduces its altitude and turns off the engines after works on this type of aircraft, possibly could be easily adapted to the
+making sure the landing is doing correctly. The flowchart of the Cali- higher range of UAVs including Mini or Close range.
+bration procedure is presented in Fig. 7. Inexpensive micro UAVs in the market, normally do not come with
+In the next section, the safety unit of the proposed platform is built-in depth sensors. So, to avoid collisions during the mission a self-
+described which is utilized to prevent frontal collisions during the flight. supervised monocular Depth Estimation algorithm named Monodepth2
+9
+
+=== PAGE 10 ===
+Z. Imani et al. R e s u l t s i n E n g i n e e r i ng23(2024)102498
+the Monodepth2 performance.
+4. Experimental results
+This paper tries to prove that auto-pilot UAVs can be used as a so-
+lution for vertical transportation in construction. In this section, the
+proposed ideas are evaluated in the field. The experiments that are done
+for the system evaluation are described in the following paragraphs.
+4.1. High-level equipment
+Due to legal, safety, and privacy concerns, we had not found a chance
+to test the platform in a real construction project. But to demonstrate
+how effectively the platform could handle an autonomous material
+transportation mission, a very simplified version of a building wall is
+designed as the experimental environment.
+The experiment is done in Ferdowsi University of Mashhad open
+courtyard. A DJI Phantom 3 Standard [72] is used to implement the
+developed method. The aircraft’s 3-axis gimbaled camera provides the
+front and downward view with the 1280 ×720 (720p) resolution videos.
+The video stream and the computed flight commands are transferred
+between the drone and a mobile device through a self-designed appli-
+cation that is developed in this study. All the computations are per-
+formed in real-time using a mobile phone that has 8 GB RAM equipped
+Fig. 8. The Phantom3 Standard and the simplified version of a building wall.
+with an Octa-core (2 ×2.05 GHz Cortex-A76 & 6 ×2.0 GHz Cortex-A55)
+CPU powered with Android 9.0 (Pie) OS.
+[33] is used. Monodpth2 could handle the problem of occluded pixels in
+The aircraft in the pre-designed environment is shown in Fig. 8.
+monocular view and ignore static pixels and the pixels that contradict
+the movement of the camera. Accordingly, Monodpth2 outperforms the
+previous approaches [66–70]. So, we integrated the Monodepth2 with 4.2. System implementation
+our system to provide an accurate depth map of the monocular view. The
+To implement the introduced platform, first, the mobile application
+algorithm can be trained with monocular images, stereo images, or both.
+The pre-trained model that was trained with 640 × 192 resolution is built based on DJI Mobile SDK [73] and it is accessible to download
+from [https://github.com/smartconstructiongroup/AutoPilot_Drone_in
+monocular images is used in this platform. If Monodepth2 detects an
+_Construction/]. DJI mobile SDK is a platform that enables Android or
+object within a close distance (e.g. in this study we set the distance 74
+iOS devices to connect to the remote controller through either USB or
+cm or less) in front of the UAV, the platform recognizes it as a high-risk
+Wi-Fi. The application supplies an augmented flight experience reflect-
+event. Then, the mission will be canceled and the aircraft will land
+ing the live camera feed and real-time information of the subject aircraft.
+immediately.
+Also, the application performs all the algorithms for autonomous navi-
+In order to get the best accuracy from monodepth2, some pre-
+gation, auto-landing, and collision avoidance. The image processing
+processing techniques were examined. These techniques consist of me-
+algorithms which are used include: Mathematical Morphology, Connected
+dian noise removal, local and global histogram equalization, brightness
+Component, and Image Moment are implemented in Java using the
+adjusting using simple transformation, and gamma filter. The accuracy
+OpenCV library [74]. Monodepth2 [33] is implemented in Python and is
+increases in the case of simple brightness transformation but the other
+connected to the developed application using Chaquopy 8.0 Android
+methods have negative impact on the results. Brightness adjusting is
+plugin [75].
+used in Ref. [71] to align the brightness of images in the training phase
+in which led to an improve in the accuracy. In our case it is applied just
+on the test images. This simple solution indicates that aligning the 4.3. Testing scenarios
+brightness between test and train images can lead to an improvement in
+The autopilot platform consists of different parts and algorithms.
+Fig. 9. The Area/Distance Equation. a) The QR code equation, b) The landing marker equation.
+10
+
+=== PAGE 11 ===
+Z. Imani et al. R e s u l t s i n E n g i n e e r i ng23(2024)102498
+Fig. 10. Heuristic Depth Estimation algorithm. a) The mean estimated distance to the QR code b) The errors in each distance.
+Fig. 11. Heuristic Depth Estimation algorithm. a). The mean estimated distance to the landing marker, b). The errors in each distance.
+Fig. 12. Obstacle founded in the path of the aircraft. a) Drone camera view test1, b) Depth map test1. c) Drone camera view test2, b) Depth map test2.
+11
+
+=== PAGE 12 ===
+Z. Imani et al. R e s u l t s i n E n g i n e e r i ng23(2024)102498
+Table 1
+The comparison between pre-processing techniques.
+Abs Rel Sq Rel RMSE RMSE log δ <1.25 δ <1.252 δ <1.253
+Monodepth2 (full) 0.115 0.903 4.863 0.193 0.877 0.959 0.981
+Global Histogram Eq. 0.118 0.923 4.924 0.196 0.867 0.957 0.981
+Local Histogram Eq. 0.117 0.929 4.908 0.194 0.873 0.958 0.981
+Noise removal 0.117 0.947 4.953 0.195 0.875 0.958 0.980
+Gamma filer (Γ =1.1) 0.116 0.914 4.862 0.194 0.875 0.959 0.981
+Gamma filer + 0.116 0.916 4.854 0.194 0.873 0.959 0.981
+Brightness Adjusting
+Brightness Adjusting 0.114 0.896 4.844 0.192 0.877 0.959 0.981
+Some experimental tests are designed to evaluate the accuracy of each parallel to the QR code or slightly deviated in the z-direction direction.
+small part and also the accuracy of the mission that is performed by the This operation was repeated within the range of 80 cm–200 cm far from
+platform. The testing scenarios consist of. the QR code and 15 images are taken at each distance. The actual dis-
+tances are compared with outputs of the heuristic Depth Estimation
+1. Testing the Depth Estimation module module in Fig. 10 (a) and the errors in each test are shown in Fig. 10 (b).
+2. Testing the landing operation Similarly, the distance to the landing marker is measured by the
+3. Testing the Collision Avoidance module same approach except that the camera axis is always fixed and the
+4. Testing the whole operation landing marker might be a bit twisted in the x and y-direction. 25 images
+are taken at each distance. Fig. 11 (a) shows the mean estimated dis-
+The next sections are a complete demonstration of the 4 testing tance to the landing marker compared with the real distance and the
+scenarios. errors in each distance are shown in Fig. 11 (b).
+The results (Figs. 10 and 11) indicate that the errors increase at far
+4.3.1. Depth estimation module distances because the area of the specified rectangle is smaller and a
+To overcome the erroneous GPS signals two kinds of visual markers slight change in the area can make a bigger error in the computed
+are used to calibrate the spatial information supplies with the drone distance.
+IMU. The Depth Estimation algorithm is used to compute the distance to
+each marker to make sure that the aircraft could accomplish its mission 4.3.2. Landing operation
+accurately. The Depth Estimation algorithm which is previously described After the aircraft calibrates its position with the QR code, the landing
+is the classical machine vision algorithm that is used to estimate the operation is started.
+distance to a previously known object. In this study, we developed a In the second testing scenario, to evaluate the performance of the
+heuristic approach for detecting the distance to each kind of marker. landing operation, the drone started the flight from different positions
+Given that the shapes of markers are already known; the area of a spe- and completed the landing operation. This test is done 6 times and the
+cific rectangle in each marker is used to find the distance to each one. distance between the center of the landing marker and the center of the
+First, the specific rectangle in each marker is detected with the help drone camera is measured at each test. The mean error of the landing
+of the Threshold module and the connected component algorithm in the operation was 6 cm after the tests.
+OpenCV library and then, the area of the rectangle is computed. The The landing approach has promising results compared with the same
+areas of the specific rectangles are computed in 260 images of the approaches. The mean error of the landing operation is 6 cm in this
+landing marker and 195 images of the QR code from different distances paper where it is measured 6 cm in Ref. [58], 11 cm in Ref. [59] and, 13
+(80 cm–200 cm). Two equations are made based on distances and the cm in Ref. [55]. But because of different effective parameters like the
+mean areas in each distance which is shown in Fig. 9. So, in each frame, environmental conditions, aircrafts type, and discrepancy in scenarios
+the distance to the marker can be computed using the area of the specific this comparison is not so accurate but could provide a general view
+rectangle. This method provides promising results when the angles of about the system.
+the camera and markers are fixed to each other.
+In the first testing scenario, to measure the accuracy of the distance 4.3.3. Collision avoidance module
+provided by the heuristic Depth Estimation module, the aircraft was As it has been shown in Fig. 1, any possibility of collision during the
+manually located at different distances to the wall while the camera is flight is checked with the Collision Avoidance module. In the third
+Fig. 13. The 3D trajectory of two flight tests started from the same place.
+12
+
+=== PAGE 13 ===
+Z. Imani et al. R e s u l t s i n E n g i n e e r i ng23(2024)102498
+Fig. 14. Velocity profile of two tests - a. test1 b. test2.
+Fig. 15. Roll, pitch, throttle profile of two tests - a. test1 b. test2.
+scenario, to evaluate the Collision Avoidance algorithm a self-designed improves the results without any training.
+obstacle (Fig. 12 (a),(c)) was located in the path of the aircraft. The This shows that applying the brightness adjustment between the
+aircraft is flying and when it overtakes the specific distance to the train and test images can lead to a good enhancement in the Mono-
+obstacle (e.g. in this study we set the distance 74 cm), the high-risk event depth2 performance.
+is detected with the help of the Collision Avoidance module and the flight We also change one of the coefficients in the encoder network of
+is canceled. The results of the two tests are shown in Fig. 12. Monodepth2. The input image is divided by 0.225 before entering
+In the first test, the aircraft is flying at a certain speed towards the ResNet18, which cause increase in contrast. We growth this increase a
+obstacle. Fig. 12 (a) is the drone camera view after detecting the obstacle bit by changing this coefficient into 0.205. This has a positive impact on
+with the Collision Avoidance module in the first test. Fig. 12 (b) shows the the performance.
+depth map of the camera view in the same test.
+In the next test the aircraft moves to a closer distance to the obstacle 4.3.5. Real-world experiment
+and a high-risk event is detected when the obstacle is presented in the As it has been demonstrated before, the real-world tests are per-
+drone camera view (Fig. 12 (c), (d)). formed in the designed experimental environment (Fig. 8).
+In the fourth scenario, the drone started the missions from the
+4.3.4. Monodepth2 evaluation specified home position and ended the missions by landing on the pro-
+Some preprocessing techniques are tested to increase the perfor- vided landing marker. After traversing the calculated path up to the
+mance of the monodepth2 algorithm. In order to compare the effect of wall, the drone coordinates are calibrated by the QR code that is labeled
+these techniques with the previous approaches, the changes are evalu- on the wall and the landing marker that is placed nearby. This scenario is
+ated on the KITTI dataset [76]. The Eigen test split is used in the eval- repeating two times from the same home position. To have a better view
+uation. The evaluation information is shown in Table 1 for each of the system performance, the 3D trajectory of two flight tests is shown
+approach. in Fig. 13. The aircraft started the missions from the same home position
+The preprocessing techniques consist of median noise removal, local but because of the conditions such as engine vibrations and wind the
+and global histogram equalization, brightness adjusting using simple flight path is not the same in the two testing scenarios. Eventually, after
+transformation, and gamma filter. calibrating with the visual markers, the aircraft landed in the same place
+The results indicate that brightness adjusting can improve the ac- in both scenarios.
+curacy of the Monodpepth2 but, other methods have a negative impact. Also, the velocity profile during the mentioned tests is shown in
+The brightness adjustment is applied in the testing. Fig. 14 and the flight parameter includes roll, pitch, and throttle during
+The improvement is less compare to D3VO [71] which use the these two tests are shown in Fig. 15. The yaw parameter is always
+brightness transformation in the training phase, but our simple solution constant because the drone does not rotate during the flight. The test
+13
+
+=== PAGE 14 ===
+Z. Imani et al. R e s u l t s i n E n g i n e e r i ng23(2024)102498
+duration was 95s and 49s in the two tests respectively. This difference is Declaration of competing interest
+because of the difference in the Calibration time.
+The throttle parameter changes make the aircraft move vertically. The authors declare that they have no known competing financial
+The roll parameter leads the aircraft to move forward or backward and interests or personal relationships that could have appeared to influence
+the pitch parameter is used to make the aircraft move to left or right. As the work reported in this paper.
+is shown in Figs. 14 and 15 the velocity is changed based on the aircraft
+movements. Data availability
+5. Discussion Data will be made available on request.
+The introduced platform could automatically manage the delivery References
+requests for lightweight material/instrument in construction sites. The
+platform consists of a mobile application that is designed to handle the [1] Y. Shin, H. Cho, K.-I. Kang, Simulation model incorporating genetic algorithms for
+optimal temporary hoist planning in high-rise building construction, Autom.
+material/instrument supply mission and a low-cost micro UAV that is ConStruct. 20 (5) (2011) 550–558, https://doi.org/10.1016/j.autcon.2010.11.021.
+responsible for the transfer of material/instrument. The application is [2] C.-Y. Cho, Y. Lee, M.-Y. Cho, S. Kwon, Y. Shin, J. Lee, An optimal algorithm of the
+powered with a machine vision algorithm that could minimize the de- multi-lifting operating simulation for super-tall building construction, Autom.
+ConStruct. 35 (2013) 595–607, https://doi.org/10.1016/j.autcon.2013.01.003.
+viation that might happen because of the inaccurate GPS signals. Also, a
+[3] M. Park, S. Ha, H.-S. Lee, Y.-k. Choi, H. Kim, S. Han, Lifting demand-based zoning
+deep-learning-based algorithm is integrated into the system that is for minimizing worker vertical transportation time in high-rise building
+responsible for the safety of the aircraft during the missions. construction, Autom. ConStruct. 32 (2013) 88–95, https://doi.org/10.1016/j.
+autcon.2013.01.010.
+The platform could help the construction sites to increase the effi-
+[4] M. Jung, J. Moon, M. Park, H.-S. Lee, S.U. Joo, K.-P. Lee, Construction worker
+ciency of workers by reducing the wasted time for vertical trans- hoisting simulation for sky-lobby lifting system, Autom. ConStruct. 73 (2017)
+portation. It could also reduce the workload of the Vertical Transportation 166–174, https://doi.org/10.1016/j.autcon.2016.10.002.
+Equipment so they can be used for transferring the heavy materials and [5] M. Maghrebi, S.T. Waller, C. Sammut, Optimality gap of experts’ decisions in
+concrete delivery dispatching, J. Build. Eng. 2 (2015) 17–23, https://doi.org/
+workers. 10.1016/j.jobe.2015.04.001.
+It is worthy to mention that the proposed method just focuses on a [6] R. Sacks, M. Radosavljevic, R. Barak, Requirements for building information
+proof-of-concept of using autopilot based tools in construction. The modeling based lean production management systems for construction, Autom.
+ConStruct. 19 (5) (2010) 641–655, https://doi.org/10.1016/j.autcon.2010.02.010.
+performed tests do not represent %100 realistic field situations of
+[7] P.M. Asaro, The labor of surveillance and bureaucratized killing: new subjectivities
+complex construction sites. For future works, investigation the weather of military drone operators, Soc. Semiotic. 23 (2) (2013) 196–224, https://doi.org/
+and visibility limitations are recommended to be taken into account. 10.1080/10350330.2013.777591.
+[8] M.A. Ma’Sum, et al., Simulation of intelligent unmanned aerial vehicle (uav) for
+military surveillance, in: 2013 International Conference on Advanced Computer
+6. Conclusion Science and Information Systems (ICACSIS), IEEE, 2013, pp. 161–166, https://doi.
+org/10.1109/ICACSIS.2013.6761569.
+[9] A. Goodchild, J. Toy, Delivery by drone: an evaluation of unmanned aerial vehicle
+This paper introduced a proof of concept solution for automating the
+technology in reducing CO2 emissions in the delivery service industry, Transport.
+vertical transportation procedure in construction sites. A platform is Res. Transport Environ. 61 (2018) 58–67, https://doi.org/10.1016/j.
+developed that could automatically manage material/instrument trd.2017.02.017.
+[10] C.C. Murray, A.G. Chu, The flying sidekick traveling salesman problem:
+handling requests via an autopilot drone. UAVs are chosen for doing the
+optimization of drone-assisted parcel delivery, Transport. Res. C Emerg. Technol.
+mission due to their ability to fly and reach hard-to-access areas at a 54 (2015) 86–109, https://doi.org/10.1016/j.trc.2015.03.005.
+reasonable cost. The platform consists of a mobile application that is [11] V. Puri, A. Nayyar, L. Raja, Agriculture drones: a modern breakthrough in precision
+agriculture, J. Stat. Manag. Syst. 20 (4) (2017) 507–518, https://doi.org/10.1080/
+designed for the mission definition and a light-weight micro UAV that is
+09720510.2017.1395171.
+in charge of handling the hardware side. To overcome the limitations [12] C. Zhang, J.M. Kovacs, The application of small unmanned aerial systems for
+caused by the erroneous GPS signal which is normally occurred in urban precision agriculture: a review, Precis. Agric. 13 (6) (2012) 693–712, https://doi.
+areas, a machine vision algorithm is implemented to calibrate the po- org/10.1007/s11119-012-9274-5.
+[13] S. Chowdhury, A. Emelogu, M. Marufuzzaman, S.G. Nurre, L. Bian, Drones for
+sition of the aircraft. The flight path will be calculated in the mobile disaster response and relief operations: a continuous approximation model, Int. J.
+application based on the home position and the target position specified Prod. Econ. 188 (2017) 167–184, https://doi.org/10.1016/j.ijpe.2017.03.024.
+by the user. The aircraft will update its spatial position with the help of [14] M. Quaritsch, K. Kruggl, D. Wischounig-Strucl, S. Bhattacharya, M. Shah, B. Rinner,
+Networked UAVs as aerial sensor network for disaster management applications,
+two visual markers during a flight. E I Elektrotechnik Inf. 127 (3) (2010) 56–63, https://doi.org/10.1007/s00502-
+Different real-world tests are performed to evaluate the introduced 010-0717-2.
+system. The results show that the entire process from (mission defini- [15] B. Rabta, C. Wankmüller, G. Reiner, A drone fleet model for last-mile distribution
+in disaster relief operations, Int. J. Disaster Risk Reduc. 28 (2018) 107–112,
+tion, Threshold, Depth Estimation, Calibration, and Collision Avoidance)
+https://doi.org/10.1016/j.ijdrr.2018.02.020.
+could be handled by the platform within promising results. This plat- [16] J.C. Hodgson, S.M. Baylis, R. Mott, A. Herrod, R.H. Clarke, Precision wildlife
+form could assist construction sites to more easily respond to delivery monitoring using unmanned aerial vehicles, Sci. Rep. 6 (1) (2016) 1–7, https://doi.
+org/10.1038/srep22574.
+requests to reduce the workload of the Vertical Transportation Equipment
+[17] S. Lee, Y. Choi, Reviews of unmanned aerial vehicle (drone) technology trends and
+and workers. its applications in the mining industry, Geosystem Engineering 19 (4) (2016)
+To the best of our knowledge, this is among the first attempts in using 197–204, https://doi.org/10.1080/12269328.2016.1162115.
+[18] J. Fleureau, Q. Galvane, F.-L. Tariolle, P. Guillotel, Generic drone control platform
+UAVs to automate the vertical transportation procedure in construction
+for autonomous capture of cinema scenes, in: Proceedings of the 2nd Workshop on
+sites utilizing UAVs. The proposed approach can remarkably reduce the Micro Aerial Vehicle Networks, Systems, and Applications for Civilian Use, 2016,
+time that is wasted for lifting materials/instruments in the construction pp. 35–40, https://doi.org/10.1145/2935620.2935622.
+sites and make a great enhancement in the construction progress. [19] M.C. Tatum, J. Liu, Unmanned aircraft system applications in construction,
+Procedia Eng. 196 (2017) 167–175, https://doi.org/10.1016/j.
+proeng.2017.07.187.
+CRediT authorship contribution statement [20] S. Bang, H. Kim, H. Kim, UAV-based automatic generation of high-resolution
+panorama at a construction site with a focus on preprocessing for image stitching,
+Autom. ConStruct. 84 (2017) 70–80, https://doi.org/10.1016/j.
+Zeiab Imani: Software, Investigation, Formal analysis, Data cura-
+autcon.2017.08.031.
+tion. Perry Forsythe: Funding acquisition. Alireza Ahmadian Fard [21] J.A. Besada, et al., Drone mission definition and implementation for automated
+Fini: Writing – review & editing, Supervision, Formal analysis, infrastructure inspection using airborne sensors, Sensors 18 (4) (2018) 1170,
+https://doi.org/10.3390/s18041170.
+Conceptualization. Mojtaba Maghrebi: Supervision. Travis S. Waller:
+Supervision, Methodology.
+14
+
+=== PAGE 15 ===
+Z. Imani et al. R e s u l t s i n E n g i n e e r i ng23(2024)102498
+[22] H. Freimuth, J. Müller, M. Ko¨nig, Simulating and executing UAV-assisted International Conference on 3D Vision (3DV), IEEE, 2016, pp. 239–248, https://
+inspections on construction sites, in: 34th International Symposium on Automation doi.org/10.1109/3DV.2016.32.
+and Robotics in Construction (ISARC 2017), 2017, https://doi.org/10.22260/ [45] M. Keller, D. Lefloch, M. Lambers, S. Izadi, T. Weyrich, A. Kolb, Real-time 3d
+ISARC2017/0090. reconstruction in dynamic scenes using point-based fusion, in: 2013 International
+[23] S. Siebert, J. Teizer, Mobile 3D mapping for surveying earthwork projects using an Conference on 3D Vision-3DV 2013, IEEE, 2013, pp. 1–8, https://doi.org/10.1109/
+Unmanned Aerial Vehicle (UAV) system, Autom. ConStruct. 41 (2014) 1–14, 3DV.2013.9.
+https://doi.org/10.1016/j.autcon.2014.01.004. [46] B. Li, C. Shen, Y. Dai, A. Van Den Hengel, M. He, Depth and surface normal
+[24] N. Anwar, M.A. Izhar, F.A. Najam, Construction monitoring and reporting using estimation from monocular images using regression on deep features and
+drones and unmanned aerial vehicles (UAVs), in: The Tenth International hierarchical crfs, in: Proceedings of the IEEE Conference on Computer Vision and
+Conference on Construction in the 21st Century (CITC-10), 2018, pp. 2–4. Pattern Recognition, 2015, pp. 1119–1127.
+[25] J.J. Lin, K.K. Han, M. Golparvar-Fard, "A framework for model-driven acquisition [47] F. Liu, C. Shen, G. Lin, Deep convolutional neural fields for depth estimation from a
+and analytics of visual data using UAVs for automated construction progress single image, in: Proceedings of the IEEE Conference on Computer Vision and
+monitoring,", Computing in Civil Engineering (2015) 156–164, 2015. Pattern Recognition, 2015, pp. 5162–5170.
+´
+[26] R.R.S. De Melo, D.B. Costa, J.S. Alvares, J. Irizarry, Applicability of unmanned [48] M. Liu, M. Salzmann, X. He, Discrete-continuous depth estimation from a single
+aerial system (UAS) for safety inspection on construction sites, Saf. Sci. 98 (2017) image, in: Proceedings of the IEEE Conference on Computer Vision and Pattern
+174–185, https://doi.org/10.1016/j.ssci.2017.06.008. Recognition, 2014, pp. 716–723.
+[27] J. Irizarry, M. Gheisari, B.N. Walker, Usability assessment of drone technology as [49] A. Singla, S. Padakandla, S. Bhatnagar, Memory-based deep reinforcement learning
+safety inspection tools, J. Inf. Technol. Construct. 17 (12) (2012) 194–212. for obstacle avoidance in UAV with limited environment knowledge, IEEE Trans.
+[28] R. Ashour, et al., Site inspection drone: a solution for inspecting and regulating Intell. Transport. Syst. (2019), https://doi.org/10.1109/TITS.2019.2954952.
+construction sites, in: 2016 IEEE 59th International Midwest Symposium on [50] T. Baca, et al., Autonomous landing on a moving vehicle with an unmanned aerial
+Circuits and Systems (MWSCAS), IEEE, 2016, pp. 1–4, https://doi.org/10.1109/ vehicle, J. Field Robot. 36 (5) (2019) 874–891, https://doi.org/10.1002/
+MWSCAS.2016.7870116. rob.21858.
+[29] E. Belyaev, S. Forchhammer, An efficient storage of infrared video of drone [51] D. Falanga, A. Zanchettin, A. Simovic, J. Delmerico, D. Scaramuzza, Vision-based
+inspections via iterative aerial map construction, IEEE Signal Process. Lett. 26 (8) autonomous quadrotor landing on a moving platform, in: 2017 IEEE International
+(2019) 1157–1161, https://doi.org/10.1109/LSP.2019.2921250. Symposium on Safety, Security and Rescue Robotics (SSRR), IEEE, 2017,
+[30] D. Moon, S. Chung, S. Kwon, J. Seo, J. Shin, Comparison and utilization of point pp. 200–207, https://doi.org/10.1109/SSRR.2017.8088164.
+cloud generated from photogrammetry and laser scanning: 3D world model for [52] J. Garcia-Pulido, G. Pajares, S. Dormido, J.M. de la Cruz, Recognition of a landing
+smart heavy equipment planning, Autom. ConStruct. 98 (2019) 322–331, https:// platform for unmanned aerial vehicles by using computer vision-based techniques,
+doi.org/10.1016/j.autcon.2018.07.020. Expert Syst. Appl. 76 (2017) 152–165, https://doi.org/10.1016/j.
+[31] S. Goessens, C. Mueller, P. Latteur, Feasibility study for drone-based masonry eswa.2017.01.017.
+construction of real-scale structures, Autom. ConStruct. 94 (2018) 458–480, [53] P.H. Nguyen, M. Arsalan, J.H. Koo, R.A. Naqvi, N.Q. Truong, K.R. Park,
+https://doi.org/10.1016/j.autcon.2018.06.015. LightDenseYOLO: a fast and accurate marker tracker for autonomous UAV landing
+[32] J. Paek, J. Kim, R. Govindan, Energy-efficient rate-adaptive GPS-based positioning by visible light camera sensor on drone, Sensors 18 (6) (2018) 1703, https://doi.
+for smartphones, in: Proceedings of the 8th International Conference on Mobile org/10.3390/s18061703.
+Systems, applications, 2010, pp. 299–314, https://doi.org/10.1145/ [54] N.Q. Truong, P.H. Nguyen, S.H. Nam, K.R. Park, Deep learning-based super-
+1814433.1814463, and services. resolution reconstruction and marker detection for drone landing, IEEE Access 7
+[33] C. Godard, O. Mac Aodha, M. Firman, G.J. Brostow, Digging into self-supervised (2019) 61639–61655, https://doi.org/10.1109/ACCESS.2019.2915944.
+monocular depth estimation, in: Proceedings of the IEEE/CVF International [55] O. Araar, N. Aouf, I. Vitanov, Vision based autonomous landing of multirotor UAV
+Conference on Computer Vision, 2019, pp. 3828–3838. on moving platform, J. Intell. Rob. Syst. 85 (2) (2017) 369–384, https://doi.org/
+[34] A. Devos, E. Ebeid, P. Manoonpong, Development of autonomous drones for 10.1007/s10846-016-0399-z.
+adaptive obstacle avoidance in real world environments, in: 2018 21st Euromicro [56] A. Borowczyk, D.-T. Nguyen, A. Phu-Van Nguyen, D.Q. Nguyen, D. Saussi´e, J. Le
+Conference on Digital System Design (DSD), IEEE, 2018, pp. 707–710, https://doi. Ny, Autonomous landing of a multirotor micro air vehicle on a high velocity
+org/10.1109/DSD.2018.00009. ground vehicle, IFAC-PapersOnLine 50 (1) (2017) 10488–10494, https://doi.org/
+[35] G. Brunner, B. Szebedy, S. Tanner, R. Wattenhofer, The urban last mile problem: 10.1016/j.ifacol.2017.08.1980.
+autonomous drone delivery to your balcony, in: 2019 International Conference on [57] Y. Feng, C. Zhang, S. Baek, S. Rawashdeh, A. Mohammadi, Autonomous landing of
+Unmanned Aircraft Systems (Icuas), IEEE, 2019, pp. 1005–1012, https://doi.org/ a UAV on a moving platform using model predictive control, Drones 2 (4) (2018)
+10.1109/ICUAS.2019.8798337. 34, https://doi.org/10.3390/drones2040034.
+[36] V. Usenko, L. Von Stumberg, A. Pangercic, D. Cremers, Real-time trajectory [58] M.F. Sani, G. Karimian, Automatic navigation and landing of an indoor AR. drone
+replanning for MAVs using uniform B-splines and a 3D circular buffer, in: 2017 quadrotor using ArUco marker and inertial sensors, in: 2017 International
+IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), Conference on Computer and Drone Applications (IConDA), IEEE, 2017,
+IEEE, 2017, pp. 215–222, https://doi.org/10.1109/IROS.2017.8202160. pp. 102–107, https://doi.org/10.1109/ICONDA.2017.8270408.
+[37] D. Wang, W. Li, X. Liu, N. Li, C. Zhang, UAV environmental perception and [59] J. Wubben, et al., Accurate landing of unmanned aerial vehicles using ground
+autonomous obstacle avoidance: a deep learning and depth camera combined pattern recognition, Electronics 8 (12) (2019) 1532, https://doi.org/10.3390/
+solution, Comput. Electron. Agric. 175 (2020) 105523, https://doi.org/10.1016/j. electronics8121532.
+compag.2020.105523. [60] F.J. Romero-Ramirez, R. Mun˜oz-Salinas, R. Medina-Carnicer, Speeded up detection
+[38] A. Al-Kaff, F. García, D. Martín, A. De La Escalera, J.M. Armingol, Obstacle of squared fiducial markers, Image Vis Comput. 76 (2018) 38–47, https://doi.org/
+detection and avoidance system based on monocular camera and size expansion 10.1016/j.imavis.2018.05.004.
+algorithm for UAVs, Sensors 17 (5) (2017) 1061, https://doi.org/10.3390/ [61] C. Forster, M. Faessler, F. Fontana, M. Werlberger, D. Scaramuzza, Continuous on-
+s17051061. board monocular-vision-based elevation mapping applied to autonomous landing
+[39] S. Saha, A. Natraj, S. Waharte, A real-time monocular vision-based frontal obstacle of micro aerial vehicles, in: 2015 IEEE International Conference on Robotics and
+detection and avoidance for low cost UAVs in GPS denied environment, in: 2014 Automation (ICRA), IEEE, 2015, pp. 111–118, https://doi.org/10.1109/
+IEEE International Conference on Aerospace Electronics and Remote Sensing ICRA.2015.7138988.
+Technology, IEEE, 2014, pp. 189–195, https://doi.org/10.1109/ [62] A.Y. Chung, J.Y. Lee, H. Kim, Autonomous mission completion system for
+ICARES.2014.7024382. disconnected delivery drones in urban area, in: 2017 IEEE International
+[40] A. Kouris, C.-S. Bouganis, Learning to Fly by Myself: A Self-Supervised Cnn-Based Conference on Robotics and Biomimetics (ROBIO), IEEE, 2017, pp. 56–61, https://
+Approach for Autonomous Navigation, IEEE/RSJ International Conference on doi.org/10.1109/ROBIO.2017.8324394.
+Intelligent Robots and Systems (IROS), 2018, pp. 1–9, https://doi.org/10.1109/ [63] T. Yang, P. Li, H. Zhang, J. Li, Z. Li, Monocular vision SLAM-based UAV
+IROS.2018.8594204, 2018: IEEE. autonomous landing in emergencies and unknown environments, Electronics 7 (5)
+[41] R.P. Padhy, S. Verma, S. Ahmad, S.K. Choudhury, P.K. Sa, Deep neural network for (2018) 73, https://doi.org/10.3390/electronics7050073.
+autonomous uav navigation in indoor corridor environments, Procedia Comput. [64] L. Feng, L. Xiaoyu, C. Yi, An efficient detection method for rare colored capsule
+Sci. 133 (2018) 643–650, https://doi.org/10.1016/j.procs.2018.07.099. based on RGB and HSV color space, in: 2014 IEEE International Conference on
+[42] M.A. Anwar, A. Raychowdhury, NavREn-Rl: learning to fly in real environment via Granular Computing (GrC), IEEE, 2014, pp. 175–178, https://doi.org/10.1109/
+end-to-end deep reinforcement learning using monocular images, in: 2018 25th GRC.2014.6982830.
+International Conference on Mechatronics and Machine Vision in Practice [65] J. Heikkila, O. Silv´en, A four-step camera calibration procedure with implicit
+(M2VIP), IEEE, 2018, pp. 1–6, https://doi.org/10.1109/M2VIP.2018.8600838. image correction, in: Proceedings of IEEE Computer Society Conference on
+[43] S.-Y. Shin, Y.-W. Kang, Y.-G. Kim, Reward-driven u-net training for obstacle Computer Vision and Pattern Recognition, IEEE, 1997, pp. 1106–1112, https://doi.
+avoidance drone, Expert Syst. Appl. 143 (2020) 113064, https://doi.org/10.1016/ org/10.1109/CVPR.1997.609468.
+j.eswa.2019.113064. [66] C. Luo, et al., Every pixel counts++: joint learning of geometry and motion with 3d
+[44] I. Laina, C. Rupprecht, V. Belagiannis, F. Tombari, N. Navab, Deeper depth holistic understanding, IEEE Trans. Pattern Anal. Mach. Intell. 42 (10) (2019)
+prediction with fully convolutional residual networks, in: 2016 Fourth 2624–2641, https://doi.org/10.1109/TPAMI.2019.2930258.
+15
+
+=== PAGE 16 ===
+Z. Imani et al. R e s u l t s i n E n g i n e e r i ng23(2024)102498
+[67] A. Ranjan, et al., Competitive collaboration: joint unsupervised learning of depth, [71] N. Yang, L.v. Stumberg, R. Wang, D. Cremers, D3vo: deep depth, deep pose and
+camera motion, optical flow and motion segmentation, in: Proceedings of the IEEE deep uncertainty for monocular visual odometry, in: Proceedings of the IEEE/CVF
+Conference on Computer Vision and Pattern Recognition, 2019, pp. 12240–12249. Conference on Computer Vision and Pattern Recognition, 2020, pp. 1281–1292.
+[68] C. Wang, J.M. Buenaposada, R. Zhu, S. Lucey, Learning depth from monocular [72] Shenzhen DJI Sciences and Technologies Ltd [Online]. Available: https://www.dji.
+videos using direct methods, in: Proceedings of the IEEE Conference on Computer com/no.
+Vision and Pattern Recognition, 2018, pp. 2022–2030. [73] Dji Mobile SDK [Online]. Available: https://developer.dji.com/mobile-sdk/.
+[69] H. Zhan, R. Garg, C. Saroj Weerasekera, K. Li, H. Agarwal, I. Reid, Unsupervised [74] OpenCV (Open Source Computer Vision Library) [Online]. Available: https://op
+learning of monocular depth estimation and visual odometry with deep feature encv.org/.
+reconstruction, in: Proceedings of the IEEE Conference on Computer Vision and [75] Chaquopy 8.0 [Online]. Available: https://chaquo.com/chaquopy/doc/8.0/and
+Pattern Recognition, 2018, pp. 340–349. roid.html.
+[70] T. Zhou, M. Brown, N. Snavely, D.G. Lowe, Unsupervised learning of depth and [76] A. Geiger, P. Lenz, R. Urtasun, Are we ready for autonomous driving? the kitti
+ego-motion from video, in: Proceedings of the IEEE Conference on Computer Vision vision benchmark suite, in: 2012 IEEE Conference on Computer Vision and Pattern
+and Pattern Recognition, 2017, pp. 1851–1858. Recognition, IEEE, 2012, pp. 3354–3361.
+16

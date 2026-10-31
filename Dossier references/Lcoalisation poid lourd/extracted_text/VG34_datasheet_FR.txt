@@ -1,0 +1,234 @@
+=== PAGE 1 ===
+Boîtier télématique
+FICHE DE DONNÉES DES PRODUITS VG34/VG34-EU
+PRÉSENTATION GÉNÉRALE POINTS FORTS
+La passerelle pour véhicules IdO VG34 est une • GPS de haute précision avec visibilité en
+plateforme de détection avancée pour les flottes, temps réel
+fournissant aux opérateurs une localisation et
+des analyses en temps réel, des données de • Plateforme extensible compatible avec les
+capteurs, une connectivité avec point d’accès capteurs sans fil, les modules de caméra,
+WiFi et des enregistrements des heures de
+les jetons d'identification de conducteurs
+service prêts pour satisfaire à la réglementation
+et les appareils WiFi de Samsara.
+sur les dispositifs électroniques
+d’enregistrement. • Point d’accès WiFi à haute vitesse 4G LTE
+intégré
+Conçue pour être installée facilement et
+discrètement dans de nombreux types de • Compatible avec les véhicules légers,
+véhicules, la passerelle VG34 regroupe un large
+intermédiaires et lourds
+ensemble de fonctionnalités de gestion de flotte
+pertinentes au sein d’une solution intégrée et • Composante d’une solution matérielle et
+facile à utiliser. logicielle complète permettant d’améliorer
+l’efficacité, la sécurité, le service à la
+clientèle et la conformité
+
+=== PAGE 2 ===
+Sources de données
+Interface Bus CAN / diagnostic Véhicules légers / intermédiaires
+J1962/OBD-II
+Véhicules lourds
+J1939 (type 1 et 2)
+J1708 (non prévu pour les diagnostics, alimentation uniquement)
+FMS
+Localisation Le système de positionnement avancé lit simultanément les données
+à partir de plusieurs systèmes satellites indépendants, y compris les
+systèmes de navigation par satellite GPS et GLONASS. Antenne
+interne pour installation discrète. Antenne externe en option
+disponible pour des configurations de montage non standard.
+Sensibilité industrielle de -162 dBm avec un délai de 1 seconde pour
+déterminer la position (démarrage à chaud).
+Capteurs sans fil Compatible avec les contrôleurs de température sans fil de la série
+EM, les jetons d'identification de conducteurs et les modules d'entrée
+industriels de la série IM. Découverte automatique (installation
+facile).
+Entrées auxiliaires Deux entrées numériques surveillent les équipements spécialisés (p.
+ex. chasse-neige haut/bas, prise de force activée/désactivée, etc.).
+Tension maximum 30 V, Vil 1,2 V, Vih 2 V.
+Une sortie numérique réservée à une future utilisation par mise à jour
+logicielle.
+Connectivité sans fil
+Données cellulaires Connectivité cellulaire 4G LTE, avec repli sur 3G lorsque la couverture
+LTE est indisponible.
+VG34 : LTE B2/4/5/12, 3G B2/5
+VG34-EU : LTE B1/3/7/8/20, 3G B1/8, 2G B3/8
+Point d’accès WiFi Le point d'accès WiFi intégré (802.11g/n, 2,4 GHz) fournit des données
+WiFi à haut débit aux tablettes, smartphones, ordinateurs portables
+et autres appareils compatibles WiFi en cabine.
+Sécurité des données Toute la connectivité Internet est sécurisée via SSL avec cryptage
+AES 256 bits (niveau militaire).
+Stockage hors connexion La mémoire flash intégrée enregistre les données même lorsque la
+connectivité Internet est indisponible.
+sales@samsara.com Page 2
+
+=== PAGE 3 ===
+Connectivité sans fil (suite)
+Sécurisation des communications Toute la connectivité Internet est sécurisée via SSL avec
+cryptage AES 256 bits (niveau militaire).
+Sécurisation des connexions Contrôle des données propriétaire à faible consommation
+énergétique sur la bande 2,4 GHz
+Alimentation
+Consommation d’électricité Véhicule en marche : Consommation moyenne d’électricité :
+1,8 W
+Véhicule à l’arrêt : 396 mW, mode repos
+Alimentation Véhicules 12 V et 24 V via connexion dans le port de
+diagnostic ou avec faisceau de câblage direct.
+Pile de secours Le système de détection de manipulations inappropriées
+alimenté par pile envoie une alerte (par le biais du Cloud
+Samsara) si la passerelle est débranchée ou si l'alimentation
+est interrompue.
+Boîtier
+Dimensions 117 x 72 x 26 mm
+Poids 118 g
+Température de fonctionnement -40 à 85° C
+sales@samsara.com Page 3
+
+=== PAGE 4 ===
+Fonctionnalités du logiciel
+Cloud Samsara Se connecte au Cloud Samsara afin de fournir une visibilité
+sur les localisations en temps réel, ainsi que sur les
+affectations de véhicules, des rapports et des alertes
+Application Driver App de Samsara Enregistrement des heures de services (heures de travail) ;
+conformité aux obligations en matière de dispositifs
+électroniques d’enregistrement (États-Unis)
+Journaux de maintenance et rapport d'inspection du
+conducteur sur l’état du véhicule électroniques
+Communications avec les répartiteurs intégrées
+Intégration des tachygraphes Téléchargement et archivage à distance des données des
+flottes (carte conducteur et données du véhicule) à des fins
+de conformité et d’analyse.
+sales@samsara.com Page 4
+
+=== PAGE 5 ===
+Informations pour les commandes
+Passerelle
+HW-VG34 Passerelle pour véhicules IdO Samsara (nécessite une
+HW-VG34-EU licence et un faisceau accessoire)
+Licence
+LIC-VG-1YR La licence inclut la connectivité des données cellulaires, les
+LIC-VG-3YR logiciels cloud, les applications mobiles, les mises à jour
+LIC-VG-5YR continues du micrologiciel, la maintenance et l'assistance.
+Disponible avec des termes d’un an, de trois ans et de cinq
+ans.
+Accessoires
+Câble pour véhicules légers (OBD-II)
+J1962 (prise Passerelle Samsara (prise
+J1962 (prise mâle) femelle) mâle)
+ACC-BOBDII-Y1 OBD-II (J1962) vers le câble de la passerelle Samsara avec
+faisceau de dérivation à fractionnement en étoile de type 1
+ACC-BOBDII-Y2 OBD-II (J1962) vers le câble de la passerelle Samsara avec
+faisceau de dérivation à fractionnement en étoile de type 2
+ACC-BJ1939-VM Faisceau de diagnostic OBD-II (J1939) pour véhicules lourds
+Volvo/Mack
+sales@samsara.com Page 5
+
+=== PAGE 6 ===
+Câble pour véhicules lourds (OBD-II)
+J1708(prise mâle) J1708(prise femelle) Passerelle Samsara (prise
+mâle)
+ACC-BJ1939-Y1 OBD-II (J1939) vers le câble de la passerelle Samsara avec
+faisceau de dérivation à fractionnement en étoile de type 1 et
+entrées auxiliaires (tension discrète).
+J1708(prise mâle) J1708(prise femelle) Passerelle Samsara (prise
+mâle)
+ACC-BJ1708-Y1 OBD-II (J1708) vers le câble de la passerelle Samsara avec
+faisceau de dérivation à fractionnement en étoile de type 1 et
+entrées auxiliaires (tension discrète)
+sales@samsara.com Page 6
+
+=== PAGE 7 ===
+Passerelle Samsara (prise
+mâle)
+Connecteur FMS
+CBL-VG-AFMS Faisceau FMS de diagnostic pour véhicules lourds MAN,
+Daimler, Scania, DAF, Iveco, Volvo et Renault
+Antenne GPS externe
+Antenne (GPS/GLONASS) Câble SMA (prise mâle)
+ACC-AGPS Câble SMA vers l’antenne GPS externe
+sales@samsara.com Page 7
+
+=== PAGE 8 ===
+Réglementations
+Réglementation de la FCC
+Cet appareil est conforme à la Section 15 du Règlement de la FCC. Son fonctionnement est soumis aux deux
+conditions suivantes : (1) Cet appareil ne doit pas causer d'interférences nuisibles, et (2) cet appareil doit
+accepter toute interférence reçue, y compris les interférences susceptibles de causer un fonctionnement
+indésirable.
+Les changements ou modifications non expressément approuvés par la partie responsable de la conformité
+sont susceptibles d’annuler le droit de l’utilisateur de se servir de l’équipement.
+Cet appareil respecte les limites d’exposition aux radiofréquences dans un environnement non contrôlé
+adoptées par la Federal Communications Commission. Cet équipement doit fonctionner en respectant une
+distance minimale de 20 cm entre le radiateur et votre corps.
+Cet équipement a été testé et reconnu comme étant conforme aux limitations imposées pour les appareils
+numériques de classe B par la Section 15 du Règlement de la FCC. Ces limitations ont été définies pour
+apporter une protection suffisante contre les interférences nuisibles dans le cadre d’une installation
+domestique. Cet appareil génère, emploie et peut émettre des rayonnements d’énergie radiofréquence et,
+s’il n’est pas installé conformément aux instructions, il peut entraîner des interférences nuisibles aux
+communications radio. Il n’est toutefois pas garanti qu’aucune interférence ne se produise avec certains
+types d’installation. Si cet équipement cause des interférences nuisibles à la bonne réception des signaux
+de radio et de télévision, ce qui pourra être déterminé en éteignant, puis en rallumant l’équipement,
+l’utilisateur pourra essayer d’éliminer les interférences en appliquant une ou plusieurs des mesures
+suivantes :
+• Réorienter ou déplacer l’antenne de réception.
+• Augmenter la distance entre l’équipement et le récepteur.
+• Brancher l’équipement à une prise de courant dépendant d’un circuit électrique différent de celui
+auquel le récepteur est branché.
+• Consulter le revendeur ou un technicien compétent en radio/télévision.
+sales@samsara.com Page 8
+
+=== PAGE 9 ===
+Réglementations d’Industrie Canada
+Le présent appareil est conforme aux CNR d'Industrie Canada applicables aux appareils radio exempts de
+licence. Son fonctionnement est soumis aux deux conditions suivantes :
+1. Cet appareil ne doit pas causer d’interférences, et
+2. cet appareil doit accepter toute interférence, y compris les interférences susceptibles de causer un
+fonctionnement indésirable.
+Cet équipement respecte les limites d’exposition aux rayonnements dans un environnement non contrôlé
+imposées par Innovation, Sciences et Développement économique Canada. Cet équipement doit être
+installé et utilisé de façon à respecter une distance minimale de 20 cm entre l’équipement et toute personne
+à tout moment.
+CAN ICES-3(B)/NMB-3(B)
+sales@samsara.com Page 9
+
+=== PAGE 10 ===
+Informations sur l'exposition aux radiofréquences
+Cet appareil respecte les exigences de l’UE et de l’International Commission on Non-Ionizing Radiation Protection
+(ICNIRP) en matière de limitation de l’exposition du public aux champs électromagnétiques au moyen de mesures
+de protection de la santé. Cet équipement doit être installé et utilisé de façon à respecter une distance minimale de
+20 cm entre l’équipement et toute personne à tout moment.
+Bande de fréquence Alimentation
+GSM 900 33 dBm
+GSM 1800 30 dBm
+UMTS bande 1 24 dBm
+UMTS bande 8 24 dBm
+LTE bande 1 23 dBm
+LTE bande 3 23 dBm
+LTE bande 7 23 dBm
+LTE bande 8 23 dBm
+LTE bande 20 23 dBm
+LTE bande 28 23 dBm
+WLAN 24 12-2472 MHz 18 dBm
+Protocole de données propriétaire à faible 9 dBm
+consommation énergétique sur la bande
+2,4GHz
+Déclaration de conformité
+Par la présente, Samsara Networks déclare que l’équipement radio de type VG34-EU est conforme à la Directive
+2014/53/UE. La déclaration de conformité complète de l’UE est disponible à l’adresse Internet suivante :
+www.samsara.com/DoC.pdf. Veuillez noter que l’utilisation de câbles propriétaires Samsara est obligatoire pour
+répondre aux exigences de conformité « CE ».
+sales@samsara.com Page 10
+
+=== PAGE 11 ===
+Déchets d'équipements électriques et
+électroniques (DEEE)
+Ce symbole signifie que votre produit et/ou sa
+batterie doivent être éliminés séparément des
+déchets ménagers conformément aux lois et
+réglementations locales en vigueur. Lorsque ce
+produit arrive en fin de vie, déposez-le dans un
+point de collecte indiqué par les pouvoirs
+locaux. Un recyclage adapté de votre produit
+permettra de préserver la santé et
+l’environnement.
+sales@samsara.com Page 11

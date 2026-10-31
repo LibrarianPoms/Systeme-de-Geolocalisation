@@ -1,0 +1,246 @@
+=== PAGE 1 ===
+Chinowing Technology Co., Ltd
+Specification
+T50 Ground Control Station
+The last update time: March-14th-2024
+1
+
+=== PAGE 2 ===
+Catalog
+01 02 03 04
+Product
+Features Parameters Interfaces
+Introdution
+05 06 07 08
+RC
+Product Communication Application
+Configuraton
+Dimension Links Scenarios
+Software
+09 10
+Product Real Demo
+Photos Videos
+2
+
+=== PAGE 3 ===
+01
+Product Introduction
+T50
+i7 1260P CPU
+Introducing the T50 Ground Control Station (GCS) Superior computing power
+– a powerhouse of precision and reliability.
+Driven by an Intel i7 12-core CPU, T50 is a 请添加标题
+powerful choice for users seeking top-tier
+processing capabilities for professional and
+High integration
+resource-intensive applications. Our in-house
+Not a pieced-together
+developed, fully integrated design ensures seamless
+product
+synergy and unparalleled dependability, setting it
+apart from conventional GCS solutions.
+Remote control range
+Sleek, waterproof, and rigorously tested, the T50
+GCS excels in professional and defense missions.
+Elevate your capabilities with a GCS crafted for Long remote control range
+success.
+150km+
+3
+
+=== PAGE 4 ===
+02
+Features
+Robust Computing Power Highly Integrated System Innovative Damping Design
+Equipped with an INTEL i7 12-core R&D totally in-house, our Breaks away from traditional
+CPU, ensuring exceptional components stand out from the support rod solutions, it delivers
+processing power and multitasking simple connections of off-the- a more stable support structure.
+capabilities shelf parts used by other
+manufacturers, ensuring
+superior compatibility and
+reliability.
+4
+
+=== PAGE 5 ===
+02
+Features
+Enhanced Nighttime
+High Visibility Screen Exquisite Design
+Visibility and Utility
+Utilizes Optical Binding technology Integrates dual light columns on Smooth panel without visible
+for a screen that remains clear and both sides for improved screws and connection cables,
+readable even in direct sunlight, visibility and convenience waterproof interface design,
+coupled with dual touchscreens for during nighttime operations. combining sophistication with
+enhanced flexibility. practicality.
+5
+
+=== PAGE 6 ===
+02
+Features
+Multifunctional Keyboard Precise Control Enhanced Security
+Keyboard can be with a mouse for Features retractable three-axis Increased security with
+additional control options, enhancing joystick with hall-effect, protective caps on buttons,
+user convenience. providing a precise control improving device safety and
+experience. resistance to damage.
+6
+
+=== PAGE 7 ===
+02
+Features
+Convenient External
+Storage Compartments Multi-Interface Design
+Connectivity
+Specifically crafted for storing Device supports multiple
+Equipped with HDMI, LAN,
+batteries, a mouse, and assorted interfaces, allowing easy
+USB connectors, supporting
+items. adaptation to our video links
+external device connections,
+and third-party devices,
+providing more flexible external
+expanding device applicability.
+connection options.
+7
+
+=== PAGE 8 ===
+02
+Features
+Dual SBUS input and output Various video links for choice Operating system
+Able to control the vehicle and its 5-150km video link, mesh video
+Windows11, Linux
+payload link
+8
+
+=== PAGE 9 ===
+03
+Parameters
+Dimension Computer Remote control
+Main joystick*2
+Screen size 2*17inch CPU i7 1260P Core
+Knob*2
+Physical channel Key button*12
+20kg/44Ibs Intel® Iris® Xe Graphics eligible 1.40
+Weight Graphics (27) 3-position switch*4
+(including battery 2.8kg/6.2Ibs) GHz
+2-position switch*2
+85cm(L)*42.5cm(W)*16cm(H) Stop button*1
+Dimension Touchpad 10-point capacitive touch pad
+33.5inch(L)*16.7incn(W)*6.3inch(H)
+Human interface USB HID device
+Display screen 17inch 1280*1024 1000NIT
+Battery Peripherals
+Remote control
+Dual SBUS independent output
+Built-in 25.2V/30000mAh Li-ion RAM 32GB(standard) function
+Battery capacity battery (other capacity, external power
+source also supported) SBUS port SBUS OUT*2, SBUS IN*1
+Storage 1TB SSD(standard)
+Working time 5hs@full battery capacity
+Wireless Dual band WiFi and Remote control latency 40ms
+Network
+Bluetooth
+Charging port DC25.2v IN
+Operating system Windows11 or Linux
+Environmental performance
+Operating Temperature -20℃-+60℃
+IP53(in open status)
+IP rating
+IP65(in closed status)
+9
+
+=== PAGE 10 ===
+04
+Interfaces
+Interfaces
+* 1 x TYPE-C
+* 3 x LAN Port
+* 1 x HDMI
+* 1 x HDMI switch(close the upper screens)
+* 2x USB
+* 1 x Power button
+Left side * 1 x STOP button
+* 8 x Key button(F1~F8)
+* 1 x Power indicator
+* 1 x Charge indicator
+* 3 x Radio link signal indicator(RS1 RS2 RS3)
+* 2 x Radio Link working status indicator(TX RX)
+* 1 x Keyboard with mouse
+* 2 x Knob(LD RD)
+* 6 x Toggle switch( SA SB SC SD SE SF)
+* 4 x Key button(F9 F10 F11 F12)
+* 1 x DC25.2V IN
+Right side * 1 x DC24V IN
+* 2 x TNC connector(A1 A2)
+* 1 x 6PIN aviation socket(1 serial & 2 SBUS)
+* 1 x 4PIN aviation socket(LAN port)
+* 2 x Telescopic Hall Effect Joystick
+10
+
+=== PAGE 11 ===
+05
+RC Configuration Software
+USB HID function User-configured RC system Multiple programming modes
+for RC system
+Able to interface with external SBUS channels freely mapping
+Key combination, key property
+devices or software to physical channels
+setting
+11
+
+=== PAGE 12 ===
+06
+Product Dimension
+12
+
+=== PAGE 13 ===
+07
+Communication Links
+P/N Photo Description Range Frequency Bandwidth Network Max node
+806-826MHz
+V21 Video&telemetry&RC link 15km 1427.9-1467.9MHz 20Mbps Star topology 16
+2401.5-2481.5MHz
+5km(ground to ground) 806-826 MHz 20Mbps
+V31 Video&telemetry&RC link Star topology 16
+20km/30km/80km/150km 1427.9-1467.9MHz
+566-678MHz
+VX10 4K video link 20km 100Mbps Star topology 64
+1420-1530MHz
+806-826MHz
+VM21 Mesh video link 10km 1427.9-1467.9MHz 20Mbps Mesh 16
+2401.5-2481.5MHz
+806-826 MHz
+VM31 Mesh video link 15km/50km 20Mbps Mesh 16
+1427.9-1467.9MHz
+566-678MHz
+M1 4K Mesh video link 20km 100Mbps Mesh 32
+1420-1530MHz
+* The other brand video links are also supported.
+13
+
+=== PAGE 14 ===
+08
+Application Scenarios
+Surveillance Emergency rescue Mapping and surveying
+Logistic
+Firefighting Reconnaissance Marine survey Marine reconnaissance
+14
+
+=== PAGE 15 ===
+09
+Product Real Photos
+15
+
+=== PAGE 16 ===
+10
+Demo Videos
+No. Description Video Link
+1 T50 retractable three-axis joystick with hall-effect https://youtu.be/6N1w7Bo1RHM
+2 T50 GCS dual-person operation demonstration https://youtu.be/miyhT0KZa8E
+16
+
+=== PAGE 17 ===
+Thank you!
+Unlock Possibilities, Let's Discuss Your Needs - Contact Us Today!
+Chinowing Technology Co., Ltd
+www.chinowing.com
+office: +86 0755-21386581
+17

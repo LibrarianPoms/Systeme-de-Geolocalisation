@@ -1,0 +1,143 @@
+=== PAGE 1 ===
+AGCS
+Ground Control
+System.
+uas.asseco.com
+
+=== PAGE 2 ===
+Asseco Ground Control Software.
+Asseco Ground Control Software is the main component of Asseco Ground Control Systems dedi- The modular structure of the system allows for the creation of various software configurations.
+cated for integration with any unmanned platform, used for complete management of tasks before, AGCS is offered in both a standardized and a “tailor-made” version, which is prepared for specific
+during and after the mission. customer requirements.
+AGCS
+Checking the elevation of the area Map sheets
+Functionalities 2D/3D view UAV tracking UAV track Basic parameter tag
+Checking the height of flight route points Switch between layers with map
+in relation to the topography of the area. sheets. Multiple layers can be used Free switching from Enable/disable Delete a track mark Enable/disable the
+Advance notifications in the case where at the same time and their diagonal to flat and map tracking for behind a UAV object. information marker of the UAV
+the planned flight route is in collision with a transparency can be adjusted. vice versa. the UAV object. object.
+terrain obstacle.
+Map tools
+Adding markers, tracks,
+areas or ellipses. Switching between
+platforms
+Control up to three platforms
+during one mission.
+Sensor view
+Adjustment of the size of the
+window with the displayed image
+as needed. Switching between
+views from individual sensors or
+a stream from both at the same Artificial horizon module
+time. Free switching between sensor
+view, 3D terrain model, or MALE-
+type platform-tailored view.
+Map tools
+Visualization of the sensor’s
+direction and field of view
+directly on the map sheet.
+UCFDI (UAV Computer
+Flight Data Indicator)
+Visualization of information
+about currently enabled flight
+Checklist
+modes and data concerning
+A systemic way to check system operation.
+the UAV system before
+performing a mission.
+Logplayer
+Supported Map Reconstructing the course of
+Formats completed missions.
+WGS84, MGRS, DTED, GeoTif,
+Mission planning module
+Modifiable user interface layout View of the range of the communication system Photogrammetric flight path generator
+A planning tool for autonomously executed missions.
+Information for the operator regarding the UAV staying within
+Drag&drop placement of individual module windows Automatic generation of the flight path of a Possibility of changing navigation points during the
+in the interface according to user preferences. the communication range photogrammetric mission on the basis of preset parameters. mission.
+
+=== PAGE 3 ===
+Why AGCS? AGCS – Extensions.
+Security Easy Integration
+Airspace Awareness Module
+Original security architecture. Full owner- STANAG compliance and full control
+A module ensuring reception of signals from transponders mounted on manned aircraft. It allows visualization of civil
+ship and control of source code. The soft- over a dedicated platform management
+air traffic directly in AGCS. It provides visualization of airspace zones. It enables real-time monitoring of traffic within
+ware development process is carried out in module (VSM).
+300 km of the ground control station, without the need for an Internet connection.
+accordance with CMMI-DEV Level 3.
+The use of AGCS guarantees the users full Personalization
+control and security of the processed data. Easily customize and save the layout and RT module
+settings of the graphical interface accord-
+A hardware real-time module that enables reliable operation of a ground control station in the event of critical operating
+Simulation environment ing to your preferences.
+system or computer failure.
+An integrated simulation environment
+allows training for UAV operators using real Versatility
+software and the hardware part of the It can be installed on any device (smart-
+ground control station. The air platform phone, tablet, laptop, PC).
+model is implement-ed on the basis of the Supported operating systems:
+actual characteristics of the simulated Windows, Linux, Android, iOS.
+platform.
+Intuitiveness Interoperability
+User interface designed in cooperation Cooperation with external IT systems
+with UAV operators. i.a. for command, mission management,
+reporting and fleet maintenance.
+Key benefits.
+Platform manufacturers:
+Using AGCS, the manufacturer gains high quality, proven End users:
+software that is the central element of the unmanned AGCS is also a great offer for individual users. The consu-
+aerial system. The software can be adapted to the mer version is fully compatible with the Mavlink commu-
+Features and benefits of the system.
+specifics of the integrated set and to the air traffic rules nication protocol, so it can be used in systems equipped
+and regulations currently in force. with autopilots from the PX4 family.
+Thanks to the implementation of AGCS, the manufacturer The implementation of AGCS allows for the handling Wide range of applications Compliance with standards
+reduces expenditures on configuration and integration of different BSPs by means of a single ground-based AGCS universal software is designed to be used in The AGCS version for uniformed services complies with
+of sensors or open-source software. In this way, they control station software. The customer gains the possi- systems of various designs (fixed-wing, VTOL) and clas- NATO standards for data exchange and processing. It
+gain a better cost-effect ratio and the manufacturer’s bility to unify the process of operator training. ses (micro, mini, tactical and MALE). meets the following standards:
+participation in the integration is limited to the necessary With the support of civil aviation standards and STANAG 4586 – Architecture and interoperability,
+minimum. compliance with STANAG standarization documents, it STANAG 4607 – KLV meta-data processing and STANAG
+enables the implementa-tion of missions in both civil and 4671 – Airworthiness.
+military applications.
+
+=== PAGE 4 ===
+What do we offer?
+AGCS + automatic control system
+A complete „Plug and fly” solution for your platform. A dedicated, platform manufacturer-specific solution consisting
+of AGCS and an automatic control system installed on an air platform. This service integrates on-board equipment and
+provides support for recognition sensors (e.g. intelligent target tracking functions). Software-adapted set for the specific
+requirements of the integrated system. Possibility of integration of any sensors and actuators, modification of control rights.
+Comprehensive integration service.
+Integration of unmanned systems (design and Trainings:
+implementation): • dedicated training in the use and maintenance of
+• navigation and communication equipment, unmanned systems in the performance of tasks
+intelligence systems and automatic control as part of the business operations of a given
+systems, organization with the use of Asseco Ground
+• training systems and simulators, Control Software,
+• hardware control stations. • operation and execution of unmanned aerial
+vehicle missions with the use of Asseco Ground
+Control Software.
+Bet on proven software.
+2014 2016 2016 2018 2019
+Start of work first shipment for AGCS in the First shipment to AGCS + UAV
+the Polish Armed project EDA - ERA Africa (Nigeria) MayFly for the
+Forces (Enhanced RPAS Polish Armed
+Automation) Forces
+
+=== PAGE 5 ===
+Asseco
+Ground Control
+Station.
+Asseco Poland S.A.
+Olchowa 14
+35-322 Rzeszów
+Phone: +48 17 888 55 55
+Fax. +48 17 888 55 50
+International Organizations and Solutions
+for the Security Sector Division
+Branickiego 13
+02-972 Warsaw
+Phone: +48 22 500 26 84
+E-mail: infoprw@asseco.pl
+asseco.pl

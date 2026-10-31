@@ -1,0 +1,52 @@
+=== PAGE 1 ===
+GROUND CONTROL STATION
+GCS.A
+The GCS.A unmanned systems
+command center provides everything
+required for operators to undertake
+missions in complete comfort and
+safety, including climate control,
+redundant power and communications.
+State-of-the-art features and amenities
+include:
+• Autonomous operating time up to
+48 hours
+• Housing for the communication and
+The GCS.A is installed into a modified 20-foot container,
+control equipment
+enhanced with a generator section.
+• Three workplaces for the pilots and
+the payload operators
+• Directional antenna for telemetry
+and communication
+• Directional antenna for video and
+data links
+• Support Equipment for the
+unmanned aerial system (transport
+www.uavos.com
+module)
+uavos@uavos.com
+
+=== PAGE 2 ===
+SNOITACIFICEPS
+PARAMETER DATA
+Operating temperature -40°F to +131°F
+)
+(-40°C to +55°C
+Automated workplaces 2+1
+Dimensions Length 295 in (7500
+mm), width 98 in
+(2492 mm), height
+102 in (2585 mm)
+Transportation truck tractor
+Generator 15 kW
+Autonomous operating 48 h
+time
+Customization:
+• Power Options
+• Comfort Options
+• Computer Options
+• Utility Options
+• Safety Options
+www.uavos.com
+uavos@uavos.com

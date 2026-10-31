@@ -1,0 +1,214 @@
+=== PAGE 1 ===
+La géolocalisation des véhicules mis à disposition des employés
+Les dispositifs dits de géolocalisation permettent aux employeurs de connaître la position
+géographique, à un instant donné ou en continu, de leurs employés lorsque ceux-ci sont en
+déplacement.
+Toutefois si ces dispositifs permettent d'améliorer les services rendus par les responsables du
+traitement en leur permettant notamment d’optimiser la gestion de leur flotte et d’améliorer
+l’efficacité opérationnelle, ils sont particulièrement intrusifs pour les salariés.
+Leur usage nécessite donc un encadrement strict pour éviter les dérives de la part des
+employeurs.
+Dans quels buts un employeur peut-il mettre en place un dispositif de
+géolocalisation ?
+Les données personnelles peuvent être collectées pour plusieurs finalités, à condition que
+ces finalités soient :
+- déterminées ;
+- explicites ;
+- légitimes ; et
+- non traitées ultérieurement de manière incompatible avec ces finalités.
+En vertu de ce principe de limitation des finalités, l’APDP considère que la mise en place
+d’un dispositif de géolocalisation peut répondre aux objectifs suivants :
+- l'amélioration du processus de production, soit directement par une meilleure
+allocation des moyens disponibles (par exemple, l'envoi du véhicule le plus proche pour
+exercer une activité telle qu’une intervention d’urgence, un dépannage ou une prise en
+charge), soit indirectement en analysant a posteriori les déplacements effectués (par
+exemple, l'analyse des temps nécessaires à des déplacements ou à la réalisation d'une
+tâche) ;
+
+=== PAGE 2 ===
+- la contribution à la sécurité des personnes, des marchandises transportées ou du
+véhicule dont le responsable du traitement a la charge (chauffeurs de véhicules de
+remise, travailleurs isolés, transports de fonds et de valeurs, etc.) ;
+- le suivi des marchandises en raison de leur nature particulière (respect des règles
+d’hygiène relatives à la chaine du froid par exemple) ;
+- le suivi et la facturation d'une prestation de transport de personnes ou de
+marchandises ou d'une prestation de services directement liée à l'utilisation du véhicule
+(ramassage scolaire, nettoyage des accotements, prise en charge médicale, etc.) ;
+- le suivi des temps de travail des employés lorsque ce suivi ne peut être réalisé
+par d'autres moyens ;
+- le suivi et la constitution des preuves de l'exécution d'une prestation par le salarié
+liée à l'utilisation du véhicule.
+L'utilisation d'un dispositif de géolocalisation ne doit pas conduire à un contrôle
+permanent et inopportun de l'employé concerné, et les données collectées ne
+peuvent être utilisées, sauf exceptions, à des fins disciplinaires.
+Aussi, l’APDP considère que :
+- s’agissant des véhicules professionnels pouvant être utilisés par les employés à des
+fins privées, le responsable du traitement ne doit pas collecter des informations
+relatives à la localisation d'un employé en dehors des horaires de travail de ce
+dernier. Dans ce contexte, elle exige que ces derniers aient la possibilité de désactiver
+la fonction de géolocalisation des véhicules à l'issue de leur temps de travail ;
+- concernant les employés investis d'un mandat électif ou syndical, ceux-ci ne doivent
+pas faire l'objet d'une opération de géolocalisation lorsqu'ils agissent dans le cadre de
+l'exercice de leur mandat ;
+- l'utilisation d'un système de géolocalisation n’est pas justifiée lorsqu'un employé
+dispose d'une liberté dans l'organisation de ses déplacements (visiteurs médicaux,
+VRP, etc.).
+Quelle justification pour la mise en place un dispositif de géolocalisation ?
+Pour être licite, un traitement automatisé de données personnelles doit répondre à au moins
+une des exigences prévues à l’article 5 de la Loi n° 1.565 du 3 décembre 2024.
+L’APDP estime en conséquence que la mise en place d’un dispositif de géolocalisation dans
+un véhicule professionnel peut être expressément justifiée par :
+- le respect d’une obligation légale à laquelle est soumis le responsable du traitement
+ou son représentant ;
+
+=== PAGE 3 ===
+- l’exécution d’un contrat ;
+- la réalisation d’un intérêt légitime poursuivi par le responsable du traitement ou un
+tiers, à la condition de ne pas méconnaître l’intérêt ou les droits et libertés
+fondamentaux de la personne concernée ;
+- un motif d’intérêt public poursuivi par une personne morale de droit public ou par une
+personne morale de droit privé investie d’une mission d’intérêt général ou
+concessionnaire d’un service public ;
+- le consentement de la personne concernée.
+S’agissant de données collectées dans le cadre d’un contrat de travail établissant
+un lien de subordination entre l’employeur et l’employé, l’APDP appréciera très
+strictement toute justification reposant sur le consentement de la personne
+concernée.
+Quelles informations peuvent être collectées ?
+Le responsable du traitement doit s’assurer que les données collectées sont « limitées » à la
+réalisation de ses objectifs.
+Afin de respecter ce principe, les données personnelles collectées doivent être :
+- adéquates ;
+- pertinentes ; et
+- limitées à ce qui est nécessaire au regard des finalités du traitement.
+L’APDP considère ainsi que seules les données personnelles suivantes peuvent être
+collectées par un dispositif de géolocalisation.
+- identification de l’employé : nom, prénom, coordonnées professionnelles, matricule
+interne, numéro de plaque d'immatriculation du véhicule ;
+- informations relatives aux déplacements des employés : données de localisation issues
+de l'utilisation d'un dispositif de géolocalisation, historique des déplacements
+effectués ;
+- informations complémentaires associées à l'utilisation du véhicule : vitesse de
+circulation du véhicule, nombre de kilomètres parcourus, durées d'utilisation du
+véhicule, temps de conduite, nombre d'arrêts.
+
+=== PAGE 4 ===
+Quid des données relatives à la vitesse, au temps de conduite ou encore aux pauses
+Ces données peuvent être collectées en Principauté mais non dans le cadre d’un traitement lié
+aux données de géolocalisation du véhicule mais plutôt dans le cadre d’un traitement lié à la
+collecte et l’archivage des données des chronotachygraphes numériques installés dans les
+véhicules poids lourds. Ce traitement est alors justifié par une obligation légale à laquelle est
+soumis le responsable du traitement.
+L’article 1 de l’Arrêté Ministériel n° 90-651 du 28 décembre 1990 relatif à l’utilisation des appareils
+de contrôle de vitesse (chronotachygraphes) des véhicules automobiles dispose en effet que
+« Tout véhicule automobile dont le poids maximal autorisé, avec ou sans remorque, est supérieur
+à 3,5 tonnes doit être équipé d’un appareil de contrôle de vitesse dît chronotachygraphe ».
+De plus, l’article 2 dudit Arrêté Ministériel dispose que « Les chronotachygraghes doivent […]
+permettre l'enregistrement, en sus de la vitesse des véhicules, des éléments suivants : - distance
+parcourue ; - temps de conduite ou autre temps de travail ; - interruption de travail et temps de
+repos journalier ; - ouverture du boîtier contenant la feuille d'enregistrement ».
+Enfin, le Règlement (CEE) n° 561/2006 du Parlement et du Conseil du 15 mars 2006 relatif à
+l’harmonisation de certaines dispositions en matière sociale dans le domaine de transports par
+route « fixe les règles relatives aux durées de conduite, aux pauses et aux temps de repos qui
+doivent être observés par les conducteurs assurant le transport de marchandises et de
+voyageurs par route ».
+Aux termes de son article 2, il est applicable quel que soit le pays d’immatriculation du poids
+lourd, dès lors qu’il circule sur le territoire de la Communauté Européenne.
+Combien de temps peuvent être conservées les données de
+géolocalisation ?
+Les données personnelles collectées ne peuvent être conservées indéfiniment sous une
+forme permettant l’identification des personnes concernées.
+Aussi, l’APDP estime qu’au regard des objectifs autorisés pour l’utilisation d’un dispositif de
+géolocalisation dans un véhicule une durée de conservation de deux mois paraît
+proportionnée.
+Par dérogation à ce principe, elle peut accepter que les données de localisation soient
+conservées pour une période supérieure à deux mois si elle l’estime opportun au regard de
+la justification apportée par le responsable du traitement.
+Ainsi, ces données peuvent être conservées un an lorsqu’elles sont utilisées notamment à
+des fins de preuve des interventions effectuées et qu’il n’est pas possible de rapporter cette
+preuve par d’autres moyens.
+De même, lesdites données peuvent être conservées cinq ans lorsque le dispositif de
+géolocalisation permet de suivre le temps de travail de l’employé.
+
+=== PAGE 5 ===
+Qui peut avoir accès aux données de géolocalisation ?
+L’accès aux données de géolocalisation doit être limité aux seules personnes qui, dans le
+cadre de leur(s) fonction(s), peuvent légitimement en avoir connaissance au regard des
+objectifs du dispositif.
+Il peut ainsi s’agir en interne des personnes en charge de coordonner, de planifier ou de suivre
+les déplacements, les personnes en charge de la sécurité des personnes ou des biens
+transportés ou encore du prestataire qui a accès au traitement dans le cadre de la
+maintenance du dispositif.
+Concernant ce dernier, l’APPD rappelle que ses droits d’accès doivent être limités à ce qui est
+strictement nécessaire à l’exécution de son contrat de prestation de service. De plus,
+ledit prestataire est soumis aux mêmes obligations de sécurité et de confidentialité que celles
+imposées au responsable du traitement.
+Par ailleurs, selon les besoins, seules les informations nécessaires doivent être
+communiquées.
+Exemple : un client n’aura pas besoin d’avoir les nom et prénom du chauffeur s’il attend juste
+d’être pris en charge. Seules la plaque d’immatriculation et les données de localisation seront
+nécessaires.
+L’APDP estime par ailleurs que la communication des images à la Direction de la Sûreté
+Publique peut être justifiée pour les besoins d’une enquête judiciaire.
+A cet égard, elle rappelle qu’en cas de transmission, ladite Direction ne pourra avoir
+communication des informations que dans le strict cadre de ses missions légalement
+conférées
+Comment informer les employés ?
+Le responsable du traitement doit prendre les mesures appropriées pour fournir à
+son employé les informations sur l’utilisation de ses données collectées par le dispositif de
+géolocalisation mis en place et faciliter l’exercice de ses droits.
+L’employé doit ainsi a minima recevoir les informations suivantes :
+- l’identité et les coordonnées professionnelles du responsable du traitement, et
+le cas échéant de son représentant à Monaco, ou, à défaut, au sein d’un Etat membre
+de l’Union européenne ;
+- les finalités du traitement et son fondement juridique ;
+
+=== PAGE 6 ===
+- les intérêts légitimes poursuivis par le responsable du traitement ou le tiers lorsque
+le traitement est réalisé sur ce fondement ;
+- les catégories de données personnelles concernées ;
+- la durée de conservation des données ou, lorsque cela n’est pas possible, les
+critères utilisés pour déterminer cette durée ;
+- lorsque le traitement est fondé sur le consentement de la personne, le droit de celle-
+ci de retirer ce consentement à tout moment ;
+- les destinataires ou catégories de destinataires ;
+- les moyens d’exercer ses droits d’accès, d’opposition, de rectification,
+d’effacement, de limitation ou de portabilité ;
+- le droit d’introduire une réclamation auprès de l’Autorité de Protection des
+Données Personnelles (APDP) ;
+- le cas échéant, les coordonnées du Délégué à la protection des données.
+Quelle sécurité mettre en place ?
+L’APDP considère que le responsable du traitement doit prendre toutes précautions utiles
+pour préserver la sécurité des données objet du traitement et empêcher, notamment en
+mettant en place des mesures de contrôle et d'identification, que des employés non autorisés
+y aient accès.
+Elle demande donc qu’une politique d’habilitations soit mise en place et que les accès
+individuels aux données de géolocalisation soient attribués par un identifiant et un mot de
+passe individuels forts, régulièrement renouvelés, ou par tout autre moyen d'authentification.
+L’APDP demande également qu’une journalisation automatisée des accès aux
+enregistrements soit implémentée.
+Enfin, elle demande que tout échange de données soit sécurisé.
+
+=== PAGE 7 ===
+Position de la CEDH
+Dans son arrêt, Florindo de Almeida Vasconcelos Gramaxo c. Portugal du 13 décembre 2022, la Cour
+européenne des droits de l’homme (CEDH) a considéré que l’article 8 de la Convention européenne de
+sauvegarde des droits de l’homme est respecté lorsque l’employeur se fonde sur les données d’un dispositif
+GPS pour licencier un employé, dès lors que ledit employé était au courant de l’installation de ce dispositif.
+En l’espèce, le GPS avait été installé par l’employeur afin de contrôler les dépenses découlant de l’utilisation
+du véhicule et l’employé, qui avait été informé de ladite installation, indiquait de faux kilométrages parcourus
+avec sa voiture de fonction.
+Si la Cour a relevé que le suivi par GPS n’était finalement pas conforme au droit national et à l’autorisation
+délivrée par l’Autorité de protection des données du Portugal (CNPD), elle a néanmoins constaté que seule la
+différence concernant le kilométrage parcouru avait été retenue comme critère déterminant par la dernière
+instance judiciaire nationale pour justifier le licenciement, et non le fait que l’employé n’effectuait pas ses
+huit heures de travail journalier. L’intrusion dans la vie privée de l’employé était ainsi moindre.
+La Cour a par ailleurs considéré que l’intrusion était également strictement nécessaire au but légitime
+poursuivi par l’employeur puisqu’il n’existait pas d’autre moyen moins intrusif pour procéder au contrôle
+des kilomètres parcourus à titre professionnel et à titre privé.
+Elle a également noté que seuls les employés compétents avaient accès aux données de géolocalisation et que
+l’instance nationale avait effectué une balance circonstanciée des intérêts respectifs.
+Conformément à sa jurisprudence établie dans l’arrêt Bărbulescu c. Roumanie, la Cour s’est basée sur 6
+critères pertinents pour juger de la conformité avec l’article 8 de la CEDH de la surveillance de l’employé :
+information, portée, légitimité, subsidiarité, conséquence et garanties.
+Pour en savoir plus

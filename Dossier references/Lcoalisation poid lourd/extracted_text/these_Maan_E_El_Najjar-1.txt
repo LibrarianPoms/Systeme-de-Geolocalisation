@@ -1,0 +1,631 @@
+=== PAGE 1 ===
+Localisation dynamique d’un véhicule sur une carte routière
+numérique pour l’assistance à la conduite
+Thèse pour l’obtention du grade de Docteur de l’UTC
+Spécialité : Technologie de l’Information et des Systèmes
+Présentée par :
+EL BADAOUI EL NAJJAR Maan
+Soutenue le 09 décembre 2003 devant le jury composé de :
+Claude LAURGEAU Professeur à l'ENSMP de Paris Président du jury
+Michèle ROMBAUT Professeur à l'UJF de Grenoble Rapporteur
+Roland CHAPUIS Professeur au CUST de Clermont Ferrand Rapporteur
+Patrick RIVES Directeur de Recherche à l'INRIA Sophia Antipolis Examinateur
+Véronique CHERFAOUI Maître de Conférences à l'UTC Examinateur
+Philippe BONNIFAIT Maître de Conférences à l'UTC Directeur de thèse
+François PEYRET Directeur de Recherche au LCPC de Nantes Invité
+Laboratoire HeuDiaSyc UMR UTC/CNRS 6599
+
+=== PAGE 3 ===
+A mon père et à ma famille.
+
+=== PAGE 4 ===
+Remerciements
+Le travail accompli dans le cadre de cette thèse a été effectué au laboratoire Heuristique
+et Diagnostic des Systèmes Complexes « HeuDiaSyc » de l’Université de Technologie de
+Compiègne. Je remercie Monsieur Rogelio LOZANO, directeur de l’UMR HeuDiaSyc, pour
+m’avoir accueilli au sein de cette structure.
+Je voudrais remercier Philippe BONNIFAIT, Maître de Conférences à l’UTC, qui a été
+mon directeur de thèse. Je le remercie pour sa disponibilité et les conversations régulières que
+nous avons eues sur ce travail, sa rigueur et notamment pour son art consommé de la synthèse
+dès qu’il s’agit d’avoir une vue d’ensemble ou encore d’étudier un point précis. Mais au delà
+des qualités scientifiques, ce sont surtout les qualités humaines que je voudrais souligner.
+Je remercie mes rapporteurs pour le travail que leur a demandé ma thèse : Mademoiselle
+Michèle ROMBAUT, Professeur à l’Université de Joseph Fourrier de Grenoble, pour sa
+critique constructive sur mon manuscrit, Monsieur Roland CHAPUIS, Professeur à
+l’université de Blaise Pascal de Clermont-Ferrand, pour ses indications utiles.
+Je remercie spécialement les membres de jury : Monsieur Claude LAURGEAU,
+Professeur à l’Ecole Nationale Supérieur des Mines de Paris, qui m’a fait l’honneur de venir
+discuter de mon travail, Monsieur Patrick RIVES, Directeur de Recherche à l’INRIA Sophia-
+Antipolis, qui a accepté de faire partie du jury et Monsieur François PEYRET, Directeur de
+Recherche au Laboratoire Centrale des Ponts et Chaussées, qui s’est intéressé à ce travail de
+recherche.
+J’adresse mes plus vifs remerciements à Madame Véronique BERGE-CHERFAOUI
+pour sa collaboration ses conseils, sa lecture attentive de ce manuscrit et pour sa participation
+à ce jury.
+Je tiens à remercier tous les personnels du Laboratoire HeuDiaSyc pour la bonne
+ambiance qu’ils y font règner. Je remercie tous les ingénieurs, doctorants et stagiaires qui sont
+passés dans l’équipe « Véhicule Intelligent » durant ces années de thèse.
+Finalement, ce travail de thèse doit beaucoup à mon père, ma mère, mes frères et ma
+sœur qui m’ont encouragé et soutenu depuis toujours. Je leur adresse un immense merci.
+Je ne peux oublier de remercier mon oncle le Professeur Mohammed Mrayati pour son
+aide et son orientation depuis toujours.
+Ça serait inconcevable de ne pas remercier tous les membres de ma belle famille et
+surtout mon beau-père et ma belle-mère pour l’ambiance chaleureuse avec lequel ils m’ont
+entouré et pour leur soutien.
+Enfin et pas la moindre, je tiens à exprimer mes profonds sentiments et mes
+remerciements à ma douce Salma pour son soutien et pour le plus beau cadeau qu’on peut
+m’offrir notre petite fille Sarah.
+
+=== PAGE 6 ===
+Table des matières
+6
+
+=== PAGE 7 ===
+Table des matières
+TABLE DES MATIERES
+INTRODUCTION GENERALE.............................................................................................................11
+1 PROBLEMATIQUE ET CONTEXTE DU TRAVAIL..................................................................................11
+2 PLAN DU MEMOIRE..........................................................................................................................13
+CHAPITRE 1
+.........................................................................................................................15
+1 INTRODUCTION...............................................................................................................................17
+2 LE VEHICULE (INTELLIGENT) AU SERVICE DE L’HOMME.................................................................17
+2.1 Rôle de dispositifs d’assistance............................................................................................17
+2.2 L’assistance à la conduite : le domaine de la sécurité active...............................................18
+2.3 Sécurité passive....................................................................................................................21
+2.4 Capteurs considérés dans ce travail de thèse.......................................................................22
+3 L’INTERET DE LA LOCALISATION SUR UNE CARTE « ROUTIERE » NUMERIQUE POUR L’AIDE A LA
+CONDUITE.......................................................................................................................................23
+3.1 Les applications ADAS et les cartes routières numériques futures......................................25
+4 LOCALISATION D’UN VEHICULE SUR UNE CARTE EN UTILISANT UN POSITIONNEMENT GPS............28
+4.1 Le GPS américain.................................................................................................................28
+4.2 Les cartes routières numériques...........................................................................................31
+4.3 Le problème de la localisation sur carte routière numérique...............................................33
+4.4 La fusion de donnée : une approche pour traiter ce problème.............................................36
+5 FUSION MULTI-SOURCES.................................................................................................................36
+5.1 Contraintes d’une solution multi-sources.............................................................................37
+5.2 Problème de modélisation....................................................................................................38
+5.3 Introduction à la théorie des croyances................................................................................39
+6 CONCLUSION DU CHAPITRE.............................................................................................................49
+CHAPITRE 2
+.........................................................................................................................51
+1 INTRODUCTION...............................................................................................................................53
+2 METHODES DETERMINISTES............................................................................................................55
+2.1 Méthodes géométriques........................................................................................................55
+2.2 Méthodes topologiques.........................................................................................................59
+2.3 Méthode de détection de virages..........................................................................................62
+2.4 Méthode des carrefours et de comparaison des longueurs...................................................63
+2.5 Méthodes par comparaison de critère de similarité.............................................................63
+3 METHODES BAYESIENNES...............................................................................................................63
+3.1 Introduction..........................................................................................................................63
+3.2 Méthode Gaussienne.............................................................................................................65
+3.3 Filtrage particulaire.............................................................................................................69
+4 APPROCHE PROPOSEE......................................................................................................................73
+4.1 Introduction..........................................................................................................................73
+4.2 Méthode de localisation sans utiliser la carte dans l’estimation de la pose.........................74
+4.3 Localisation avec utilisation des segments sélectionnés.......................................................81
+5 CONCLUSION...................................................................................................................................88
+CHAPITRE 3
+.........................................................................................................................91
+1 INTRODUCTION...............................................................................................................................93
+2 METHODE DU MAXIMUM DE PROBABILITE......................................................................................94
+7
+
+=== PAGE 8 ===
+Table des matières
+2.1 Construction de la matrice de covariance d’un segment......................................................94
+2.2 Test de maximum de probabilité...........................................................................................96
+2.3 Résumé de la méthode..........................................................................................................97
+3 METHODE DE FUSION MULTI-CRITERES...........................................................................................97
+3.1 Introduction..........................................................................................................................98
+3.2 Position du problème............................................................................................................98
+3.3 Notations...............................................................................................................................99
+3.4 Masses de croyances.............................................................................................................99
+3.5 Elaboration de fonctions d’attribution de croyance...........................................................100
+3.6 Stratégies de fusion et de décision......................................................................................103
+3.7 Vers l’utilisation d’autres critères......................................................................................115
+3.8 Analyse de la configuration géométrique du réseau...........................................................116
+4 CONCLUSION.................................................................................................................................117
+CHAPITRE 4
+.......................................................................................................................119
+1 INTRODUCTION.............................................................................................................................121
+2 MOYENS EXPERIMENTAUX............................................................................................................121
+2.1 Le véhicule « STRADA » et ses capteurs............................................................................121
+2.2 Le récepteur GPS................................................................................................................123
+2.3 Les capteurs ABS................................................................................................................126
+3 PERFORMANCE DES METHODES DE SELECTION DE ROUTES SUR DES DONNEES REELLES................128
+3.1 Résultats sur différents parcours........................................................................................128
+3.2 Conclusion de l’étude des résultats des méthodes de sélection de routes...........................138
+4 LOCALISATION AVEC MESURES CARTOGRAPHIQUES......................................................................139
+4.1 Principe de l’algorithme et synchronisation des données..................................................139
+4.2 Amélioration de l’algorithme de localisation par identification en ligne du décalage du
+GPS par rapport à la cartographie....................................................................................141
+4.3 Résultats expérimentaux de la localisation sur le parcours « P3 »....................................143
+5 PORTAGE TEMPS REEL...................................................................................................................154
+5.1 Architecture Mono-Machine...............................................................................................156
+5.2 Implantation Multi-Machines.............................................................................................158
+6 CONCLUSION.................................................................................................................................159
+CONCLUSION GENERALE ET PERSPECTIVES...........................................................................161
+BIBLIOGRAPHIE.................................................................................................................................165
+ANNEXES...............................................................................................................................................171
+ANNEXE A.............................................................................................................................................173
+ELLIPSOÏDES ASSOCIES A UNE DISTRIBUTION DE PROBABILITE GAUSSIENNE.........173
+INTRODUCTION.....................................................................................................................................174
+1 CONTOUR EQUIPROBABLE ASSOCIE A UN PHENOMENE GAUSSIEN.................................................174
+2 DISTRIBUTION DE PROBABILITE ATTACHEE A UN PHENOMENE ALEATOIRE GAUSSIEN DE DIMENSION
+2....................................................................................................................................................175
+2.1 Propriétés...........................................................................................................................175
+σ σ σ
+3 PROBABILITE A 1 , 2 OU 3 POUR UN VECTEUR DE VARIABLES ALEATOIRES.........................180
+ANNEXE B..............................................................................................................................................181
+OPERATEUR DE GESTION DE CONFLIT DANS LA COMBINAISON CONJONCTIVE......181
+ANNEXE C.............................................................................................................................................183
+ELEMENTS D’ACCIDENTOLOGIE ROUTIERE...........................................................................183
+1 L’ACCIDENTOLOGIE ROUTIERE EN FRANCE...................................................................................184
+1.1 Analyse de répartition des accidents selon le type de réseau.............................................184
+8
+
+=== PAGE 9 ===
+Table des matières
+1.2 La vitesse : facteur important.............................................................................................185
+1.3 La sécurité routière dans les pays européens.....................................................................186
+1.4 Conclusion..........................................................................................................................188
+ANNEXE D.............................................................................................................................................189
+ELEMENTS DE GEODESIE................................................................................................................189
+1 GEODESIE.....................................................................................................................................190
+2 HISTORIQUE..................................................................................................................................190
+3 SYSTEMES GEODESIQUES..............................................................................................................191
+3.1 Notions principales.............................................................................................................191
+3.2 Système géodésique............................................................................................................191
+3.3 Réseau géodésique..............................................................................................................192
+3.4 Datums, systèmes en usage en France................................................................................193
+4 PROJECTIONS ET COORDONNEES...................................................................................................197
+4.1 Type de coordonnées..........................................................................................................197
+4.2 Coordonnées géographiques..............................................................................................197
+4.3 Coordonnées planes............................................................................................................199
+4.4 Transformation de coordonnées.........................................................................................204
+5 CARTES ET GPS............................................................................................................................206
+5.1 "Coordonnées GPS" d'un point figurant sur une carte Conversion NTF → WGS84
+(précision de 100 m)...........................................................................................................206
+5.2 Report de coordonnées GPS sur une carte.........................................................................208
+9
+
+=== PAGE 10 ===
+Introduction générale
+10
+
+=== PAGE 11 ===
+Introduction générale
+Introduction générale
+1 PROBLEMATIQUE ET CONTEXTE DU TRAVAIL
+L'insécurité routière en France est actuellement un problème de société : 7300 morts sur
+les routes pour l’année 2002 ! D'ailleurs, durant l’élection présidentielle de 2002, le président
+de la république, Jacques Chirac, l'a placée dans les priorités de son mandat. D'après les
+statistiques, on constate que le nombre de morts par an sur les routes ne diminue plus autant
+que dans les années soixante dix, même si le trafic a considérablement augmenté.
+Face à ce bilan inquiétant, plusieurs actions et travaux de recherche ont été menées dans
+le domaine de l'assistance à la conduite depuis les vingt dernières années. Par exemple, le
+projet européen « Prometheus » fut lancé en 1986 à l’initiative des industriels de l’automobile
+avec comme principaux objectifs de proposer des solutions pour augmenter la sécurité et
+harmoniser le trafic routier, de gérer les transports et surtout d’offrir une solution pour la
+conduite sûre (amélioration de la vision, évitement d’obstacle et alerte du conducteur).
+D'autres projets européens, plus récents, s'inscrivent dans sa lignée comme CARSENSE1 ou
+ROADSENSE2 ou encore le réseau thématique européen ADASE sur l'assistance à la
+conduite. Au niveau national, la France soutient des projets de recherche dans le cadre des
+programmes PREDIT. Le projet ARCOS (2001-2004) « Action de Recherche pour une
+Conduite Sécurisée » en est une parfaite illustration. Il a pour objectif de valider des concepts
+et des études de faisabilité pour mettre en œuvre quatre fonctions : réguler les distances entre
+les véhicules, prévenir les collisions et les sorties de routes, alerter les véhicules en amont des
+incidents. Enfin, au niveau régional, le pôle de recherche picard DIVA (pour DIagnostic et
+Véhicules Avancés) soutient actuellement plusieurs actions de recherche autour du
+développement de moyens de perception pour l’assistance à la conduite. Le projet SAACAM
+1 CARSENSE est un programme de recherche qui rassemble 12 partenaires dont plusieurs constructeusrs
+automobiles L’objectif est d’élever la qualité de perception de l’environnement de conduite par une fusion multi-
+capteurs et de proposer aux automobilistes une sécurité accruesur les véhicules de la future génération
+(www.carsense.org)
+2 ROADSENSE (ROad Awareness for Driving via a Strategy that Evaluates Numerous SystEms) est un
+projet européen dont l’objectif est la définition et la conception d'un dispositif de prototypage rapide de
+nouveaux systèmes d'aide à la conduite automobile de type driver in the loop (http://www.eu-
+projects.com/roadsense/).
+11
+
+=== PAGE 12 ===
+Introduction générale
+(2000-2004), commun aux laboratoires CREA et Heudiasyc, appartient à ce pôle de
+recherche. Son objectif scientifique principal est de définir des techniques de fusion
+multisensorielle capables de gérer les incertitudes et imprécisions des données, depuis les
+mesures des capteurs jusqu’à l’étape finale d’actionnement sur le véhicule et/ou d’information
+du conducteur. Ce travail de thèse concerne plus particulièrement les projets ARCOS
+(thème 3) et le projet SAACAM qui a financé les moyens expérimentaux.
+D’un autre côté, développer des système technologiques pour l’assistance à la conduite
+sans considérer (ou en considérant peu) le conducteur n’a pas de sens. En effet, plus ces
+systèmes d'assistance interagissent avec l'activité de conduite du conducteur, plus leur mise en
+œuvre est délicate et compliquée. Comment s'assurer que le système ne sera pas utilisé en
+dehors des conditions pour lesquelles il a été conçu ? Comment prendre en compte la diversité
+des situations et des conducteurs ? Quels sont les effets de fausses alertes ? Le conducteur
+sera-t-il capable de garder le contrôle du véhicule si le dispositif défaille ? Qui est responsable
+en cas d'accident ? En l'état actuel des connaissances, il est bien difficile de répondre à ces
+questions qui ont été au cœur du GdR CNRS/INRETS "Coopération homme-machine pour
+l'aide à la conduite" de 1999 à 2002.
+Partant du principe que les systèmes technologiques peuvent au moins contribuer à
+l’amélioration de la perception du conducteur, nous discutons, dans cette thèse, de l’intérêt de
+la cartographie routière pour la conception de nouvelles applications d’aide à la conduite ou
+l'amélioration d'applications existantes. Ceci est évidemment lié à l’évolution remarquable des
+systèmes de positionnement par satellites comme le GPS américain ou le futur Galiléo
+européen qui s'imposent comme la technologie de base et bon marché des systèmes de
+localisation dynamique en extérieur. Nous sommes d'ores et déjà convaincus des nombreux
+avantages que la cartographie amènera aux systèmes d’aides à la conduite. En effet, le
+domaine de la cartographie routière est en pleine expansion, comme l'illustre le succès
+grandissant des systèmes de navigation déjà dans le commerce. Cependant, les cartes
+numériques ne sont pas uniquement intéressantes de par la description géométrique qu’elles
+procurent du réseau routier (ce qui est très intéressant par exemple pour anticiper un virage) ;
+on peut leur associer une quantité importante d’information3 décrivant la chaussée et ses bas
+côtés. Cette information peut être très précieuse pour les systèmes d’aide à la conduite.
+Ainsi, le sujet scientifique et technologique traité dans le cadre de ce travail concerne la
+localisation dynamique d'un véhicule sur une carte routière numérique précise. On verra que
+ce problème nécessite l'utilisation d'un système de positionnement par satellite, d'une base de
+données géographiques (la carte routière numérique) et d'un Système d'Information
+Géographique (SIG) pour accéder à ces données. Le domaine de la localisation d'un véhicule
+sur une carte est connu sous le terme anglo-saxon de « map-matching ». Ce terme, qui n'a pas
+de traduction française simple et que nous traduirons par « localisation cartographique », fait
+apparaître clairement que l'on cherche à mettre en correspondance la position et la trajectoire
+estimées du véhicule avec une représentation cartographique du réseau routier.
+Le problème de la localisation sur carte peut être résolu de façon très simple si l’on n’est
+pas exigent sur la qualité du résultat, à savoir, si l’on accepte un fonctionnement intermittent
+(absence de GPS sous un tunnel, par exemple) et parfois erroné (le système pense que l’on est
+sur une route alors que l’on est sur une autre). Si on veut améliorer les performances, il faut
+évidemment des sources d’information (carte et capteurs) et des traitements adaptés, mais
+nous pensons qu’il faut également des méthodes qui permettent de qualifier les résultats, en
+3 Appelée aussi « attributs des bases de données ».
+12
+
+=== PAGE 13 ===
+Introduction générale
+termes de précision et de certitude. Cette dernière préoccupation est à la base des réflexions
+qui ont conduit ce travail de thèse. Ainsi, nous proposons d’utiliser des méthodes
+d’observation dynamique d’état4 de façon à fusionner les mesures du GPS, les mesures de
+capteurs proprioceptifs5 et les données de la carte. L’observation d’état continue à
+observations discrètes offre une solution pertinente au problème de l’intermittence des
+mesures GPS et permet d’intégrer naturellement des mesures cartographiques. Dans ce
+processus d’observation, on s’intéressera plus particulièrement à la recherche de la route sur
+laquelle le véhicule roule, avec une quantification du degré de certitude de cette étape de
+sélection, en fonction de la qualité des informations manipulées et de la configuration
+géométrique du réseau routier autour du véhicule. Nous présenterons deux grandes classes de
+méthodes de sélection de routes : une approche probabiliste gaussienne basée sur la distance
+de Mahalanobis et une approche crédibiliste s’inscrivant dans le cadre de la fusion de données
+multi-sources.
+Une attention particulière a été accordée aux aspects expérimentaux. Ainsi, nous avons
+équipé le véhicule expérimental du laboratoire d’un récepteur GPS différentiel6 fournissant, à
+une fréquence pouvant aller jusqu’à 10 Hz, une position absolue de précision métrique en cas
+de bonne visibilité satellitaire. Par ailleurs, nous nous sommes dotés d’une carte routière
+numérique précise7 de l’IGN (Institut Géographique National) manipulée par le SIG
+« Géoconcept ». Compte tenu du cadre général des systèmes d’aide à la conduite, les aspects
+temps réel sont primordiaux. Nous avons porté nos développements sur deux architectures
+temps réel, l’une mono-machine et l’autre distribuée. La version mono-machine a été
+présentée lors des démonstrations à mi-parcours du projet ARCOS, au moins de juin 2003.
+2 PLAN DU MEMOIRE
+Le chapitre 1 dresse d'abord un bref tableau des dispositifs d’assistance à la conduite.
+Nous verrons comment la localisation dynamique d’un véhicule sur une carte routière
+numérique peut contribuer à l’amélioration de la sécurité routière. On présentera ensuite les
+bases de données routières actuelles et futures qui, lorsqu’elles auront un taux de couverture
+du réseau routier important, permettront d’enregistrer et d’accéder à une quantité
+d’information exceptionnelle. Dans une deuxième partie, nous expliquerons pourquoi nous
+pensons que la fusion multi-sources est approche méthodologique intéressante pour traiter le
+problème de la localisation sur carte. Ceci nous conduira à une présentation générale de la
+théorie des croyances qui sera mise à profit pour la sélection de routes.
+Le chapitre 2 présentera d’abord un état de l’art des différentes méthodes de localisation
+sur carte publiées dans la littérature. Nous avons séparé les différentes méthodes en deux
+catégories : les méthodes déterministes et les méthodes bayésiennes. La dernière partie de ce
+chapitre sera dédiée à la présentation de notre solution de localisation sur carte à l’aide d’un
+observateur d’état. Deux variantes seront proposées selon qu’on utilise ou non la cartographie
+dans le processus de localisation.
+4 Dans ce travail, nous utiliserons le formalisme du filtrage de Kalman étendu.
+5 Les capteurs de rotation de roues du système ABS.
+6 Un récepteur « AgGPS132 » de Trimble avec correction différentielle émise par un satellite
+géostationnaire
+7 de type Géoroute V2. L’agglomération compiégnoise a été disponible à ce format au cours de l’automne
+2001.
+13
+
+=== PAGE 14 ===
+Introduction générale
+Le chapitre 3 est consacré à la présentation de différentes méthodes de sélection de
+routes de la base de données, en supposant connues (ou estimées par ailleurs) la pose et son
+imprécision associée. Dans les bases de données actuelles, le fait de sélectionner un arc
+représentant une route est suffisant pour récupérer l’information et les attributs enregistrés
+dans la base puisque ces derniers sont attachés aux arcs. La sélection de route est assimilable,
+dans une certaine mesure, à l’adressage au SIG d’une requête géo-référencée pertinente. Nous
+proposons deux grandes catégories de méthode : une approche probabiliste gaussienne basée
+sur la distance de Mahalanobis et une approche crédibiliste s’inscrivant dans le cadre de la
+fusion de données multi-sources, avec des variantes au niveau des étapes de fusion et de
+décision.
+Le chapitre 4 est dédié à la présentation d’expérimentations et de résultats obtenus sur
+des données réelles enregistrées avec le véhicule expérimental STRADA. Dans ce chapitre,
+nous comparerons les performances des différentes stratégies de sélection de routes. Ensuite,
+le fonctionnement de l’observateur d’état complet, c’est-à-dire avec l’utilisation de la
+cartographie dans le processus de localisation, est analysé. Une amélioration de son
+fonctionnement est proposé pour prendre en compte les différents biais qui interviennent dans
+l’estimation (erreur GPS non blanche, erreur absolue de la carte, prise en compte du fait que
+le véhicule ne roule pas exactement sur l’arc linéaire représentant la chaussée, etc.). Enfin,
+nous présenterons les développements informatiques que nous avons portés sous des
+environnements temps réel mono-machine présenté au mois de Juin 2003 « Demonstration
+ARCOS » et distribués présenté au moisd’Octobre 2002 pour la comité d’audit de l’UMR
+6599 HeuDiaSyc.
+14
+
+=== PAGE 15 ===
+Chapitre 1
+Cadre Général
+
+=== PAGE 16 ===
+Chapitre 1 Cadre général
+Table des matières du chapitre
+1 INTRODUCTION...............................................................................................................................17
+2 LE VEHICULE (INTELLIGENT) AU SERVICE DE L’HOMME.................................................................17
+2.1 Rôle de dispositifs d’assistance............................................................................................17
+2.2 L’assistance à la conduite : le domaine de la sécurité active...............................................18
+2.3 Sécurité passive....................................................................................................................21
+2.4 Capteurs considérés dans ce travail de thèse.......................................................................22
+3 L’INTERET DE LA LOCALISATION SUR UNE CARTE « ROUTIERE » NUMERIQUE POUR L’AIDE A LA
+CONDUITE.......................................................................................................................................23
+3.1 Les applications ADAS et les cartes routières numériques futures......................................25
+4 LOCALISATION D’UN VEHICULE SUR UNE CARTE EN UTILISANT UN POSITIONNEMENT GPS............28
+4.1 Le GPS américain.................................................................................................................28
+4.1.1 Présentation.....................................................................................................................................28
+4.1.2 Les biais et les erreurs aléatoires du GPS........................................................................................30
+4.1.2.1 Bruits des mesures...................................................................................................................30
+4.1.2.2 Erreur dues aux mesures..........................................................................................................30
+4.1.2.3 Erreurs dues aux satellites.......................................................................................................31
+4.1.2.4 Erreurs dues à la station...........................................................................................................31
+4.2 Les cartes routières numériques...........................................................................................31
+4.3 Le problème de la localisation sur carte routière numérique...............................................33
+4.3.1 Conversion des coordonnées WGS84 en projection plane..............................................................33
+4.3.2 Localisation sur le réseau routier.....................................................................................................34
+4.4 La fusion de donnée : une approche pour traiter ce problème.............................................36
+5 FUSION MULTI-SOURCES.................................................................................................................36
+5.1 Contraintes d’une solution multi-sources.............................................................................37
+5.2 Problème de modélisation....................................................................................................38
+5.3 Introduction à la théorie des croyances................................................................................39
+5.3.1 Nature du problème traité................................................................................................................39
+5.3.2 Concepts de base.............................................................................................................................40
+5.3.2.1 Cadre de discernement et référentiel de définition...................................................................40
+5.3.2.2 Masse de probabilité élémentaire.............................................................................................41
+5.3.2.3 Fonction de crédibilité.............................................................................................................42
+5.3.2.4 Fonction de plausibilité............................................................................................................42
+5.3.2.5 Fonction de communalité........................................................................................................43
+5.3.3 Combinaison des sources distinctes................................................................................................43
+5.3.3.1 Intérêt.......................................................................................................................................43
+5.3.3.2 Loi de combinaison de Dempster............................................................................................43
+5.3.4 Raffinement et grossissement..........................................................................................................45
+5.3.4.1 Intérêt.......................................................................................................................................45
+5.3.4.2 Définitions...............................................................................................................................45
+5.3.4.3 Avantages et inconvénients.....................................................................................................45
+5.3.5 Décision..........................................................................................................................................46
+5.3.5.1 Introduction.............................................................................................................................46
+5.3.5.2 Loi de décision « idéale »........................................................................................................46
+5.3.5.3 Loi de décision utilisée............................................................................................................47
+5.3.6 Notion de monde-ouvert.................................................................................................................48
+5.3.6.1 Définition.................................................................................................................................48
+5.3.6.2 Intérêt.......................................................................................................................................48
+5.3.7 Conclusion......................................................................................................................................48
+6 CONCLUSION DU CHAPITRE.............................................................................................................49
+16
+
+=== PAGE 17 ===
+Chapitre 1 Cadre général
+1 INTRODUCTION
+Afin d’illustrer comment la localisation dynamique d’un véhicule sur une carte routière
+numérique précise peut contribuer à l’amélioration de la sécurité du système véhicule-
+conducteur-environnement, ce premier chapitre va rappeler la gravité du problème de
+l’insécurité routière, notamment en France où l’on déplore quelques 7000 morts par an.
+Ensuite, nous présenterons certaines notions de positionnement par satellites et certaines
+notions de base liées à la conception de cartes géographiques pour mettre en évidence
+certaines sources d’imprécisions qui rendent la tâche de localisation d’un véhicule sur une
+carte routière plus compliquée qu’il n’y paraît. Ensuite, nous discuterons de l’intérêt de la
+cartographie routière pour améliorer des systèmes d’aide à la conduite existants. Une liste non
+exhaustive de ces systèmes est présentée. Nous présenterons le format des bases de données
+routières actuelles et les améliorations prévues sur les bases de données d’ici une dizaine
+d’années.
+Nous essayerons ensuite de bien identifier les problèmes de localisation qu’il faut
+résoudre pour se localiser sur une carte numérique. Ils sont de plusieurs niveaux. D’abord, il
+faut procéder à des changements de coordonnées pour obtenir une estimation du
+positionnement dans le référentiel de la carte. Ensuite, il faut se positionner sur les arcs
+représentant le réseau routier. Une fois cette étape réalisée, il est possible de récupérer toute
+l’information contenue dans la base de données. Cette information est précieuse pour
+améliorer le fonctionnement de systèmes d’aide à la conduite existants ou bien pour en
+développer d’autres. Pour ce faire, nous présenterons brièvement un certain nombre de
+dispositifs d’assistance.
+Dans un deuxième temps, nous étudierons l’intérêt d’utiliser une solution multi-sources
+pour les applications où les informations disponibles sont imparfaites. Dans ce contexte, un
+panorama des méthodes ou théories, utilisées comme formalisme méthodologique, est
+proposé. Enfin, nous discuterons le choix de la théorie des croyances comme outil
+méthodologique de fusion de données.
+Le chapitre est organisé en quatre parties. Dans la première partie, nous présentons le
+rôle et les différentes facettes de dispositifs d’assistance à la conduite. Ces dispositifs varient
+en fonction des capteurs utilisés. Nous présentons, à la fin de cette partie les capteurs utilisés
+dans cette thèse. La deuxième partie est dédiée à la présentation de l’intérêt de la localisation
+et nous montrerons comment celle-ci est une étape importante pour la conception de certaines
+applications d’aide à la conduite. La troisième partie est consacrée à la présentation des
+différentes sources d’erreurs que nous sommes amenées à gérer dans le problème de la
+localisation sur une cartographie routière. La dernière partie est une introduction à la théorie
+des croyances qui sera par la suite la méthodologie de fusion multi-sources adoptée pour
+traiter le problème considéré.
+2 LE VEHICULE (INTELLIGENT) AU SERVICE DE L’HOMME
+2.1 Rôle des dispositifs d’assistance
+Dans les discussions qui sont menées sur la sécurité routière, on présente souvent les
+adaptations techniques du véhicule comme étant la solution la plus appropriée. Par exemple,
+beaucoup considèrent un miroir supplémentaire comme le remède aux accidents causés par
+l’angle mort. D’autres sont des partisans inconditionnels des systèmes « ISA » (adaptation
+17
+
+=== PAGE 18 ===
+Chapitre 1 Cadre général
+intelligente de vitesse) dans la lutte contre les excès de vitesse. Mais la piste technologique
+est-elle réellement la plus indiquée pour améliorer la sécurité routière ? La réflexion qui suit
+appelle de sérieux doutes à ce sujet. Chacun sait que la France enregistre de mauvais résultats
+sur le plan de la sécurité routière, en comparaison aux bons élèves de la classe européenne tels
+la Suède, le Royaume-Uni ou les Pays-Bas. Ce sont cependant les mêmes voitures et les
+mêmes camions qui circulent dans ces pays-là. La cause de l’insécurité ne doit donc pas être
+imputée aux véhicules (Annexe C). C’est du reste évident puisque des études ont montré que
+90 à 95% de tous les accidents sont en partie dus à une erreur humaine. Cela signifie-t-il que
+de nouvelles améliorations des véhicules n’ont pas de sens ? Non bien sûr, mais cela montre
+tout de même que de nouveaux concepts technologiques ne peuvent être introduits à grande
+échelle que s’ils font partie d’un concept intégral de sécurité routière. En d’autres termes, ils
+ne peuvent être dissociés de l’infrastructure et du facteur humain.
+Une approche globale est d’autant plus nécessaire que les développements
+technologiques futurs feront appel aux technologie de l’information et de la communication.
+Notre société ne pourra toucher le dividende de sécurité que s’il existe une interaction entre le
+véhicule et l'infrastructure routière, et entre les véhicules eux-mêmes. L’accent portera sur une
+interaction du véhicule avec son environnement et avec le conducteur plutôt que sur des
+systèmes autonomes.
+De ce fait, les développements technologiques se situeront plutôt sur le plan de la
+sécurité active ou primaire (éviter l’accident) que sur celui de la sécurité passive ou
+secondaire (limiter les conséquences d’un accident).
+Comme il a été dit, l’homme est généralement à l’origine de l’accident. Les futurs
+systèmes intelligents de sécurité seront pour cette raison en premier lieu destinés à assister le
+conducteur dans sa tâche complexe de conduite et à l’aider à percevoir son environnement. Le
+but n’est cependant pas de le mettre hors jeu et de le réduire au rôle de passager. Si
+sophistiqués que puissent être les systèmes, le conducteur doit toujours conserver la
+responsabilité finale et doit être lui-même capable d’intervenir à tout moment.
+2.2 L’assistance à la conduite : le domaine de la sécurité active
+Le schéma de la figure 1 (source FEBIAC : Fédération Belge de l’Industrie de
+l’Automobile et du Cycle) montre les différentes phases dans lesquelles peut se trouver un
+conducteur et quelles sont les possibilités qui existent au cours de celles-ci pour alléger sa
+tâche ou protéger de manière optimale les occupants et les autres usagers de la route. Les 3
+premières phases relèvent du domaine de la sécurité active, c’est-à-dire qu’aucun accident ne
+s’est encore produit et que les systèmes à bord du véhicule mettent tout en œuvre pour éviter
+un crash.
+La plupart du temps, le conducteur se trouve dans une situation normale de conduite ,où
+il observe son entourage de manière constante, où il doit évaluer en permanence la situation
+sur la route et prendre en conséquence les décisions qui s’imposent (accélérer ou ralentir,
+dépasser, éviter, se déporter, freiner, etc.). Des études ont montré qu’un conducteur doit
+prendre en moyenne 12 décisions par kilomètre. Ceci montre la complexité de sa tâche,
+rendue de surcroît plus difficile encore par certaines circonstances telles que la densité du
+trafic, les conditions météo, sa connaissance de la route, mais aussi par son expérience de
+conducteur ou par sa condition physique (fatigué, sous l’influence d’alcool, de drogues ou de
+médicaments, distrait par les passagers,...). Ce qui compte avant tout, c’est donc de l’aider à
+percevoir et à rassembler les informations.
+18
+
+=== PAGE 19 ===
+Chapitre 1 Cadre général
+Une bonne vue est à cet égard essentielle, surtout par mauvais temps, obscurité,
+brouillard, etc. L’éclairage doit être probablement revu. Les lampes à décharge (de gaz),
+connues sous le nom de phares au xénon, connaissent un succès grandissant. Elles offrent une
+meilleure luminosité et leur spectre ressemble davantage à celui de la lumière du jour
+ordinaire que les classiques lampes halogènes. Les yeux du conducteur se fatiguent ainsi
+moins vite.
+Optimisation Condition Physique
+• Confort d’assise
+Situation • Climatisation
+Normale de
+Conduite Information
+H
+S • Navigation
+O
+E A • Champ de vision
+I
+CC M
+N
+UT M
+T
+R I E
+Avertissement
+I V E -
+• Navigation intelligente
+T E Phase R M • Lane Departure Warning
+E d’alerte F A • Angle mort
+A
+C • Active Cruise Controle
+C
+HI
+E
+N
+E
+Assistance
+Phase • Freins intelligents
+d’évitement • Stabilisation
+d’accident • Collision Avoidance
+Phase Pré-activation
+S
+P pré-crash • Ceintures et
+E
+A • Airbags
+C
+S
+U
+S
+R
+I
+I
+V Protection
+T
+E • Airbags
+E Accident
+• Soft Nose
+• Appuis-tête actifs
+Assistance après accident
+Phase
+• Avertir services de secours
+Post-crash
+• Localisation
+Figure 1. Les différentes phases de conduite par rapport à un accident.
+D’ici peu de temps, l’éclairage intelligent fera son entrée. Le faisceau de rayons sera
+adapté à la vitesse du véhicule et à la nature de la chaussée. Sur les autoroutes, le faisceau sera
+étroit et long, pour porter loin sans éblouir les conducteurs venant en sens inverse. En ville,
+par contre, le faisceau sera large, pour donner un champ de vision élargi, de manière à ce que
+les usagers faibles et le trafic croissant puissent être aperçus anticipativement. Dans les
+virages, l’éclairage s’adaptera suivant la courbure de la route, permettant ainsi au conducteur
+19
+
+=== PAGE 20 ===
+Chapitre 1 Cadre général
+d’apercevoir plus rapidement d’éventuels obstacles (le système s’appelle Control adaptatif des
+phares, en anglais, « Adaptatif Light Control »). L’avenir est surtout dans les systèmes qui
+offrent aux yeux du conducteur une dimension supplémentaire. Ainsi, les systèmes de vision
+nocturne fonctionnant dans le spectre infrarouge sont capables de détecter des obstacles dans
+l’obscurité ou dans le brouillard sur une distance de 200 m.
+Les voitures de demain pourront aussi être équipées de caméras vidéo reliées à un
+traitement d’images digitales. Ces systèmes pourront notamment reconnaître des panneaux de
+signalisation et donc attirer l’attention du conducteur qui souvent s’y perd avec la grand
+nombre de panneaux de signalisation.
+Les systèmes de navigation indiquent la route à suivre et évitent ainsi au conducteur de
+jongler, au péril de sa vie, avec des cartes routières et d’effectuer des manœuvres risquées en
+cas d’erreur ou de mauvais choix d’itinéraire. Ils diminuent donc aussi le niveau de stress du
+conducteur. Il n’est pas étonnant alors que 89% des conducteurs déclarent être partisans de
+tels systèmes (source FEBIAC), ce qui explique d’ailleurs leur succès croissant en dehors du
+segment de luxe. Les systèmes de navigation ne sont pas des jouets technologiques, mais ils
+contribuent de façon fondamentale à un trafic plus sûr. Pour l’instant, leur potentiel est
+cependant sous-utilisé.
+Un grand nombre d’accidents est dû à la fatigue, à la perte de concentration ou à
+l’endormissement au volant. Une mauvaise position assise accroît ces phénomènes. De là
+l’attention pour l’ergonomie des sièges et les possibilités plus larges de réglage. La
+température dans la voiture est très importante pour la condition physique du conducteur. Si
+elle grimpe, la capacité de réaction et d’observation diminue, et l’agressivité au volant
+augmente. Les systèmes de climatisation contribuent donc eux aussi à une sécurité accrue au
+volant.
+Le conducteur se trouvera parfois dans une situation comportant un risque accru, par
+inattention, pour n’avoir pas réagi ou trop tard, pour avoir mal évalué, etc. Il doit à ce moment
+être averti, afin de pouvoir éviter la catastrophe par une correction relativement simple. C’est
+ce que l’on appelle la phase d’avertissement. D’importants progrès pourront encore être
+réalisés dans ce domaine grâce au développement de senseurs. Certains de ces systèmes sont
+déjà disponibles, comme par exemple l’assistance au parking ou l’Active Cruise Control
+(ACC) ou régulateur de vitesse adaptatif. L’ACC aide à conserver une distance de sécurité par
+rapport aux véhicules qui précèdent. Un grand avantage quand on sait que, selon l’Institut
+allemand de Statistiques, 15% des accidents sont dus au non-respect d’une distance de
+sécurité suffisante. L’ACC est encore appelé à évoluer de manière à assister le conducteur
+dans les embouteillages. Une fonction "Stop &Go"autonome suivra le flux de circulation et
+fera en alternance stopper ou rouler le véhicule. L’application du radar et de la technologie
+laser permettra de scanner l’entourage immédiat du véhicule. Le conducteur pourra ainsi être
+averti lorsqu’il veut effectuer une manœuvre de dépassement alors qu’un véhicule dépassant
+se trouve dans son angle mort. Pour les camions aussi, dont le champ de vision est souvent
+réduit, ces systèmes offrent d’intéressantes possibilités pour éviter des accidents avec des
+usagers faibles (piétons, cyclistes).
+Selon une étude britannique, la fatigue est la cause la plus probable de 10% des
+accidents (source FEBIAC). Elle se manifeste généralement par des signaux physiologiques
+(yeux qui clignent, tête qui dodeline) et par une réduction de la capacité de conduite
+(augmentation des coups de volant, difficulté à demeurer au milieu de la bande de
+circulation). Ces signaux peuvent être détectés. Si, par exemple, une caméra vidéo constate
+que le véhicule dévie de sa trajectoire, un signal sonore retentit, comparable au
+franchissement d’une ligne blanche discontinue (Lane Departure Warning). Dans une phase
+20

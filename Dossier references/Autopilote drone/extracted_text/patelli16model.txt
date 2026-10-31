@@ -1,0 +1,484 @@
+=== PAGE 1 ===
+Model-based Real-time Testing of Drone Autopilots
+Andrea Patelli∗ and Luca Mottola∗+
+∗PolitecnicodiMilano(Italy),+SICSSwedishICT
+Contact author: luca.mottola@polimi.it
+ABSTRACT eratesinasettingwheredevelopersstruggletogainrun-time
+informationusefulforverifyingthecorrectness. Besidesthe
+Key to the operation of robot drones is the autopilot soft-
+hurdles at testing autopilots in real executions, resource-
+ware that realizes the low-level control. The correctness of
+constraints hamper extensive logging and monitoring.
+autopilotimplementationsiscurrentlymainlyverifiedbased
+Tocomplicatematters,manyautopilotfunctionalityneed
+on simulations. These may overlook the timing aspects of
+to execute in real-time, that is, subject to given time con-
+control loop executions, which are however fundamental to
+straints. Aparadigmaticexampleisthatofsafetyfunction-
+dependable operation. We report on our experience in ap-
+ality, which must be operated within strict time bounds to
+plying model-based real-time testing to Ardupilot, a widely
+be effective. Should these bounds be violated, the drone
+adopted autopilot. We describe our approach at deriving a
+may harm surrounding people or objects. Testing real-time
+model of Ardupilot’s core functionality and at reducing the
+software, however, is challenging even in mainstream com-
+model to enable practical testing. Our work reveals that
+puting,astestifiedbythebastliteratureonthesubject[12].
+Ardupilot may fail in meeting the time constraints associ-
+The result of such a state of affairs is that autopilot soft-
+atedtocriticalfunctionality,suchasenablingfail-safeoper-
+ware often undertakes little testing compared to the key
+ation. Throughcontrolledexperiments,wedemonstratethe
+role it plays. Further, most such testing is essentially per-
+real-world occurrence of such erroneous executions.
+formedinsimulationsandlooksatfunctionalrequirements.
+However, simulations provide little coverage, whereas non-
+1. INTRODUCTION functional requirements such as real-time functionality are
+Aerial vehicles, ground robots, and aquatic rovers enable tackled by over-provisioning the hardware so that the soft-
+sophisticated applications [5,16,24]. Key to their depend- ware runs“fast enough”not to cause problems in everyday
+ableoperationistheautopilot softwarethatimplementsthe use. This provides no definitive guarantee on the correct
+low-level motion control. Autopilots process various sensor functioning of autopilots, which is unacceptable especially
+inputs,suchasaccelerationsandGPScoordinates,tooper- for safety functionality.
+atetheelectricalmotorsthatsetthevehicle’sattitude. The Contribution. This paper presents our work and experi-
+high-levelinputscomefromaground-controlstation(GCS) enceatgainingadeeperinsightintotheproportions,depth,
+where mission parameters are configured, or from a human and implications of the issues above.
+operator who drives the drone using a remote controller. We take Ardupilot [3], a widely employed open-source
+Problem. The autopilot is responsible for a number of autopilot implementation we describe in Sec.2, and apply
+safety functionality triggered in response to faults. For ex- state-of-the-artmodel-basedreal-timetestingtechniquesfor
+ample, it may force the drone to land should the battery verifying the correctness of crucial safety functionality. As
+voltagedropbelowathreshold. Correctlyimplementingthis illustrated in Sec.3, the techniques we adopt are both ex-
+functionality is fundamental: accidents are often reported haustive, that is, given certain inputs, they can verify if
+whose causes may be attributed, in a way or the other, to developer-providedcorrectnesspropertiesholdineverypos-
+malfunctioning autopilots [19]. sible execution, and operate off-line. The latter feature is
+Implementingautopilotsoftwareis,nevertheless,challeng- immensely useful to overcome the aforementioned practical
+ing. Size,cost,andenergyconcernsrequireautopilotstorun hurdles in testing autopilots right on the drones.
+onresource-constrainedembeddedhardware. Thisforcesde- WebuildamodelofArdupilot’scorefunctionalityintwo
+velopers to employ low-level languages and to aggressively steps. Sec.4describeshowwederivethecode’scontrolflow
+optimizeimplementations. Moreover,autopilotsoftwareop- graphinafullyautomatedway,whichguaranteesthemodel
+isstructurallyequivalenttothecode. Next,weperformex-
+Permissiontomakedigitalorhardcopiesofallorpartofthisworkforpersonalor tensive measurements of the execution times of Ardupilot’s
+classroomuseisgrantedwithoutfeeprovidedthatcopiesarenotmadeordistributed codeoveraPixhawkboardinaminimallyinvasiveway,us-
+forprofitorcommercialadvantageandthatcopiesbearthisnoticeandthefullcitation
+ing custom hardware and during actual executions.
+onthefirstpage. Copyrightsforcomponentsofthisworkownedbyothersthanthe
+author(s)mustbehonored.Abstractingwithcreditispermitted.Tocopyotherwise,or Themodelderivedthisway,however,turnsoutimpracti-
+republish,topostonserversortoredistributetolists,requirespriorspecificpermission caltocarryouttheactualtestingprocess. Asitiscommon
+and/orafee.Requestpermissionsfrompermissions@acm.org.
+whenapplyingexhaustivetechniques,westumbleuponstate
+DroNet’16,June262016,Singapore,Singapore
+spaceexplosionproblemsthathampertheconclusionofthe
+©2016Copyrightheldbytheowner/author(s). PublicationrightslicensedtoACM.
+verification process [13,25]. To overcome these, Sec.5 il-
+ISBN978-1-4503-4405-0/16/06...$15.00
+lustrates model reduction techniques we apply to shave the
+DOI:http://dx.doi.org/10.1145/2935620.2935630
+
+=== PAGE 2 ===
+setup fast loop scheduler is rendered based on a model of flight dynamics embedded
+withinSITL.AGCScanconnecttothesimulatedArdupilot
+instead of a real drone, and issue commands to drive way-
+time point navigation and remotely log the mission execution.
+Using SITL provides a practical means to quickly test
+functional properties of Ardupilot, or to check Ardupilot’s
+Figure 1: Ardupilot’s control loop. behavior in specific circumstances. Further, tests can be
+scripted. This allows one to build automatic testing frame-
+works,forexample,toperformregressiontestingonnightly
+builds as new features are added.
+statespace,ultimatelyobtainingamodelusableonordinary
+personal computers. 2.2 RelatedWork
+Theoutcomeofthetestingprocessonthereducedmodel, Inembeddedsoftware,thelackofexhaustivenessiswidely
+describedinSec.6,indicatesthat,forexample,specificexe- acknowledgedasadrawbackofsimulation-basedtesting[8].
+cutions are possible where Ardupilot’s fail-safe mode might The testing outcome only applies to that specific execution
+bearbitrarilydelayed. Thismeansthat,eventhoughafault with given inputs. Simulations may also fall short in real-
+happens that requires the fail-safe mode to be enabled, the ism [8], for example, as it is difficult to accurately model
+latter might not operate immediately. Rather, the drone the execution times of embedded hardware. However, test-
+continuesworking(ornotworking)asinthe absence ofthe ingontopofresource-constrainedhardwareislikelydifficult
+fault. Through real-world controlled experiments using a without generating“heisenbugs”: fictitious software defects
+custom-built aerial drone, we demonstrate the not-so-rare induced by probing the executions [15].
+occurrence of such erroneous executions. Model-based testing complements simulations [11] by op-
+WeconcludethepaperbyofferinginSec.7anoutlookon erating on an abstract representation of the system, which
+how the insights we present in this work may represent an allows to test a system without concretely running it. The
+input to further developments in the field. modelsareinputtoatooltogetherwithdeveloper-provided
+properties,thatis,anencodingofwhatisconsideredthecor-
+2. BACKGROUND rect behavior. The tool returns whether the model satisfies
+the properties in every possible execution, and is therefore
+We describe the autopilot we consider and cast our work
+exhaustive. If a property is violated, a counter-example is
+in the broader context.
+produced that shows an execution where a property does
+2.1 Ardupilot not hold. Because of these features, model-based testing is
+widely used in safety critical software [8].
+Ardupilot is an open-source project [3] at the basis of
+Applying model-based testing to the special case of real-
+manycommercialproducts,includingthoseof3DRobotics[1]
+time software requires dedicated models and tools [12]. For
+and many others, and boasts a large on-line community. It
+example, various kinds of timed automata [11,13] to model
+well exemplifies the state of the art in the field of autopi-
+the behavior of the system exist. Different model represen-
+lot development, platforms, and testing. Other existing au-
+tationsrequiredifferentalgorithmstocheckthepropertiesof
+topilots, such as OpenPilot [17] and Cleanflight [10], show
+interest [13,25]. A vast literature exists on the subject [12],
+similar characteristics.
+whichshowshowthesetechniquescanbeeffectivelyapplied
+Implementation. Fig.1 shows the execution of Ardupi-
+to a number of different application domains.
+lot’s control loop. The fast loop only includes critical mo-
+Amongthesedomainsisalsotheoneofavionics[6,21,22].
+tion control functionality. The time left from the execu-
+However, compared to traditional avionic systems, robot
+tion of fast loop is given to an application-level scheduler
+drones are peculiar in at least three respects. First, many
+that distributes it among non-critical tasks, such as log-
+state-of-the-art systems, including Ardupilot, are the result
+ging. The scheduler operates in a best-effort manner based
+of a community-driven unstructured development process
+on programmer-provided priorities.
+that favors agile methods and tools [14] over more system-
+Initially,fast loop processesvaluesfromtheInertialMea-
+atic ones, such as model-based testing. Second, the hard-
+surement Unit (IMU), which provides an indication of the
+waretorunavionicssoftwareisoftencarefullydimensioned
+vehicle’sforcesinthethreedimensions. IMUinformationis
+and custom-zed to the specific functionality; resource con-
+combinedwithGPSreadingstodetermineupdatedattitude
+straintsrarelyrepresentanissue[21]. Inrobotdrones,how-
+controlbyminimizingtheerrorbetweenthedesiredandac-
+ever,off-the-shelfhardwareisemployedtokeepcostsdown.
+tualpitch,roll,andyaw. Thisinformationisthenconverted
+Finally, unlike traditional avionic systems, the operation of
+into commands sent to the motors to orient the vehicle.
+robot drones depend on a long-range wireless connection to
+Ardupilotrunsonvariousembeddedhardware. Aprimary
+theGCSortheuser’sremotecontroller,whosefailuredras-
+exampleisthePixhawkboard[18],whichfeaturesaCortex
+tically impact the device’s operation.
+M4MCUat168 MHzandafullsensorarrayfornavigation.
+On Pixhawk boards, Ardupilot’s control loop is statically
+configured to run at 400 Hz. 3. ARDUPILOTMODEL-BASEDTESTING
+Testing. The correctness of Ardupilot’s implementation We apply model-based testing to Ardupilot’s core func-
+is currently mainly verified using simulations. Ardupilot’s tionality, that is, the fast loop portion of Fig.1, and partic-
+distribution includes the Software In The Loop simulator ularly focus on Ardupilot’s failsafe flight mode. The latter
+(SITL) [3], which allows one to run Ardupilot on ordinary should be automatically enabled, for example, whenever no
+machines. SITLoffersthesameAPIsasarealinstantiation valid signal is received from the telemetry radio or the re-
+of Ardupilot on embedded hardware. The drone behavior mote controller for a given time period. We next describe
+
+=== PAGE 3 ===
+the properties and tools we consider. Sec.4 illustrates how uint32_t tnow_ms = millis();
+start
+webuildanUppaalmodeltorepresentArdupilot’sprocess- int8_t switch_position = init();
+ing relevant to check these properties.
+Properties. We examine three classes of properties. We
+g.rc_5.radio_in < 1231
+test two reachability properties [2], that is, properties spec- yes no
+ifying that certain critical portions of the code should be
+reachable in every possible execution: switch_position = 0; g.rc_5.radio_in < 1361
+yes no
+R1: thefunctionresponsibleforprocessingthesignalsfrom
+… …
+the telemetry radio or the remote controller, should
+terminate for every possible input;
+R2: it should be possible to enable the failsafe flight mode Figure 2: Snippet of the control flow graph for
+should the need arise as described above. Ardupilot’s function that processes inputs from the
+remote controller.
+We also consider three safety properties [2] stating that
+unwanted situations should never happen:
+S1: the worst-case execution time of fast loop should be at
+graphsduetofunctioncalls. Weimplementapost-processor
+most T , not to impact the resulting rate of control
+w thatautomaticallytransformsanXML-basedrepresentation
+loop executions;
+of Understand’s output into Uppaal’s input format.
+S2: there should be no executions of fast loop that result
+Such a processing, however, does not suffice to represent
+in a deadlock that indefinitely prevents enabling the
+the behavior of fast loop:
+failsafe mode;
+S3: thetimethatfastloop takestoenablethefailsafemode 1. Understanddoesnotrepresentfunctioncallsduetoin-
+should never exceed T . terrupt handlers, as they are not visible in the source
+f
+code. To cater for these executions, every time the
+InArdupilot,theactualvaluesforT w andT f areplatform- code runs with interrupts enabled, our post-processor
+dependent. Finally, we also examine one liveness prop- addsnon-deterministictransitionsintheUppaalmodel
+erty[2]thatindicatesadesirableconditionthatshouldeven- that lead to the control flow of interrupt handlers.
+tually occur: 2. Understand cannot render the semantics of timers in
+L1: after the failsafe mode is enabled, re-gaining a signal Ardupilot’s code. To this end, we create an Uppaal
+fromthetelemetryradioortheremotecontrollereven- sub-model that counts the number of time units ac-
+tually disables it. cumulated in the main model. Whenever the count-
+ing reaches a threshold, a shared Boolean variable is
+Tools. We use Uppaal [13], a state-of-the-art environment flipped to signal the timer expired. This causes the
+for simulation and testing of real-time systems. Uppaal is model execution to enter the control flow of the func-
+appropriateforsystemsthatcanbemodeledasacollection tion attached to the timer.
+ofnon-deterministicprocesseswithreal-valuedclocks,com-
+The resulting Uppaal model for Ardupilot’s fast loop in-
+municatingviachannelsorsharedvariables. Uppaal’starget
+cludes about 10,000 states connected by about 90,000 tran-
+applicationsincludeclosed-loopcontrollersandcommunica-
+sitions. Note that a single state in the model does not nec-
+tion protocols.
+essarily map to a single instruction in the code. Whenever
+Uppaalrequirestheinputmodelstobespecifiedasanet-
+possible, Understand groups instructions in the same state,
+workoftimedautomata. Sec.4describeshowwebuildsuch
+asshownatthetopofFig.2. Thisdoesnotentailthatthose
+amodelforAutopilot’scorefunctionality. PropertiesinUp-
+instructions are executed atomically; the non-deterministic
+paalarespecifiedusingasubsetofTimedComputationTree
+transitions we add ensure that interrupt handlers may pre-
+Logic(TCTL)[2]. Thetranslationofthepropertiesabovein
+empt the model execution at any point in time, including
+TCTL is straightforward; the most complex being L1 that
+between instructions that Understand groups together.
+requires using three temporal operators.
+4.2 ExecutionTimes
+4. MODELCONSTRUCTION
+The model above still lacks information on the execution
+We build the model for Uppaal in two steps. First, we times in every state. Multiple approaches are possible to
+derive a state machine from the code’s control flow graph. gainthisinformation. Onemayestimatethenumberofma-
+Next,weaddexecutiontimesforeachstatebyprofilingreal chine instructions corresponding to every C++ instruction
+executions of Ardupilot. in Ardupilot, based on the target MCU architecture. An
+alternativewouldbetorunthecodeinasuitableemulator.
+4.1 StateMachine
+Finally, one may attempt to profile real executions.
+We use Scitool’s Understand [20] to automatically derive Counting the machine instructions is likely to be inac-
+the control flow graph for fast loop in Ardupilot 3.1.0. Un- curate, as it cannot account for features such as instruction
+derstand is a static analysis tool often employed to reverse- pipelinesavailableonCortexM4MCUs. EmulatorsforCor-
+engineer safety critical software. tex M MCUs exist; however, they would need to be heavily
+Fig.2showsasnippetofUnderstand’soutputforthefunc- customized to account for the variable times in interacting
+tionprocessingtheinputsfromtheremotecontroller. Using with the specific sensor hardware on Pixhawk boards. We
+Understand, we recursively generate the control flow graph therefore opt to profile real executions, which would return
+for every function possibly executed within fast loop, along preciseresultsonlybyensuringthatweonlyminimallyalter
+with the connections between the individual control flow the executions.
+
+=== PAGE 4 ===
+12000
+10000
+8000
+6000
+4000
+2000
+0
+0 5000 10000 15000 20000
+]selcyc
+kcolc[
+emit
+noitucexE
+haustive, the checking process needs to explore all possible
+executions of the code to verify whether a certain property
+holds. Thus,Uppaalexploresallmodelexecutionsthatcor-
+respond to different assignments of variables in the code.
+This creates huge processing demands. With the model in
+Sec.4,checkingthereachabilitypropertiesfailsbecauseUp-
+paal reaches the memory allocation limits for single pro-
+cesses on our Linux machine. Differently, we give up on
+checking the liveness property after letting Uppaal run for
+twodaysonanIntelXeonE3processorclockedat3.2GHz.
+Measurement
+Weapplyseveralreductiontechniquestomakethemodel
+Figure 3: Results from profiling the execution time practical. Some of these are domain-specific:
+at one sample state. Somemeasurementsshowverylarge
+Radio channel abstraction: in Ardupilot, the execution
+values due to the preemption of the main code by interrupt
+is often driven by comparisons of the radio or sensor
+handlers.
+inputs against pre-defined thresholds. One example is
+in Fig.2, where the code executes differently by com-
+paring the input from radio channel 5 with two fixed
+Profiling. We connect a separately-powered RaspberryPI
+values. In these cases, the actual input value is irrel-
+board to the GPIO pins of a Pixhawk board, and instru-
+evant as long as we can distinguish the cases leading
+mentArdupilot’scodetosignalthroughtheGPIOpinsthe
+to different execution paths. Thus, whenever possible
+transitions between the states of the Uppaal model. The
+in the Uppaal model, we reduce the domain of such
+RaspberryPI timestamps all such transitions and logs them
+decision variables to be of a cardinality equal to the
+asynchronously on local storage.
+number of execution paths they may determine. This
+Wealreadyverifiedthatsuchanapproachisminimallyin-
+limitsthenumberofdifferentexecutionsUppaalneeds
+vasive [7]: the added processing times in Ardupilot amount
+to explore.
+toafewMCUcyclesand,mostimportant,aredeterministic.
+Flight mode abstraction: dependingontheflightmode,
+Wecanthereforesubtractthesetimeswhenpost-processing
+theadmittedrangesofradioandsensorinputschange.
+thelogs. Otherthanthis,theaddedweightoftheRaspber-
+For example, when the super simple mode is enabled,
+ryPIandofitssmallbattery,whichonlyneedstopowerthe
+the admissible ranges of inputs from the remote con-
+board for the 20 minute duration of a flight, are negligible.
+trollerisfurtherlimitedtofacilitatenovicepilots. Ar-
+We total more 30 hours of flight using a custom-built
+dupilot includes a sizeable amount of code merely to
+quadcopter,acustom-builthexacopter,anda3DRY6drone
+check these ranges and react accordingly. Similar to
+in both indoor and outdoor settings, alternating the use of
+the case above, the concrete values of the inputs are
+a telemetry radio and a remote controller. To make sure
+immaterialaslongaswecandiscernwhethertheyare
+we obtain the needed time information for every state in
+withinoroutsidetheadmittedrange. Wethusrestrict
+theUppaalmodel,wemanuallyforceallexecutionsofinter-
+the domains of all relevant variables as done above,
+est; for example, by artificially creating the conditions for
+further limiting the number of different executions.
+Ardupilot to enter the failsafe mode because of a failure of
+the telemetry radio. Wealsoapplyanumberofdomain-agnosticmodelreduc-
+Results. The measurements turn out deceptive, as they tion techniques. One example is the reset of variables [13].
+show more variability than expected. If a variable v is never used again after state s, its value
+Fig.3 exemplifies this aspect by showing the measure- becomes immaterial. For all states that follow s in an ex-
+ments during a single flight at one sample state that in- ecution, however, variable v is still part of the program’s
+cludes three assignments of 32 bit integer variables. Most dataandconcurstomakeexecutionsdifferent. Byresetting
+of the measurements report very small values, as expected. v right after s to a fixed value, we help Uppaal join execu-
+A small fraction of the measurements, however, indicates tionsthatwouldbedifferentonlyforthevalueofavariable
+that the MCU takes thousands of clock cycles to execute that is however immaterial.
+the three instructions. The reduced model makes it possible to verify the prop-
+Further investigations reveal that the variability in the erties of Sec.3 in a matter of minutes on an ordinary PC.
+measurements is due to the way hardware interrupts are We discuss next the outcome of the process.
+managed. Toensurethatinterruptsareimmediatelyserved,
+especiallythosetriggeredbynavigationsensorswhenanew 6. TESTINGOUTCOME
+reading is available, most of Ardupilot’s processing in fast
+Key to the testing process is how to account for the exe-
+loop ispreemptable. Thismeansthatafunction’sexecution
+cutiontimeswedescribedinSec.4.2. Weconsiderfiveways
+maybesuspendedforanarbitraryamountoftime,untilall
+to represent their variability:
+pending interrupts are served. Such a design choice trades
+lowlatencyinservinginterruptsfordeterministicexecution Average assigns a state with the average execution time
+times,whichmayhoweverimpactthetimedynamicsofcon- out of all measures we gather.
+trol loop executions. Min-max asks Uppaal to check all time values within an
+intervalfromtheminimumtothemaximumexecution
+time we record.
+5. MODELREDUCTION
+Extreme considersthemin-maxintervalonapost-processed
+The model we obtain is sufficient to check the properties set of measures obtained by applying the “extreme”
+of Sec.3 using Uppaal, yet it is not practical. To be ex- outlier filtering [23].
+
+=== PAGE 5 ===
+Property
+xam-niM egarevA emertxE
+dliM
+elitnecreP MildoutlierfilteringarethesameasintheMin-maxcase.
+Even though the counter-examples returned by Uppaal dif-
+fer,thiskindoffilteringstilldoesnotsuppressenoughlarge
+values to change the outcome of the verification. When ap-
+plying Extreme outlier filter, instead, only property S3
+R1 Yes Yes Yes Yes Yes keeps failing, again with a different counter-example.
+R2 Yes Yes Yes Yes Yes Viceversa, properties S1, S3, and L1 are verified when
+S1 No Yes Yes No Yes consideringeithertheAverageexecutiontimesorthe99%
+S2 Yes Yes Yes Yes Yes Percentile. Because the large values we record are some-
+S3 No Yes No No Yes what“rare”,theybearlittleimpactontheaverageandlikely
+fall outside the 99% percentile.
+L1 No Yes Yes No Yes
+Back to reality. Theresultsweobtainindicatethatinter-
+Figure 4: Outcome of testing process depending on rupthandlersarecrucial. Thequestionthatnaturallyarises
+variable execution times. Time-sensitive properties are is then: how rare is“rare”?
+verified as a function of the impact on interrupt handlers. Tofindananswer,wemodifytheequipmentwedescribed
+in Sec.4.2 to monitor real executions searching for any of
+thecounter-examplesthatUppaalreturns. Notethatweare
+Mild considers the min-max interval on a post-processed able to do so because we can leverage detailed information
+setofmeasuresobtainedbyapplyingthe“mild”outlier on the specific executions that violate a property; in other
+filtering [23]. words, we know what we are looking for. Otherwise, mon-
+Percentile considers the min-max interval on a post-pro- itoring real executions searching for any possible property
+cessed set of measures obtained by only considering violation would be prohibitively complex. By the same to-
+the 99% percentile. ken,asUppaalonlyreturnsthefirstcounter-examplefound,
+italsomeansthatapropertymayfailinadifferentwaydur-
+Results. Depending on the above, some properties may or ing a real execution, but that situation will go unnoticed.
+may not be verified, as shown in Fig.4. Weperformanadditional10hoursofflightusingthesame
+On the bright side, the reachability properties are con- dronesandsettingsofSec.4.2. Totriggerthefailsafemode,
+stantly verified, as expected given these are not time sensi- we artificially disconnect the telemetry radio every 2 min-
+tive. Moreover, property S2, which checks the absence of utes, and reconnect it 10 seconds later. Throughout these
+deadlocks,isalsoverifiednomatterhowthevariableexecu- experiments, we detect twice on two different drones the
+tion times are factored in. This gives us confidence in the counter-example when property S1 fails under the Min-
+quality of the code. max setting. Moreover, we detect three times on the same
+The remaining properties consistently fail when the ex- drone the counter-example when S3 fails under the Min-
+ecution times cover the Min-max interval. This entails max setting, and we recognize once the counter-example
+taking into account all possible circumstances, no matter when property S3 fails under the Mild setting.
+how rare they are: even if we recorded a single excessively
+long execution time in a state, that would be considered as
+the maximum value of the interval. As we exemplified in 7. DISCUSSIONANDOUTLOOK
+Fig.3, there may be cases where such a maximum is orders NotwithstandingthetremendouseffortofArdupilot’scom-
+of magnitudes larger than the most common values. munity, the efficient operation of the current implementa-
+AsforpropertyS1,theworst-caseexecutiontimeforfast tion,andthefactthatthetelemetryradioisnotexpectedto
+loop on the Pixhawk should be T w = 2.5 ms, as the loop failthatoften,atotalofsixpropertyviolationsin10hoursof
+is configured to run at 400 Hz. This already represents an operation are arguably significant for a potentially harmful
+undesirable situation, in that fast loop would eat the entire system [19]. While the developer community of Ardupilot
+processingtimeforasingleiteration,leavingnotimeforthe has confirmed the bugs we identified, some key developers
+scheduler partoftheloop. OuranalysisindicatesthatT w is also pointed out that no easy fix exists to these issues, and
+easilyexceededifinterrupthandlerspreempttheexecution, a significant re-design would be needed instead [4].
+asdiscussedinSec.4.2. Thismeansthatcontrolslowsdown, In a way, this is a reflection of the development process
+and the drone looses reactivity. adopted for Ardupilot. The Ardupilot codebase changes of-
+The outcomes related to the management of the failsafe tenduetobugfixingortheintroductionofnewfeatures,and
+modearepossiblymorenotable. AsforpropertyS3,onthe with little overall coordination. In such a fluid community-
+Pixhawktheupperboundtoenablethefailsafemodeisset driven setting, it is difficult to apply techniques such as
+toT f =500ms(2000ms)forfailuresoftheremotecontroller model-based testing, in that someone should volunteer the
+(telemetry radio). Uppaal returns that these bounds are effort to keep the models updated as the codebase changes.
+plainlyviolatedasaresultofinterrupthandlerspreempting On the other hand, we auspicate that autopilot software
+the execution of fast loop. wouldfollowthepracticeoflargeropen-sourceprojects,such
+As for property L1, Uppaal indicates that if the failsafe astheLinuxkernel,wheresystematictestingtechniquespro-
+mode is enabled late, it may never be disabled even though gressively integrated with agile development processes [9].
+thesignalfromthetelemetryradioortheremotecontroller To this end, greater efforts are required from academia to
+isre-acquired. Thecorrespondingcounter-exampleshowsan customizetechniquessuchasmodel-basedtestingforusein
+inconsistencyinthevaluesofrelevantvariables: thefailsafe autopilot software.
+is, in fact, operational, but some variables still refer to the
+previous flight mode. Acknowledgments. Theworkwaspartlysupportedbythe
+The results of testing properties S1, S3, and L1 using Projects“Zero-energy Buildings in Smart Urban Districts”
+
+=== PAGE 6 ===
+(EEB),“ICT Solutions to Support Logistics and Transport [13] A. Hessel et al. Testing real-time systems using
+Processes”(ITS),and“SmartLivingTechnologies”(SHELL) UPPAAL. In Formal methods and testing. Springer,
+of the Italian Ministry for University and Research. 2008.
+[14] R. C. Martin. Agile software development: principles,
+8. REFERENCES patterns, and practices. Prentice Hall PTR, 2003.
+[15] M. Musuvathi et al. Finding and reproducing
+[1] 3D Robotics. UAV Technology. goo.gl/sBoH6.
+heisenbugs in concurrent programs. In OSDI, 2008.
+[2] R. Alur et al. Model-checking for real-time systems. In
+[16] F. Nex and F. Remondino. UAV for 3D mapping
+IEEE Symposium on Logic in Computer Science,1990.
+applications: A review. Applied Geomatics, 2003.
+[3] Ardupilot. Home. goo.gl/x2CHyM.
+[17] OpenPilot. Home. goo.gl/D89lkb.
+[4] Ardupilot Discussion Forums. Topic: ”real-time
+[18] PixHawk.org. PX4 autopilot. goo.gl/wU4fmk.
+violations”, started February 11th, 2016.
+goo.gl/tIXfHH. [19] Scientific American. 5 epic drone flying failures—and
+what the FAA is doing to prevent future mishaps.
+[5] BBC News. Disaster drones: How robot teams can
+goo.gl/tIXfHH.
+help in a crisis. goo.gl/6efliV.
+[20] SciTools. Code analysis with Understand.
+[6] T. Bienmu¨ller et al. Formal verification of an avionics
+goo.gl/0VZGAc.
+application using abstraction and symbolic model
+checking. In Towards System Safety. Springer, 1999. [21] J. Souyris et al. Formal verification of avionics
+software products. In FM 2009:Formal Methods.
+[7] E. Bregu, D. Cantoni, N. Casamassima, L. Mottola,
+Springer.
+and K. Whitehouse. Reactive control of autonomous
+drones. In MOBISYS, 2016. [22] S. Thesing et al. An abstract interpretation-based
+timing validation of hard real-time avionics software.
+[8] B. Broekman and E. Notenboom. Testing embedded
+In DSN, 2003.
+software. Pearson Education, 2003.
+[23] J. Tukey. Exploratory data analysis. Reading, Mass.,
+[9] A. Cimatti et al. Nusmv 2: An opensource tool for
+1977.
+symbolic model checking. In Computer Aided
+Verification. Springer, 2002. [24] P. Wardle. Personal submersible drone for aquatic
+exploration. goo.gl/XTVgQF, 2015. US Patent App.
+[10] Cleanflight. Home. goo.gl/uCGmr4.
+14/143,713.
+[11] A. En-Nouaary et al. Timed Wp-method: Testing
+[25] W. Yi et al. Automatic verification of real-time
+real-time systems. Software Engineering, IEEE
+communicating systems by constraint-solving. In
+Transactions on, 28(11), 2002.
+Formal Description Techniques VII. Springer, 1995.
+[12] R. L. Glass. Real-time: The ”lost world”of software
+debugging and testing. Comm. of the ACM, 23(5),
+1980.

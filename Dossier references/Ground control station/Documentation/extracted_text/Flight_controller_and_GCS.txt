@@ -1,0 +1,136 @@
+=== PAGE 1 ===
+Flight Controller and Ground Station Software
+Michael W. Gabriel Kellan
+Shafer Vega Rothfus
+Merriam Powell Biennial Conference
+Flagstaff, AZ
+11 September 2017
+D A SL dynamic and active
+systems lab
+
+=== PAGE 2 ===
+Flight Modes vs Flight Plans
+Flight Modes Flight Plans
+• Determines flight behavior • Applicable in the auto flight
+of copter and extent of mode
+operator control
+• Pre-determined before
+• 14 built in flight modes takeoff and pre-loaded onto
+copter
+• Can be switched during
+flight • Generated with GCS user
+interface using interactive
+map
+D A SL dynamic and active
+systems lab 2
+
+=== PAGE 3 ===
+Flight Modes: Stabilize
+• Most commonly used flight mode
+• Pilot has control of vehicle’s altitude, pitch, roll and yaw
+• Throttle is adjusted based on title angle of the vehicle
+– Increased vehicle tilt increases throttle sent to vehicle
+http://ardupilot.org/copter/docs/stabilize-mode.html D A SL dynamic and active
+systems lab 3
+
+=== PAGE 4 ===
+Flight Modes: Stabilize
+• When pilot releases control of pitch or roll, vehicle
+automatically levels itself with respect to horizon
+• When pilot releases yaw vehicle maintains its heading
+Pilot Directional Control Automatic Stabilization
+http://ardupilot.org/copter/docs/stabilize-mode.html D A SL dynamic and active
+systems lab 4
+
+=== PAGE 5 ===
+Flight Modes: Loiter
+• Mode used to help automatically maintain an operator
+determined vehicle altitude
+• Horizontal location can be determined by pilot input, but
+vehicle will maintain positon once roll and pitch control sticks
+are released
+• Altitude controlled by manual input
+– Vehicle will maintain altitude if throttle input is unchanged
+• Vehicle’s yaw can be controlled by pilot
+http://ardupilot.org/copter/docs/loiter-mode.html#loiter-mode D A SL dynamic and active
+systems lab 5
+
+=== PAGE 6 ===
+Flight Modes
+Auto
+• Begins the pre-programmed autonomous flight
+• Allows manual yaw control but all other parameters are
+locked
+• Requires GPS signal
+Land
+• Brings the copter straight down at it’s current location
+• Usually used as a manual emergency land
+http://ardupilot.org/copter/docs/flight-modes.html D A SL dynamic and active
+systems lab 6
+
+=== PAGE 7 ===
+Flight Modes
+RTL (Return-to Launch)
+• Automatically returns the vehicle to the take-off location and
+lands the vehicle
+• Requires GPS signal
+http://ardupilot.org/copter/docs/flight-modes.html D A SL dynamic and active
+systems lab 7
+
+=== PAGE 8 ===
+Failsafes
+• Radio Failsafe: vehicle will return to launch if lost connection
+occurs during flight
+• Ground Control Station Failsafe: vehicle will return to launch
+if lost connection occurs during flight (unless vehicle is in
+auto mode where mission will just continue)
+• Software arming mechanism prohibits motors from operating
+until internal vehicle parameters are verified and operator
+manuals arms copter
+http://ardupilot.org/copter/docs/failsafe-landing-page.html D A SL dynamic and active
+systems lab 8
+
+=== PAGE 9 ===
+Failsafe
+• Manual Failsafe
+– Easily able to change into Land or RTL flight mode
+– Ability to take manual control of the vehicle
+– Switch on copter must be pressed before motors will arm
+Switch to change flight modes
+Necessary throttle location for arming
+Image from: http://store.jdrones.com/v/vspfiles/photos/elepx2sw01-2.jpg D A SL dynamic and active
+systems lab 9
+
+=== PAGE 10 ===
+Ground Control Station: Overview
+• GCS used: Mission Planner
+• Software interface that communicates with the vehicle over
+915 MHz wireless telemetry
+• System showcases real-time data from vehicle and provides
+interface to adjust vehicle parameters
+D A SL dynamic and active
+systems lab 10
+
+=== PAGE 11 ===
+Ground Control Station: Overview
+• Allows user to define autonomous flight plans and calibrate
+hardware
+D A SL dynamic and active
+systems lab 11
+
+=== PAGE 12 ===
+Ground Control Station: Heads-Up-Display
+http://ardupilot.org/planner/docs/mission-planner-ground-control-station.html D A SL dynamic and active
+systems lab 12
+
+=== PAGE 13 ===
+Acknowledgments
+• This work was supported by NSF Award 1556417
+• Collaborators Paul Flikkema and Carol Chambers
+D A SL dynamic and active
+systems lab 13
+
+=== PAGE 14 ===
+QUESTIONS?
+D A SL dynamic and active
+systems lab 14

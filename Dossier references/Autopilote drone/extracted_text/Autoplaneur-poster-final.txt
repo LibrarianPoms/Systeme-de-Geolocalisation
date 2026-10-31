@@ -1,0 +1,68 @@
+=== PAGE 1 ===
+Zolliker Florent
+Drone planeur motorisé et autopiloté
+Saugy Alexandre
+Desboeufs Mathieu
+De nos jours les drones sont utilisés à toutes les sauces, dans
+Voici le schéma des
+le cadre de prise d’image pour des reportages/films, pour
+branchements pour le
+collecter des données pour la météo, contrôler les
+Pixhawk 4 mini, le contrôleur.
+cultures… et bien d’autres raisons encore.
+Il est configuré via le logiciel
+Mission Planer qui est
+adapté au contrôle du drone.
+Mission planner est un
+Le but de notre projet est de dimensionner et programmer
+logiciel open source et très
+un drone solaire facile à l’utilisation, capable de détecter les
+documenté ce qui est très
+courants chauds et de s’en servir pour prendre de l’altitude
+avantageux dans sa
+afin d’aider le moteur et avec un accès facile aux appareils de
+configuration.
+capture de données pour pouvoir facilement les changer et
+utiliser le même drone pour toutes les différentes choses
+Comment programmer le Pixhawk ?
+citées plus haut.
+La programmation de ce
+type de contrôleur se fait via
+le Mission planner et Python
+pour des fonctions plus
+Ou trouver les vents ascendant ?
+approfondies.
+Les vents ascendant se trouvent
+à la limite de deux biomes différents et également à un
+endroit ou l’humidité est élevée. Le meilleur endroit est donc
+la limite entre la neige et la pierre, ou la neige et la forêt. Ces
+vents sont créés par la différence de chaleur ente l’air se
+Après discussion avec un spécialiste ayant participé au
+trouvant au sol et celui plus en altitude.
+projets de Solar impulse il en ressort que:
+Quand se lancer dans un vol ?
+• Un seul avion pour des choses qui se passent à
+La meilleure période est induite par le point dessus, c’est-à-
+différentes hauteurs est une mauvaise idée
+dire en de début avril à fin juin environ, le jour idéal serait
+• En haute altitude les composant ne sont plus les même
+un jour se trouvant juste après une longue période de chaud
+• Problématiques d’évitement des cumulonimbus
+suivie d’une averse.
+indispensable
+Pour continuer ce projet il serait donc préférable de
+premièrement partir sur un drone attractifs pour
+Il faut bien choisir les cellules solaires par rapport au spectre
+l’exploration, les films, le contrôle des plantations, et
+lumineux dans lequel on serait le plus durant le vol, le choix
+toutes autres choses pouvant être fait depuis une altitude
+des cellules dépends donc de la hauteur de vol voulue. De
+assez faible, et si l’investissement fonctionne, de ensuite
+nouvelles cellules hautes performances développées par
+seulement se pencher sur un deuxième modèle pour tout
+NREL peuvent aller jusqu’à plus de 32% de rendement. La
+ce qui est étude de l’atmosphère, météo, et tout ce qui se
+surface nécessaire est compliquée à calculer de manière
+passe en plus haute altitude
+générale, plus l’avion est grand plus la surface de solaire est
+grande mais plus la trainée est élevée.

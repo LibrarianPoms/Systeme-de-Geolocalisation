@@ -1,0 +1,203 @@
+=== PAGE 1 ===
+Les Rendez-vous Mobilités du Cerema :
+« les données FCD (Floating Car Data) pour maîtriser le trafic »
+— Foire aux questions —
+Quelles sont les données utilisées par des services comme Google Maps ou Waze ? Ces
+données sont-elles accessibles aux revendeurs ?
+Google Maps et Waze (deux services distincts regroupés au sein de la société Google) utilisent
+les données de géolocalisation collectées anonymement et en temps réel via les utilisateurs de
+leurs applications de guidage (quel que soit le système d’exploitation mobile : Android ou iOS) et
+avec leur consentement. Ce sont des données FCD.
+Il est probable que Google utilise également la localisation des appareils tournant sur le système
+opérationnel Android dont les utilisateurs auraient activé la fonctionnalité dans leurs paramètres
+(même s’ils n’utilisent pas l’application mobile de Google Maps ou de Waze). La collecte se fait
+alors en arrière-plan.
+Waze se nourrit également des contributions collaboratives des utilisateurs qui signalent certains
+évènements pour prévenir l’ensemble des utilisateurs.
+Il ne nous est pas possible d’affirmer si ces services de Google utilisent ou non d’autres données
+de sources tierces, comme des données FCD acquises auprès d’autres revendeurs. Cela peut
+être le cas pour les données de poids-lourds. Leurs éventuelles autres sources de données
+restent relativement opaques.
+Via son programme « Waze for Cities » (anciennement « Connected Citizens Program »), Waze
+propose un partenariat aux gestionnaires qui le souhaitent pour leur permettre d’accéder aux
+informations agrégées sur le trafic en temps réel de Waze (conditions de circulation, incidents)
+en contrepartie de la fourniture de données sur les fermetures de route, les travaux de voirie, les
+évènements publics locaux ou encore la localisation des véhicules de service public (camion
+poubelle, patrouilleurs...). C’est le cas de Vinci Autoroutes qui participe au programme depuis
+2017 ou encore de Clermont Auvergne Métropole depuis 2024.
+Google Maps et Waze indiquent ne pas revendre les données brutes issues de la géolocalisation
+des appareils de leurs utilisateurs. En revanche, ils proposent des services permettant de
+monétariser indirectement ces données, que ce soit :
+• via leurs API payantes (Google Maps Platform) pour accéder à des données agrégées
+permettant de qualifier le trafic (temps de parcours historiques ou estimés en temps réel,
+colorimétrie des états de trafic) ou de calculer des itinéraires ;
+• via des analyses de fréquentation pour certains lieux notamment pour les commerces ;
+• ou encore via du ciblage publicitaire sur la base de la segmentation de leur base
+d’utilisateurs.
+Les données FCD permettent-elles également de couvrir les réseaux routiers des
+territoires ultramarins ?
+Oui, les départements et régions d’Outre-Mer (Martinique, Guadeloupe, Guyane, La Réunion et
+Mayotte) ainsi que les collectivités d’Outre-Mer (Polynésie française, Saint-Barthélémy, Saint-
+Martin, Saint-Pierre-et-Miquelon, Wallis-et-Futuna) sont également couverts par des données
+FCD. Toutefois, du fait du caractère insulaire de ces territoires, il faut veiller à s’assurer de la
+représentativité des données.
+1/5
+
+=== PAGE 2 ===
+Comment les fournisseurs de données FCD font-ils la distinction entre les différentes
+catégories de véhicules (entre VL et PL a minima) ?
+Les fournisseurs utilisent la typologie des dispositifs équipés de récepteurs GNSS (boîtiers de
+suivi de flottes connectées, dispositifs intégrés par les constructeurs dans les véhicules, badges
+de télépéage...). En effet, certains des capteurs embarqués permettent une identification sans
+ambiguïté de la catégorie du véhicule. Ainsi, les badges de télépéage propres aux Poids-Lourds
+permettent de connaître avec certitude qu’il s’agit d’un PL. Lorsque la typologie n’est pas
+clairement connue, certains fournisseurs utilisent des modèles statistiques basés sur le
+comportement de conduite (profils de vitesses et d’accélérations, trajectoires et itinéraires,
+horaires de circulation...) pour inférer la catégorie de véhicule.
+Les données FCD permettent-elles de faire de la régulation par feux tricolores en temps
+réel ?
+Les données FCD sont déjà utilisées pour certaines stratégies de régulation, notamment pour la
+régulation d'accès (exemple à Strasbourg). Toutefois, elles ne remplacent pas les capteurs
+traditionnels dans les algorithmes de régulation des feux, pour les raisons suivantes :
+• Les algorithmes de micro-régulation les plus couramment utilisés s’appuient sur le taux
+d’occupation (correspondant à une densité de véhicules, c’est-à-dire un nombre moyen
+de véhicules par unité de longueur) qui n’est pas une variable directement mesurée par
+les données FCD.
+• Le découpage des sections FCD n’est pas adapté aux besoins de régulation locale.
+• Les données FCD sont souvent trop agrégées ou le taux d’échantillonnage est trop
+irrégulier dans le temps pour que l’estimation de l’état du trafic à l’amont des feux soit
+suffisamment précise et fiable pour une utilisation en temps réel. Un volume élevé de
+traces de manière continue et garantie permettrait de fiabiliser les estimations.
+• Le milieu de la recherche académique s’intéresse aux données FCD désagrégées qui
+seraient plus adaptées pour de la micro-régulation. Cependant, leur traitement est
+complexe et difficile à mettre en œuvre à l’échelle d’un gestionnaire routier.
+Les données FCD sont-elles aussi représentatives des déplacements de courte distance
+(moins de 10 km) ?
+Les données FCD proviennent de sources variées, dont certaines peuvent ne pas refléter de
+manière optimale les déplacements de courte distance. Par exemple, les applications de
+navigation installées sur les smartphones ne collectent des données que lorsque l’utilisateur les
+active. Or, dans le cadre de trajets courts et habituels, comme les déplacements domicile-travail,
+domicile-école ou vers les commerces de proximité, les conducteurs n’ont généralement pas
+recours à un guidage routier. Ces trajets échappent donc en partie à la collecte des données FCD
+issues de ces applications.
+D’autres sources, en revanche, permettent de collecter des données sans intervention de
+l’utilisateur. C’est le cas des dispositifs intégrés par certains constructeurs automobiles, qui
+enregistrent les trajets de manière continue. On peut également citer les boîtiers de
+géolocalisation utilisés dans les flottes de véhicules professionnels, ou encore les systèmes de
+télépéage. Ces dispositifs permettent de mieux couvrir tous types de trajets, y compris les plus
+courts. Toutefois, ils sont souvent associés à des profils d’usagers spécifiques (taxis, véhicules
+utilitaires, poids lourds) ayant des comportements de mobilité particuliers (itinéraires récurrents,
+horaires décalés, zones spécifiques comme les aéroports, les gares ou les zones commerciales,
+pas de desserte fine des centre-villes...), ce qui limite leur représentativité de l’ensemble du trafic
+2/5
+
+=== PAGE 3 ===
+automobile. Par ailleurs, ces dispositifs intégrés ne concernent que les véhicules les plus récents
+qui ne représentent qu’une fraction du parc automobile. Les véhicules plus anciens, non équipés
+d’un récepteur GNSS, ne sont donc pas correctement représentés.
+Par ailleurs, les données FCD sont collectées à intervalles réguliers : plus un déplacement est
+long, plus il génère de points, ce qui améliore sa traçabilité. À l’inverse, les trajets courts, en
+particulier en milieu urbain dense, génèrent un volume de données plus faible, ce qui peut nuire
+à leur représentativité. En conséquence, la couverture des données FCD est souvent meilleure
+sur les grands axes interurbains que sur les réseaux urbains secondaires ou locaux. Cela
+entraîne une variabilité spatio-temporelle du taux de pénétration des véhicules sondes dans le
+trafic global.
+En résumé, bien que certaines sources FCD permettent de capter les déplacements courts, la
+représentativité de ces trajets reste globalement plus faible que celle des trajets longs. Ce biais
+peut toutefois être partiellement corrigé par des méthodes d’ajustement statistique ou par le
+croisement avec d’autres sources de données, telles que les enquêtes de mobilité ou les
+comptages physiques, afin d’obtenir une vision plus complète des déplacements.
+La fourniture de données FCD permet-elle de réduire le besoin en stations de comptage
+pour l’exploitant ?
+La fourniture de données FCD peut permettre de réduire partiellement le besoin en stations
+physiques de comptage traditionnel (boucles électromagnétiques, radars, tubes pneumatiques,
+caméras...), notamment en évitant le déploiement de capteurs supplémentaires sur des sections
+non instrumentées à l’heure actuelle, y compris pour des besoins ponctuels et temporaires.
+Cependant, les données FCD ne les remplacent pas totalement. Les deux technologies sont
+complémentaires car elles permettent de fournir des informations différentes ou avec une fiabilité
+additionnelle. Ainsi, les données FCD vont être très pertinentes pour caractériser les vitesses ou
+les temps de parcours tout en permettant une meilleure couverture du réseau routier. Pour leur
+part, les stations de comptage plus traditionnelles vont permettre de mesurer des débits et des
+taux d’occupation avec précision en des points déterminés du réseau. Les stations de comptage
+peuvent également permettre de classifier les véhicules, là où cette information peut manquer
+avec les données FCD. Combiner les deux méthodes permet d’obtenir une solution plus complète
+et plus robuste.
+Quelles sont les recommandations pour les gestionnaires routiers afin d’établir une
+politique de comptage optimale et efficace (notamment pour mesurer des TMJA),
+combinant comptages physiques traditionnels et données FCD ?
+Il n’existe pas de solution « clé en main » universelle pour la mise en œuvre d’une politique de
+comptage. Celle-ci doit être adaptée aux spécificités propres à chaque gestionnaire de réseau
+routier, en fonction de nombreux facteurs contextuels. La stratégie de comptage dépend ainsi :
+• Des objectifs assignés au recueil de données qu’il s’agisse de supervision des trafics en
+temps réel ou en temps différé sur certains tronçons du réseau, d’analyses, de
+modélisation des flux ou encore de connaissance des Trafics Moyens Journaliers Annuels
+sur l’intégralité du réseau ;
+• De la hiérarchisation du réseau (axes structurants, routes secondaires, voies de desserte
+locale...), de sa typologie (autoroutier, périurbain, urbain, rural...) et de son sectionnement
+en tronçons homogènes ;
+• Des typologies de trafics supportés (flux pendulaires, fret, flux touristiques ou
+saisonniers...) ;
+3/5
+
+=== PAGE 4 ===
+• Des moyens humains, incluant la capacité à installer, maintenir et relever les capteurs
+physiques (temporaires ou permanents), mais aussi à acquérir, traiter, stocker et exploiter
+les données issues de capteurs ou de sources numériques (comme les FCD). Il est
+également nécessaire de tenir compte de la contractualisation pour l’acquisition de
+données propriétaires comme les données FCD ;
+• Des moyens techniques, qu’il s’agisse du nombre et du type de capteurs traditionnels, de
+leur localisation, ou des outils de traitement et de visualisation des données numériques
+(notamment pour la qualification des données ou pour les algorithmes de fusion entre
+données issues de comptages et données FCD) ;
+• Ou encore des moyens financiers alloués à cette politique de comptage, tant pour
+l’investissement initial (équipements, logiciels, données) que pour l’exploitation continue
+(maintenance, renouvellement, acquisition de données FCD).
+La combinaison des données issues de comptages traditionnelles et des données FCD vise à
+utiliser les forces de chacune de ces méthodes complémentaires, notamment la fiabilité de
+mesure des débits pour les premières avec la couverture spatiale étendue pour les secondes. Il
+est également suggéré d’anticiper l’évolution des technologies de recueil et celle des besoins, en
+intégrant une démarche d'amélioration continue et d'adaptabilité de la politique de comptage.
+Une offre à destination des gestionnaires routiers a été mise en place par le Cerema. Nos équipes
+se tiennent à disposition des gestionnaires pour calibrer cette offre en fonction de leurs besoins,
+moyens et contraintes, et ainsi pouvoir les accompagner dans leurs réflexions en matière de
+stratégie de comptages.
+Combien coûte l’acquisition de données FCD ?
+La tarification pour la fourniture de données FCD dépend de plusieurs paramètres, dont les
+principaux sont :
+1. Le type de données fournies : il faut alors distinguer les données agrégées qui permettent
+de renseigner des variables comme les vitesses moyennes, les temps de parcours ou les
+origines-destinations et les données désagrégées, que sont les données brutes de traces
+GPS (composées des variables d’horodate, de position, de vitesse instantanée et de cap).
+2. La granularité spatiale souhaitée : cela comprend la couverture géographique (quartier,
+ville, agglomération, région…) ainsi que le découpage plus ou moins fin du réseau en
+tronçons.
+3. La granularité temporelle qui se compose de la résolution temporelle (notamment pour les
+données agrégées toutes les 5 min, 15 min, 1h) et de la période de fourniture (temps réel,
+temps différé, période historique).
+4. Le volume de données et la fréquence d’échantillonnage des points GNSS.
+5. Les droits d’usage concédés par le fournisseur : s’agit-il d’un accès ponctuel ou d’un
+abonnement ? Y a t’il des limitations d’usage éventuelles (réutilisation interdite en dehors
+du seul motif décrit au marché, réutilisation permise mais usage interne uniquement,
+diffusion permise sur un portail open data...) ? Pour quelle durée la licence est-elle
+accordée ?
+6. La qualité et l’enrichissement des données : cela concerne notamment le taux de
+couverture du réseau routier souhaité, la fiabilité des données, les traitements
+additionnels (par exemple, projection des données sur un référentiel routier particulier), le
+filtrage des anomalies, ou encore l’intégration de données annexes (météo, incidents,
+type de véhicule…).
+4/5
+
+=== PAGE 5 ===
+7. Le niveau de service attendu : est-il attendu une fourniture de données en temps réel ou
+en temps différé ? Est-il prévu d’accéder aux données via une API, un outil logiciel type
+tableau de bord, ou les données sont-elles livrées sous forme de fichiers ?
+Les FCD semblent pouvoir supplanter la réalisation de comptages dans de nombreux cas.
+Coûte-t-il moins cher à faire une étude de trafic via FCD par rapport à des méthodes de
+comptages plus classiques (auto, directionnelles, OD) ?
+Comme indiqué lors du webinaire et dans les réponses précédentes, les données FCD sont
+généralement complémentaires aux données mesurées sur le terrain. Elles peuvent parfois les
+remplacer lorsque les mesures de terrain ne sont pas possibles, mais ce choix comporte des
+limites liées généralement à la représentativité des données FCD disponibles. Quant aux coûts
+ils sont très variables en fonction du besoin et les paramètres qui influent sur le coût de données
+FCD sont indiqués dans une réponse précédente.
+5/5

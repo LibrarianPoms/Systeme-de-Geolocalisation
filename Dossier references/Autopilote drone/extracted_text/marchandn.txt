@@ -1,0 +1,109 @@
+=== PAGE 1 ===
+Robotique aérienne :
+un tour d'horizon de la
+recherche académique
+La sécurité, un enjeu majeur pour les drones
+25‐26/06/2018 Robot PACA 2018 1
+
+=== PAGE 2 ===
+Robotique aérienne :
+La sécurité, un enjeu pour les
+drones
+La sécurité, un enjeu majeur pour les drones
+25‐26/06/2018 Robot PACA 2018 2
+
+=== PAGE 3 ===
+La sécurité et les drones, pourquoi ?
+• Erreurs de pilotage
+25‐26/06/2018 Robot PACA 2018 3
+
+=== PAGE 4 ===
+La sécurité et les drones, pourquoi ?
+• Erreurs de pilotage
+• Obstacles
+25‐26/06/2018 Robot PACA 2018 4
+
+=== PAGE 5 ===
+La sécurité et les drones, pourquoi ?
+• Erreurs de pilotage
+• Obstacles
+• Partage de l’espace
+aérien
+25‐26/06/2018 Robot PACA 2018 5
+
+=== PAGE 6 ===
+La sécurité et les drones, pourquoi ?
+• Erreurs de pilotage
+• Obstacles
+• Partage de l’espace
+aérien
+• Défaillances
+25‐26/06/2018 Robot PACA 2018 6
+
+=== PAGE 7 ===
+La sécurité des drones : un enjeu
+• Le pilotage d'un drone, ça repose sur :
+• Une perception par le drone de l’environnement
+grâce à ses capteurs
+• Un perception par le pilote de l’environnement
+• Des consignes données par le pilote au drone
+• Un logiciel autopilote chargé de « mixer » ces
+informations
+• Agir pour la sécurité :
+• Modifier/Améliorer la perception
+• de l’autopilote du drone
+• Percevoir l’environnement en 3D en temps réel
+• Eviter les obstacles de manière autonome
+25‐26/06/2018 Robot PACA 2018 7
+
+=== PAGE 8 ===
+La sécurité des drones : un enjeu
+• Le pilotage d'un drone, ça repose sur :
+• Une perception par le drone de l’environnement
+grâce à ses capteurs
+• Un perception par le pilote de l’environnement
+• Des consignes données par le pilote au drone
+• Un logiciel autopilote chargé de « mixer » ces
+informations
+• Agir pour la sécurité :
+• Modifier/Améliorer la perception
+• du pilote du drone
+• Aide au pilotage
+• Pilotage sans formation
+(// permis de conduire, Noam Bardin)
+25‐26/06/2018 Robot PACA 2018 8
+
+=== PAGE 9 ===
+La sécurité des drones : un enjeu
+• Le pilotage d'un drone, ça repose sur :
+• Une perception par le drone de l’environnement
+grâce à ses capteurs
+• Un perception par le pilote de l’environnement
+• Des consignes données par le pilote au drone
+• Un logiciel autopilote chargé de « mixer » ces
+informations
+• Agir pour la sécurité :
+• Modifier/Améliorer la qualité de l’autopilote
+• Normes aéronautiques, cybersécurité
+• Performances garanties, redondances, etc.
+25‐26/06/2018 Robot PACA 2018 9
+
+=== PAGE 10 ===
+La sécurité des drones : un enjeu
+• Le pilotage d'un drone, ça repose sur :
+• Une perception par le drone de l’environnement
+grâce à ses capteurs
+• Un perception par le pilote de l’environnement
+• Des consignes données par le pilote au drone
+• Un logiciel autopilote chargé de « mixer » ces
+informations
+• Agir pour la sécurité :
+• Technologies avancées
+• Bio‐inspiration
+• Interaction avec le monde réel
+• Multi‐drones coordonné
+• Intelligence artificielle couplée modèle
+25‐26/06/2018 Robot PACA 2018 10
+
+=== PAGE 11 ===
+25‐26/06/2018 Robot PACA 2018 11

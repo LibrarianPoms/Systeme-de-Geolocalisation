@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GeoTrack PL - Plateforme de Géolocalisation Poids Lourd</title>
+    
+    <!-- React & Babel CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --accent: #38bdf8;
+            --bg-dark: #0b0f19;
+            --bg-card: #111827;
+            --bg-card-hover: #1e293b;
+            --border: #1f2937;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #06b6d4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.85rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, #2563eb 0%, #38bdf8 100%);
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.35);
+        }
+
+        .logo-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-subtitle {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(15, 23, 42, 0.7);
+            padding: 0.3rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .nav-btn {
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            padding: 0.55rem 1.15rem;
+            border-radius: 9px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+        }
+
+        .header-status {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .live-badge {
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--success);
+            padding: 0.4rem 0.85rem;
+            border-radius: 9999px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--success);
+            box-shadow: 0 0 10px var(--success);
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.2); }
+        }
+
+        .main-container {
+            padding: 1.75rem 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* KPI Cards Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .kpi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-2px);
+            border-color: #374151;
+        }
+
+        .kpi-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .kpi-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .kpi-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+        }
+
+        .kpi-value {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+            margin-bottom: 0.35rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .kpi-subtitle {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* Main Content Layout */
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 2fr 1.1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .panel-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.85rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .panel-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        #leaflet-map {
+            width: 100%;
+            height: 480px;
+            border-radius: 12px;
+            border: 1px solid #374151;
+            z-index: 10;
+        }
+
+        /* Vehicle List & Table */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.87rem;
+            text-align: left;
+        }
+
+        .custom-table th {
+            background: #1e293b;
+            color: var(--text-muted);
+            padding: 0.75rem 1rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border);
+            text-transform: uppercase;
+            font-size: 0.72rem;
+            letter-spacing: 0.6px;
+        }
+
+        .custom-table td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            vertical-align: middle;
+        }
+
+        .custom-table tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .status-pill {
+            padding: 0.3rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .status-pill.active {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .status-pill.warning {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .status-pill.maintenance {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        /* Fleet Cards Grid */
+        .fleet-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .truck-spec-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.4rem;
+            transition: all 0.2s ease;
+        }
+
+        .truck-spec-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .truck-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .truck-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .truck-plate {
+            font-family: 'JetBrains Mono', monospace;
+            background: #1e293b;
+            color: #cbd5e1;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            border: 1px solid #334155;
+            display: inline-block;
+            margin-top: 0.3rem;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            background: rgba(15, 23, 42, 0.5);
+            padding: 0.9rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            font-size: 0.8rem;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .spec-label {
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+        }
+
+        .spec-val {
+            font-weight: 600;
+            color: var(--text-main);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .progress-bar-container {
+            margin-top: 0.5rem;
+        }
+
+        .progress-bar-bg {
+            background: #1e293b;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 0.25rem;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        /* Diagnostics HUD */
+        .telemetry-hud {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .hud-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.4rem;
+        }
+
+        .gauge-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .gauge-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .gauge-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        /* Alert Item */
+        .alert-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border);
+            margin-bottom: 0.75rem;
+        }
+
+        .alert-icon {
+            font-size: 1.3rem;
+            padding: 0.4rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .alert-time {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            padding: 1.5rem 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        const VEHICLES_DATA = [
+            {
+                id: "PL-01",
+                name: "Volvo FH16 500 Globetrotter",
+                plate: "FR-849-DM",
+                driver: "Marc Vasseur",
+                coords: [45.7640, 4.8357], // Lyon
+                city: "Lyon, A6 Sud",
+                speed: 84,
+                heading: "Sud-Est",
+                status: "active",
+                fuel: 78,
+                temp: 86,
+                load: "38.2 T (Fret Sec)",
+                dimensions: "16.5m × 2.55m × 4.0m",
+                axles: "5 Essieux",
+                ecoScore: 94,
+                obd: "CAN 2.0B / OK"
+            },
+            {
+                id: "PL-02",
+                name: "Mercedes Actros 1845 LS",
+                plate: "FR-213-TX",
+                driver: "Alexandre Dupuis",
+                coords: [48.8566, 2.3522], // Paris
+                city: "Paris, A10 Porte d'Orléans",
+                speed: 72,
+                heading: "Sud-Ouest",
+                status: "active",
+                fuel: 62,
+                temp: 89,
+                load: "34.0 T (Frigo Alimentaire)",
+                dimensions: "16.5m × 2.60m × 4.0m",
+                axles: "5 Essieux",
+                ecoScore: 89,
+                obd: "J1939 / OK"
+            },
+            {
+                id: "PL-03",
+                name: "Scania R730 V8 Streamline",
+                plate: "FR-592-KP",
+                driver: "Laurent Morin",
+                coords: [43.2965, 5.3698], // Marseille
+                city: "Marseille Port Autonome",
+                speed: 0,
+                heading: "Arrêt Quai",
+                status: "warning",
+                fuel: 28,
+                temp: 72,
+                load: "42.0 T (Conteneur Maritime)",
+                dimensions: "16.5m × 2.55m × 4.0m",
+                axles: "5 Essieux",
+                ecoScore: 91,
+                obd: "Alerte: Carburant Réserve"
+            },
+            {
+                id: "PL-04",
+                name: "Renault Trucks T High 520",
+                plate: "FR-931-ZZ",
+                driver: "David Benoit",
+                coords: [50.6292, 3.0573], // Lille
+                city: "Lille Métropole, A25",
+                speed: 88,
+                heading: "Nord",
+                status: "active",
+                fuel: 85,
+                temp: 87,
+                load: "29.5 T (Messagerie Express)",
+                dimensions: "16.5m × 2.55m × 4.0m",
+                axles: "4 Essieux",
+                ecoScore: 96,
+                obd: "CAN 2.0B / OK"
+            },
+            {
+                id: "PL-05",
+                name: "MAN TGX 18.510 EfficientLine",
+                plate: "FR-410-QL",
+                driver: "Cédric Lambert",
+                coords: [44.8378, -0.5792], // Bordeaux
+                city: "Bordeaux Centre Routier",
+                speed: 0,
+                heading: "Maintenance",
+                status: "maintenance",
+                fuel: 92,
+                temp: 24,
+                load: "À vide",
+                dimensions: "16.5m × 2.55m × 4.0m",
+                axles: "5 Essieux",
+                ecoScore: 88,
+                obd: "Diagnostic: Révision Freins"
+            }
+        ];
+
+        const ALERTS_DATA = [
+            {
+                id: 1,
+                type: "warning",
+                title: "Sortie de Barrière Géographique (Geofencing)",
+                desc: "Véhicule Volvo FH16 (FR-849-DM) a franchi le périmètre Z.I. Lyon Saint-Priest sans autorisation préalable.",
+                time: "Il y a 4 min",
+                truck: "PL-01",
+                badge: "Geofence"
+            },
+            {
+                id: 2,
+                type: "danger",
+                title: "Niveau Carburant en Réserve Critique",
+                desc: "Scania R730 (FR-592-KP) : réservoir principal inférieur à 15% (28L restants). Station AS24 recommandée à 2.8 km.",
+                time: "Il y a 14 min",
+                truck: "PL-03",
+                badge: "OBD Télémétrie"
+            },
+            {
+                id: 3,
+                type: "info",
+                title: "Respect Temps de Conduite Réglementaire (RSE)",
+                desc: "Conducteur Alexandre Dupuis : 4h12 de conduite continue atteinte. Pause obligatoire recommandée sous 18 min.",
+                time: "Il y a 22 min",
+                truck: "PL-02",
+                badge: "Chrono-tachygraphe"
+            },
+            {
+                id: 4,
+                type: "success",
+                title: "Livraison Confirmée & Géocodée",
+                desc: "Renault Trucks T High : Déchargement complété à Plateforme Logistique Lille Dourges.",
+                time: "Il y a 38 min",
+                truck: "PL-04",
+                badge: "Logistique"
+            }
+        ];
+
+        function App() {
+            const [activeTab, setActiveTab] = useState('dashboard');
+            const [vehicles, setVehicles] = useState(VEHICLES_DATA);
+            const mapRef = useRef(null);
+            const mapInstance = useRef(null);
+
+            // Initialize Leaflet Map
+            useEffect(() => {
+                if ((activeTab === 'dashboard' || activeTab === 'map') && !mapInstance.current) {
+                    const timer = setTimeout(() => {
+                        const mapElem = document.getElementById('leaflet-map');
+                        if (mapElem) {
+                            const map = L.map('leaflet-map', {
+                                center: [46.603354, 1.888334], // Center of France
+                                zoom: 6,
+                                zoomControl: true
+                            });
+
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: '&copy; OpenStreetMap contributors'
+                            }).addTo(map);
+
+                            // Geofence Zone Polygon (Lyon Region)
+                            const geofencePolygon = L.polygon([
+                                [45.85, 4.70],
+                                [45.85, 5.05],
+                                [45.65, 5.05],
+                                [45.65, 4.70]
+                            ], {
+                                color: '#38bdf8',
+                                fillColor: '#2563eb',
+                                fillOpacity: 0.18,
+                                weight: 2,
+                                dashArray: '6, 6'
+                            }).addTo(map);
+                            geofencePolygon.bindPopup("<b>Zone Sécurisée (Geofence)</b><br>Z.I. Logistique Lyon Est - Surveillance active");
+
+                            // Add markers with custom truck popup
+                            vehicles.forEach(v => {
+                                const markerColor = v.status === 'active' ? '#10b981' : v.status === 'warning' ? '#f59e0b' : '#ef4444';
+                                
+                                const iconHtml = `
+                                    <div style="background:${markerColor}; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 0 14px ${markerColor}; border:2px solid #ffffff;">
+                                        <span style="font-size:16px;">🚛</span>
+                                    </div>
+                                `;
+
+                                const customIcon = L.divIcon({
+                                    className: 'custom-truck-icon',
+                                    html: iconHtml,
+                                    iconSize: [32, 32],
+                                    iconAnchor: [16, 16]
+                                });
+
+                                const marker = L.marker(v.coords, { icon: customIcon }).addTo(map);
+                                marker.bindPopup(`
+                                    <div style="font-family:'Plus Jakarta Sans',sans-serif; min-width:190px;">
+                                        <strong style="color:#0f172a; font-size:13px;">${v.name}</strong><br>
+                                        <span style="font-family:monospace; background:#e2e8f0; padding:1px 5px; border-radius:4px; font-size:11px;">${v.plate}</span><br>
+                                        <hr style="margin:6px 0; border:none; border-top:1px solid #cbd5e1;">
+                                        📍 <b>Position:</b> ${v.city}<br>
+                                        ⚡ <b>Vitesse:</b> ${v.speed} km/h<br>
+                                        ⛽ <b>Carburant:</b> ${v.fuel}% | 🌡️ ${v.temp}°C<br>
+                                        👤 <b>Conducteur:</b> ${v.driver}
+                                    </div>
+                                `);
+                            });
+
+                            mapInstance.current = map;
+                        }
+                    }, 200);
+
+                    return () => clearTimeout(timer);
+                }
+            }, [activeTab]);
+
+            // Re-invalidate map size when switching tabs
+            useEffect(() => {
+                if (mapInstance.current) {
+                    setTimeout(() => {
+                        mapInstance.current.invalidateSize();
+                    }, 250);
+                }
+            }, [activeTab]);
+
+            return (
+                <div className="app-wrapper">
+                    {/* Header */}
+                    <header className="header">
+                        <div className="logo-group">
+                            <div className="logo-icon">🚛</div>
+                            <div>
+                                <div className="logo-title">GeoTrack PL</div>
+                                <div className="logo-subtitle">Système de Géolocalisation Flotte Poids Lourd</div>
+                            </div>
+                        </div>
+
+                        <nav className="nav-tabs">
+                            <button className={`nav-btn ${activeTab === 'dashboard' ? 'active' : ''}`} onClick={() => setActiveTab('dashboard')}>
+                                <span>📊</span> Dashboard
+                            </button>
+                            <button className={`nav-btn ${activeTab === 'map' ? 'active' : ''}`} onClick={() => setActiveTab('map')}>
+                                <span>🗺️</span> Cartographie GPS
+                            </button>
+                            <button className={`nav-btn ${activeTab === 'fleet' ? 'active' : ''}`} onClick={() => setActiveTab('fleet')}>
+                                <span>🚛</span> Flotte & Profils
+                            </button>
+                            <button className={`nav-btn ${activeTab === 'telemetry' ? 'active' : ''}`} onClick={() => setActiveTab('telemetry')}>
+                                <span>📡</span> Diagnostics OBD-II
+                            </button>
+                            <button className={`nav-btn ${activeTab === 'alerts' ? 'active' : ''}`} onClick={() => setActiveTab('alerts')}>
+                                <span>🚨</span> Alertes & Geofence
+                            </button>
+                        </nav>
+
+                        <div className="header-status">
+                            <div className="live-badge">
+                                <div className="pulse-dot"></div>
+                                <span>TÉLÉMÉTRIE 4G / LoRaWAN EN DIRECT</span>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* Main Container */}
+                    <main className="main-container">
+                        {/* KPI Cards */}
+                        <div className="kpi-grid">
+                            <div className="kpi-card">
+                                <div className="kpi-header">
+                                    <span className="kpi-title">Véhicules en Flotte</span>
+                                    <div className="kpi-icon" style={{ background: 'rgba(37,99,235,0.15)', color: '#38bdf8' }}>🚛</div>
+                                </div>
+                                <div className="kpi-value">5 / 5</div>
+                                <div className="kpi-subtitle"><span>100% connectés</span> • 4G LTE/GPS</div>
+                            </div>
+
+                            <div className="kpi-card">
+                                <div className="kpi-header">
+                                    <span className="kpi-title">En Transit Actif</span>
+                                    <div className="kpi-icon" style={{ background: 'rgba(16,185,129,0.15)', color: '#34d399' }}>🟢</div>
+                                </div>
+                                <div className="kpi-value">3 Camions</div>
+                                <div className="kpi-subtitle"><span>Vitesse moy:</span> 81.3 km/h</div>
+                            </div>
+
+                            <div className="kpi-card">
+                                <div className="kpi-header">
+                                    <span className="kpi-title">Alertes de Zone</span>
+                                    <div className="kpi-icon" style={{ background: 'rgba(245,158,11,0.15)', color: '#fbbf24' }}>📍</div>
+                                </div>
+                                <div className="kpi-value">2 Geofences</div>
+                                <div className="kpi-subtitle"><span>1 sortie non planifiée</span></div>
+                            </div>
+
+                            <div className="kpi-card">
+                                <div className="kpi-header">
+                                    <span className="kpi-title">Éco-Conduite Flotte</span>
+                                    <div className="kpi-icon" style={{ background: 'rgba(6,182,212,0.15)', color: '#22d3ee' }}>🌱</div>
+                                </div>
+                                <div className="kpi-value">92.6 / 100</div>
+                                <div className="kpi-subtitle"><span>-8.4% conso</span> vs mois précédent</div>
+                            </div>
+                        </div>
+
+                        {/* TAB 1: DASHBOARD */}
+                        {activeTab === 'dashboard' && (
+                            <div className="layout-grid">
+                                <div className="panel-card">
+                                    <div className="panel-header">
+                                        <div className="panel-title">
+                                            <span>🗺️</span> Supervision Cartographique en Temps Réel
+                                        </div>
+                                        <div style={{ fontSize: '0.8rem', color: '#94a3b8' }}>
+                                            OpenStreetMap • Fond Hybride & Geofence
+                                        </div>
+                                    </div>
+                                    <div id="leaflet-map"></div>
+                                </div>
+
+                                <div className="panel-card">
+                                    <div className="panel-header">
+                                        <div className="panel-title">
+                                            <span>⚡</span> Statut & Télémétrie Instantanée
+                                        </div>
+                                        <span style={{ fontSize: '0.78rem', color: '#34d399' }}>● Actualisation 1s</span>
+                                    </div>
+
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                                        {vehicles.slice(0, 4).map(v => (
+                                            <div key={v.id} style={{ background: '#1e293b', padding: '0.9rem', borderRadius: '10px', border: '1px solid #334155' }}>
+                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.3rem' }}>
+                                                    <strong style={{ fontSize: '0.92rem' }}>{v.name}</strong>
+                                                    <span className={`status-pill ${v.status}`}>
+                                                        {v.status === 'active' ? 'En Route' : v.status === 'warning' ? 'Alerte' : 'Maintenance'}
+                                                    </span>
+                                                </div>
+                                                <div style={{ fontSize: '0.78rem', color: '#94a3b8', marginBottom: '0.5rem' }}>
+                                                    📍 {v.city} • 👤 {v.driver}
+                                                </div>
+                                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem', fontSize: '0.75rem', fontFamily: 'monospace' }}>
+                                                    <div>⚡ {v.speed} km/h</div>
+                                                    <div>⛽ {v.fuel}%</div>
+                                                    <div>🌡️ {v.temp}°C</div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* TAB 2: MAP FULL VIEW */}
+                        {activeTab === 'map' && (
+                            <div className="panel-card">
+                                <div className="panel-header">
+                                    <div className="panel-title">
+                                        <span>🗺️</span> Cartographie Complète Flotte & Zones Geofencing
+                                    </div>
+                                    <div style={{ display: 'flex', gap: '1rem', fontSize: '0.8rem' }}>
+                                        <span>🟢 Actif (3)</span>
+                                        <span>🟡 Attention (1)</span>
+                                        <span>🔴 Arrêt (1)</span>
+                                    </div>
+                                </div>
+                                <div id="leaflet-map" style={{ height: '620px' }}></div>
+                            </div>
+                        )}
+
+                        {/* TAB 3: FLEET PROFILES */}
+                        {activeTab === 'fleet' && (
+                            <div>
+                                <div className="panel-header" style={{ marginBottom: '1.25rem' }}>
+                                    <div className="panel-title">
+                                        <span>🚛</span> Profils Véhicules Poids Lourds & Spécifications
+                                    </div>
+                                    <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Configuration conforme réglementation européenne (RSE & Euro 6)</span>
+                                </div>
+
+                                <div className="fleet-cards-grid">
+                                    {vehicles.map(v => (
+                                        <div key={v.id} className="truck-spec-card">
+                                            <div className="truck-header">
+                                                <div>
+                                                    <div className="truck-name">{v.name}</div>
+                                                    <span className="truck-plate">{v.plate}</span>
+                                                </div>
+                                                <span className={`status-pill ${v.status}`}>
+                                                    {v.status === 'active' ? 'Actif' : v.status === 'warning' ? 'Attention' : 'Révision'}
+                                                </span>
+                                            </div>
+
+                                            <div className="specs-grid">
+                                                <div className="spec-item">
+                                                    <span className="spec-label">Conducteur</span>
+                                                    <span className="spec-val">{v.driver}</span>
+                                                </div>
+                                                <div className="spec-item">
+                                                    <span className="spec-label">Charge / PTAC</span>
+                                                    <span className="spec-val">{v.load}</span>
+                                                </div>
+                                                <div className="spec-item">
+                                                    <span className="spec-label">Gabarit</span>
+                                                    <span className="spec-val">{v.dimensions}</span>
+                                                </div>
+                                                <div className="spec-item">
+                                                    <span className="spec-label">Configuration</span>
+                                                    <span className="spec-val">{v.axles}</span>
+                                                </div>
+                                            </div>
+
+                                            <div className="progress-bar-container">
+                                                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem' }}>
+                                                    <span>Niveau Carburant</span>
+                                                    <span style={{ fontFamily: 'monospace', fontWeight: 'bold' }}>{v.fuel}%</span>
+                                                </div>
+                                                <div className="progress-bar-bg">
+                                                    <div className="progress-bar-fill" style={{ width: `${v.fuel}%`, background: v.fuel > 30 ? '#10b981' : '#ef4444' }}></div>
+                                                </div>
+                                            </div>
+
+                                            <div style={{ marginTop: '0.85rem', paddingTop: '0.75rem', borderTop: '1px solid #1f2937', fontSize: '0.75rem', color: '#94a3b8', display: 'flex', justifyContent: 'space-between' }}>
+                                                <span>Protocole: {v.obd}</span>
+                                                <span style={{ color: '#38bdf8' }}>Éco-score: {v.ecoScore}/100</span>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* TAB 4: OBD-II TELEMETRY & DIAGNOSTICS */}
+                        {activeTab === 'telemetry' && (
+                            <div className="telemetry-hud">
+                                <div className="hud-card">
+                                    <div className="panel-header">
+                                        <div className="panel-title"><span>⚙️</span> Données Moteur & CAN-Bus</div>
+                                        <span style={{ color: '#10b981', fontSize: '0.75rem' }}>Volvo FH16 (FR-849-DM)</span>
+                                    </div>
+                                    <div className="gauge-row">
+                                        <span className="gauge-label">Régime Moteur (RPM)</span>
+                                        <span className="gauge-value" style={{ color: '#38bdf8' }}>1,240 tr/min</span>
+                                    </div>
+                                    <div className="gauge-row">
+                                        <span className="gauge-label">Température Liquide de Refroidissement</span>
+                                        <span className="gauge-value">86.2 °C</span>
+                                    </div>
+                                    <div className="gauge-row">
+                                        <span className="gauge-label">Pression Huile Moteur</span>
+                                        <span className="gauge-value">4.6 bar</span>
+                                    </div>
+                                    <div className="gauge-row">
+                                        <span className="gauge-label">Tension Batterie Alternateur</span>
+                                        <span className="gauge-value">27.8 V (24V Nom.)</span>
+                                    </div>
+                                    <div className="gauge-row">
+                                        <span className="gauge-label">Consommation Instantanée</span>
+                                        <span className="gauge-value">28.4 L / 100km</span>
+                                    </div>
+                                </div>
+
+                                <div className="hud-card">
+                                    <div className="panel-header">
+                                        <div className="panel-title"><span>🛞</span> Pression Pneumatiques (TPMS)</div>
+                                        <span style={{ color: '#38bdf8', fontSize: '0.75rem' }}>10 Capteurs Actifs</span>
+                                    </div>
+                                    <div className="gauge-row">
+                                        <span className="gauge-label">Essieu 1 (Directeur Gauche/Droite)</span>
+                                        <span className="gauge-value" style={{ color: '#10b981' }}>8.8 bar / 8.7 bar</span>
+                                    </div>
+                                    <div className="gauge-row">
+                                        <span className="gauge-label">Essieu 2 (Moteur Ext/Int Gauche)</span>
+                                        <span className="gauge-value" style={{ color: '#10b981' }}>8.5 bar / 8.6 bar</span>
+                                    </div>
+                                    <div className="gauge-row">
+                                        <span className="gauge-label">Essieu 2 (Moteur Ext/Int Droite)</span>
+                                        <span className="gauge-value" style={{ color: '#10b981' }}>8.5 bar / 8.5 bar</span>
+                                    </div>
+                                    <div className="gauge-row">
+                                        <span className="gauge-label">Essieu Remorque 3</span>
+                                        <span className="gauge-value" style={{ color: '#10b981' }}>9.0 bar / 9.0 bar</span>
+                                    </div>
+                                    <div className="gauge-row">
+                                        <span className="gauge-label">Statut Global Freinage ABS/EBS</span>
+                                        <span className="gauge-value" style={{ color: '#10b981' }}>CONFORME</span>
+                                    </div>
+                                </div>
+
+                                <div className="hud-card">
+                                    <div className="panel-header">
+                                        <div className="panel-title"><span>📡</span> Liaison Embarquée & Capteurs</div>
+                                        <span style={{ color: '#06b6d4', fontSize: '0.75rem' }}>Réseau Multi-Liaisons</span>
+                                    </div>
+                                    <div className="gauge-row">
+                                        <span className="gauge-label">Positionnement Satellitaire</span>
+                                        <span className="gauge-value">GPS + Galileo (16 Sats)</span>
+                                    </div>
+                                    <div className="gauge-row">
+                                        <span className="gauge-label">Modem Cellulaire</span>
+                                        <span className="gauge-value" style={{ color: '#10b981' }}>4G LTE Cat-M1 (-68 dBm)</span>
+                                    </div>
+                                    <div className="gauge-row">
+                                        <span className="gauge-label">Liaison de Secours LoRaWAN</span>
+                                        <span className="gauge-value">868 MHz (Actif)</span>
+                                    </div>
+                                    <div className="gauge-row">
+                                        <span className="gauge-label">Centrale Inertielle (IMU)</span>
+                                        <span className="gauge-value">Gyro 3-axes ±0.02g</span>
+                                    </div>
+                                    <div className="gauge-row">
+                                        <span className="gauge-label">Caméra Cabine & Angle Mort</span>
+                                        <span className="gauge-value" style={{ color: '#10b981' }}>Flux Synchronisé</span>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* TAB 5: ALERTS & GEOFENCING */}
+                        {activeTab === 'alerts' && (
+                            <div className="panel-card">
+                                <div className="panel-header">
+                                    <div className="panel-title">
+                                        <span>🚨</span> Journal des Alertes de Sécurité & Événements Geofencing
+                                    </div>
+                                    <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Archivage en continu • Notifications temps réel</span>
+                                </div>
+
+                                <div>
+                                    {ALERTS_DATA.map(alert => (
+                                        <div key={alert.id} className="alert-item">
+                                            <div className="alert-icon" style={{ 
+                                                background: alert.type === 'danger' ? 'rgba(239,68,68,0.2)' : alert.type === 'warning' ? 'rgba(245,158,11,0.2)' : 'rgba(37,99,235,0.2)',
+                                                color: alert.type === 'danger' ? '#ef4444' : alert.type === 'warning' ? '#f59e0b' : '#38bdf8'
+                                            }}>
+                                                {alert.type === 'danger' ? '🚨' : alert.type === 'warning' ? '⚠️' : 'ℹ️'}
+                                            </div>
+                                            <div className="alert-content">
+                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                    <div className="alert-title">{alert.title}</div>
+                                                    <span style={{ fontSize: '0.72rem', background: '#1e293b', border: '1px solid #334155', padding: '0.2rem 0.5rem', borderRadius: '4px' }}>
+                                                        {alert.badge}
+                                                    </span>
+                                                </div>
+                                                <div style={{ fontSize: '0.82rem', color: '#cbd5e1', margin: '0.35rem 0' }}>
+                                                    {alert.desc}
+                                                </div>
+                                                <div className="alert-time">⏱️ {alert.time} • Réf: {alert.truck}</div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </main>
+
+                    {/* Footer */}
+                    <footer className="footer">
+                        <p>GeoTrack PL - Système de Géolocalisation pour Flottes de Véhicules Poids Lourds</p>
+                        <p style={{ marginTop: '0.3rem', fontSize: '0.75rem' }}>OpenStreetMap • React • Leaflet • Télémétrie OBD-II / CAN-Bus • LoRaWAN & 4G LTE</p>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

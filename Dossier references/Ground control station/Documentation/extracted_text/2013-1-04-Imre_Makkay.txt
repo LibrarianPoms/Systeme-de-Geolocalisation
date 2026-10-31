@@ -1,0 +1,255 @@
+=== PAGE 1 ===
+Imre Makkay1
+REDUNDANCY FOR UAVS - GROUND CONTROL STATIONS23
+The systems of Unmanned Air Vehicles essentially contain Ground Control Stations – GCS. The common GCSs
+are designed for a Mission Commander, Pilot, and Observer or payload operator – in ruggedised shelter with
+three operator station. Although each station is equipped with hot-swappable PCs the systems request further
+measures for real redundancy.
+In this paper the review of existing solutions and our University’s experiences will be presented.
+PILÓTA NÉLKÜLI REPÜLŐ ESZKÖZÖK REDUNDANCIÁJA – FÖLDI IRÁNYÍTÓ ÁLLOMÁSOK
+A pilóta nélkül légi járművek rendeltetésszerűen használnak földi irányító állomást (Ground Control Stations –
+GCS). A földi irányító állomások a bevetésirányító, pilóta és a megfigyelő – vagy hasznos teher irányító –
+részére kialakított három munkahelyet tartalmazzák. Bár mindegyik rendelkezik “melegtartalékkal”, az igazi
+redundanciához további feltételek megléte is szükséges.
+Ebben a cikkben a jelenlegi megoldások áttekintésén kívül az Egyetem kutatásainak tapasztalatait is bemutatjuk.
+INTRODUCTION
+The general request for aviation: transporting high-value payload, flying in hazardous
+airspace, - above the crowds, sent a particularly important task for the aircraft to improve
+safety multiple - at least duplicate - on-board and ground control system components shall be
+used. When pilot on board he should recover some fault of system – that chance is lack for
+unmanned air vehicles (UAV).
+The redundancy as method is the duplication of critical components or functions of a system with
+the intention of increasing reliability of the system, usually in the case of a backup or fail-safe. On
+the other hand redundancy requires added energy, – weight, – space and cost of system. In
+fortunate case – when all primer equipment work properly – the charge became as loss for user,
+but only minor defect requiring replace some function in main line can turn this balance over.
+In many safety-critical systems, such as fly-by-wire and hydraulic systems in aircraft, some
+parts of the control system may be even triplicated. The probability of all three failing is
+calculated to be extremely small and if one is different from two others than the “voting
+logic” should activated and ignore the exotic source for longer work. User should be
+immediately notified about reduced – since “only” doubled – performance, deciding if
+mission to be continue or terminate. As rule the civilian application prefer “safety first” as
+1 University Professor, National University of Public Service Military Science and Army Officer Training
+Faculty Institute of Military Logistics Department of Military Aviation, makkay.imre@uni-nke.hu
+2 Publisher’s readers: Lt. colonel Mátyás Palik (PhD), Associate Professor, National University of Public Service
+Military Science and Army Officer Training Faculty Institute of Military Technology Department of Military
+Aviation, palik.matyas@uni-nke.hu
+3 Publisher’s readers: Lt. colonel Bertold Békési (PhD), Associate Professor, National University of Public
+Service Military Science and Army Officer Training Faculty Institute of Military Technology Department of
+Military Aviation, bertold.bekesi@uni-nke.hu
+46
+
+=== PAGE 2 ===
+long as military the “mission first” principle.
+UAV systems are no less complicated than manned on board – that means take care for safety
+we should spend often more devices, software and time to develop, than until now.
+Economize the “back up” pilot requires the similar knowledge and skill at sticks of airplane
+what should be just in “brain” of onboard computer.
+Moreover the system consists – besides flying part – the ground control station, take off and
+recovery equipments and duty personal that should be in reserve for all mission period. In
+stage of design and engineering we have to count what a necessary level of safety should be
+provided – to tune redundancy no less than required and the same time not exceed too much
+because the expenses.
+THE PARTS OF UAV SYSTEMS – SUSCEPTIBLE TO FAILURE
+The UAV systems – as a long chain – are based on connecting to each other subsystems and
+devices. Even one of them fails, the mission can not be completed – and may be other unwanted
+event occurring. The GCS personal primer task is manage the take off and landing procedure.
+As at all flying vehicles for UAV the start and the recovery are the most critical tasks. Every
+UAV has – depending on construction, weight, size and actual circumstances – one or more
+take off procedures. The regularly is for small – up to 5 kg – UAVs launching from hand.
+Accelerate up to take off speed could be by drop or bungee assistance. Both require skilled
+personal and meteorological minimum (wind, temperature, precipitation, etc.). When lack some
+of them the take off may fail – as happen quite often according to videos [[1]][[2]][[3]]. To
+elaborate difficulties from small to heavy weight UAV widely apply the catapult equipment –
+driven bungee, compressed air, rocket, etc.. The “airplane size” UAVs as Global Hawk,
+Predator, Dark Star etc. take off from wheels and require equipped airfield to land. The small
+UAVs able to land on flat ground, water or special net, even capturing some rope as ScanEagle
+do it [[4]].
+Fig. 1. Launch UAV by hand-drop, bungee, catapult and gear4 5 6 7
+4 http://pakmr.blogspot.com/2011/04/us-to-provide-85-hand-launched-rq-11.html
+47
+
+=== PAGE 3 ===
+The “built in” landing procedure should contain besides regular – automatic or
+assisted/guided by pilot – one or more version to escape if primary is not working well. The
+“back up” landing-procedures are often the “deep stall” or parachute recovery – in case fail of
+critical onboard system, or loss control. Some UAVs (Skylark, Skylite, Sperwer, KZO,
+Mirach) use special inflated bags for shock-absorbing. After all “forced landing” the airframe,
+avionics, communication and payload should be observed attentively – to find possible
+damage or deviation.
+After takeoff – still landing – the GCS personal should pay no less attention to correct work
+onboard systems, communication and GCS equipments. The flight pattern – preliminary
+stored in memory or online transmitted from GCS – may include altitude, speed,
+actual/achieved coordinates, and command for payload. Sensors on board continuously
+measure all data for computer – which compares with prescribed and elaborate necessary
+control signals for actuators. This “chain” – from sensors to actuator – contains numerous
+bottlenecks as following:
+Altitude sensor – measuring the altitude may be by air pressure, some radiated (ultrasonic-,
+laser or radio) wave propagation delay or using GPS service. As rule one device alone is
+always risky – by Murphy law – so design should contain alternative altitude data too. The
+optimum is using different method from main sensor – avoid catch the same source of error
+for example icing – but this requires often complicated circuits/programs.
+Airspeed sensor – the airspeed should higher than Vst – stall speed (important for fixed
+wing’s fly-control) and lower Vne – never exceed speed. That is why the pitot tube is heated –
+to avoid icing – and should doubled (Murphy). There are other measures to avoid Vst and
+Vne – programming the motor rpm (thrust) upper the minimum speed even at maximum
+climbing ratio and limit the descend ratio by idle rpm – both requests advanced inertial
+measurement unit – IMU to be on board. The IMU helps to limit yaw, roll angle and stabilize
+the wing level and pitch of UAV.
+Navigation, mission control - autopilots are the most important and still the most expensive
+part of UAV. They role is to navigate by GPS and the same time manage the fly control, take
+off and landing and payload subsystem’s work. As rule in they memory is stored the mission
+plan and they are connected with ground control station (before -, in time and after mission) to
+exchange information. Autopilot as key element should be doubled for safety – as Micropilot
+[[5]] decided maybe even triplicated. They combined three premier MP2128HELI autopilots
+in one triple redundant MP21283X board – with “pass or fall” voting logic. The first
+(primary) GPS receiver works on 20Hz (2nd and 3rd 4 Hz).
+5 http://www.armedforces-int.com/news/british-army-gets-upgraded-desert-hawk-uavs.html
+6 http://upload.wikimedia.org/wikipedia/commons/6/6f/ScanEagle_UAV_catapult_launcher_2005-04-16.jpg
+7 http://www.army-technology.com/projects/shadow200uav/shadow200uav2.html
+48
+
+=== PAGE 4 ===
+Fig. 2 MP21283X motherboard of three independent autopilots – with voting logics 8
+As MiroPilot emphasize each of three has enough information to continue the mission – in the
+event of failure. The MP21283X includes provision for multiple communication links,
+backup high current drivers, backup power supplies, and independently-generated servo
+signals. Moreover, two different types of global positioning system receivers are used to
+improve its reliability [[6]].
+Ground control system – The most “stable” by position, but higher responsible for proper
+work of all system is the GCS and its habitants. The advanced UAV systems are use
+inherently doubled workstations for uninterruptible control where all necessary functions are
+reached for both operators. That should planned thoroughly and as rule is working fine – in
+exception some mistake in design multiplied by pilot error as reported [[7]].
+The border patrol Predator UAV crashed in Arizona – because operator switching the control
+from console PPO-1 (Pilot Payload Operator) to PPO-2 not verified by checklist if they are in
+equal position. Unfortunately at the PPO-2 the “FUEL CUTOFF” switch stayed still in before
+start position and the engine shouted down immediately.
+Fig. 3 The happening9 and the reason – red sticks at left hand of pilot 10
+But what was the reason – by official Predator UAV crash report the following:
+„The flight was being flown from a ground control station (GCS) located at HFU. The GCS
+8 http://www.micropilot.com/news-2010-nov-10.htm
+9 http://lemonodor.com/archives/001391.html
+10 http://coreydonovan.com/test/predator-drone-pilot
+49
+
+=== PAGE 5 ===
+contains two nearly identical consoles, pilot payload operator (PPO)-1, and PPO-2. During a
+routine mission, a certified pilot controls the UAV from the PPO-1 console and the camera
+payload operator (typically a U.S. Border Patrol Agent) controls the camera from PPO-2. The
+aircraft controls (flaps, stop/feather, throttle, and speed lever) on PPO-1 and PPO-2 are
+identical. However, when control of the UAV is being accomplished from PPO-1, the controls
+at PPO-2 are used to control the camera.
+The pilot reported that during the flight the console at PPO-1 "locked up", prompting him to
+switch control of the UAV to PPO-2. Checklist procedures state that prior to switching
+operational control between the two consoles, the pilot must match the control positions on
+the new console to those on the console, which had been controlling the UAV. The pilot
+stated in an interview that he failed to do this. The result was that the stop/feather control in
+PPO-2 was in the fuel cutoff position when the switch over from PPO-1 to PPO-2 occurred.
+As a result, the fuel was cut off to the UAV when control was transferred to PPO-2.
+The pilot stated that after the switch to the other console, he noticed the UAV was not
+maintaining altitude but did not know why. As a result he decided to shut down the GCS so
+that the UAV would enter its lost link procedure, which called for the UAV to climb to 15,000
+feet above mean sea level and to fly a predetermined course until contact could be established.
+With no engine power, the UAV continued to descend below line-of-site communications and
+further attempts to re-establish contact with the UAV were not successful.”
+That was the factual official report and lesson can be learned as follows:
+Pilot – as professional – should not be stay alone. (In actual situation the second pilot went
+away and told some suggestion by telephone to primary according to failure. The “border
+patrol agent” can not take effective part in a hurry, responsible operations.)
+The implementation should have been a simple "flip of a switch" rather than a multiple-step
+checklist to re-figure PPO-2 under contingency conditions. (Here was certainly more than
+“pilot error” the design philosophy of PPO was an underlying cause. Using the same lever for
+engine condition and camera iris setting [[8]] – that is more than „frivolity”)
+All system should be preliminary attentively tested not allowing – even intentional – faulty
+operation. (So expensive UAVS like Predator should not make so elementary mistakes.)
+THE UNIVERSITY’S RESEARCH – INCREASING SAFETY OF UAV
+SYSTEMS
+The National University of Public Service – earlier National Defense University – playing a
+vital role in UAVS research in Hungary. We take part in UAVNET international workshops
+since 2001 with many presentations. In this years more than 10 PhD aspirants finished own
+work with UAVS–related thesis. At last Conference of Aeronautical Science in 2012 author
+and coauthors from University’s student presented papers in topics related to redundancy at
+UAVS [[9]][[10]][[11]][[12]][[13]][[14]]. Behind all theoretical issue there are many hours of
+practice and experiments. We work on UAVs with different size and purposes as well their
+part and development whole system. The general rules are at our research the safety – for
+50
+
+=== PAGE 6 ===
+civilian and the reliability – for military applications. Thanks to cooperative work together
+with civilian institutes and developers we can accept request both kind of users. One of our
+favorite topics is “Avoid Aircraft Accident – Scaring Birds with UAVs at Airports
+[[15]][[16]][[17]]. Those results are universally used at airfield/airport areas of course. Here
+we base on related “redundancy for UAV” project’s results. Also is related to UAVs the
+“Infrared Thermography for Non Destructive Testing and Evaluation (NDT & E) – in
+Airspace Technology” research program. Until now we published numerous articles
+according to NDT like [[18]][[19]][[20]][[21]]. As far as composites are – almost
+exceptionally – use for UAV’s constructions the NDT & E is related to timely as well. The
+infrared cameras – together with proposed by us ultrasonic and microwave excitation –
+provide the new level of quality in UAV industry.
+CONCLUSIONS
+As mentioned above the redundancy are extra cost until the second/third line must step to
+charge – but in this case may spare much more money (and tear) equals the possible lost. All
+pieces of chain should be strong and safe enough – the UAVS are highly complicated and
+expensive to make some of them lightly. We work on all elements – just the Ground Control
+Stations was analyzed briefly. That was our goal – to show our possibilities in this interesting
+topic. This is only the surface – we welcome cooperative researchers, developers for further
+deeper discussion.
+Acknowledgements:
+The project was realised through the assistance of the European Union, with the co-financing
+of the European Social Fund. "Critical Infrastructure Protection Research TÁMOP-4.2.1.B-
+11/2/KMR-2011-0001" it enjoys the support.
+REFERENCES (Internet sources: 4 of December 2012)
+[1] http://www.youtube.com/watch?v=K9LA1s3OJts
+[2] http://www.youtube.com/watch?v=IaIVcwVWps4
+[3] http://www.youtube.com/watch?v=XOh5mzSzoQU&feature=endscreen&NR=1
+[4] http://www.naval-technology.com/projects/scaneagle-uav/
+[5] http://www.micropilot.com/products-new.htm
+[6] http://www.micropilot.com/news-2010-nov-10.htm
+[7] http://www.system-safety.org/ejss/past/novdec2008ejss/livingston.php
+[8] CARRIGAN G., LONG D., CUMMINGS M.L., DUFFNER J. Human Factors Analysis of Predator B
+Crash - MIT Humans and Automation Lab AUVSI report
+http://web.mit.edu/aeroastro/labs/halab/papers/Carrigan_AUVSI.pdf
+[9] MAKKAY I., KOSZTOLÁNYI T., KOVÁCS G., KUBOVICS B., PAPP T. Robotrepülőgépek redundáns
+rendszerei - Repüléstudományi Közlemények Különszám: pp. 908-917. (2012) HU ISSN 1789-770X
+http://www.szrfk.hu/rtk/kulonszamok/2012_cikkek/73_Makkay_Imre-at_all.pdf
+[10] MAKKAY I., KUBOVICS B. Robotrepülőgépek magasságmérő rendszerei - Repüléstudományi
+Közlemények Különszám: pp. 942-951. (2012) HU ISSN 1789-770X
+http://www.szrfk.hu/rtk/kulonszamok/2012_cikkek/76_Makkay_Imre-Kubovics_Balazs.pdf
+51
+
+=== PAGE 7 ===
+[11] MAKKAY I., PAPP T. Robotrepülőgépek kommunikációs rendszerei - Repüléstudományi
+Közlemények Különszám: pp. 952-960. (2012) HU ISSN 1789-770X
+http://www.szrfk.hu/rtk/kulonszamok/2012_cikkek/77_Makkay_Imre-Papp_Timea.pdf
+[12] MAKKAY I., KOSZTOLÁNYI T. Robotrepülőgépek indító-leszállító berendezései - Repüléstudományi
+Közlemények Különszám: pp. 918-926. (2012) HU ISSN 1789-770X
+http://www.szrfk.hu/rtk/kulonszamok/2012_cikkek/74_Makkay_Imre-Kosztolanyi_Tamas.pdf
+[13] MAKKAY I., KOVÁCS G. Robotrepülőgépek hasznos terhei - Repüléstudományi
+Közlemények Különszám: pp. 927-941. (2012) HU ISSN 1789-770X
+http://www.szrfk.hu/rtk/kulonszamok/2012_cikkek/75_Makkay_Imre-Kovacs_Gabor.pdf
+[14] MAKKAY Imre: Redundancy for UAS - Fail Safe Engineering, Proceedings of the 16th International
+Conference Transport Means 2012 Kaunas, pp. 192-195. ISSN 1822-296 x
+[15] MAKKAY I. Robotrepülőgépes madárriasztó rendszer Repüléstudományi Közlemények Különszám: pp.
+961-969. (2012) HU ISSN 1789-770X
+http://www.szrfk.hu/rtk/kulonszamok/2012_cikkek/78_Makkay_Imre-
+Robotrepulogepes_madarriaszo_rendszer.pdf
+[16] MAKKAY I., POKORÁDI L., VÁNYA L. Repülőtéri madárütközés-veszélyt csökkentő rendszer. -
+Repüléstudományi Közlemények Különszám: pp. 1-7. (2009) HU ISSN 1789-770X
+http://www.szrfk.hu/rtk/kulonszamok/2009_cikkek/Makkay_I-Pokoradi_L-Vanya_L.pdf
+[17] MAKKAY I. Repülőgépek és madarak ütközésének elkerülése – robotok segítségével - Szolnoki
+Tudományos Közlemények Különszám:(XIII) pp. 1-8. (2009)
+http://www.szolnok.mtesz.hu/sztk/kulonszamok/2009/cikkek/Makkay_Imre.pdf
+[18] MAKKAY I. Légi jármű diagnosztikai vizsgálatok – dinamikus termográfia - Repüléstudományi
+Közlemények Különszám: pp. 748-753. (2012) HU ISSN 1789-770X
+http://www.szrfk.hu/rtk/kulonszamok/2012_cikkek/61_Makkay_Imre_Dinamikus_termografia.pdf
+[19] MAKKAY I. A „Thermo PRO TP8S” hőkamera és alkalmazása repülőgépek DIAGNOSZTIKAI vizsgálata
+során - Repüléstudományi Közlemények Különszám: pp. 310-318. (2011) HU ISSN 1789-770X
+http://www.szrfk.hu/rtk/kulonszamok/2011_cikkek/Makkay_Imre_4_THERMO.pdf
+[20] MAKKAY I., LUDÁNYI L., TERÉKI Cs. Termo-diagnosztikai eljárások lehetőségei repülőgépek sárkány,
+hajtómű és fedélzeti rendszereinek vizsgálata során - Repüléstudományi Közlemények (Különszám) pp. 1-
+8. (2010) HU ISSN 1789-770X http://www.szrfk.hu/rtk/kulonszamok/2010_cikkek/Makkay_I-Ludanyi_L-
+Tereki_Cs.pdf
+[21] MAKKAY Imre: Thermal Imaging for Non-Destructive Testing in Aerospace Transport Means 2012:
+Proceedings of the International Conference. Kaunas: pp. 117-120. ISSN 1822-296 X
+52

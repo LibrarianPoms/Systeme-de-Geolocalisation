@@ -1,0 +1,436 @@
+=== PAGE 1 ===
+IMAGERIE AÉRIENNE PAR DRONE : EXPLOITATION DES DONNÉES
+POUR L’AGRICULTURE DE PRÉCISION
+NathalieVigneau1,CorentinChéron1,AleixandreVerger2,3,FrédéricBaret3
+1:AIRINOVSAS,48rueRenéClair,75899PARISCedex18,France
+2:CREAF,CerdanyoladelVallès08193,Catalonia,Espagne
+3:INRAUMR114EMMAH,DomaineSaint-Paul,SiteAgroparc,84914Avignon,France
+Résumé
+La technologie des drones devenant plus accessible et les réglementations nationales encadrant les vols des drones
+commençantàémerger,denombreusessociétésutilisentdésormaisdesdronespourréaliserdesacquisitionsd’images.
+Parmicelles-ciAIRINOV(cid:13)R achoisidesespécialiserdansl’agricultureetoffresesservicesauxagriculteursainsiqu’aux
+expérimentateurs. AIRINOV(cid:13)R exploite les drones eBee de senseFly(cid:13)R. Le drone a une envergure d’1 m pour un poids
+de 700 g charge comprise et son vol est entièrment automatique. Le vol est programmé à l’avance puis contrôlé par un
+auto-pilote connecté à un capteur GPS et à une centrale inertielle embarqués. Ces capteurs enregistrent la position et
+l’attitudedudronependantsonvol,permettantdegéolocaliserlesimagesacquises.Uneétuderéaliséeavecdescibles
+ausolapermisd’établirquelepositionnementabsoludesimagesestde2,06m.Toutefois,lerecalagesurdespointsdont
+onconnaîtlescoordonnéespermetd’avoirungéoréférencementavecuneprécisioncentimétrique.
+Enparallèledel’utilisationdesappareilsphotosclassiques(RGB),AIRINOV(cid:13)R utiliseuncapteurmultispectralquadribande.
+Leslongueursd’ondedececapteursontmodulablesmaissontgénéralementvert,rouge,rededgeetprocheinfra-rouge.
+Ceslongueursd’ondepermettentnonseulementlesuivid’indicesdevégétationtelsqueleNDVImaiségalementl’accèsà
+desvariablesbiochimiquesetbiophysiquesparinversiond’unmodèledetransfertradiatif.Uneétudemenéeconjointement
+avecl’INRAd’AvignonetleCREAFpermetd’accéderauGreenAreaIndex(GAI)etaucontenuenchlorophylle(Cab)sur
+colza,blé,maïsetorge.Cetarticleprésentelesrésultatsd’estimationduGAIavecuneRMSEde0,25etdeCabavecune
+RMSEde4,75µg/cm2.
+La qualité des estimations combinée à la forte capacité de revisite du drone ainsi qu’à la multiplicité des indicateurs
+disponiblesdémontrelegrandintérêtdudronepourlephénotypageetlesuivideplateformesd’essais.
+Motsclés: agriculturedeprécision,drone,capteurmultispectral,suivideplateformeexpérimentale
+Abstract
+Nowadays,nationalregulationsgoverningtheflightsofthedronesarestartingtoemergeanddronetechnologyisacces-
+sibletoanykindofusers.Forthisreasonagreatnumberofcompaniesemploydronestoacquireimagedata.Amongthese,
+AIRINOV adapts this technology to agriculture purposes in order to be usefull for both farmers and research institutions.
+AIRINOV operates senseFly(cid:13)R eBee drones. The eBee is approximately 1 m-wingspan plane and it weighs 700 g, inclu-
+dingthesensor.Flightsareautomaticallyoperated.Theflightsareprogrammedinadvanceandcontrolledbyanautopilot
+connected to a GPS sensor and an embedded inertial measurement unit. These sensors record the drone position and
+attitude during the flight in order to geotag acquired images. A study carried out with ground targets has shown that the
+absolutepositioningofimagesisapproximately2.06m.However,theregistrationofpointswhosecoordinatesareknown
+allowstogeoreferencepointswithacentimeteraccuracy.
+In parallel with the use of conventional cameras (RGB), AIRINOV employs a 4-channel multispectral sensor. The wave-
+lengths of this sensor are adjustable but are usually green, red, red edge and NIR. These wavelengths allow not only to
+monitor vegetation indices such as NDVI but also, to obtain biochemical and biophysical variables thanks to the inverse
+radiativetransfermodel.AstudycarriedoutwithINRAandCREAFallowstoaccesstotheGreenAreaIndex(GAI)and
+chlorophyllcontent(Cab)onrapeseed,wheat,cornandbarley.Thisarticlepresentsresultsconcerningwheatandrape-
+seedGAIestimationwithaRMSEofaround0.25comparedwithgroundmeasurementsandCabestimationwithaRMSE
+ofaround4,75µg/c2mcomparedwithgroundmeasurements.
+The quality of the estimated values combined with the drone flight repetitions and the diversity of available indicators
+demonstratesthegreatinterestaboutphenotypingandmonitoringtestplatformsbydrone.
+Keywords: precisionagriculture,UAV,multispectralsensor,experimentalplatformmonitoring
+◦
+RevueFrançaisedePhotogrammétrieetdeTélédétection n 213-214(janvier-avril2017)
+125
+
+=== PAGE 2 ===
+1. Introduction
+L’intérêt de la télédétection n’est plus à démontrer
+pour le suivi de parcelles agricoles et la caractérisation
+de l’état de la végétation. Cette technologie donne ac-
+cès à de nombreuses données : biomasse, LAI (Leaf
+AreaIndexouindicedesurfacefoliaire),tauxdechloro-
+phylle (Cab), etc. (Smith et al., 1995; Thenkabail, 2003;
+Mulla,2013).Cependantl’usagedusatelliteconnaîtdes (1) (2)
+limites,notammententermederésolutionspatiale,mais
+aussienraisondesadépendanceauxconditionsmétéo FIGURE 1: (1) Le drone eBee(cid:13)R (2) équipé du capteur
+etàsontropgranddélaiderevisite(Moran,1997;Pinter MultiSpec4Cd’AIRINOV(cid:13)R
+etal.,2003).Ledrone,parsaréactivitéetsarapiditéde
+mise en œuvre, constitue alors une alternative possible
+2.2. Lecapteur
+pour acquérir des données pour l’agriculture de préci-
+sion.Ilestainsipossiblederéaliserdesacquisitionsaux Ledronepeutembarquerdeuxtypesdecapteursdif-
+dates et à la fréquence que l’on veut. Par ailleurs, l’in- férentsselonl’informationnécessaire:unappareilphoto
+térêt croissant pour des données de phénotypage et le classique ou un capteur multispectral quadribande. Le
+développement de plates-formes expérimentales a mis capteur multispectral, breveté, est constitué de quatre
+enévidencelebesoindedonnéesagronomiquesobjec- camérasdistinctessurlesquellesontétéajoutésdesfiltres
+tivesadaptéesàl’échelledelaplante,répétablesetsur permettant de sélectionner les longueurs d’onde d’inté-
+l’intégralité des plateformes d’essais (Kipp et al., 2014; rêt.L’innovationrésidedanslacombinaisond’uncapteur
+ArausetCairns,2014).Danscecadre,ledroneconsti- àlafoisléger(doncadaptéaudrone)etadaptéàlavé-
+tue également un outil particulièrement pertinent. Per- gétation.Lesystèmeoptiqueesttraversant,aveclesop-
+mettant d’obtenir des données de manière simultanée tiques sous le drone (Figures 1(2) et 2(2)) alors que le
+sur l’ensemble d’une plateforme, le drone augmente la capteurPAR(enregistrantl’illuminationambiantepourla
+représentativitédesmesures. correctionenréflectance)estsituésurlafacesupérieure
+Ilestégalementpossibled’utiliserlesimagespardrone (Figure2(1)).
+pourréaliserdusuivideplateformesd’essais.Lavectori-
+sationdesmicro-parcellesdel’essaiselonlanomencla-
+tureutiliséeparl’expérimentateurpermetl’extractionde
+donnéesnumériquesàlamicro-parcelle:indicesdevé-
+gétation(NDVI,PRI),variablesbiochimiquesoubiophy-
+siques(LAI,Cab,Qcab).Ilestalorspossiblederecons-
+truiredescourbesdecinétiques:miseenplaceducou-
+vertavecleLAIparexemple.Plusieursexemplesd’utili-
+sationdudronepourlesuivideplateformesexpérimen-
+(1) (2)
+talessontdonnésdansl’article.
+FIGURE 2: (1) Recto et (2) verso du capteur MultiSpec
+2. La proxidétection par drone 4CbrevetéparAIRINOV(cid:13)R
+2.1. Ledrone De manière opérationnelle, le système agrodroneTM
+Parmi les différents types de drones existants (pour utiliseuncapteuravecunebandedanslevert(550nm,
+plusdedétails,voirlarevuedeColominaetMolina(2014)), FWHM (Full Width at Half Maximum) de 40 nm), une
+AIRINOV(cid:13)R a choisi l’aile volante (ou voilure fixe) pour dans le rouge (660 nm, FWHM de 40 nm), une dans
+desraisonsderésistanceauventetdevitessedecou- la gamme spectrale du red edge (735 nm, FWHM de
+verture. Après avoir développé et exploité ses propres 10nm)etunedansleprocheinfra-rouge(790nm,FWHM
+drones,AIRINOV(cid:13)R aliéunpartenariatavecsenseFly(cid:13)R de 40 nm). Ces bandes ont été définies conjointement
+et devient exploitant et revendeur de ses drones eBee avec l’UMR EMMAH de l’INRA d’Avignon comme étant
+(Figure1). les bandes principales permettant d’accéder aux infor-
+D’unpoidsinférieurà700gchargecomprise,leeBee mationsagronomiquesd’intérêt(LAI,Cab).Toutefois,si
+faitpartiedelacatégoriedesdroneslégersfacilitantsa besoin,cesfiltressontmodulablesetpermettentdesé-
+miseenœuvreopérationnelle.ConstruitenEPP(Expan- lectionnerdesbandesdanslagamme350-800nmavec
+ded PolyPropylene), mélange de polystyrène et de ré- unerésolutionspectralevariantde10à40nm.
+sine,ilestcapabledesupporterleschocssanssecas-
+ser(atterrissagesursolnuparexemple). 2.3. Levol
+Le vol du drone est entièrement automatique. Il est
+nécessairedeconnaîtrelazonegéographiquedelapar-
+celle d’intérêt. Une fois ses coordonnées entrées dans
+◦
+RevueFrançaisedePhotogrammétrieetdeTélédétection n 213-214(janvier-avril2017)
+126
+
+=== PAGE 3 ===
+l’autopilote(Figure3),ledroneestlancéàlamainetsuit
+sa trajectoire (calculée automatiquement) contrôlée par
+sonGPSembarquéetsouslasurveillancedesonopéra-
+teur.Savitessedevolestde60km/hetsonautonomie,
+assurée par une batterie électrique, est de 45 minutes.
+L’acquisition des images par le drone est peu influen-
+cée par la couverture nuageuse puisque le drone vole
+endessousdesnuages.Sahauteurdevolmaximaleen
+Franceestde150mafinderesterdanslecadrerégle-
+mentairelemoinscontraignantetilpeutsupporterlevent
+jusqu’à 50 km/h. Seule la pluie le contraint à rester au
+sol. En effet, les gouttes d’eau favorisent la diffusion de
+la lumière et viennent perturber le signal enregistré qui
+n’estpasfacilementexploitable(Rees,2013).
+FIGURE 4: Ortho-image (visualisation en fausses cou-
+leurs)delaparcelleavecles23ciblesenbleu.
+Unalgorithmeautomatiquedereconstructiondescène
+(voir paragraphe suivant), utilisant des approches pho-
+togrammétriques, est utilisé pour créer la carte globale
+de la parcelle en mosaïquant l’ensemble des images.
+Pourcefaire,lesystèmedoitidentifierdespointsdere-
+FIGURE 3: Capture d’écran de l’autopilote eMotion de
+pèresidentiquesprésentsdanslesimagessuccessives,
+senseFly(cid:13)R montrantunplandevol.
+on parle de points homologues ou points d’intérêts, qui
+vontpermettrelerecalagedesimagesentreelles.Ilest
+Ledroneenregistrelesphotosàlafréquenced’une doncindispensabled’avoirunbonrecouvrementspatial
+imagetoutesles1,5secondes,cequidonneparexemple entrelesimagessuccessives.Lesparamètresdevolde
+environ1000imagespouruneparcellede15haà15cm l’agrodroneTM,permettentunrecouvrementde80%dans
+de résolution. La position géographique et l’attitude du lesensdedéplacementdudrone(intrabande)etde65%
+dronesontenregistréesgrâceàuncapteurGPSetune entrelespassages(interbande).
+centraleinertielle,permettantdegéoréférencerprécisé-
+ment les données obtenues. Le positionnement relatif Avantchaquevol,unesurfacederéférenceestscan-
+entrelesimagesestinférieuraupixel.L’erreurmoyenne née avec le capteur. Cette surface a été caractérisée
+de positionnement absolu est d’environ 2 à 5 m (préci- spectralementenlaboratoire.Lecapteurdelumière(lux-
+sionduGPSembarqué). mètre) avec une sensibilité de 400 à 700 nm situé sur
+Uneétudespécifiqueaétémenéeavec"l’équipesol" le drone et synchronisé avec l’acquisition d’images en-
+del’INRAdeGrignon(78)pourestimerlaprécisionab- registrelesvariationsd’irradiancedurantlevol.Lacom-
+solue de géolocalisation de chaque pixel. Une parcelle binaisondecesdeuxmesurespermetlacorrectiondes
+agricole de 13 ha près de Versailles (4˚51’N, 1˚51’E) a imagesenréflectance.
+été survolée avec le drone. 23 cibles ont été disposées
+au sol (Figure 4). Leur localisation a été mesurée avec 2.4. Laproductiond’unecarte
+unDGPS(DifferentialGlobalPositioningSystemouGPS
+Lesphotossontenregistréesàborddudronesurune
+différentiel)Trimble(cid:13)R PathfinderPower.Pourchaquecible,
+carteSD(cartemémoireutiliséegénériquementpourles
+les positions GPS ont été moyennées pendant une mi-
+appareils photo) et sont récupérées après l’atterrissage
+nute.Laprécisionmoyennefinaleétaitde1,8cmenco-
+dudrone.Ilestalorsnécessairederecréerlagéométrie
+ordonnéesXetY.L’orthomosaïqueensortiedesimages
+de la scène pour pouvoir reprojeter les photos suivant
+du drone avait une erreur moyenne 2,06 m et un écart-
+un référentiel géographique et un système de projec-
+type de 0,98 m. Afin d’améliorer le positionnement ab-
+tion donnés. L’ensemble des traitements géométriques
+solu,l’orthomosaïqueaétérecaléesur12des23cibles
+est automatisé et réalisé grâce à un logiciel du com-
+et la précision absolue a été évaluée sur les 11 cibles
+merce.Ilcomprendladéfinitiondepointsd’intérêtsdans
+restantes.Ledécalagerestantdel’orthomosaïquen’était
+lesimages,lamiseencorrespondancedespointsentre
+plusquede2cmverslenordet0,6cmversl’ouestavec
+lesimages,l’ajustementdefaisceauxpouraffinerlagéo-
+unécart-typede4cmdanschaquedirection,cequiap-
+métrie de la scène et la reconstruction de la géométrie
+paraît comme une très bonne précision au regard de la
+(MNS,ModèleNumériquedeSurface)(HartleyetZisser-
+résolutionspatialede15cm.
+man, 2004). La reprojection des images sur cette géo-
+métriepermetd’obteniruneorthophotodelazonecom-
+◦
+RevueFrançaisedePhotogrammétrieetdeTélédétection n 213-214(janvier-avril2017)
+127
+
+=== PAGE 4 ===
+plète. Dans le cas du capteur multispectral, il y a né- du signal. Par ailleurs, une étude statistique plus pous-
+cessité de recaler les images des bandes entre elles, sée a montré que 95 % des points sur la parcelle avait
+c’est l’étape de "co-registration". La procédure dévelop- uncoefficientdevariationabsoluinférieurà3,7%.
+péeparAIRINOV(cid:13)R permetd’atteindreuneprécisionde
+superpositionentrelesbandesdel’ordredudemi-pixel.Il 3.2. L’obtention de paramètres biophysiques et bio-
+neresteplusqu’àappliquerlacorrectionenréflectance chimiques
+grâce aux données du luxmètre et de la surface de ré- AIRINOV(cid:13)R utilisel’inversiondemodèlesdetransfert
+férence.Lesbandespeuventalorsêtretraitéesséparé- radiatif(méthodedéveloppéeenexclusivitéavecl’équipe
+ment pour l’établissement de corrélations avec des me- deF.Baretdel’INRAd’Avignonetd’A.VergerduCREAF)
+suresterrainouserviraucalculd’indicesouàl’inversion pourl’obtentionduGAI(indicefoliaire),deCab(tauxde
+demodèlesdetransfertradiatif. chlorophylle de la feuille) ainsi que du QCab, quantité
+dechlorophylleintégréesurl’ensembleducouvertpour
+3. L’obtention d’indicateurs agronomiques 4 des principales cultures rencontrées en France : blé,
+orge,maïsetcolza.Parmilesméthodesd’inversiondis-
+3.1. Lesindicesdevégétation ponibles,laméthodedesLUT(LookUpTable)aétéchoi-
+Afindes’assurerdelaqualitédesdonnéesproduites siepoursaflexibilité,sacapacitéàutiliserlatotalitédes
+ensortiedelachaînedetraitementainsiquedelarobus- imagesexistantpourunmêmepoint(dufaitdurecouvre-
+tessedusignalenregistréparledrone,deuxvolsontété ment) ainsi que sa capacité à éviter les mimima locaux
+réaliséssurlamêmeparcelleaucoursdelamêmejour- (au contraire des algorithmes de convergence itératifs).
+née,unle matinetunl’après-midi.Ces volsontpermis LemodèlePROSAIL(Jacquemoudetal.,2009),estune
+lecalculdedeuxindicesdevégétation,leNDVI(Norma- combinaisondesmodèlesPROSPECT(Jacquemoudet
+lizedDifferenceVegetationIndex)etlePRI(Photochemi- Baret,1990),modèledespropriétésoptiquesdesfeuilles
+calReflectanceIndex). etSAIL(Verhoef,1984,1985),modèlederéflectancede
+lacanopée.Laméthoded’inversionestdétailléeparVer-
+geretal.(2014).
+3.2.1. Répétabilitédel’estimationduGAIentrelesvols
+DemêmequepourleNDVIetlePRI,lastabilitéde
+l’estimationduGAIaétévérifiéavecplusieursvolsréa-
+liséslemêmejour(unlematinetunl’après-midi).Cette
+procédure a été répétée pour deux stades du blé (tal-
+lage et montaison). La Figure 6 présente les résultats
+de cette expérimentation. La valeur de RMSE (0,2), de
+pente(1,14)etd’offset(0,05)montrentlabonnerépéta-
+bilitédesestimations.
+(1)
+(2)
+FIGURE5:Estimationdelarobustessedusignalsur(1) FIGURE6:ComparaisondesestimationsdeGAIentrele
+NDVIet(2) voldumatinetdel’après-midi.
+La Figure 5 représente la régression linéaire qui a
+puêtreréaliséepourchaqueindiceavecenabscisseles
+3.2.2. Comparaison des résultats d’estimation de GAI,
+donnéesduvol1etenordonnée,lesdonnéesduvol2.
+Cabavecdesmesuresterrain
+Pour chaque indice, le coefficient de détermination est
+Afindequantifierlaqualitédesestimations,desme-
+supérieur à 0,9 prouvant la cohérence et la robustesse
+sures au sol de Cab et GAI ont été réalisées. Les me-
+suresdechlorophylleontétéréaliséesparprélèvements
+◦
+RevueFrançaisedePhotogrammétrieetdeTélédétection n 213-214(janvier-avril2017)
+128
+
+=== PAGE 5 ===
+destructifs et analyse en laboratoire alors que les me- lesimages(Figure8.(1)).Cettevectorisationpermetl’ex-
+suresdeGAIausolontétéfaitespartraitementdepho- tractiondedonnéesstatistiquesàlamicro-parcelle.Cette
+tosprisesà57,5˚(Baretetal.,2010). vectorisationn’estréaliséequ’uneseulefoisaucoursdu
+La Figure 7 présente la comparaison entre ces me- cycledeculture.Ellepermetdemieuxvisualiserlescar-
+suresausoletlesestimationsfaitesàpartirdesimages tographies d’un paramètre donné en distinguant les dif-
+du drone. Les estimations de GAI réalisées par drone férentes parcelles ou placettes (Figure 8.(2)) et permet
+sont cohérentes avec celles réalisées au sol. La RMSE l’extractiondedonnéesauformattableur.
+de 0,25 confirme la qualité de l’estimation. Les écarts-
+types calculés sur la répétition des estimations drone
+(pourlesdifférentesimagescorrespondantàlazonede
+mesure) et des estimations sol (plusieurs photos d’une
+mêmezone)sontdumêmeordredegrandeur.Cecicom-
+binée à la faible valeur de RMSE confirme que les es-
+timationssontéquivalentes.DemêmequepourleGAI,
+pourlachlorophylle,lesrésultatsd’écart-typeetdeRMSE
+montrent la qualité de l’estimation par drone même si
+le nombre plus resteint d’échantillons nécessiterait une
+(1) (2)
+confirmationdecespremiersréultats.
+FIGURE 8: (1) Résultats de la vectorisation de 1356
+micro-parcelles de maïs (2 ou 4 rangs) et (2) Visualisa-
+tion d’une donnée chiffrée par cartographie colorée sur
+leparcellaire(copyrightAIRINOV(cid:13)R)
+Ces données sont ensuite directement intégrables
+dansunebasededonnéesquipeutsuivrelanomencla-
+tureprécisedesmicro-parcelles(blocs,lignes,colonnes,
+etc.). Il est alors possible de confronter ces données à
+desmesuresréaliséessurleterrainpourmettreenplace
+descorrélations.
+(1) 4.2. L’intérêt du système AIRINOV pour le suivi de
+parcellesexpérimentales
+Le drone couvre l’ensemble d’une plateforme expé-
+rimentale en quelques minutes, garantissant l’homogé-
+néité de la mesure. Le traitement des données permet
+d’accéder à des variables agronomiques telles que le
+LAI ou le taux de chlorophylle sur blé, orge, colza et
+maïs ainsi qu’au calcul d’indices de végétation tels que
+le NDVI ou le PRI. La rapidité et la réactivité du drone
+permettent de choisir le moment le plus favorable pour
+la prise de vue et des acquisitions fréquentes au cours
+ducycledecultureetainsilesuividynamiqued’unpara-
+mètredonné.LaFigure9présentedescartographiessu-
+(2) perposablesduNDVI.Silaplate-formeaétévectorisée,
+ilestégalementpossibled’extrairedesvaleursquantita-
+FIGURE 7: Comparaison entre l’estimation à partir des tivesparmicroparcelleetd’établirdescourbesdeLAIpar
+imagesdudroneetlesmesuresausolpour(1)GAIet(2) variétéaucoursdutempsoudescinétiquesdestade.
+Cab.Lesbarreshorizontalesetverticalescorrespondent L’acquisition d’images à très haute résolution (THR)
+à l’écart-type sur les mesures au sol et par drone, res- (1,5 cm en RGB, 5 cm en multispectral avec l’aile vo-
+pectivement. lanteetjusqu’à1cmenmultispectralavecunmultirotor)
+peut également permettre le dénombrement (de pieds
+detournesolcommesurlaFigure10),ladétectiond’ad-
+4. Le drone au service de la recherche et ventices dans l’inter-rang ou le suivi de dynamique de
+de l’expérimentation floraisonsurtournesoletcolza(Figure11).
+Legéoréférencementdesorthophotosproduitespar
+4.1. Lavectorisation AIRINOV(cid:13)R permet un affichage dans des outils de SIG
+En plus de la production de cartes, il est possible oudansGoogleEarth(Figure12).Cettevisualisationau-
+grâceàunlogicieldeSIG(Systèmesd’InformationsGéo- toriseunaffichagedecartesàdifférentesdatespermet-
+graphiques) de vectoriser le parcellaire directement sur tantlagestiond’unlotdeparcelles.
+◦
+RevueFrançaisedePhotogrammétrieetdeTélédétection n 213-214(janvier-avril2017)
+129
+
+=== PAGE 6 ===
+FIGURE 9: Exemples de cartes superposables de NDVI
+d’unemêmeparcelleaucoursdutemps.
+FIGURE 12: Visualisation d’un ensemble de parcelles
+sousGoogleEarth(copyrightAIRINOV(cid:13)R).
+5. La technologie mise au service des
+agriculteurs
+L’objectifd’AIRINOV(cid:13)R estdemettreàdispositiondes
+agriculteurslatechnologiedéveloppéeauprèsdescher-
+FIGURE10:ImageRGBTHR(résolutionspatialede8,5 cheurs.Lespremiersdéveloppementstechnologiquesqui
+mm)d’uneplateformedetournesolillustrantlapossibilité ontpuêtredéveloppésenservicecommerciauxconcernent
+dudénombrementdepieds,zoomsur5rangs(5x3m). lafertilisationazotée.AIRINOV(cid:13)R proposeunconseilen
+fertilisationazotéesurcolza.Àlasuited’unvolenentrée
+d’hiver et un vol en sortie d’hiver, l’ensemble de la par-
+AIRINOV(cid:13)R a proposé ses services à de nombreux
+celleestcartographiéeàlarésolution1x1m.Àpartirdes
+sélectionneursetaréalisédifférentstravauxsurblé(dy-
+indicateursdudrone,labiomasseestestiméeenchaque
+namique de mise en place du couvert), sur maïs (suivi
+pointdelaparcelle(Figure13).Cettevaleurdebiomasse
+destresshydrique,estimationdelavariabilitédelevée),
+estensuiteutiliséeenentréedelarégletteazoteduCe-
+surcolza(dynamiquedefloraison)ousurtournesol(dé-
+tiom pour l’établissement d’une préconisation à la réso-
+nombrement de pieds à la levée). L’INRA a également
+lution du mètre carré. Ces valeurs au mètre carré sont
+pu apprécier les avantages de cette technique que ce
+ensuitezonéesstatistiquementdemanièreàdéfinirune
+soitpourdesétudessursolnu(INRAGrignon),surtour-
+àtroiszoneshomogènessurlaparcelle(Figure13).Ce
+nesol, prairie ou céréales (INRA Auzeville) ou sur colza
+zonage,accessibleàl’ensembledesexploitantspermet
+etbetterave(INRADijonenpartenariatavecleCetiom).
+d’épandre différemment selon les zones de la parcelle
+Lesnombreuxéchangesavecleschercheurspermettent
+en modifiant leur vitesse. Pour les agriculteurs équipés,
+d’améliorerconstammentleserviceproposéetdes’adap- AIRINOV(cid:13)R peut également fournir des cartes de mo-
+terauxbesoinsdesprojetsencoursouàvenir.
+dulation automatiques directement intégrables dans les
+boîtiers(Figure14).LesystèmeAIRINOV(cid:13)R estainsicom-
+patibletoutesmarques.
+FIGURE11:ImageRGBTHR(résolutionspatialede8,5
+mm) d’une plateforme de colza illustrant la possibilité
+FIGURE 13: Exemple de cartes fournies lors de la cam-
+pagnecolza2013-2014:cartesdebiomasseetdepré-
+d’estimationdutauxdefloraison.
+conisationazotée.
+Après une campagne pilote en 2012-2013 dans le
+Poitou-Charentes, AIRINOV(cid:13)R a étendu son service de
+◦
+RevueFrançaisedePhotogrammétrieetdeTélédétection n 213-214(janvier-avril2017)
+130
+
+=== PAGE 7 ===
+Références
+Araus,J.,Cairns,J.,2014.Fieldhigh-throughputphenotyping:
+thenewcropbreedingfrontier.TrendsinPlantScience19(1),
+52–61.
+Baret, F., Solan, B. D., Lopez-Lozano, R., Ma, K., Weiss, M.,
+2010.Gaiestimatesofrowcropsfromdownwardlookingdi-
+gitalphotostakenperpendiculartorowsat57.5˚zenithangle.
+AgriculturalandForestMeteorology150,1393–1401.
+Colomina, I., Molina, P., 2014. Field high-throughput phenoty-
+ping:thenewcropbreedingfrontier.ISPRSJournalofPho-
+togrammetryandRemoteSensing92,79–97.
+Hartley, R., Zisserman, A., 2004. Multiple View Geometry in
+computervision(2nded.).CambrigeUniversityPress.
+Jacquemoud,S.,Baret,F.,1990.Prospect:Amodelofleafop-
+ticalpropertiesspectra.RemoteSensingofEnvironment34,
+75–91.
+Jacquemoud, S., Verhoef, W., Baret, F., Bacour, C., Zarco-
+Tejada,P.,Asner,G.,François,C.,Ustin,S.,2009.Prospect+
+sailmodels:Areviewofuseforvegetationcharacterization.
+RemoteSensingofEnvironment113,S56–S66.
+Kipp, S., Mistel, B., Baresel, P., Schmidhalter, U., 2014. High-
+FIGURE 14: Exemple de carte de modulation automa- througputphenotypingearlyplantvigourofwinterwheat.Eu-
+ropeanJournalofAgronomy52(PartB),271–278.
+tiqueréaliséesurcolza.
+Moran,M.,1997.Opportunitiesandlimitationsforimage-based
+remotesensinginprecisioncropmanagement.RemoteSen-
+singofEnvironment61,319–346.
+préconisationazotéesurcolzaàplusde10000hapour
+Mulla,D.,2013.Twentyfiveyearsofremotesensinginprecision
+lacampagne2013-2014.Leserviceestrevenduparles agriculture:Keyadvancesandremainingknowledgegaps.
+coopératives, négoces ou même chambre d’agriculture BiosystemEngineering114,358–371.
+pouruntarifde15e/hapourles2vols. Pinter, P., Schepers, J., Barnes, E., Moran, M., Daughtry, C.,
+L’offreenconseilenfertilisationaétéétendueaublé 2003.Remotesensingforcropmanagement.Photogramme-
+tricEngineeringandRemoteSensing69,647–664.
+pourunecampagnepilotede10000haen2013.
+Rees, W., 2013. Physical Principles of Remote Sensing (3rd
+ed.).CambridgeUniversityPress.
+6. Conclusion Smith,R.,Adams,J.,Stephens,D.,Hic,P.,1995.Forecasting
+wheat yield in a mediterranean-type environment from the
+noaasatellite.AustralianJournalofAgriculturalResearch46,
+L’intérêt du drone pour le suivi de plateforme d’es-
+113–125.
+sais provient principalement de sa fine résolution spa-
+Thenkabail,P.,2003.Biophysicalandyieldinformationforpre-
+tiale. En effet sa faible altitude de vol autorise une très
+cision farming from near-real-time and historical landsat tm
+bonnerésolutionspatiale(de5cmà15cmenmultispec- images.InternationalJournalofRemoteSensing24,2879–
+traletde1,5à5cmenRGB)etrendl’acquisitionindé- 2904.
+pendantedelacouverturenuageuse.L’offreagrodroneTM Verger,A.,Vigneau,N.,Cheron,C.,Baret,F.,Comar,A.,2014.
+Estimatesofgreenindexfromuavoverwheatandrapeseed
+AIRINOV(cid:13)R présente également une grande rapidité de
+crops.RemoteSensingofEnvironmentunderreview.
+déploiementquirendsonutilisationsoupledemanièreà
+Verhoef,W.,1984.Lightscatteringbyleaflayerswithapplica-
+suivreauplusprèslesstadesclésdelavégétationetqui
+tiontocanopyreflectancemodeling:thesailmodel.Remote
+luipermetd’êtreréactiffaceauxconditionsmétéochan- SensingofEnvironment,16,125–141.
+geantes.Lamodularitédesoncapteurpermetd’accéder Verhoef,W.,1985.Earthobservationmodelingbasedonlayer
+à des données très variées : LAI, Cab, NDVI, PRI, etc. scattering matrices. Remote Sensing of Environment 17,
+Pourtoutescesraisons,l’offreagrodroneTM d’AIRINOV(cid:13)R 165–178.
+constitue un excellent outil de suivi de parcelles expéri-
+mentales. AIRINOV(cid:13)R propose ses services aux expéri-
+mentateursmaisaussiauxagriculteurspourleurfournir
+un conseil en fertilisation azotée sur colza notamment.
+AIRINOV(cid:13)R a pour objectif de développer de nouveaux
+services tant pour les agriculteurs que pour les expéri-
+mentateurs.C’estpourquoiAIRINOV(cid:13)R poursuitsestra-
+vaux de recherche sur de nouveaux capteurs comme
+par exemple l’utilisation de l’imagerie thermique pour le
+suividestresshydrique;etsurdenouvellesthématiques
+comme la détection de mauvaises herbes, la détection
+demaladiedelavigne,etc.
+◦
+RevueFrançaisedePhotogrammétrieetdeTélédétection n 213-214(janvier-avril2017)
+131

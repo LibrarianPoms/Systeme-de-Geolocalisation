@@ -1,0 +1,371 @@
+=== PAGE 1 ===
+International Journal of Advances in Engineering and Management (IJAEM)
+Volume 4, Issue 6 June 2022, pp: 1137-1146 www.ijaem.net ISSN: 2395-5252
+Autopilot Quad-copter Drone
+Adwait Agawane, Sourabh Patil, Vasant Deware, Hrishikesh
+Kamble, Prathmesh Sonavale, Dr. S. D. Ruikar
+Department of Electronics Engineering, Walchand College of Engineering, Sangli
+--------------------------------------------------------------------------------------------------------------------------------------
+Submitted: 01-06-2022 Revised: 10-06-2022 Accepted: 15-06-2022
+-------------------------------------------------------------------------------------------------------------------------------
+ABSTRACT- This article demonstrates how to make our work easier and these duties more
+build an autopilot quad-copter drone and its efficient, whether it's for everyday household
+applications. The drone's construction was first deliveries of food or medications or for security
+discussed, as well as key components such as the monitoring.
+frame, propellers, engine, power system, electronic The main goal of this project is to create
+control, and communication system. Batteries are an Autopilot Quadcopter Drone that will aid in
+used to power drones, and lithium-polymer such duties and make everyone's lives easier and
+batteries are commonly employed. The military and more efficient.
+commercial drones were then compared on selected
+examples. In terms of size and propulsion, military II. METHODOLOGY:
+drones First, we'll learn about quadcopter drone
+differ from civilian drones. They are larger and use concepts, and then we'll build a drone using some
+internal combustion engines to power them. readily accessible drone kits. Also, use accessible
+Electric motors power civilian drones. algorithms and PID logic to create code.
+The potential for using drones were then After that, we'll use manual controls to operate it
+demonstrated. They can be employed by the and test our algorithm's ability to fly the drone with
+government, the army, industry, for photography manual controls.
+and videography, and for delivering products. The At the same time, we'll be working on an Android
+primary risk of utilising drones is a drone falling app that will receive and deliver GPS coordinates to
+from a large height, which could be caused by a the drone. In addition, a real-time view of a drone
+discharged battery, weather-related damage (low camera is shown side by side.
+air temperature, precipitation), or colliding with an After that, we'll write code for autopilot. (obstacle
+obstacle (tree, building, high-voltage line). Many identification and avoidance using ultrasonic
+projects are currently underway to generate sensors)
+electricity for drones, including grapheme batteries,
+pure lithium anodes, and fuel cells. The main III. LITERATURE SURVEY
+objective of this project is to design and develop a According to the European Drones
+stable flying drone as a model for general purposes Outlook Study, the market for drones in agriculture,
+that can be used for deliveries. The drone should be energy, public safety/security, e-
+able to support lifting a phone or similar weight, commerce/delivery, mobility and transportation
+and some minor modifications should be applied to will boom in the next thirty years. It is simple to
+it. The drone could be replaced in such a way that locate an example. For example, the authors of[2]
+would fit any other application. propose using a drone to collect multispectral
+Keywords- Autopilot; Drone; Electronic Speed photos and ground difference data for precision
+Control; Quad-copter. agriculture. Aside from the numerous military
+applications, new sensors are being developed for
+I. INTRODUCTION drones, such as those used in [3]: X-ray camera,
+With the increased demand for speedy infrared camera, and metal detectors. In terms of e-
+delivery and the obstacles that traditional commerce and delivery, the literature shows that
+transportation faces, such as ever-increasing traffic, the use of drones for various reasons is still in its
+it is unavoidable that UAVs will become the future early stages.
+and one-stop solution for all of these issues. There are numerous specialised tools for defining
+An Autopilot drone will undoubtedly be a missions for UAVs available today. Drone makers,
+revolution in any area. An Autopilot drone will for example, have built their own tools.
+DOI: 10.35629/5252-040611371146 Impact Factor value 7.429 | ISO 9001: 2008 Certified Journal Page 1137
+
+=== PAGE 2 ===
+International Journal of Advances in Engineering and Management (IJAEM)
+Volume 4, Issue 6 June 2022, pp: 1137-1146 www.ijaem.net ISSN: 2395-5252
+• They allow the user to fly the drone manually C) Guide
+or set a set of points that conform to a path to  Can be used for guiding tourists at famous
+be followed by the UAV. tourist attractions with a pre- defined path, this
+• They rely on standard map technologies such will minimise the use of manpower in form of
+as Google Maps and offer a 2D point of view. • human guides.
+In both cases, the application allows the user to D) Tracking
+create a flight plan and automatically upload it
+ For special purposes such as by the government
+to a drone for an automatic flight. In the case of
+or police for tracking illegal activities/persons.
+Parrot, they employ the MAV Link standard,
+ For finding any particular animal either for
+which is a protocol that is now used by many
+domestic or study purposes by tracking its
+drones and is used to automate not only flight
+activities.
+but also measurement.
+The tools are meant to allow users to interact with E) Entertainment and Research
+them quickly and easily, at the expense of more  For professional movie shooting
+sophisticated situations and systematic examination  For reaching remote places where humans
+specification.
+cannot travel quickly, there such Autopilot
+drones can reach quickly during any kind of
+IV. APPLICATIONS
+emergencies or any other task
+A) Security Surveillance Purposes
+ Autopilot Drones can be used for security V. CONCEPT & TECHNIQUES :
+surveillance purposes in high risk places such The Flight Dynamics:
+as railway stations, stadiums, colleges, big Before we talk about the 6-DoF and start
+events, etc deriving the quadcopter's dynamics, we need to
+ Also, can be used in battlefield places such as introduce two frames in which we will work. The
+first is known as the inertial frame, and it is
+war zones, borders, etc.
+characterised by its position in relation to the earth,
+B) Deliveries
+with gravity pointing in the negative z-direction.
+ For daily food & medicines deliveries
+The body frame, which is defined by the
+ During emergencies such as accidents, can also quadcopter's varied orientation, is the latter. My
+be used to deliver first aim kits, blood, etc explanation is depicted in the diagram below.
+Changing the speed of each motor to a desired (forward and backward), vertically (upward and
+value helps control the quad-rotor's location and downward), and laterally (forward and backward)
+attitude. using three barycentre movements known as
+translation motions (right and left). There are also
+1. Six Degrees of Freedom (6-DOF) three rotation motions along three axes that cause
+Any time space motion of a rigid body requires six the drone to rotate between each axis, resulting in
+degrees of freedom, which can be separated into roll, pitch, and yaw movements.
+two groups: the barycentre and the movement When all of the aforementioned motions are
+around it. The quad-copter moves longitudinally combined, we get what's known as the six degrees
+DOI: 10.35629/5252-040611371146 Impact Factor value 7.429 | ISO 9001: 2008 Certified Journal Page 1138
+
+=== PAGE 3 ===
+International Journal of Advances in Engineering and Management (IJAEM)
+Volume 4, Issue 6 June 2022, pp: 1137-1146 www.ijaem.net ISSN: 2395-5252
+of freedom. The rotor, which generates a reactive body frame, which lowers or rises the quadrotor.
+torque, is responsible for the quad-rotor's yaw When the quadcopter is in a horizontal position, the
+motion. The size of the reactive torque is vertical direction of the body frame coincides with
+proportional to the rotor's speed. When the four one of the inertial frames. The thrust delivered, on
+rotors rotate at the same speed, the reactive torques the other hand, generates both horizontal and
+equal out and the quad-rotor does not rotate. vertical accelerations in the inertial frame. Figure 9
+However, if the four rotors' speeds are not exactly depicts the throttle movement in the quadcopter
+the same, the reactive torque will not be balanced, sketch. In this scenario, the propeller speeds I =
+and the quad-rotors will begin to revolve. 1,...,4 are equal to H + A. For each individual. The
+A (rad/s) is a positive variable that signifies an
+The Throttle (Thrust) Movements: increment in
+This movement is achieved by reducing or relation to a constant value. Because the quadrotor
+raising the speed of all propellers by the same will eventually be influenced by saturations or non-
+amount, resulting in a vertical force against the linearities, the A should not be too large.
+The Roll Movements: roll angle acceleration. On a quadrotor sketch,
+This movement is achieved by reducing or Figure 10 depicts the roll movement. The B
+raising the speed of the propellers to the left and positive variable is chosen in such a way that the
+right. This causes a torque (figure 10) along the x- vertical thrust is not affected. It should not be
+axis, causing the quadcopter to tilt side to side (left excessively large, as in the preceding situation,
+or right). When hovering, the overall vertical thrust because the quadrotor will eventually be damaged
+is the same; hence, this movement only results in a by saturations or non-linearities.
+The Pitch Movements: thrust equals the pitch angle acceleration;
+Pitch movements are similar to roll consequently, this movement provides only a pitch
+movements in that they are created by reducing or angle acceleration. On a quadrotor sketch, Figure
+raising the speed of the propellers at the back and 11 depicts pitch movement. The C positive variable
+front. This causes a torque (figure 11) in the yaxis, is determined, as in the preceding case, so that the
+which causes the quadcopter to tilt up and down vertical thrust remains constant and cannot be too
+from front to rear. In hovering, the overall vertical large.
+DOI: 10.35629/5252-040611371146 Impact Factor value 7.429 | ISO 9001: 2008 Certified Journal Page 1139
+
+=== PAGE 4 ===
+International Journal of Advances in Engineering and Management (IJAEM)
+Volume 4, Issue 6 June 2022, pp: 1137-1146 www.ijaem.net ISSN: 2395-5252
+The Yaw Movements: clockwise/clockwise while remaining level to the
+This movement is achieved by reducing or ground. The yaw movement is caused by the fact
+raising the rear and front propeller speeds, as well that the rearfront propellers rotate counter-
+as increasing and decreasing the right-left couple clockwise while the right-left propellers rotate
+speed. In terms of the z-axis, this causes a torque, clockwise (figure 12). As a result, when the overall
+which causes the quadcopter to rotate counter- torque is uneven, the quad-copter twists on itself,
+as previously stated. When hovering, the overall quadrotor sketch, Figure 12 depicts the yaw
+vertical thrust is the same; hence, this movement movement.
+only results in a yaw angle acceleration. On a
+PID: The PID controller's purpose is to reduce
+PID stands for Proportional, Integral, and "error," which is the difference between a measured
+Derivative, and it's a feature of flight controller value (gyro sensor measurement) and a desired set-
+software that receives sensor data and determines point (the desired rotation speed). The "error" can
+how fast the motors should spin to keep the aircraft be reduced by changing the control inputs in each
+rotating at the proper speed. loop, which are the motor speeds.
+DOI: 10.35629/5252-040611371146 Impact Factor value 7.429 | ISO 9001: 2008 Certified Journal Page 1140
+
+=== PAGE 5 ===
+International Journal of Advances in Engineering and Management (IJAEM)
+Volume 4, Issue 6 June 2022, pp: 1137-1146 www.ijaem.net ISSN: 2395-5252
+The P term, I term, and D term are the three values point owing to wind, it will spool up motors to
+in a PID controller: compensate.
+ "P" is a prediction of future errors – it looks at
+how fast you are approaching a set-point and PID Tuning:
+counteracts P when it is getting close to minimise PID tuning can be broken down into three parts:
+overshoot. measurement, set-point, and error.
+ "D" is a prediction of present errors – it looks at  Sensors on an FPV drone, such as the gyro,
+how far you are from the set-point and measure what's going on, such as how rapidly
+counteracts P when it is getting close to minimise the drone rotates.
+overshoot.  The ideal condition of the system is the set-
+ "I" represents the sum of previous errors; it point, which specifies how fast the drone
+considers forces that occur over time; for should rotate.
+example, if a quad wanders away from a set-
+ The disparity between measurement and set- trying to get a golf ball into the hole (set-point).
+point is referred to as error. Every time you hit the ball, it may go too far or too
+short (mistake), but perhaps it will grow closer.
+A drone's PID system basically seeks to reduce You keep doing it until you get it.
+inaccuracy by determining how quickly each motor PID tuning is similar to refining your golf skills so
+should spin. that you can get the golf ball into the hole with the
+Playing golf is a less accurate but understandable fewest possible strikes.
+analogy I frequently employ. PID's job is akin to
+DOI: 10.35629/5252-040611371146 Impact Factor value 7.429 | ISO 9001: 2008 Certified Journal Page 1141
+
+=== PAGE 6 ===
+International Journal of Advances in Engineering and Management (IJAEM)
+Volume 4, Issue 6 June 2022, pp: 862-866 www.ijaem.net ISSN: 2395-5252
+Looptime: values has a variety of effects on a quadcopter's
+The entire process from the PID controller reading behaviour.
+sensor input to computing the output is referred to
+as a "loop." Modern racing drone flight controls Gain (P)
+can perform thousands of "loops" every second. The amount of effort put in by the flight controller
+The amount of time it takes the FC to complete a to correct errors and attain the desired fly path is
+loop is referred to as "looptime." The looptime can measured in P gain (i.e. where the pilot wants the
+be measured in milliseconds, however it's more quad to go by moving the transmitter sticks).
+customary to use Hz. Consider the following Consider it a sensitivity and responsiveness control.
+scenario: The quick response given by a large P gain can
+ A loop that lasts one second is equal to one even make it appear as if your rates have increased.
+cycle per second, or 1Hz. In general, a larger P gain indicates stronger control,
+while a lower P gain indicates softer control.
+ A loop that lasts 1 millisecond (0.001 second)
+If P is set too high, the quadcopter will become
+equals 1 kHz.
+overly sensitive and will overcorrect, resulting in
+overshoots and high-frequency oscillations.
+Flight controllers that can achieve 8KHz looptime
+You can drop P to reduce oscillations, but if you do
+are currently relatively popular, and some can even
+so too much, your quadcopter will become sloppy.
+do 32KHz looptime. However, whether faster is
+better or not is a lengthy debate. Many people
+I Obtain
+choose to remain with8KHz or even lower
+The I term dictates how hard the FC tries to
+looptime since there are benefits and drawbacks to
+maintain the drone's attitude in the face of external
+achieving 32KHz.
+influences like wind and CG drift.
+Consider it the rigidity of your quadcopter's stall
+The Effect of Each PID Parameter:
+action and how well it maintains its attitude.
+The Effect of Each PID Parameter: Changing PID
+The default I gain in Betaflight works nicely on unwanted "stiffness" to our quads when using high
+most configurations. However, if you observe any I gain, Beta flight added a new feature called "Anti
+drifting that isn't caused by a user instruction, raise Gravity." In a word, it allows you to cruise with a
+it. When I is too low, you may find yourself having lesser I gain and only enhance your I gain when
+to use your sticks a lot more to alter the quad's punching out.
+flying direction, especially if the throttle is active.
+Gain (D)
+When I gain is set too high, your quadcopter will D gain acts as a damper, reducing the over-
+become unduly confined, becoming stiff and correction and overshoots that P gain causes.
+unresponsive. It's the same as having a slower Adding D gain can "soften" and counteract the
+reaction time and a smaller P gain. In extreme oscillations created by high P gain, as well as
+circumstances, excessive I gain might result in a minimise propwash oscillations, similar to how a
+low frequency oscillation. shock absorber keeps the suspension from
+becoming bouncy.
+Another problem I've discovered that I can address When D is too low, your quad will have terrible
+or better is "throttle dips." bounce-backs at the conclusion of a flip or roll, and
+propwash oscillations in vertical descents will be
+Because no two ESCs, motors, or propellers are harsher.
+exactly the same in the real world, they will Although increasing D gain can help with these
+produce varying degrees of thrust even when issues, a high D value can cause vibration in your
+spinning in the same air. When you punch out and quadcopter by amplifying the noise in the system.
+instantly lower your throttle, one motor may raise This will eventually cause motor overheating and
+and decrease RPM more quickly than the others, quad oscillation. This article describes why a
+causing an undesired dip movement. drone's vibration can be caused by too much D
+gain.
+To "repair" these minor flaws in the flight
+performance, raise I gain. To avoid introducing A decrease in the quad's responsiveness is another
+DOI: 10.35629/5252-040686286600 Impact Factor value 7.429 | ISO 9001: 2008 Certified Journal Page 1142
+
+=== PAGE 7 ===
+International Journal of Advances in Engineering and Management (IJAEM)
+Volume 4, Issue 6 June 2022, pp: 862-866 www.ijaem.net ISSN: 2395-5252
+adverse effect of too much D increase; this effect is commonly described as "mushy."
+VI. BLOCK DIAGRAM
+Inner Loop Outer Loop
+To operate, an autopilot drone requires at least two The outer loop will act as a drone pilot,
+layers of control. sending/generating commands to the drone to get
+The inner loop stabilises the drone at the proper from point A to point B. It will also compute the
+pace or instant, and it regulates all of the drone's shortest path required to get to that location by
+motions required to fly or stay in the air. analysing various sensor data. This is the drone's
+decision-making brain.
+regulates and controls the speed of an electric
+ Why Not perform stabilization on flight motor. It may also be capable of motor reversing
+computer and dynamic braking. In electrically driven radio
+• The speed of the flight computer is not controlled models, miniature electronic speed
+controllers are used.
+guaranteed to be continuous.
+• Dedicated single task microcontroller for
+VII. CONTROLLER/IC
+stabilisation ensures safe operation at all times
+• Flight computer prone to freezing/crashing A) KK 2.1.5 Multi rotor Flight Control
+Board
+ESC:
+An ESC is an electronic circuit that
+• Size: 50.5mm x 50.5mm x 12mm • Auto-level: Yes
+• Weight: 21 gram (Inc. Piezo buzzer) • Input Voltage: 4.8-6.0V
+• IC: Atmega644 PA • AVR interface: standard 6 pin.
+• Gyro/Acc: 6050MPU • Signal from Receiver: 1520us (5 channels)
+DOI: 10.35629/5252-040686286600 Impact Factor value 7.429 | ISO 9001: 2008 Certified Journal Page 1143
+
+=== PAGE 8 ===
+International Journal of Advances in Engineering and Management (IJAEM)
+Volume 4, Issue 6 June 2022, pp: 862-866 www.ijaem.net ISSN: 2395-5252
+• Signal to ESC: 1520us • Firmware Version 1.6
+B) Flight computer STM32 :
+ STM32F401CC in UFQFPN48 • Bluetooth LE over SPI
+package
+ ARM® 32-bit Cortex®-M4 MCU with FPU
+VIII. IMPLEMENTATION
+ 84MHz max MCU frequency
+• To provide drones with a destination point
+ VDD from 1.7 V to 3.6 V
+• Viewing the drone's camera view
+ 256 KB FLASH
+• Tracking the drone's progress to its
+ 64 KB SRAM
+destination
+ General Purpose Timers
+ Watchdog Timers (2) We also completed the hardware simulation
+ On board sensors: (ROS + VREP).
+• 3D Accelerometer and 3D Gyroscope:
+Choosing components:
+LSM6DSL
+Since we're developing an autopilot drone,
+• 3D Magnetometer: LIS2MDL
+the first thing it should do is fly, we'll need to find
+• MEMS Pressure sensor: LPS22HD appropriate propellers and motors to provide the
+• 2 User LEDS necessary torque. As a result, we initially computed
+• USART/UART (1) the approximate weight of our drone by taking into
+• I2C (1) account the following component weights:
+component Weight quantity Total
+in gm weight
+BLDC 60 4 240
+motors
+(1400KV)
+LIPO 200 1 200
+Battery
+frame 600 1 600
+DOI: 10.35629/5252-040686286600 Impact Factor value 7.429 | ISO 9001: 2008 Certified Journal Page 1144
+
+=== PAGE 9 ===
+International Journal of Advances in Engineering and Management (IJAEM)
+Volume 4, Issue 6 June 2022, pp: 862-866 www.ijaem.net ISSN: 2395-5252
+propellers 3.5 4 14 ~ =
+15
+Flite controller 50 2 100
++flite
+computer
+ESC 35 4 140
+Total = 1300 gm
+As a result, every general-purpose drone may As a result, we should consider propellers that
+require some additional mountings, therefore based create 2000/4(4 propellers) 500gm thrust to lift our
+on an approximate weight of 700 gm, our ultimate drone.
+drone weight became 2000 gm = 2kg. Selection of Propellers:
+The above chart from reference [9] and above
+calculations we can confirm that the propeller of Frame selection:
+size 10*5 is best as we have propeller of 10*5 that means diameter
+of 10 inch and pitch of 5 inch by considering
+BLDC motor selection: clearance of 2 inch
+From above calculations of propeller we require  10+1=11inch
+minimum rpm of 7985 ~ =8000+1000=9000 and as As 1 inch = 2.54cm
+we have battery of 11.1V as we are considering 9V  12*2.54=27.94 cm
+as output
+So we need minimum of 28 cm gap in between
+KV rating for BLDC=9000/9=1000 KV adjacent propellers
+As we require minimum of 1000 KV rating we are We can get this specification in F540 Quadcopter.
+approximating it at 1400KV
+IX. LIST OF COMPONENTS
+DOI: 10.35629/5252-040686286600 Impact Factor value 7.429 | ISO 9001: 2008 Certified Journal Page 1145
+
+=== PAGE 10 ===
+International Journal of Advances in Engineering and Management (IJAEM)
+Volume 4, Issue 6 June 2022, pp: 862-866 www.ijaem.net ISSN: 2395-5252
+REFERENCES
+[1] https://oscarliang.com/quadcopter-pid-
+explained-tuning/
+[2] https://cfdflowengineering.com/working-
+principle-and-components-of-drone
+[3] https://docs.zephyrproject.org/2.2.0/boards/ar
+m/st eval_fcu001v1/doc/index.html
+[4] https://images-eu.ssl-images-
+amazon.com/images/I/A1ARsJv12aS.pdf
+[5] Hamza, M.; Jehangir, A.; Ahmad, T.; Sohail,
+DOI: 10.35629/5252-040686286600 Impact Factor value 7.429 | ISO 9001: 2008 Certified Journal Page 1146

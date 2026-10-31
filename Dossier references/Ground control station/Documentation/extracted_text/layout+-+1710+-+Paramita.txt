@@ -1,0 +1,549 @@
+=== PAGE 1 ===
+Journal of Electrical and Electronic Engineering-UMSIDA
+ISSN 2460-9250 (print), ISSN 2540-8658 (online)
+Vol. 9, No. 2, October 2025
+10.21070/jeeeu.v9i2.1710
+A Real-Time IoT-Integrated Ground Control
+Station (GCS) for Unmanned Aerial Vehicle
+(UAV) Monitoring System
+Paramita Eka Wahyu Lestari1*, Mohamad Ridwan2, Ridzki Fadillah Ramadhan3, Faridatun Nisfa4
+1,2,3,4 Telecommunication Engineering Study Program, Electronic Engineering Polytechnic Institute of Surabaya, Indonesia
+1mita@pens.ac.id
+2 ridwan@pens.ac.id
+3 ridzkifadillah@te.student.pens.ac.id
+4faridatunnisfa@te.student.pens.ac.id
+Abstract_ Conventional Ground Control Stations (GCS) for UAVs are often platform-bound (PC-only or
+Android apps), creating installation overhead and constraining mobility. This work introduces a browser-native,
+web-based GCS that runs across devices without prior installation and ingests MAVLink telemetry from a
+RadioLink Mini Pix V1.0 flight controller via 433 MHz UART radio telemetry, then streams decoded data to the
+UI over websocket/JSON. The system visualizes attitude (yaw, pitch, roll/IMU), GPS position and mapping,
+compass bearing, altitude, and flight status in real time, with user authentication and a structured landing/login
+flow. In controlled tests, the application delivered stable live visualization and accurate mapping during a 100
+m out-and-back flight, with reported coordinates matching the route. Link-budget characterization across 95,
+100, 180, 190, and 240 m showed the expected RSSI degradation with distance and a pronounced dip at 190 m,
+a practical safe range of ~100 m was identified where signal strength stayed >50% with low interference.
+Compared with PC or Android-based GCS, the proposed approach improves accessibility (zero-install, multi-
+device) and operational flexibility, while maintaining reliable real-time telemetry for mission monitoring.
+Keywords: UAV; Website; Telemetry; IMU; Flight Control; Real-time
+I. INTRODUCTION Previous research by Heimsch et al. [5]
+developed a PC-based GCS capable of integrating
+An Unmanned Aerial Vehicle (UAV) is an weather data at UAV flight sites and displaying no-fly
+aircraft that operates without a pilot on board and is zones on the system map. Weather data were provided
+controlled remotely through radio signals, allowing to help users assess flight risks, while no-fly zone
+flight operations to be conducted from a distance visualization served as a reference for UAV pilots.
+[1][2]. To ensure safety and efficiency, UAVs are Based on these considerations, this study proposes the
+commonly monitored using a Ground Control Station design of a web-based GCS that provides real-time
+(GCS), a software application that provides real-time monitoring of UAV telemetry data through a browser
+flight data. Currently, the most widely used and interface. To ensure security and multi-user
+continuously developed GCS is Mission Planner from capability, the system includes a login mechanism
+Ardupilot, which can only be operated on a Personal with unique tokens and stores monitoring data in a
+Computer (PC) or laptop. This dependency restricts cloud-based database.
+operator mobility and requires a stable power supply
+[3][4]. II. METHODS
+These limitations highlight the need for GCS
+solutions that can also run on alternative platforms The methodology employed in this study
+such as Android or web-based systems, enabling more focuses on the design and implementation of an
+flexible and user-friendly access [4]. Based on this "Internet of Things (IoT)-based Monitoring System"
+background, the proposed solution in this study is to for Unmanned Aerial Vehicles (UAVs). This
+design a website-based GCS application. Choosing implementation is carried out through several steps in
+the website as a platform makes the system accessible accordance with the research implementation
+from anywhere via an internet connection, without methodology. In the first stage, before designing and
+requiring prior installation, and usable across multiple working on the research, a literature study was
+devices.
+conducted by searching and finding references in
+109
+
+=== PAGE 2 ===
+Journal of Electrical and Electronic Engineering-UMSIDA
+ISSN 2460-9250 (print), ISSN 2540-8658 (online)
+Vol. 9, No. 2, October 2025
+10.21070/jeeeu.v9i2.1710
+advance with the aim of gaining knowledge and REST API architecture was designed to transfer UAV
+insight into the things that will be used in building this telemetry (IMU and GPS) from the desktop unit to the
+system, as shown in Figure 3, which is a diagram of a web server. The backend of the web GCS is
+simple Unmanned Aerial Vehicle (UAV) monitoring developed using Node.js, where telemetry data are
+system in general, where the Unmanned Aerial stored in a PostgreSQL database. The frontend is built
+Vehicle (UAV) is flown and controlled by a Remote with Vue.js, a JavaScript framework for creating the
+Control (RC). The Unmanned Aerial Vehicle (UAV) user interface, enabling real-time UAV flight data to
+can be monitored during flight through data obtained be displayed in any modern web browser without
+from the Inertial Measurement Unit (IMU) sensors installation. For comparison, Figure 2 shows the
+(yaw, pitch, and roll), barometer sensors, and Global Ground Control Station (GCS) Mission Planner
+Positioning System (GPS) sensors. The Desktop application, which represents the conventional PC-
+Ground Control Station (GCS) can obtain flight data based approach still widely used in UAV operations.
+from the Unmanned Aerial Vehicle (UAV) through a
+radio telemetry communication device, and the [Figure 2 about here.]
+Ground Control Station (GCS) unit can obtain flight
+data from the Unmanned Aerial Vehicle (UAV) using 2.2 UAV Hardware
+a websocket communication protocol with JavaScript 2.2.1 The UAV airframe
+Object Notation (JSON) data format. The Unmanned Aerial Vehicle (UAV) used in
+this research is a Quadcopter X-type, which employs
+[Figure 1 about here.] four main rotors in a cross configuration, as shown in
+Figure 3. The X-type quadcopter forms an “X” shape,
+2.1 System Design with adjacent rotors spinning in opposite directions:
+In Figure 1, the overall system architecture rotors 1 and 2 rotate counter-clockwise (CCW), while
+consists of three main components. The airborne unit rotors 3 and 4 rotate clockwise (CW). The detailed
+(UAV X Quadcopter), the desktop-based Ground technical specifications of the quadcopter are
+Control Station (GCS), and the web-based GCS presented in Table 1.
+developed in this study, which together handle
+communication and monitoring functions. [Figure 3 about here.]
+The UAV employs a Mini Pix V1.0 flight
+controller as its microcontroller, integrating multiple [Table 1 about here.]
+sensors: the Inertial Measurement Unit (IMU) for
+attitude data (yaw, pitch, roll), a barometer for 2.2.2 Flight Controller (FC) Specifications
+altitude, and a Global Positioning System (GPS) for The flight controller component used in the
+flight location and mapping. A Remote Control (RC) Unmanned Aerial Vehicle (UAV) for this project is the
+transmitter and receiver module enables manual UAV Mini Pix v1.0, as it is capable of operating an X-type
+operation. Flight data from these sensors are first quadcopter, is equipped with various supporting
+collected by the flight controller, which performs a sensors, and supports additional functionality through
+data packing process to convert raw, unstructured the Micro Air Vehicle Link (MAVLink) protocol, as
+measurements into structured telemetry packets shown in Figure 4.
+following the Micro Air Vehicle Link (MAVLink)
+protocol. These structured packets allow real-time [Figure 4 about here.]
+data transmission and visualization.
+Communication between the UAV and the The Mini Pix v1.0 is powered by an STM32F4
+desktop GCS unit is established using 433 MHz radio microcontroller with a 168 MHz CPU frequency.
+telemetry, selected because it natively supports Both CPU frequency and memory capacity strongly
+MAVLink message transmission. On the desktop influence the performance of the Micro Air Vehicle
+GCS, the incoming MAVLink packets undergo a Link (MAVLink) protocol. A higher CPU frequency
+parsing process, in which a dedicated parsing library accelerates the execution of MAVLink-related
+extracts and converts the structured telemetry data processes without affecting the primary flight control
+into meaningful values. Sensor units are processed for functions of the UAV. Likewise, larger memory
+visualization by converting radian to degree (IMU capacity supports handling MAVLink’s relatively
+yaw, pitch, roll), millimeter to meter (barometer large data packets efficiently, ensuring smooth
+altitude), and standard GPS coordinate formatting. operation without interfering with other flight control
+This ensures that UAV flight data can be displayed tasks.
+accurately in the desktop interface.
+To extend functionality to the web-based GCS, 2.2.3 Global Positioning System (GPS)
+real-time communication between the desktop GCS Specifications
+and the web unit is implemented using websockets. A The Global Navigation Satellite System (GNSS)
+110
+
+=== PAGE 3 ===
+Journal of Electrical and Electronic Engineering-UMSIDA
+ISSN 2460-9250 (print), ISSN 2540-8658 (online)
+Vol. 9, No. 2, October 2025
+10.21070/jeeeu.v9i2.1710
+module GG-1802 was selected as the GPS component are products from 3D Robotics (3DR). This product
+for this project, as it offers a good balance of size, consists of an Air module connected to the flight
+power consumption, and accuracy for UAV controller on the Unmanned Aerial Vehicle (UAV)
+applications, as shown in Figure 5. via a Universal Asynchronous Receiver-Transmitter
+(UART) Serial RX/TX, and a Ground module
+[Figure 5 about here.] connected to the Ground Control Station (GCS) via a
+Universal Serial Bus (USB) port.
+The module achieves a Circular Error Probable
+(CEP) of 2.5 meters under standard conditions, [Figure 7 about here.]
+meaning that 50% of position measurements fall This Radio Telemetry Module from 3D Robotics
+within a 2.5-meter radius of the true location. When (3DR) uses Time-Division Duplexing (TDD)
+integrated with Satellite-Based Augmentation communication, which means that it alternates
+Systems (SBAS) such as WAAS, EGNOS, MSAS, or between receiving and transmitting modes at the same
+GAGAN, the accuracy improves to 2.0 meters CEP. time. The mode change occurs very quickly and in a
+In addition, the module has a maximum sensitivity of very short period of time, so it appears to be running
+–167 dBm, enabling reliable satellite signal reception full-duplex communication. This module can be
+even in weak-signal environments, thereby enhancing configured with the configuration tool provided by 3D
+performance across diverse operating conditions. Robotics (3DR).
+2.2.4 Micro Air Vehicle Link (MAVLink) 2.3.2 Design of MAVLink Message Parsing
+Micro Air Vehicle Link (MAVLink) is a The parsing of Micro Air Vehicle Link
+communication protocol specifically designed for (MAVLink) messages is designed to transform
+communication between unmanned systems, incoming telemetry packets into usable values for the
+including Unmanned Aerial Vehicles (UAVs). Micro Ground Control Station (GCS). The results of this
+Air Vehicle Link (MAVLink) is used by most flight process provide sensor data that can be visualized and
+controllers on the market [6]. A Ground Control updated in the desktop GCS application. To obtain
+Station (GCS) must be able to use the Micro Air actual sensor readings, the GCS must correctly parse
+Vehicle Link (MAVLink) protocol to receive MAVLink messages according to the type of sensor
+telemetry from Unmanned Aerial Vehicles (UAVs). installed on the UAV.
+Micro Air Vehicle Link (MAVLink) is a message- In this research, the system implements
+based protocol, so it has specific identifiers. These MAVLink version 2.0, as illustrated in the flowchart
+identifiers include the sender's identity and the type of shown in Figure 8. The parsing procedure begins by
+data being transmitted. checking for the MAVLink message header (STX), as
+Micro Air Vehicle Link (MAVLink) version 2.0 presented in Figures 8 and 9. If the STX header is
+is the recommended version for new implementations. detected, the GCS proceeds with parsing; otherwise,
+The implementation of Micro Air Vehicle Link the process terminates and restarts. Once successfully
+(MAVLink) 2.0 is backward-compatible, meaning it parsed, the MAVLink packets are stored and used by
+can still receive Micro Air Vehicle Link (MAVLink) the GCS for subsequent functions such as real-time
+1.0. Micro Air Vehicle Link (MAVLink) 2.0 adds a monitoring and data updates.
+message signature to prevent data tampering, ensuring
+the integrity of messages when received by the [Figure 8 about here.]
+Ground Control Station (GCS). Figure 4 shows the
+message format of the Unmanned Aerial Vehicle [Figure 9 about here.]
+(MAVLink) 2.0, which has a total length of 11–279
+bytes. The Unmanned Aerial Vehicle (MAVLink) 2.0 This parsing design ensures that structured
+message consists of named sections to indicate the telemetry including IMU values (yaw, pitch, roll),
+function of the values within each section. GPS coordinates, and altitude can be reliably
+extracted from raw MAVLink packets and integrated
+[Figure 6 about here.] into the GCS interface for continuous UAV
+monitoring.
+2.3 Communications
+2.3.1 Radio Telemetry Universal Asynchronous 2.4 Sensor Data Visualization Design
+Receiver/Transmitter (UART) Sensor data visualization design is done to
+Radio telemetry communication media is display data from sensors installed on Unmanned
+implemented using radio frequency modules whose Aerial Vehicles (UAV) in the form of moving
+spectrum falls within the Industrial, Scientific, and animations or status icons.
+Medical (ISM) band. In the field of Unmanned Aerial
+Vehicles (UAVs), the radio devices commonly used 2.4.1 Inertial Measurement Unit (IMU) Sensor
+111
+
+=== PAGE 4 ===
+Journal of Electrical and Electronic Engineering-UMSIDA
+ISSN 2460-9250 (print), ISSN 2540-8658 (online)
+Vol. 9, No. 2, October 2025
+10.21070/jeeeu.v9i2.1710
+Data Visualization (Attitude) decoded from the MAVLink message. After division
+Attitude data is a set of data with Yaw, Pitch, and by 107, the values are used to display the UAV's real-
+Roll components obtained after the Flight Controller time position. If the UAV remains connected, the
+processes the InertialMeasurement Unit (IMU) system continues to update the coordinates with each
+sensor. Attitude data in the aeronautical field is a new MAVLink message. otherwise, the visualization
+representation of the rotation of the Unmanned Aerial process ends and can be restarted for the next session.
+Vehicle (UAV) in three dimensions relative to the
+Unmanned Aerial Vehicle (UAV). In Figure 10 an 2.5 Application Programming Interface (API)
+Unmanned Aerial Vehicle (UAV) is presented with An Application Programming Interface (API) is
+the Roll component being the rotation on the X-axis a set of protocols that enable applications to
+(side-to-side), the Pitch component being the rotation communicate, such as between a Ground Control
+on the Y-axis (front-to-back), and the Yaw Station (GCS) and a GPS application. API
+component being the rotation on the Z-axis (left-to- development allows access without changing the
+right/right-to-left). main code or database, and facilitates communication
+between different platform systems [8]. Research by
+[Figure 10 about here.] Gumelar et al. developed a web server-based GCS
+that can connect to UAVs via the internet without
+The attitude data of the Unmanned Aerial transmitter range limitations [9]. The system consists
+Vehicle (UAV) is initially in radians, ranging from -π of two units: a flying unit with a Raspberry Pi,
+to π. To visualize this data on the Graphical User modem, webcam, and ADAHRS module for UAV
+Interface (GUI), it must be converted into degrees data detection [9] [10], and a GCS unit that receives
+using the formula: data via the internet and modem. Data is received,
+𝐷𝑒𝑟𝑎𝑗𝑎𝑡 =𝑟𝑎𝑑𝑖𝑎𝑛 180° (1) processed, and displayed on the interface [11] [12].
+π Representational State Transfer Protocol (REST)
+This results in UAV attitude data in degrees,
+is a web service development method that emphasizes
+with a range of -180° to 180°. For accurate
+simplicity and uses existing features in the Hypertext
+representation on the artificial horizon, simple input
+Transfer Protocol (HTTP) to obtain resources when
+of Pitch and Roll data may result in incorrect
+using the web service. REST API connects
+visualizations. To correct this, rotational and
+applications and databases using data in JSON format,
+translational transformations are applied using a
+chosen for its high performance and stability. REST
+mathematical formula to calculate the endpoint
+uses the HTTP protocol with four main methods: GET
+coordinates (P(x,y)) based on the Roll angle and the
+(retrieve data), POST (send data), PUT (replace data),
+starting point coordinates. The formula for the
+and DELETE (delete data) [13] [14].
+rotation is:
+𝑃(𝑥,𝑦)=(𝑂𝑥×cos(𝑅𝑜𝑙𝑙))
+III. RESULTS AND DISCUSSION
+−𝑂𝑦×sin(𝑅𝑜𝑙𝑙),𝑂𝑥×sin(𝑅𝑜𝑙𝑙)
++𝑂𝑦×𝑐𝑜𝑠(𝑅𝑜𝑙𝑙)) (2)
+System testing was conducted to determine the
+For example, with Pitch = 60° and Roll = 45°, the effectiveness of the system developed based on the
+transformation provides new coordinates (P(x,y)) for ideas proposed in this study. If the system did not meet
+the visualization of the Inertial Measurement Unit expectations, the factors causing the system to fail
+(IMU) sensor. Using the formula, the new values (- could be identified.
+42.42, 42.42) are derived, which are then used for 3.1 Testing the communication distance of the
+accurate IMU sensor visualization. Universal Serial Bus (USB) Universal
+Asynchronous Receiver-Transmitter (UART)
+[Figure 11 about here.] telemetry.
+The Received Signal Strength Indicator (RSSI)
+2.4.2 Visualization of Global Positioning System measurement method is used to indicate the strength of
+(GPS) Coordinates the signal received by the receiving device using a
+GPS coordinates, consisting of latitude and laptop and the 3drradioconfig application software as
+longitude, are received from the UAV via the the receiver (RX) from the transmitting device (TX). In
+MAVLink protocol and initially range in tens of telemetry communication distance testing, the
+millions (107). To obtain the correct GPS values, the Received Signal Strength Indicator (RSSI) value is
+coordinates are divided by 107. For example, a measured at distances of 95 meters, 100 meters, 180
+latitude value of 71234567 becomes 7.1234567° after meters, 190 meters, and 240 meters between the TX
+conversion. These corrected values are then used to and RX devices. Factors influencing the measurement
+plot the UAV’s position on a map as a location of the Received Signal Strength Indicator (RSSI)
+marker. include the distance from the transmitter, physical
+The process begins when the GPS data is
+112
+
+=== PAGE 5 ===
+Journal of Electrical and Electronic Engineering-UMSIDA
+ISSN 2460-9250 (print), ISSN 2540-8658 (online)
+Vol. 9, No. 2, October 2025
+10.21070/jeeeu.v9i2.1710
+obstacles such as walls, noise, and interference. The displays include roll and pitch sensors that produce
+Received Signal Strength Indicator (RSSI) value is an artificial horizon visualization, an altitude
+measured in decibel-milliwatts (dBm). The test was sensor that displays a needle to indicate altitude,
+conducted to determine the maximum distance that can and a compass sensor for east, west, south, and
+be reached for Universal Serial Bus (USB) Universal north navigation. If the communication medium
+Asynchronous Receiver-Transmitter (UART) for the 433 MHz telemetry radio receiver (RX)
+telemetry communication media. The distance for a module on the Ground Control Station (GCS) is
+single communication medium is considered not connected via the (COM&LPT) port, the value
+maximum if the Received Signal Strength Indicator table will be empty with the message “N/A,” and
+(RSSI) value is greater than 50% [9] [15]. Distance navigation displays such as the artificial horizon,
+testing was conducted by measuring the Received compass, and altitude will not appear.
+Signal Strength Indicator (RSSI) value using the 3DR 3.3 Testing the mapping of the Unmanned Aerial
+Radio Config software. The remote RSSI indicates Vehicle (UAV) on the Ground Control Station
+UAV telemetry data (TX), while the local RSSI (GCS) website application.
+indicates GCS telemetry data (RX). Remote noise and The test was conducted using an Unmanned Aerial
+local noise are each interpreted as interference (TX) Vehicle (UAV) that moved from the starting point,
+and (RX). The data collected is the average RSSI value which was the Ground Control Station (GCS), and then
+at 5 different positions for the GCS (RX) and UAV moved 100 meters away. After that, the UAV returned
+(TX), which remain stationary, conducted on the to the starting point of the GCS, producing a mapping
+rooftop of the Smart Automation Workshop (SAW) display that corresponded to the movement of the
+building, PENS, 12th floor. Distance measurements UAV, which was depicted by blue lines that can be
+were taken using Google Maps. seen in Figure 14.
+Test results show that the Received Signal
+Strength Indicator (RSSI) value decreases as the [Figure 17 about here.]
+distance between the transmitter (TX) and receiver
+(RX) increases, can be seen in Figure 12 and optimal Figure 12 shows the latitude and longitude values
+value in Table 2. at the UAV location, namely -7.4570198,
+112.6911898, which confirms the accuracy of the
+[Figure 12 about here.] UAV location point. Proof of the accuracy of the
+Unmanned Aerial Vehicle (UAV) location points can
+[Table 2 about here.] be found in Figure 13.
+3.2 Testing the operation of the Ground Control [Figure 18 about here.]
+Station (GCS) website application.
+The landing page of the Ground Control Station Visualization of UAV altitude data facilitates
+(GCS) website application is equipped with several monitoring with a needle display, while yaw sensor
+buttons and displays. The login button is used for users data is visualized in the form of bearings. The compass
+who already have an account, the sign in button is for sensor display shows the maximum number of
+users who do not yet have an account and want to rotations, which is 360 degrees, returning to 0.
+register, and the get start button allows users to directly Distance measurements are made using Google Maps,
+access the login menu. If the landing page is scrolled starting from the GCS position and measured up to a
+down, the features of the GCS website application will distance of 100 meters. Data transmitted by the Global
+appear, such as map view, flight view, and Inertial Positioning System (GPS) module indicates the UAV's
+Measurement Unit (IMU) statistics data, as shown in location corresponding to the recorded coordinates.
+Figures 13-16.
+IV. CONCLUSION
+[Figure 13 about here.]
+This research developed a web-based Ground
+[Figure 14 about here.] Control Station (GCS) capable of monitoring UAV
+telemetry in real time across multiple devices. The
+[Figure 15 about here.] main contribution is the demonstration that a
+browser-native GCS can provide platform
+[Figure 16 about here.] independence, simultaneous multi-user access, and
+zero-installation deployment, offering greater
+In the flight view menu, the map display flexibility compared to existing PC-based or
+shows the position of the Unmanned Aerial Android-based solutions.
+Vehicle (UAV) along with a table of latitude, The findings indicate that the system performs
+longitude, altitude, and bearing values. Additional reliably within an optimal operational range of about
+113
+
+=== PAGE 6 ===
+Journal of Electrical and Electronic Engineering-UMSIDA
+ISSN 2460-9250 (print), ISSN 2540-8658 (online)
+Vol. 9, No. 2, October 2025
+10.21070/jeeeu.v9i2.1710
+100 m, where RSSI remains above the stability air-to-air for unmanned aerial vehicle-enabled
+threshold and visualization of IMU and GPS data is wireless communication. Drones, 8(11), 677.
+accurate. Nonetheless, the research has several doi: 10.3390/drones8110677
+limitations. Tests were restricted to a single 433 MHz [9] Gumelar, A., Rachmawati, N., Tenka, N.,
+telemetry channel and a maximum distance of 240 m, Firdaus, V., Al-Harits, M., Araska, S., &
+making results site-specific. In addition, the Syambas, N. (2022). Design and implementation
+visualization module focused only on core flight data of UAV remote control and monitoring in cloud
+without extended telemetry support. infrastructure for IoT services. Proceedings of the
+2022 International Conference on
+Future work should include longer-range
+Telecommunication Systems Services and
+experiments in varied environments, integration of
+Applications (TSSA), 1–5.
+adaptive communication technologies, expanded
+doi: 10.1109/TSSA56819.2022.100638
+sensor data visualization, and stronger security
+[10] Nugroho FA, Sumiharto R, Hujja RM.
+mechanisms for multi-user access. These
+Pengembangan Sistem Ground Control Station
+improvements will strengthen the system’s
+Berbasis Internet Webserver pada Pesawat Tanpa
+applicability for broader UAV operations.
+Awak. Indonesian Journal of Electronics and
+Instrumentation Systems. 2018;8(1):1.
+REFERENCES
+doi:10.22146/ijeis.30126.
+[11] Kilic, F., Hassan, M., & Hardt, W. (2024).
+[1] Rachmawati, P., & Asyam, M. H. (2021). Sistem
+Prototype for multi-UAV monitoring–control
+kontrol pesawat tanpa awak untuk menentukan
+system using WebRTC. Drones, 8(10), 551. doi:
+waypoint berbasis Ardupilot. Quantum Teknika:
+10.3390/drones8100551.
+Jurnal Teknik Mesin Terapan, 2(2), 80–86. doi:
+[12] Wahid AN. Pemetaan Tambal Ban dan Toko Ban
+10.18196/jqt.v2i2.11490
+Dalam Maps Berbasis Aplikasi Android. 2021.
+[2] Mohsan, S.A.H., Othman, N.Q.H., Li, Y. et al.
+Accessed: May 28, 2024. Available:
+(2023). Unmanned aerial vehicles (UAVs):
+https://repository.uksw.edu//handle/123456789/2
+practical aspects, applications, open challenges,
+7297
+security issues, and future trends. Intel Serv
+[13] Ortiz, G., Boubeta-Puig, J., Criado, J., Corral-
+Robotics 16, 109–137. doi: 10.1007/s11370-022-
+Plaza, D., Garcia-de-Prado, A., Medina-Bulo, I.,
+00452-4
+& Iribarne, L. (2022). A microservice architecture
+[3] Bachtiar, M. M., Ardilla, F., & Felinanda, A. A.
+for real-time IoT data processing: A reusable Web
+(2019). Android application design as Ground
+of Things approach for smart ports. Computer
+Control Station (GCS) and waypoint navigation
+Standards & Interfaces, 81, 103604. doi:
+in Unmanned Aerial Vehicle (UAV). Proceedings
+10.1016/j.csi.2021.103604.
+of the International Electronics Symposium (IES
+[14] Ehsan, A., Abuhaliqa, M. A. M. E., Catal, C., &
+2019): Role of Techno-Intelligence in Creating an
+Mishra, D. (2022). RESTful API testing
+Open Energy System Toward Energy
+methodologies: Rationale, challenges, and
+Democracy, 299–306. doi:
+solution directions. Applied Sciences, 12(9),
+10.1109/ELECSYM.2019.8901596.
+4369. doi: 10.3390/app12094369.
+[4] Laghari, A. A., Jumani, A. K., Laghari, R. A., &
+[15] Behjati, M., Nordin, R., Zulkifley, M. A., &
+Haque, N. (2023). Unmanned aerial vehicles: A
+Abdullah, N. F. (2022). 3D global path planning
+review. Cognitive Robotics, 3, 8–22. doi:
+optimization for cellular-connected UAVs under
+10.1016/j.cogr.2022.12.004.
+link reliability constraint. Sensors, 22(22), 8957.
+[5] Heimsch, D., Speckmaier, M., Gierszewski, D.,
+doi: 10.3390/s22228957
+Schwaiger, F., Mbikayi, Z., & Holzapfel, F.
+(2024). Development and implementation of a
+mission data-handling algorithm for an automatic
+flight guidance system. Aerospace, 11(2), 115. *Corespondent e-mail address mita@pens.ac.id Peer
+doi: 10.3390/aerospace11020115 reviewed under reponsibility of Electronic Engineering
+[6] Hu L, et al. (2021). ‘CloudStation:’ A Cloud- Polytechnic Institute of Surabaya, Indonesia
+Based Ground Control Station for Drones. IEEE
+Journal on Miniaturization for Air and Space © 2025 Muhammadiyah University Sidoarjo, All right
+reserved, This is an open access article under the CC BY
+Systems;1(1):36–42.
+license(http://creativecommons.org/licenses/by/4.0/)
+doi:10.1109/JMASS.2020.3027520.
+[7] Putra HI. Desain Antar Muka Ground Control
+Received: 01-08-2025
+Station untuk Komunikasi dan Monitoring UAV
+Accepted: 10-10-2025
+Berbasis Android dan Desktop. Surabaya; 2022. Published: 31-10-2025
+[8] Duangsuwan, S., & Jamjareegulgarn, P. (2024).
+Exploring ground reflection effects on received
+signal strength indicator and path loss in far-field
+114
+
+=== PAGE 7 ===
+Journal of Electrical and Electronic Engineering-UMSIDA
+ISSN 2460-9250 (print), ISSN 2540-8658 (online)
+Vol. 9, No. 2, October 2025
+10.21070/jeeeu.v9i2.1710
+LIST OF TABLE
+Table 1. QuadCopter Specifications ................................................................................................................... 116
+Table 2. Optimal Value of Received Signal Strength Indicator (RSSI) and Noise testing at distances of 95
+meters, 100 meters, 180 meters, 190 meters, and 240 meters ............................................................................. 116
+115
+
+=== PAGE 8 ===
+Journal of Electrical and Electronic Engineering-UMSIDA
+ISSN 2460-9250 (print), ISSN 2540-8658 (online)
+Vol. 9, No. 2, October 2025
+10.21070/jeeeu.v9i2.1710
+Table 1. QuadCopter Specifications
+Specifications QuadCopter
+Body Frame Type X with Diagonal Wheelbase 450 mm
+Weight 800 grams
+Drivers a) 4 x Brush-Less Direct Current (BLDC) Motor
+2212/920KV
+b) 4 x 30A Electronic Speed Controller (ESC)
+c) 2x (9 x 6 CW and CCW blades)
+Battery 3S Lithium Polymer (Li-Po) 4200 mAh
+Electric 5V Voltage Regulator
+Flight Controller Mini Pix V1.0
+Remote Control FlySky i-A6B 2.4 GHz
+Receiver
+Table 2. Optimal Value of Received Signal Strength Indicator (RSSI) and Noise testing at distances of 95
+meters, 100 meters, 180 meters, 190 meters, and 240 meters
+Jarak RSSI Remote Tx RSSI Lokal Rx Noise Remote Tx Noise Local Rx
+(meter) (dBm) (dBm) (dBm) (dBm)
+95 89 88 62 69
+100 83 81 62 55
+180 67 83 54 65
+190 10 79 8 72
+240 32 78 27 69
+116
+
+=== PAGE 9 ===
+Journal of Electrical and Electronic Engineering-UMSIDA
+ISSN 2460-9250 (print), ISSN 2540-8658 (online)
+Vol. 9, No. 2, October 2025
+10.21070/jeeeu.v9i2.1710
+LIST OF FIGURES
+Figure 1. System Block Diagram ........................................................................................................................ 118
+Figure 2. Ground Control Station (GCS) Mission Planner Application ............................................................. 118
+Figure 3. QuadCopter tipe X .............................................................................................................................. 118
+Figure 4. Flight Controller Mini Pix .v1.0 .......................................................................................................... 119
+Figure 5. Global Positioning System (GPS) GNSS GG-1802 ............................................................................ 119
+Figure 6. Micro Air Vehicle Link (MAVLink) 2.0 message format................................................................... 119
+Figure 7. A pair of 3D Robotics (3DR) 433 MHz Radio Telemetry Modules ................................................... 119
+Figure 8. Flowchart of Micro Air Vehicle Link (MAVLink) Message Parsing ................................................. 120
+Figure 9. Example of a Micro Air Vehicle Link (MAVLink) 2.0 Message ....................................................... 120
+Figure 10. Three axes of rotation on an Unmanned Aerial Vehicle (UAV) ....................................................... 120
+Figure 11. (a) Poor; and (b) Correct Visualization ............................................................................................ 120
+Figure 12. Graph showing the results of Received Signal Strength Indicator (RSSI) and Noise testing at
+distances of 95 meters, 100 meters, 180 meters, 190 meters, and 240 meters .................................................... 121
+Figure 13. Landing Page Menu Display ............................................................................................................. 121
+Figure 14. Map View Display ............................................................................................................................ 121
+Figure 15. Inertial Measurement Unit (IMU) Data Menu Display ..................................................................... 121
+Figure 16. Flight View Menu Display ................................................................................................................ 122
+Figure 17. Results of Mapping the movement of Unmanned Aerial Vehicles (UAVs) ..................................... 122
+Figure 18. Latitude and Longitude of -7.4574515, 112.6942047 ....................................................................... 122
+117
+
+=== PAGE 10 ===
+Journal of Electrical and Electronic Engineering-UMSIDA
+ISSN 2460-9250 (print), ISSN 2540-8658 (online)
+Vol. 9, No. 2, October 2025
+10.21070/jeeeu.v9i2.1710
+Figure 1. System Block Diagram
+Figure 2. Ground Control Station (GCS) Mission Planner Application
+Figure 3. QuadCopter tipe X
+118
+
+=== PAGE 11 ===
+Journal of Electrical and Electronic Engineering-UMSIDA
+ISSN 2460-9250 (print), ISSN 2540-8658 (online)
+Vol. 9, No. 2, October 2025
+10.21070/jeeeu.v9i2.1710
+Figure 4. Flight Controller Mini Pix .v1.0
+Figure 5. Global Positioning System (GPS) GNSS GG-1802
+Figure 6. Micro Air Vehicle Link (MAVLink) 2.0 message format
+Figure 7. A pair of 3D Robotics (3DR) 433 MHz Radio Telemetry Modules
+119
+
+=== PAGE 12 ===
+Journal of Electrical and Electronic Engineering-UMSIDA
+ISSN 2460-9250 (print), ISSN 2540-8658 (online)
+Vol. 9, No. 2, October 2025
+10.21070/jeeeu.v9i2.1710
+Figure 8. Flowchart of Micro Air Vehicle Link (MAVLink) Message Parsing
+Figure 9. Example of a Micro Air Vehicle Link (MAVLink) 2.0 Message
+Figure 10. Three axes of rotation on an Unmanned Aerial Vehicle (UAV)
+(a)………………………………………….……(b)
+Figure 11. (a) Poor; and (b) Correct Visualization
+120
+
+=== PAGE 13 ===
+Journal of Electrical and Electronic Engineering-UMSIDA
+ISSN 2460-9250 (print), ISSN 2540-8658 (online)
+Vol. 9, No. 2, October 2025
+10.21070/jeeeu.v9i2.1710
+Figure 12. Graph showing the results of Received Signal Strength Indicator (RSSI) and Noise testing at
+distances of 95 meters, 100 meters, 180 meters, 190 meters, and 240 meters
+Figure 13. Landing Page Menu Display
+Figure 14. Map View Display
+Figure 15. Inertial Measurement Unit (IMU) Data Menu Display
+121
+
+=== PAGE 14 ===
+Journal of Electrical and Electronic Engineering-UMSIDA
+ISSN 2460-9250 (print), ISSN 2540-8658 (online)
+Vol. 9, No. 2, October 2025
+10.21070/jeeeu.v9i2.1710
+Figure 16. Flight View Menu Display
+Figure 17. Results of Mapping the movement of Unmanned Aerial Vehicles (UAVs)
+Figure 18. Latitude and Longitude of -7.4574515, 112.6942047
+122

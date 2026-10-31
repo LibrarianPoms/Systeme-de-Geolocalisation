@@ -1,0 +1,67 @@
+=== PAGE 1 ===
+GROUND
+CONTROL STATION
+T HE FUTURE OF
+DRONE OPERATIONS
+
+=== PAGE 2 ===
+T HE FUTURE OF
+DRONE OPERATION
+Meet the future of uncrewed flight. As drones become more
+autonomous, ground control stations must evolve from piloting
+platforms to mission orchestration systems. Honeywell is leading
+the way with a GCS that seamlessly integrates airspace coordination,
+real-time data management and autonomous mission control.
+THE FUTURE OF GROUND CONTROL STATION TECHNOLOGY
+The European Union’s
+Honeywell is helping to define the future of ground control station (GCS) technology
+for larger drones. With regulatory advancements in drone operations, operators need
+SESAR 3 Joint
+scalable ground control stations that can serve as control hubs for remote pilots in
+command. Honeywell’s ground control station addresses the needs of both current and Undertaking identified
+future operations, ensuring that our GCS is suitable for any level of UAS operations.
+ground control stations
+The Federal Aviation Administration (FAA) and the European Union Aviation Safety
+Agency (EASA) are actively working to enable beyond visual line of sight (BVLOS) drone as a key enabling
+operations. BVLOS capabilities are revolutionizing the commercial drone industry and
+technology in the
+generating substantial opportunities for commercial operators across various sectors.
+transition from piloted
+Honeywell is ready to help its customers capitalize on those opportunities with new
+advanced air mobility (AAM) technologies, including GCS platforms that meet the
+to automated flights.
+specific needs of operators for low- to high-risk operations.
+Honeywell is leading
+We are applying our extensive domain expertise in BVLOS operations, including satellite
+communications, to field a scalable, aviation-grade GCS that enables safe, autonomous the OperA (Operate
+and integrated drone operations for commercial, defense, and AAM missions.
+Anywhere) project
+THE IMPACT OF DRONE AUTONOMY
+for SESAR 3.
+The Honeywell GCS equips operators with the necessary tools to monitor missions,
+ensuring operational safety and regulatory compliance. Designed to meet the highest
+industry standards, our GCS is fully compliant with SAIL III operations requirements.
+The Honeywell GCS is:
+• Flexible and scalable, with options ranging from a single station to a centralized
+operations center with multiple stations, depending on your needs.
+• User-friendly to reduce operator workload and minimize errors.
+• Designed with open architecture to integrate easily with existing systems and
+services.
+• Fully compatible with U-space / UTM service providers to enable logistics and air
+traffic management support.
+• Rich in autonomy features and as decision-support tools.
+
+=== PAGE 3 ===
+GCS – M:1 CONCEPT
+Honeywell Ground Control Station (GCS) is your all-in-one solution for executing
+comprehensive drone missions. Engineered for versatility and efficiency, our GCS
+empowers drone operators and OEMs to seamlessly manage both simple and
+complex BVLOS operations, ensuring optimal performance and safety in every flight.
+For More Information
+To find out more about Honeywell’s Ground Control Station Technologies,
+please visit us online at _____ or contact us at ______
+Honeywell Aerospace Technologies
+1944 East Sky Harbor Circle
+Phoenix, AZ 85034
+N61-3340-000-000 | 10/25
+aerospace.honeywell.com © 2025 Honeywell International Inc.

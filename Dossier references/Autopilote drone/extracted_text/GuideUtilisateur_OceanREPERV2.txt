@@ -1,0 +1,477 @@
+=== PAGE 1 ===
+Guide utilisateur du drone hydrographique de surface
+Océan REPER V2
+Benoît Audet
+Sous la supervision de Willian Ney Cassol
+Printemps 2025
+1
+
+=== PAGE 2 ===
+Guide utilisateur du drone hydrographique de surface 1
+1. Choix de design 3
+1.1 Mécanique 3
+1.2 Électrique 4
+2. Liste des pièces 5
+2.1 Mécanique 5
+2.2 Électrique 7
+3. Circuit imprimé (PCB) 10
+3.1 Commande 10
+3.2 Assemblage 12
+3.2.1 Soudure des pièces 13
+3.2.2 Montage des modules 14
+3.2.3 Câblage 16
+4. Boîte imperméable 19
+4.1 Mécanique 19
+4.2 Électrique 23
+5. Structure générale 26
+5.1 Préparation des pièces 26
+5.2 Assemblage 28
+6. Logiciel 33
+Annexe 1 : Outils recommandés 35
+Annexe 2 : Téléchargement des fichiers pour impression 3D 36
+Annexe 3 : Boîtier à module RF (optionnel) 37
+Annexe 4 : Modification du PCB 38
+2
+
+=== PAGE 3 ===
+1. Choix de design
+La deuxième version du drone hydrographique de surface comporte des modifications
+majeures par rapport à la version précédente (Océan REPER V1). La mécanique et
+l’électrique ont particulièrement été retravaillés. Le logiciel a été revu, mais comporte
+les fonctionnalités originales.
+1.1 Mécanique
+Un des objectifs importants de la nouvelle version du drone est de faciliter la
+fabrication. Au lieu de l’usage de pièces soudées et pliées, une attention particulière
+a été portée à simplifier les étapes d’assemblage. D’abord, les pièces mécaniques
+sont toutes accessibles “off the shelf”. Également, aucune étape de fabrication ne
+nécessite de l’équipement spécialisé (ex. soudure mécanique).
+Les choix de design principaux au niveau de la mécanique sont les suivants :
+● Une structure principale en extrudés d’aluminium
+→
+modularité, modifications faciles des dimensions, fixation de pièces,
+assemblage robuste, coût d’achat initial raisonnable
+● Des bouées utilisées normalement comme stabilisateurs de canot
+→
+étape de fabrication complexe évitée
+● Des pièces plus complexes imprimées en 3D
+→
+production et remplacement facile
+● Des écrous papillons modifiées pour la fixation de pièces modulaires
+→
+fixation manuelle sans outil
+Écrou papillon modifié Extrudé d’aluminium
+3
+
+=== PAGE 4 ===
+1.2 Électrique
+Au niveau de l’électrique du drone, un objectif crucial était de faciliter l’assemblage du
+circuit électrique. Pour y arriver, un circuit imprimé est utilisé. Celui-ci limite le filage et
+d’autres défis d’assemblage électroniques. Toutes les composantes soudées peuvent
+être assemblées manuellement ou à la production par le fabricant du circuit imprimé.
+Voici les autres choix de design au niveau de l’électrique :
+● Un interrupteur d’alimentation accessible de l’extérieur
+→
+accessibilité
+● Des connecteurs extérieurs pour les moteurs
+→
+modularité
+● Des antennes de communication radio fixées à l’extérieur
+→
+plus grande portée
+● Deux batteries de perceuse disposées en parallèle
+→
+meilleure autonomie
+● Des fusibles ajustés aux valeurs de courant du système
+→
+protection du système
+● Des borniers à vis comme connecteurs internes
+→
+facilité d’assemblage
+Circuit imprimé
+4
+
+=== PAGE 5 ===
+2. Liste des pièces
+La plupart des pièces qui ont été utilisées dans l’assemblage du drone ont été
+commandées en ligne (sur Amazon.ca). Si le lien d’achat fourni dans le tableau n’est
+plus disponible, il est possible de se fier à la description de la pièce pour en acheter
+une équivalente. Le coût unitaire indiqué est approximatif.
+2.1 Mécanique
+Description Nombre Coût unitaire Lien d’achat
+(approximatif)
+Extrudés d’aluminium 3030, 1 mètre 4 35 $ https://www.amazon.ca/dp/B0BX
+NLTR2Z
+Rondelles isolantes en nylon M8, 1 10 $ https://www.amazon.ca/dp/B01M
+paquet de 100 ZZLCR6
+Kit d’accessoires de montage pour 1 40 $ https://www.amazon.ca/dp/B0CLX
+extrudés 3030 XZXKY
+Écrous papillon M8, paquet de 20 1 15 $ https://www.amazon.ca/dp/B07QF
+6ZZX3
+Vis à tête hexagonal M8 60 mm, 1 20 $ https://www.amazon.ca/dp/B0CJB
+paquet de 10 622JQ
+Kit de washers 1 15 $ https://www.amazon.ca/dp/B00C
+R8ZRBA
+Vis à tête hexagonale 6.35 mm x 38 1 10 $ https://www.amazon.ca/dp/B0D31
+mm BGHV4
+Bobine de filament PLA 2 25 $ https://www.amazon.ca/dp/B0BM
+4F65SL
+Inserts M3, paquet de 100 1 15 $ https://www.amazon.ca/dp/B0CS6
+VZYL8
+Boulon T 8 mm 3030, paquet de 20 1 20 $ https://www.amazon.ca/dp/B0CG
+4WCW6L
+Boitier étanche 33.9 cm x 29.5 cm x 1 70 $ https://www.amazon.ca/dp/B07SP
+15.2 cm SVX7Q
+Tie wraps 203 mm x 3.55 mm, paquet 1 10 $ https://www.amazon.ca/-
+de 300 /fr/dp/B0BV2DT9SJ
+Kit d’entretoises M2, M3, M4 1 25 $ https://www.amazon.ca/dp/B013Z
+WM1F6
+Vis à tête hexagonal M6 40 mm, 1 20 $ https://www.amazon.ca/dp/B097N
+paquet de 40 W244C
+Kit de vis M3 1 15 $ https://www.amazon.ca/dp/B01M
+Z3TWAF
+5
+
+=== PAGE 6 ===
+Kit de vis M2 M3 M4 M5 1 30 $ https://www.amazon.ca/dp/B0DH
+SJ9FND
+Braquette de montage pour moteurs 2 12 $ https://bluerobotics.com/store/thru
+T200 sters/t100-t200-thrusters/t100-p-
+bracket-r1/
+Stabilisateurs de canot, modèle 1 330 $ https://canotslegare.com/catalogu
+ajustable e/equipements/accessoires/sousc
+ategories/soliditequalitatif/constru
+ctioncoque/poidsqualitatif/stabilite
+qualitatif/capacite/manoeuvrabilite
+qualitatif/vitessequalitatif/construct
+ionpale/constructionmanche/size/
+duo-flo/300-599/color/2495
+Kit de passe-fils 1 15 $ https://www.amazon.ca/Plastic-
+Waterproof-Adjustable-Protectors-
+Yesallwas/dp/B07L4MPXKN
+Kit d’O-Rings 1 10 $ https://www.amazon.ca/Arcjunys-
+Rubber-Assortment-Plumbing-
+Automotive/dp/B0DKJ5TKH8
+Vis ¾”-10 UNC, 2” (paquet de 10) 1 25 $ https://www.amazon.ca/Hard-
+Find-Fastener-014973255053-10-
+Piece/dp/B00OHUAAZO
+Plaques de poids 5 Lb (paquet de 2), 1 30$ https://www.canadiantire.ca/fr/pdp
+trou de 2 pouces /disque-olympique-12-cotes-cap-
+barbelle-recouvert-de-
+caoutchouc-2-5-lb-paq-2-
+1840925p.1840926.html?rq=cap+
+strength&colorCode=PRODUCT_
+WEIGHT_LB_AMT_10_lb
+Velcro autocollant 1 5$ https://www.amazon.ca/-
+/fr/EILKBLA-auto-agrippantes-
+adh%C3%A9sif-puissant-
+montage/dp/B0DFCN752Q
+6
+
+=== PAGE 7 ===
+2.2 Électrique
+Description Nombre Coût unitaire Lien d’achat
+(approximatif)
+Connecteurs à panneau circulaires 2 20 $ https://www.amazon.ca/dp/B0CK
+mâle et femelle 25A MG5PQQ
+Interrupteur à batterie 200A 1 20 $ https://www.amazon.ca/dp/B0BB
+RZ5BVM
+Écran LCD avec adaptateur I2C 20x4 1 20 $ https://www.amazon.ca/dp/B07TX
+GD3WS
+Kit de terminaux électriques M4, M5, 1 25 $ https://www.amazon.ca/dp/B01E3
+M6, M8 RTTHU
+Câbles d’extension d’antenne RP- 1 15 $ https://www.amazon.ca/-
+SMA, paquet de 2 /fr/dp/B081BGQQXC
+Hub USB à long fil 1 15 $ https://www.amazon.ca/dp/B07V
+MRB7XN
+Fil électrique 14 AWG, 3m rouge, 3m 1 15 $ https://www.amazon.ca/dp/B07C
+noir WW2CB9
+Adaptateurs USB à 90 degrés mâle 1 15 $ https://www.amazon.ca/dp/B0BR
+vers femelle, paquet de 2 (gauche et GRB4CT
+droite)
+Raspberry Pi 4 modèle B, 2Gb de 1 90 $ https://www.amazon.ca//dp/B07T
+RAM D42S27
+Carte micro SD 128 Go 1 20 $ https://www.amazon.ca/dp/B08XQ
+7R3GC
+Câble micro HDMI vers HDMI 1 15 $ https://www.amazon.ca/dp/B07KS
+DB25X
+Module d’auto-pilote Pixhawk 6C + 1 330 $ https://holybro.com/products/pixha
+GPS M8N + PM07 wk-6c?variant=43005243982013
+Manette FlySky FS-i6x + Fs-iA6B 1 85 $ https://www.amazon.ca/FLYSKY-
+Transmitter-Controller-Receiver-
+Upgrade/dp/B07Z8VCB45/
+Kit de télémétrie RFD 900x 1 330 $ https://irlock.com/products/rfd900x
+-modem-bundle
+Moteur T200 2 290 $ https://bluerobotics.com/store/thru
+sters/t100-t200-thrusters/t200-
+thruster-r2-rp/
+Blue Robotics Basic ESC 2 55 $ https://bluerobotics.com/store/thru
+sters/speed-controllers/besc30-r3/
+Batteries de perceuse 5Ah 20V 1 83 $ https://www.amazon.ca/%E3%80
+7
+
+=== PAGE 8 ===
+(paquet de 2) %902-Pack-DCB206-
+Replacement-Batteries-
+Compatible/dp/B0CHVV9XBM
+Réceptacle de batterie 20V 2 15 $ https://www.amazon.ca/RVBOAT
+PAT-Battery-Adapter-Converters-
+Connectors/dp/B0CBBQ4R9Y
+Sonar Ping2 + USB to TTL Serial + 1 670 $ https://bluerobotics.com/store/son
+micro USB-USB-A ars/echosounders/ping-sonar-r2-
+rp/
+Thermomètre étanche DS18B20 1 10 $ https://www.amazon.ca/DS18B20-
+Waterproof-Temperature-
+Stainless-
+Adjustable/dp/B0CVXCDQ8M
+Module GPS USB 1 25 $ https://www.amazon.ca/Geekstory
+-Antenna-Supports-GLONASS-
+Compatible/dp/B07ZR8R17Q
+Câbles femelles à femelle Dupont 1 8 $ https://www.amazon.ca/MERQC-
+40PIN-Dupont-Female-
+Jumper/dp/B0CHY3GDF2
+Câble plat femelle à mâle (40P) 1 10 $ https://www.amazon.ca/MakerSpo
+t-Breadboard-Jumper-Female-
+Ribbon/dp/B0B33RTPFC
+Kit de fusibles 1 8 $ https://www.amazon.ca/Standard-
+Assortment-Automotive-Trucks-
+Accessories/dp/B00ODDKGV8
+Connecteur style Wago, 6 ports 1 15$ https://www.amazon.ca/-
+(paquet de 30) /fr/connecteurs-levier-compacts-
+assembler-
+conducteur/dp/B09TPB66K2
+Disque dur SSD 1 To 1 130$ https://www.coopzone.ca/produit/
+1450473-disque-ssd-kingston-
+xs1000-1to-usb-c-a-32-gen-2
+Bouton poussoir imperméable 1 15$ https://www.amazon.ca/-
+/fr/momentan%C3%A9e-
+sur%C3%A9lev%C3%A9e-
+interrupteur-d%C3%A9marrage-
+changement/dp/B07S3FHJB3
+8
+
+=== PAGE 9 ===
+Le tableau ci-dessous liste les pièces soudées sur le circuit imprimé. Il est également
+possible de les faire souder à la production du circuit imprimé par le fabricant. Au
+moment de la commande, les quantités minimales exigées par LCSC seront sûrement
+supérieures à ce qui est indiqué dans le tableau.
+Nom de pièce Description Code Quantité Coût unitaire
+LCSC minimale (approximatif)
+XL2596S-5.0E1 Convertisseur step-down 5V 3A C74190 1 0.42 $
+1N5821RLG Diode 3A Schottky C9119 1 0.45 $
+XF-508P-A-B Support à fusible DIP-4 C197273 3 0.21 $
+04
+P125-1220A0BS116A1 Pin headers mâle 2.54mm C191905 1 0.15 $
+2x20P 12
+35YXJ330M10X12.5 Condensateur électrolytique C88771 1 0.10 $
+330uF 35V
+178MU0010 Condensateur céramique 1uF C563243 1 0.02 $
+50V 4
+DB125-2.54-3P-GN-S Connecteur terminal 2.54mm 3P C918121 1 0.26 $
+KM477M035G17RR0V Condensateur électrolytique C2064 1 0.07 $
+H2FP0 470uF 35V
+SLT050125T330MUB Inductance circulaire 33uH 4A C326011 1 0.23 $
+MF1/4W-1KΩ±1%T52 Résistance 1kΩ 250mW C713997 1 0.006 $
+MF1/4W-4.7KΩ±1% T Résistance 4.7kΩ 250mW C119339 1 0.01 $
+TZ-L2- LED 5mm rouge C779438 1 0.02 $
+05YYBR2TDJ30-001
+HB-PH3- Pin headers mâle 2.54mm 1x4P C633219 1 0.01 $
+25414PB2GOP 7
+XT60-F Connecteur XT60 mâle C98734 1 0.34 $
+9
+
+=== PAGE 10 ===
+3. Circuit imprimé (PCB)
+Pour cette nouvelle version du drone, un circuit imprimé a été conçu. Il est nécessaire
+de le faire produire en Chine et de l’assembler. ATTENTION : la version du PCB
+montré dans les photos est 2.1, tandis que celui présent dans les fichiers de fabrication
+est 2.2. La version 2.2 comporte des modifications mineures qui seront expliquées
+plus loin.
+3.1 Commande
+Il est recommandé de commander le PCB chez JLCPCB. Le coût de production est
+très faible, mais le coût de livraison varie beaucoup selon le temps d’expédition désiré.
+Commencez par télécharger les fichiers de production ici :
+https://drive.google.com/file/d/1uJeOrRC7FQ7W7IxIArMXROPgNRp6zjMc/view?usp
+=sharing
+Téléversez ensuite le dossier compressé dans l’interface de JLCPCB et choisissez
+les paramètres de la capture d’écran à la page suivante.
+Il est important de noter que la quantité minimale de commande est de 5 circuits
+imprimés. C’est très commun chez les fabricants de PCB. Il est aussi possible de faire
+assembler les pièces à souder par le fabricant. Consultez la section suivante si c’est
+désiré :
+Option d’assemblage à la fabrication
+10
+
+=== PAGE 11 ===
+Commande recommandée du circuit imprimé chez JLCPCB
+11
+
+=== PAGE 12 ===
+3.2 Assemblage
+Pour ce qui est de l’assemblage du PCB, il y a une portion de soudure à faire ainsi
+qu’une portion de montage mécanique à réaliser. Voici une vue d’ensemble du PCB
+non assemblé et une vue des pièces soudées.
+Vue de dessus
+Vue de dessous
+12
+
+=== PAGE 13 ===
+Montage des pièces soudées
+3.2.1 Soudure des pièces
+Assurez-vous d’avoir de la pratique avant de souder les pièces sur le PCB. Ce ne sont
+pas des pièces difficiles à souder, mais les composantes restent fragiles.
+Consultez les photos plus bas pour savoir où souder chaque pièce. ATTENTION :
+Comme expliqué plus haut, cette version est légèrement différente. Fiez-vous aussi à
+la capture d’écran plus haut avec les pièces en rendu 3D. Il y a un connecteur vert
+supplémentaire à droite. Il substitue la connexion du fil rouge sur le dessous du PCB
+que vous pourrez voir plus bas. Il y a également la rangée de 40 pins à souder au-
+dessus du connecteur jaune.
+Tenez compte des écritures blanches sur le PCB, elles indiquent très souvent
+comment installer la pièce. On peut y voir la valeur de capacitance ou de résistance
+associée à certaines pièces.
+13
+
+=== PAGE 14 ===
+Vue de dessus d’un PCB assemblé
+Vue de dessous d’un PCB assemblé
+14
+
+=== PAGE 15 ===
+3.2.2 Montage des modules
+Au niveau du montage des modules, encore une fois, fiez-vous aux images plus haut.
+Voici les trois méthodes de montage :
+Standoffs XXX
+Tie-wraps XXX
+Directement vissé XXX
+Méthodes de montage
+Pour les standoffs, il faut procéder de la manière suivante (dessus vers dessous) : vis
+→ partie femelle du standoff → partie mâle du standoff → PCB → écrou
+Choisissez la longueur de standoff selon la hauteur minimale que le module doit avoir
+par rapport au PCB. Choisissez une largeur de vis maximale par rapport à ce que les
+trous de fixation du module permettent.
+Pour les tie-wraps, il suffit d’en passer un dans les ouvertures dédiées du PCB et de
+le refermer. Par souci d’esthétique, il est préférable de placer la boucle vers le dessous
+du PCB (voir photo plus haut)
+Pour les modules vissés directement, sélectionnez une largeur de vis qui convient aux
+trous de fixation, consultez les photos de référence.
+15
+
+=== PAGE 16 ===
+3.2.3 Câblage
+Suivez les photos plus bas pour faire le câblage du PCB. Voici les connexions
+générales :
+Module de télémétrie (voir photo) → Pixhawk (TELEM1)
+Module PWM (2) → Blue Robotics ESC de droite
+Module PWM (4) → Blue Robotics ESC de gauche
+Module RC (PPM/CH1) → PixHawk (PPM/SBUS RC)
+Pixhawk (GPS1, caché dans la photo) → Antenne GPS
+Pixhawk (I/O PWM OUT) → Module PWM (connecteur principal)
+Module d’alimentation (PWR1) → Pixhawk (POWER1)
+Câblage du module de télémétrie Câblage du module PWM
+Câblages équivalents du module RC
+16
+
+=== PAGE 17 ===
+Câblage du Pixhawk Câblage du module l’alimentation
+Pour les connecteurs de la batterie, des ESCs (contrôleurs de moteur) et de
+l’interrupteur principal, il faut couper les fils à la longueur désirée, et ensuite
+compresser les connecteurs au bout. Dénudez le bout du fil, placez le connecteur, et
+compressez-le jusqu’à ce qu’il soit fixe au bout du fil. La compression peut se faire
+avec une pince à sertir ou avec une pince standard.
+Pour l’écran LCD, utilisez les câbles femelles à femelle Dupont pour connecter les
+pins correspondants. Vérifiez que le nom de chaque pin correspond entre le
+connecteur mâle du PCB et celui du LCD.
+Pour le Raspberry Pi, utilisez le câble plat femelle à femelle comme celui de la liste de
+pièces. Les photos de montage montrent un autre câble maison. Pour utiliser un câble
+générique comme recommandé, il suffit d’orienter la connexion comme le montre la
+photo plus bas. Bref, la droite du connecteur du Raspberry Pi doit être connectée au
+bas du connecteur du PCB.
+Pour l’interrupteur fixé dans la paroi de la boîte, il faut s’adapter à la topologie de
+l’interrupteur. Pour celui identifié dans la liste de pièce, il suffit que de raccorder deux
+fils aux borniers à vis du PCB, et aux borniers à vis de l’interrupteur. Celui visible dans
+les photos a des pins à souder, ce qui a été effectué.
+17
+
+=== PAGE 18 ===
+Connexion du câble ruban du Raspberry Pi
+Finalement, il faut placer une pièce imprimée en 3D entre les supports à batterie et le
+circuit imprimé. C’est le fichier shim_batt.stl. Fiez-vous aux photos plus haut pour
+l’assemblage.
+Pièce de séparation entre les supports à batterie et le PCB
+18
+
+=== PAGE 19 ===
+4. Boîte imperméable
+4.1 Mécanique
+Percez trois trous dans le fond de la boîte pour que celui à l’arrière soit centré de façon
+horizontale, et pour que ceux à l’avant soient sur une même ligne horizontale. Le
+positionnement général n’est pas très important comme les extrudés d’aluminium
+permettent une fixation n’importe où sur leur longueur.
+Pour l’antenne GPS, il y a deux pièces à faire imprimer en 3D :
+shim_batt_top shim_batt_top
+Commencez par insérer les inserts M3. Utilisez un fer à souder pour chauffer chaque
+insert jusqu’à ce qu’ils soient au même niveau que la surface.
+19
+
+=== PAGE 20 ===
+Placement des inserts
+Vissez ensuite l’antenne GPS sur le dessus de la plaque, dans les inserts.
+Vue de dessus Vue de dessous
+Insérez des inserts dans la plaque du bas de la même façon que ce qui a été fait pour
+la plaque du haut. Placez des boulons en T comme indiqué sur les photos, et vissez
+ensuite la plaque du bas à partir de l’intérieur en ayant percé au préalable. Percez un
+trou suffisamment gros en bas à droite de la pièce pour installer un passe-fil.
+Choisissez un passe-fil ayant une ouverture suffisamment grande pour laisser passer
+20
+
+=== PAGE 21 ===
+le câble du GPS et son connecteur. Une fois que le câble est passé à travers, serrez
+le passe-fil pour le rendre étanche.
+Vue de dessus Vue de dessous
+Boulon en T Fixation de la pièce du bas
+Pour fixer l’antenne, il suffit de superposer les deux pièces 3D et de les serrer
+ensemble avec deux écrous papillon modifiés (voir la photo Vue de dessus). Pour
+assembler un écrou papillon, il suffit de coller avec de la super colle un écrou standard
+dans la pièce 3D nut_cap. Assurez-vous que la flèche du dessus de l’antenne pointe
+vers l’avant du bateau. Pour le support temporaire à antenne GPS, collez simplement
+la pièce sup_transport_antenna sur le côté de la boîte.
+21
+
+=== PAGE 22 ===
+nut_cap Assemblage d’un écrou papillon modifié
+Orientation de l’antenne GPS une fois installée
+sup_transport_antenna Disposition du support temporaire d’antenne
+22
+
+=== PAGE 23 ===
+4.2 Électrique
+Tout d’abord, le PCB doit être fixé à ses quatre coins dans le couvercle de la boîte.
+Faites attention de ne pas visser trop fort pour éviter d’endommager les trous de
+fixation de la boîte.
+Fixation pour le PCB
+Percez ensuite des trous dans la boîte pour fixer les deux antennes, les deux
+connecteurs de moteur, l’interrupteur principal, l’interrupteur de contrôle et les deux
+passe-fils. Leur disposition précise importe peu, assurez-vous simplement de les
+placer sur la même paroi qu’indiqué.
+Portion inférieure de la boîte
+23
+
+=== PAGE 24 ===
+Installez chacune des pièces en les serrant sur la paroi. Pour les connecteurs de
+moteur, vous n’avez qu’à visser les fils de moteur dénudés dans chaque connecteur
+mâle et femelle. Pour le connecteur femelle interne, utilisez du fil de calibre 14 pour
+raccorder les borniers à vis des connecteurs aux fils des contrôleurs de moteur (bleu,
+vert, blanc). Vous avez le choix de souder des fils continus entre les contrôleurs de
+moteur et les connecteurs, ou plutôt d’utiliser des connecteurs style Wago (comme
+dans la photo plus haut).
+Intérieur du connecteur mâle de moteur
+Derrière de la boîte (notez les deux connecteurs de moteur en bleu et les deux
+passe-fils pour le capteur de température et pour le sonar)
+24
+
+=== PAGE 25 ===
+Côté gauche de la boîte Côté droit de la boîte
+Finalement, fixez avec du Velcro le disque dur SSD et le hub USB. Connectez les
+prises USB du mini GPS, du sonar et du disque dur dans le hub USB. Connectez
+ensuite le port USB du hub dans le connecteur à 90 degrés. Insérez ce connecteur
+dans une des prises USB supérieures du Raspberry Pi (voir les photos).
+25

@@ -1,0 +1,268 @@
+=== PAGE 1 ===
+1 / 11
+Solutions de géolocalisation
+Gestion des activités mobiles
+REM – ATHMO
+Chemin des Vernèdes – Espace Vernèdes 7 – 83480 PUGET sur ARGENS
+Tél. : 04 83 12 00 06 e-mail : contact@athmo.eu www.athmo.eu
+
+=== PAGE 2 ===
+2 / 11
+ATHMO, VOTRE PARTENAIRE
+Présentation
+ATHMO est spécialisée dans l’ingénierie informatique dédiée à l’univers du ATHMO c'es t :
+transport : gestion des activités mobiles et du personnel roulant et/ou
+✔ Un réseau commercial national
+sédentaire.
+présent en France et au Maghreb
+ATHMO est animée par une équipe de développeurs en informatique,
+spécialisée depuis plus de 20 ans dans l’activité du transport routier. Elle est à
+✔ Une équipe de développeurs
+l’origine du robot de dépôt/recherche de fret sur le serveur minitel Lamy au
+compétente et réactive
+début des années 1990 puis du logiciel de lecture des disques tachygraphes,
+par scanner de bureau, commercialisé par VDO KIENSLE puis SIEMENS VDO
+sous le nom KISCAN dans 15 pays d’Europe.
+✔ Des formations multimédia et
+multisupport
+ATHMO vous propose aujourd’hui une gamme complète de solutions allant de
+la géolocalisation à l’exploitation et l’archivage des données des
+chronotachygraphes. Quelle que soit la taille de votre entreprise et votre ✔ Un réseau national d'installateurs
+activité, vous trouverez le produit le mieux adapté à vos besoins.
+✔ Un service d'assistance reconnu
+pour sa grande qualité
+Ils nous font confiance :
+Groupe GÉODIS, AIR FRANCE, groupe SERVAIR, groupe
+CHATEAUD'EAU, Groupe UNICOR, Groupe FIVE NORDON,
+Groupe BRENNTAG, BBL, ABADIE, DE PETRICONI,
+Groupe FILAC, TPDM, BRULAS TRANS UNI, RAMOND, ...
+Et plus de 600 entreprises en Europe
+
+=== PAGE 3 ===
+3 / 11
+ATHMO OPTIMISE VOTRE ACTIVITE
+POURQUOI S’EQUIPER ?
+1- AUGMENTER LA PRODUCTIVITE
+Augmentation du nombre d'interventions journalières.
+Amélioration de la ponctualité.
+Amélioration de la réactivité.
+Amélioration de la gestion de l’activité des hommes et des dépenses.
+Amélioration de la gestion du parc des véhicules et de l’entretien des véhicules.
+Diminution des kilomètres, de la consommation (carburant, pneus, etc), et du dégagement de CO2.
+Diminution des coûts d’exploitation (heures supplémentaires, etc.).
+Amélioration de votre image auprès de vos clients.
+2- SECURISER
+Amélioration de la sécurité et du confort des conducteurs.
+Protection des véhicules, des marchandises et du carburant, contre le vol.
+
+=== PAGE 4 ===
+4 / 11
+POSITEL : PRINCIPE DE FONCTIONNEMENT
+système de géolocalisation
+1 2 3 4
+Positel, installé dans un véhicule, Positel transmet régulièrement Les données sont stockées dans Connecté à Positel MAP,
+enregistre les coordonnées GPS les données qu'il a enregistré au Positel MAP et sont prêtes à être l'utilisateur voit les positions
+ainsi que les données techniques serveur sécurisé Positel MAP, consultées et traitées en temps géographiques des véhicules,
+(date/jour/heure, contact, vitesse, par le réseau GSM/GPRS réel depuis n’importe quel peut échanger des messages
+direction, etc). (téléphonie mobile). ordinateur relié à internet. texte avec eux, etc (selon option).
+satellite GPS réseau GSM/GPRS
+serveurs Positel MAP
+véhicule + Positel Internet
+POSITEL EST COMPATIBLE AVEC
+TOUS LES TYPES DE VÉHICULES !
+2 roues Voitures Utilitaires Camions Cars / Bus Engins BTP Autres
+
+=== PAGE 5 ===
+5 / 11
+POSITEL MAP : UNE APPLICATION WEB COMPLETE
+TEMPS REEL HISTORIQUES
+- SSuuiivveezz la position exacte de vos véhicules. -ÉdÉitdeizte zd edse rsa prappoprtosr tpsa pr afrlo tftleo,tt ep,a rp avré hviéchuilceu le epta rp ar
+concdouncdtuecutre.ur.
+- IIddeennttiiffiieez les véhicules et les conducteurs.
+-UnU vna vsates tceh cohixo idxe d rea prappoprtosr tess et sdti sdpisopnoibnlieble :
+-- Contrôlez leless p péériroioddeess d ’da’catcivtiitvéitsé se t elet ulre ur
+durdéuer.ée. rreeccrooenncssottniittuustttiiitoounntion d'itinérair,es ,p ropxrimoxitimé,ité ,a laarmlaerms,e s,
+ddiissttdaaisnntccaeenc eeett ecctoo nncssooonmmsommmaamttiiooanntio nddee d eccaa rrcbbauurrrbaaunnrtta,,n tpp,oo iipnnottssin ts
+- ÉÉcchhaannggeezz ddeess m meessssaaggeess t etxetxuteulesl sa vaevcec les
+d’indté’inrêtétsrêts, etc.
+véhicules.
+-DDeeDsse srraa pprapppooprrttossr tsaauu axxu ccxoo nncotteennnteuunssu ddséé ttdaaéiilltllaééissll é:s n:o mnobmreb rdee de
+trajteratje tse ffeecffteucétsu,é s,vo ievosie sem epmrupnrtuénetsé,es , adress es
+visivtéisitsé,es , distanc esp arpcaorucrouuersu,e sv,i suvaisluisaaltisioantio nsu rs ur
+ADMINISTRATION ccaarrcttooaggrtrroaagpprhhaiipeeh,,i e,ttee mmteppmssp sdd’’ aadrrrr’êêattr,,rê t,vvii tteevssitsseeess emm oomyyeeonnynneeen,,n e,
+véhviécuhliecu uleti liustéil,is tée,m tepms ppsa spsaés sséu rs ur les chantiers, etc.
+--- CCCrrréééeeezzz d dififféférerenntsts coccmoommptppettsee ssd'u dtil'uistailitseautresu arsv ec -PPrrPooggrorraagmmrammmeemzze zll''éé ddl'éiittdiiooitnnio naa uuttaooummtoaamttiiqqauutieequ eddee d erraa pprppaooprrpttssort s :
+avedce s droits personnalisés. sséélleeséccttleiioocnntinnoeenzzn ellzee ltteyypp teeyp ddeee drreaa pprppaooprrptto eerttt ellaat lddaaa ttdeea tooeuu olluaa la
+-- Créezz vvooss popionitnsts d ’idn’tiénrtêétrsêt s(c li(ecnliten ts, fréqfruéeqnuceen.ce.
+chacnhtaienrtsie, rfso,u fronuisrnseisusreurs, etc.).
+-TTooTuuossu llsee ssle rrsaa pprapppooprrttossr tggséé nngééénrréééssré sssoo nnstto nsstaa uusvvaeeuggvaaerrgddaéérd édsa ndsa ns
+- GGéérreezz vos véhicules et vos employés. PosPiotesli tel MAP.
+- Paramétrez vos alertes.
+-EExxEppxooprrttoeerzzte zllee ssle sdd oodnnonnnééneeésse see tte trraa pprppaooprrpttossr tsaauu a uffoo rrmmfoaarmtt at
+- Paramétrez vos options. MicMroicsroofst oft Excel ou HTML.
+ALARMES
+SECURITE
+-PoPsoitseiltel MAP envo iaeu taoumtoamtiqautiequeme nt d es
+aleartleesrt,e psa, rp ea-rm ea-mil aeitl/ oeut/ opua rp SarM SSM, Sen, etenm tepms ps -- LL’’Laa’ccacccèècssès P oPsoisteitle lMM MAAPPA Pee ssett spptrr oopttrééoggtééég ppéaa rrp addree ssd eccsoo ddceeossd es
+réerléel. ppeerrpsseoornnsnnoeenllssne l((snn oo(mmno mdd’’uu ttdiill’iiusstaailttieesauutrre ueertt emmt oomtt oddtee d eppaa sspssaees se
+perpseornsnoenl)n.el).
+-SéScéucriusrisez vos matériels et vos personnels.
+- LaL ac ocnonnenxeioxino nà à Positel MAP est cryptée (https).
+-DéDfiénfiinisse zd ede s traje tse te dte sde zso nzeosne gsé ogéo-
+ggrraagpprhhaiipqqhuuieeqssue ddsee d ettrraa vvtraaaiivll aaailvv eeaccve cccoo nncttorrôônllteerô leddee ssd es
+enterénetrsé eest seot rstioersti.es.
+-CrCéeréze dze dse asl earlteerste pse prseorsnonnanliasléiseéses.
+
+=== PAGE 6 ===
+6 / 11
+LES OPTIONS DISPONIBLES
+ANTIVOL VEHICULE IDENTIFICATION DES REMORQUES
+Permet d'être alerté lorsqu'un véhicule se déplace : Permet d'identifier automatiquement les remorques lors
+- alors que le contact est coupé ; de leur attelage et de leur dételage. Vous pourrez ensuite
+- en dehors d'horaires spécifiés ; visualiser ces informations sous forme de rapports.
+- en dehors de zones géographiques définies.
+Ce module est composé d'un lecteur et d'une balise
+Ce module est composé d'une batterie pour Positel, d'un d'identification.
+capteur de mouvements, d'un relais et du module
+« Alarmes » de Positel MAP.
+IDENTIFICATION DES CONDUCTEURS
+ANTIVOL CARBURANT
+Permet d’identifier les conducteurs de chaque véhicule
+de contrôler, via des rapports, les heures de travail.
+Permet d'être alerté lorsque le volume de carburant
+présent dans le réservoir de vos véhicules baisse
+Ce module est composé d'un lecteur fixé dans le
+brutalement.
+véhicule, de clés d'identification (Dallas) et du module
+« Employés » de Positel MAP.
+Ce module est composé d'une interface BusCAN ou
+d'une interface pour la sonde à carburant du véhicule, et
+du module « Alarmes » de Positel MAP.
+POINTEUSE DE CHANTIER
+ANTIVOL CARBURANT + CONSOMMATION
+Permet de contrôler, via des rapports, les heures de
+travail d’une équipe de terrain.
+Permet d'être alerté lors d'une baisse brutale du volume
+de carburant et de contrôler la consommation de vos
+Ce module est composé d'un lecteur mobile, de clés
+véhicules. Vous pourrez ensuite la visualiser sous forme
+d'identification (Dallas) et du module « Employés » de
+de diagrammes.
+Positel MAP.
+Ce module est composé d'une interface de connexion
+BusCAN ou d'un débitmètre (selon véhicule) et du
+module « Alarmes » de Positel MAP.
+
+=== PAGE 7 ===
+7 / 11
+LES OPTIONS DISPONIBLES (suite)
+AIDE A LA NAVIGATION TACHYTEL - RECUPERATION DES DONNEES DES
+TACHYGRAPHES
+Appareil de navigation GARMIN (GPS avec cartographie
+VL ou PL*), permettant au conducteur de rejoindre Ce module permet de contrôler, en temps réel, les temps
+facilement une destination en suivant les directives de de conduite des conducteurs. Vous serez alerté en cas
+l'appareil. d'approche ou de dépassement des limites horaires
+légales – Alarmes paramétrables, édition de rapports,
+etc. Ce module permet également de télécharger
+MESSAGERIE automatiquement le contenu des cartes des conducteurs
+et des mémoires des tachygraphes numériques.
+Permet d’échanger des messages textuels entre les (+ d'infos à la page 9).
+véhicules et le bureau.
+Il est composé d'un boîtier Tachytel et du module
+Ce module est composé d'un appareil de navigation « Tachytel LIVE » de Positel MAP.
+GARMIN et du module « Messagerie » de Positel MAP. Ce module existe également en version Wi-Fi, autonome
+(sans Positel).
+TEMPERATURE
+OPTIMAL WEB
+Permet d'être alerté en cas de dépassement de
+température (paramétrable) et de contrôler, via des Ce module permet d'archiver et de visualiser le contenu
+rapports, la température de tous environnements (ex : des fichier issus des cartes de conducteurs et des
+remorque réfrigérée). mémoires des tachygraphes numériques (récupérés via
+le module Tachytel). Il permet également de rechercher
+Il est composé de sondes de température et des modules les infractions à la réglementation sociale du transport
+« Températures » et « Alarmes » de Positel MAP. routier.
+LES CAPTEURS ON/OFF PERSONNALISABLES * VL ou PL = Véhicule Léger ou Poids Lourd (+ de 3,5 T).
+La cartographie « Poids Lourds » calcule un trajet en
+Positel MAP sait gérer les contacts secs et vous permet tenant compte des hauteurs de ponts et des limites de
+de contrôler tous types d'événements (ex : ouverture de tonnage de circulation sur route.
+porte, bouton d’urgence, mode vie privée/vie publique,
+…), avec envoi d'alarmes et édition de rapports sur
+mesure.
+
+=== PAGE 8 ===
+8 / 11
+LES PACKS DE BASE
+Positel Tachytel
+En option : - antivol véhicule ; Tachytel existe en version Wi-Fi* (modèle autonome) ou en
+- consommation carburant ; version GPRS sous forme de module pour Positel.
+- etc. (voir liste complète page 6)
+
+=== PAGE 9 ===
+9 / 11
+TACHYTEL : PRINCIPE DE FONCTIONNEMENT
+système de récupération des temps de conduite
+Tachytel permet de récupérer les temps d'activités (conduite, travail repos, disponibilité, double équipage) des conducteurs de véhicules de plus de 3,5 T, équipés de
+chronotachygraphes analogiques (disques) ou numériques. Il permet également de télécharger le contenu des cartes de conducteurs et la mémoire des chronotachygraphes au
+format règlementaire.
+1 2 3 4
+Tachytel, installé dans un véhicule, Tachytel transmet régulièrement les Les données sont stockées dans Connecté à Tachytel LIVE,
+enregistre les activités des données qu'il a enregistré au serveur Tachytel LIVE et sont prêtes à être l'utilisateur voit les cumuls quotidiens,
+conducteurs, générés en temps réel sécurisé Tachytel LIVE, en WI-FI ou consultées et traitées en temps réel hebdomadaires et mensuels des
+par le chronotachygraphe. en GSM/GPRS (selon modèle) depuis n’importe quel ordinateur relié temps d'activités des conducteurs,
+à internet. etc.
+antenne Wi-Fi
+cchhrroonnoottaacchhyyggrraapphhee àa ndaisloqguieque ou GSM/GPRS
+ou
+chronotachygraphe numérique
+véhicule + Tachytel Internet
+Si le chronotachygraphe est numérique,
+Tachytel télécharge également le contenu des serveurs
+cartes de conducteurs et la mémoire du Tachytel MAP
+chronotachygraphe, sur demande du
+conducteur ou du bureau.
+
+=== PAGE 10 ===
+10 / 11
+TACHYTEL LIVE : L'APPLICATION WEB
+Tachytel LIVE permet de contrôler, en temps réel, les temps de conduite des conducteurs. Vous serez alerté en cas d'approche ou de dépassement des limites
+horaires légales – Alarmes paramétrables, édition de rapports, etc. Tachytel permet également de piloter le téléchargement automatique du contenu des cartes des
+conducteurs et des mémoires des tachygraphes numériques.
+ACTIVITES EN TEMPS REEL
+- Visualisez en temps réel les cumuls quotidiens, hebdomadaires et mensuels, des temps d'activités (conduite, travail repos,
+disponibilité, double équipage) des conducteurs.
+- Paramétrez différents niveaux d'alertes.
+- Recevez des alertes, dans l'application Tachytel LIVE, par e-mail et/ou par SMS.
+- Éditez et corrigez des rapports d'activités et exporter les données au format Excel .
+TELECHARGEMENT A DISTANCE
+- Programmez le téléchargement de la mémoire du tachygraphe (et/ou de la carte du conducteur) d'un ou plusieurs véhicule.
+- Déclenchez le téléchargement de la mémoire du tachygraphe (et de la carte de conducteur) d'un ou plusieurs véhicules.
+- Éditez des rapports de téléchargement et exporter les données au format Excel.
+Avec Tachytel LIVE plus besoin de monter dans un véhicule et d’introduire une carte entreprise dans un chronotachygraphe
+numérique*, pour autoriser le déclenchement d'un téléchargement. La carte reste au bureau, et son contenu est envoyé au
+chronotachygraphe par l'intermédiaire du Tachytel. Vous pouvez désormais télécharger à distance les cartes et les
+mémoires des chronotachygraphes numériques en un minimum de temps et d'efforts !
+SECURITE
+- L’accès Tachytel LIVE est protégé par des codes personnels (nom d’utilisateur et mot de passe personnel).
+- La connexion à Tachytel LIVE est cryptée (https).
+* Nécessite un chronotachygraphe numérique compatible.
+
+=== PAGE 11 ===
+11 / 11
+CONTRAINTES REGLEMENTAIRES
+RECOMMANDATIONS DE LA CNIL (commission nationale de l’informatique et des libertés)
+1 - La localisation de véhicules en temps réel implique le respect de certaines obligations légales, notamment celles issues de la directive 2002/58/CE du
+Parlement et du Conseil du 12 Juillet 2002, et de la loi informatique et liberté du 6 janvier 1978.
+Une nouvelle loi du 16 mars 2006 a été appliquée sur les systèmes de géolocalisation par GSM/GPS.
+Positel correspond au document « Géolocalisation des véhicules des employés (normes simplifiées n° 51) ». Vous trouverez sur le site de la
+CNIL comment remplir cette déclaration.
+2 - Au moment où vous collectez des données (grâce au système Positel) vous devez informer les personnels concernées de leurs droits par des mentions
+précises. Vous trouverez ces informations sur le site internet de la CNIL.
+LE SITE DE LA CNIL :
+Site officiel :
+http://www.cnil.fr/
+Information sur la norme simplifiée 51 :
+http://www.cnil.fr/en-savoir-plus/deliberations/deliberation/delib/187/
+Renseigner une déclaration :
+http://www.cnil.fr/vos-responsabilites/declarer-un-fichier/
+Informations obligatoires à l'attention des personnels concernés :
+http://www.cnil.fr/vos-responsabilites/informations-legales/?email=&modele=8&modele=8&submit2=Valider&profil=10

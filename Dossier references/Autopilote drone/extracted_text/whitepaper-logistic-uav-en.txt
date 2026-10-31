@@ -1,0 +1,130 @@
+=== PAGE 1 ===
+A PERFECT
+AUTOPILOT FOR
+PACKAGE DRONE
+DELIVERY
+
+=== PAGE 2 ===
+POST-COVID AVIATION INDUSTRY
+COVID-19 pandemic has been one of the hardest setbacks the
+aviation industry has suffered in history. The reduction of people's
+movement significantly impacted global air traffic. In 2021, there
+have been green shoots as the number of flights has increased to
+figures close to pre-pandemic figures.
+In the civil context, the global drone market is expected to reach
+US$41.3B in 2026 with a Compound annual growth rate CAGR of
+9.4% [1]. In this segment, the most demanded functionalities [2]
+are Urban Air Mobility (UAM), which Deloitte estimates a value of
+US$115B in 2035 [3], and the packaging delivery using drones,
+with a market growth rate of 48% by 2029 [4].
+The situation during the COVID pandemic has shown the critical
+role that unmanned aviation may play in developing a more
+efficient and safer world. The Spanish Aerospace Technology
+Program (CDTI) [5] is considered an excellent opportunity to make
+the sector grow in the following years, creating a more
+sustainable and green industry.
+Drones are a clear part
+of the future transport
+and logistic landscape
+Adina Vălean
+European Commissioner for Transport [6]
+
+=== PAGE 3 ===
+ENABLING
+DRONES IN
+LOGISTIC
+Following the industry's evolution, UAV Navigation
+has improved its delivery capabilities in the flight
+control solution to enable its clients to offer
+package delivery services and allow the use of
+their drones in logistics. In this sense, we have
+refined important functionalities to make this
+capability more accessible, safe, and easy to use.
+
+=== PAGE 4 ===
+AUTOMATIC
+ACTIONS ON
+WAYPOINTS
+One of these features is the automatic actions on waypoints,
+allowing the platform to perform a complete delivery service
+without operator intervention. The package may be delivered
+automatically via drone while the staff is preparing another
+package to be delivered after that, reducing costs and time-
+to-client. This methodology would optimize and even resolve
+the famous Last-Mile Delivery problem. These services require
+an advanced and reliable system with logic that increases
+flight safety. UAV Navigation system includes configurable
+conditional actions following the alarms that may appear
+during the flight. The autopilot may change its course towards
+an emergency or alternative aerodrome and complete the
+mission in case of lack of fuel, comm loss, or other
+circumstances and ensuring the aircraft and the package
+integrity.
+
+=== PAGE 5 ===
+UAV NAVIGATION POLAR AHRS AND
+VTOL SOLUTION
+Our expertise in unmanned aviation and the advanced
+algorithms included in our AHRS help us have extraordinary
+control during landing without any external infrastructure,
+which eases commercial launch and reduces the associated
+costs of the cargo delivery service. The POLAR AHRS, included
+in our VECTOR range of autopilots, uses an ADS system to
+estimate the wind direction and perform a safe delivery of the
+package.
+This technique is also used in our flight control solution for
+VTOL platforms, where the aircraft's heading may be critical in
+their vertical takeoff and landing stages of the flight. These
+kinds of platforms are also beneficial in delivery missions as
+they can cover long distances in a short period and perform a
+hover maneuver to execute the cargo drop. UAV Navigation
+flight control system may control hybrid UAV VTOL platforms,
+creating flight plans for a fully automatic and autonomous
+operation of these aircraft configurations possible.
+
+=== PAGE 6 ===
+MULTI-UAV OR
+MULTI-OPERATOR
+OPERATIONS
+Besides all these capabilities,
+multi-UAV or Multi-Operator operations
+missions in which multiple UAVs fly in the
+same airspace are also missions with a
+great interest in cargo drone services as
+they allow to have a bigger number of
+systems in the air working in a
+coordinated way. Therefore, having a
+flexible approach is fundamental to facing
+technical challenges.
+
+=== PAGE 7 ===
+PROJECT VANET
+Considering the necessities and requirements of this industry,
+apart from the previous capabilities and features, we have
+presented, together with CATEC, the project VaNeT within the
+CERVERA call. This project aims to develop and promote a
+multi-agent network node for safe freight transport by UAVs
+in shared air spaces. This project is funded by the Center for
+Technological and Industrial Development (CDTI) and the
+Spanish Ministry of Science and Innovation. It is also co-
+financed by the European Regional Development Fund (FEDER).
+UAV Navigation keeps working day-by-day to set the path of
+future drone applications and help the industry evolve and
+grow. For this purpose, we keep on developing new tools that
+allow executing more complex and demanding operations in a
+safe and efficient way, which helps improve the operator's
+situational awareness.
+
+=== PAGE 8 ===
+References
+[1] HTTPS://DRONEII.COM/THE-DRONE-MARKET-IN-2021-AND-BEYOND-5-KEY-TAKEAWAYS
+[2] HTTPS://DRONEII.COM/PRODUCT/DRONE-MARKET-REPORT. CONSULTADO EL 16 OCTUBRE 2021
+[3] HTTPS://WWW2.DELOITTE.COM/GLOBAL/EN/PAGES/ABOUT-DELOITTE/ARTICLES/COVID-19/UNDERSTANDING-COVID-19-
+IMPACT-ON-AEROSPACE-AND-DEFENSE.HTML
+[4] HTTPS://WWW.UASVISION.COM/2021/09/23/PACKAGE-DRONES-WORLD-MARKET-TO-GROW-48-BY-2029/. CONSULTADO EL
+16 OCTUBRE 2021
+[5] HTTPS://WWW.CDTI.ES/INDEX.ASP?MP=100&MS=924&MN=2. CONSULTADO EL 16 OCTUBRE 2021
+[6] HTTPS://WWW.EUROCONTROL.INT/ARTICLE/EUROPE-NOW-FAST-LANE-IMPLEMENTING-UAS-TRAFFIC-MANAGEMENT-SYSTEMS.
+CONSULTADO EL 16 OCTUBRE 2021.
+FOR MORE INFORMATION ABOUT UAV NAVIGATION CHECK OUR WEBSITE
+WWW.UAVNAVIGATION.COM

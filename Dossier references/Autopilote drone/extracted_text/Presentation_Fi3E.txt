@@ -1,0 +1,116 @@
+=== PAGE 1 ===
+SYSTÈME AUTONOME MULTI-UAV POUR LE BALAYAGE
+EFFICACE DE GRANDES STRUCTURES EN BÉTON
+Mohamed Razi Ghedamsi (étudiant)
+Pr. Raef Cherif
+Pr. Yacine Yaddaden
+
+=== PAGE 2 ===
+M
+ISE EN CONTEXTE
+L'exploitation et l'entretien appropriés des grandes structures en béton sont
+essentiels pour garantir la sécurité de la structure et réduire les risques.
+2
+
+=== PAGE 3 ===
+PROBLÉMATIQUE DE RECHERCHE
+La méthode traditionnelle d'inspection des grands barrages nécessite
+une intervention humaine, prend du temps et présente un risque pour le
+personnel impliqué.
+Solution
+Utilisation des drones
+3
+
+=== PAGE 4 ===
+PROBLÉMATIQUE DE RECHERCHE
+Drone manipulé par
+un opérateur
+limité par la
+chronophages
+couteux disponibilité des
+pilotes
+Solution proposée
+Inspection avec des plusieurs drones autonomes
+4
+
+=== PAGE 5 ===
+O
+BJECTIVES
+L’objectif principal de ce projet est de développer un système entièrement
+autonome utilisant des drones pour détecter différents types de fissures sur
+les grandes structures en béton telles que les ponts et les barrages.
+Pour atteindre cet objectif, nous avons fixé les objectifs spécifiques suivants:
+• Optimiser les performances d’un algorithme de planification de trajectoire
+CPP (Coverage Path Planning).
+• Concevoir et optimiser un algorithme autonome de plusieurs drones,
+capable de scanner et collecter les données en temps réel, puis de les
+classifier et de détecter des fissures de différentes structures.
+5
+
+=== PAGE 6 ===
+M
+ÉTHODOLOGIQUES
+Pour développer le système autonome du drone, plusieurs outils ont été
+utilisés :
+• PX4-Autopilot : système de drone qui permet une simulation SITL robuste.
+• MAVSDK : un kit de développement logiciel pour les systèmes de véhicules sans
+pilote basés sur MAVLink
+• Gazebo : un simulateur 3D open-source utilisé pour modéliser et simuler des
+systèmes robotiques.
+• QGroundcontrol : une interface graphique open-source de contrôle de drones et de
+véhicules autonomes
+6
+
+=== PAGE 7 ===
+M
+ÉTHODOLOGIQUES
+Nous avons modélisé une dalle simple de
+10x4x3 m sur Gazebo pour représenter une
+structure en béton divisé sous forme de
+plusieurs rectangles de textures différentes
+avec un numéro au milieu pour permettre
+mesurer la précision des images capturées par
+le drone.
+Le choix d’une petite structure simple est dû à
+la puissance de calcul et graphique nécessaire
+pour simuler une structure compliquée. Ainsi,
+cette structure simple et optimisée en
+ressources peut facilement être reproduite
+pour simuler des structures plus compliquée.
+7
+
+=== PAGE 8 ===
+É
+VALUATION
+• Drone hexarotor de modèle Typhoon H480 a été sélectionné dans cette
+simulation en raison de ses capacités de manœuvrabilité élevées ainsi que de
+sa caméra intégrée.
+• Les simulations ont été effectuées avec un drone unique et avec quatre
+drones, une seule surface et plusieurs surfaces, afin d’évaluer la fiabilité et
+l’efficacité du système autonome dans différentes situations.
+8
+
+=== PAGE 9 ===
+R
+ÉSULTATS PRÉLIMINAIRES
+Le tableau suivant compare la précision et la durée de balayage entre
+l’utilisation d’un seul drone et 4 drones simultanément:
+Nombres UAV Temp balayage Précision
+1 drone 263 s 98%
+4 drones 70 s 93%
+9
+
+=== PAGE 10 ===
+C
+ONCLUSION
+• Le travail accompli révèle un potentiel de système multi-UAV autonome pour
+l’inspection de grandes structures en béton.
+• Travail continu pour intégrer davantage de modules tels qu’un système de
+classification de photos basé sur l’intelligence artificielle, des capacités
+d’évitement d’obstacles et un module conscient des conditions météorologiques.
+10
+
+=== PAGE 11 ===
+M .
+ERCI DE VOTRE ATTENTION
+11

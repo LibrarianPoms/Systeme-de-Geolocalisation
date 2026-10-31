@@ -1,0 +1,67 @@
+=== PAGE 1 ===
+TomTom LINK 510
+Si votre entreprise dispose dʼune flotte de véhicules, vous devez veiller à ce que celle-ci soit opérationnelle à tout
+moment. Vous avez besoin de réduire vos dépenses et dʼaugmenter la productivité de votre personnel itinérant ?
+En dʼautres termes, il vous faut avoir un aperçu réel des performances de vos véhicules et de vos conducteurs.
+C’est pour cette raison que vous avez besoin du TomTom LINK 510 – le boitier de géolocalisation de véhicules TomTom de
+grande fiabilité. Il fournit des informations pertinentes sur les performances de vos véhicules et vous aide à réduire vos coûts
+et à doper la productivité de votre personnel itinérant.
+Mode de fonctionnement
+Le boîtier TomTom LINK 510 est compact et s'installe rapidement dans tous les véhicules : voiture, utilitaire ou poids
+lourd. Il utilise les technologies GPS/GSM afin de communiquer entre les véhicules et le bureau, et fournir en temps
+réel une mine d’informations en matière de suivi et de géolocalisation, ainsi que des rapports détaillés. Toutes ces
+informations sont accessibles depuis TomTom WEBFLEET®, notre application sécurisée de gestion de flotte en ligne, qui
+présente les données de manière claire sous la forme de rapports et de tableaux de bord standards.
+Principaux avantages
+Performances de conduite accrues et objectif “Réduction de coûts”
+Réduisez vos coûts et aidez vos équipes à fournir un service client plus transparent.
+• Analysez les comportements de conduite pour réduire les dépenses liées à l’entretien des véhicules et aux primes
+d’assurance.
+• Diminuez les dépenses de carburant et les émissions de CO en favorisant un comportement de conduite plus écologique,
+2
+plus sûr et plus efficace. Utilisez les rapports sur les surrégimes et les virages ou freinages brusques.
+• Visualisez sur une carte la position de vos véhicules et envoyez toujours le conducteur le plus proche.
+• Analysez le temps passé sur chaque site, pour des équipes davantage dévouées aux clients.
+Moins de tâches administratives
+Aidez les équipes itinérantes et les équipes administratives à réduire leur charge de travail.
+• Fonctionnalité complète de carnet de route incluse.
+• Suppression des supports papier, enregistrement facilité des kilomètres parcourus à titre professionnel ou privé.
+• Consultation de toutes les informations dans un graphique simple pour mener à bien vos objectifs.
+Let’s drive business™
+www.tomtom.com/business
+
+=== PAGE 2 ===
+Protégez vos actifs
+Optimisez la sécurité de vos véhicules et de vos conducteurs en connectant l’appareil LINK 510 aux données importantes
+du véhicule.
+• Assurez la sécurité des conducteurs et des marchandises grâce à la possibilité de verrouiller les portes à distance.
+• Détectez automatiquement le vol de carburant.
+Un investissement à long terme
+Le LINK 510 fait partie de TomTom WORKsmart™, la solution de gestion de flotte de TomTom, prête à l’emploi.
+• Connectez-vous aux systèmes de navigation TomTom PRO par Bluetooth® pour une gestion du temps et des interventions
+plus simple et plus rapide.
+• Optez pour une flotte plus écologique grâce à TomTom ecoPLUS™.
+Principales fonctionnalités
+• Rapports faciles à lire et automatisés sur les kilomètres parcourus, les trajets, le temps passé sur un site et le
+comportement de conduite.
+• Installation rapide sur tout type de véhicule, qu’il s’agisse d’une voiture, d’un véhicule utilitaire ou d’un poids lourd.
+• Géolocalisation des véhicules en temps réel, ainsi vous savez à tout moment où se trouve votre flotte.
+• Utilisation conjointe de la prise FMS, dʼun tachygraphe numérique et dʼune entrée numérique, pour un accès
+complet aux données du véhicule et une surveillance efficace des poids lourds.
+• Sortie numérique, pour un contrôle à distance de vos véhicules.
+Let’s drive business™
+www.tomtom.com/business
+RF_teehsatad_015KNIL_21023020
+Caractéristiques
+Dimensions Boîtier : 121 x 56,5 x 21,5 mm
+Poids 88 g
+Connectivité Technologie GSM/GPRS
+Température de fonctionnement -30°C à + 70°C
+Tension d’alimentation 12 V / 24 V (min. 9 V à max. 30 V)
+Courant consommé À 14V: typiquement < 50 mA
+À 28V: typiquement < 30 mA
+En veille : typiquement < 1 mA
+Entrées 2 entrées numériques
+Sortie 1 sortie numérique
+Bus CAN CAN H, CAN L
+BluetoothTM BluetoothTM (classe 2) intégré

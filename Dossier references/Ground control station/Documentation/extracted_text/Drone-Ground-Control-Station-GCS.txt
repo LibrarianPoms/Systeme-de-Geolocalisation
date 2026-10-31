@@ -1,0 +1,174 @@
+=== PAGE 2 ===
+About Us
+ASISGUARD has high-end engineering capabilities through which the company has developed
+national and domestic critical solutions, some of which are the first in our country, with Electro-
+Optical Sight and Border Security Systems, Military Vehicle Electronics Systems, Rotary Wing Armed/
+Unarmed Drone Systems, Screen System solutions. All systems of ASISGUARD™ such as original
+hardware design, embedded software design, system engineering are performed by experts in
+their respective fields and delivered to the end user.
+ASISGUARD, with the expertise to design and revise projects and solutions according to customer
+demands, and to keep the technologies and products it has developed up-to-date; the company
+has developed a cutting-edge specialization to design image stabilization, moving object tracking,
+object recognition and classification algorithms by using artificial intelligence and big data
+technologies.
+ASISGUARD, Offering many domestic and national products in the field of defense to Turkiye,
+NATO and allied countries; constantly considers the needs and satisfaction of internal and external
+stakeholders, aims to develop its technological and engineering competence and to direct the
+technologies of the future.
+Mission
+To contribute to the strengthening of the Turkish Defense Industry with innovative
+technology and military solutions, to share the developed products and systems
+with allied countries.
+Vision
+To become a leading global brand by creating local and global solutions with
+high value-added critical technologies.
+Our untiring soldiers and law-enforcement forces who put their lifes at risk without
+a second thought have the utmost importance for us. Therefore, we take on the mantle
+of guardian angel for our army and law enforcement agencies via our domestically and
+nationally developed technology.
+Sınırların Ötesinde Teknoloji
+Technology Beyond Borders
+A subsidiary of
+
+=== PAGE 3 ===
+AG-D-GCS 2251
+GENERAL FEATURES
+Accessories Computer System
+CONTROL /CONSOLE FAMILY
+Carry Case 3.5 mm Jack Headphone and Microphone
+Connection
+Charging Adapter
+2 X USB2.0/2 X USB3.0/4 X Gbps
+Car Charger Adapter Ethernet
+AG-D-GCS-2251 YKİ (GROUND CONTROL STATION)
+8 x SMA Connector (LTE/GPS/WIFI)
+2 System Battery
+AG-D-GCS-2251 Ground Control Station (GCS) facilitates the operation of unmanned vehicles,
+SIM Card Interface
+enabling the configuration of semi-autonomous and autonomous driving missions, as well as
+General Features
+conducting reconnaissance and imaging tasks. This system is designed for effective use by security Operator Recognition Camera
+personnel and armed forces. 2 pcs 1920 x 1080 px Touch Screen
+Charging Socket Interface
+15 Toggle Switches, 32 Push Buttons, 1
+5-Way Selection Button Accesories
+AREAS OF USE
+3 Axis Joystick with 2 Buttons and 3 Pro- Operating Temperature: -20°C, +50°C
+• Control of unmanned vehicles
+portional Outputs
+• Control of payloads on unmanned Storage Temperature: -40°C to +60°C
+1 Emergency Stop Button
+vehicles
+Environmental Conditions: MIL-STD-810G
+• Reconnaissance and imaging system Replaceable Lithium- Ion Battery Compliant
+Voltage Protection: MIL-STD-1275E
+Logitech K310 Keyboard
+Compliant
+Physical Features Protection Level: IP65 (Bag Closed)
+120 x 60 x 30 cm (Closed box)/120 x 60 x 80
+cm (Open box)
+Computer System
+Intel 9th Gen 8 Core 3.5 GHZ Processor
+32 GB DDR4 Ram
+1 TB SSD SATA 3.0 Data Storage Disc
+Communication System
+Intel 9th Gen 8 Core 3.5 GHZ Processor
+32 GB DDR4 Ram
+1 TB SSD SATA 3.0 Data Storage Disc
+91 92
+
+=== PAGE 4 ===
+AG-H-GCS- 1050
+GENERAL FEATURES
+Accessories Computer System
+CONTROL /CONSOLE FAMILY
+Carry Case
+4-Core ARM Cortex-A76 MPCore Processor
+Charging Adapter
+16 GB LPDDR 4X RAM
+Car Charger Adapter 128 GB SSD SATA3.0 Data Storage Disc
+AG-H-GCS-1050 YKİ (GROUND CONTROL STATION)
+External Charger
+Interface
+AG-H-GCS-1050 Ground Control Station (GCS) allows for the management of unmanned vehicles,
+System Documents 3.5 mm Jack Headphone and Microphone
+including the oversight of semi-autonomous and autonomous driving functions. It also facilitates
+Connection
+reconnaissance and imaging operations, making it suitable for deployment in security and military
+2 System Battery
+settings. 2 X USB3.0/1 X Gbps Ethernet
+General Features
+3 X SMA Connector (LTE/GNSS/WIFI)
+1280 x 800px 10.1” General Features
+SIM Card Interface
+AREAS OF USE
+5 pcs Toggle Switch, 18 pcs Push Button
+• Control of unmanned vehicles D38999 Military Connector with 19V Power
+Output
+• Semi-autonomous and
+2 pcs Proportional Output Finger Joystick
+autonomous control
+POE Military Interface Connector
+1 pc Emergency Stop Button Replaceable
+• Reconnaissance and imaging
+Lithium- Ion Battery
+system Operator Recognition Camera
+Replaceable Lithium- Ion Battery
+Charging Socket Interface
+Physical Features System Features
+52.6 x 32.8 x 13.5 cm Operating Temperature: -20°C, +50°C
+Storage Temperature: -40°C to +60°CEn-
+Communication System
+vironmental Conditions: MIL-STD-810G
+Communication via 4G/LTE Compliant
+Communication via WIFI Voltage Protection: MIL-STD-1275E
+Compliant
+Ability to communicate via Tactical Link
+connected to 1000Base-T ethernet port Voltage Protection: MIL-STD-1275E
+Compliant
+Protection Level: IP65 (Bag Closed)
+93 94
+
+=== PAGE 5 ===
+AG-H-GCS- 1051
+GENERAL FEATURES
+Accessories Computer System
+CONTROL /CONSOLE FAMILY
+Sunshade 1920 x 1200 Resolution Display
+Neck Strap 10.1’’ Display
+1000 Nit Display Brightness
+Carrying Strap
+AG-H-GCS-1051 YKİ (GROUND CONTROL STATION) 10 Finger Capacitive Touch Screen
+Carrying Box
+AG-H-GCS-1051 Ground Control Station (GCS) enables the operation of unmanned vehicles, including Windows 11 Operating System
+External Adapter
+the management of semi-autonomous and autonomous driving capabilities, and supports
+Intel Core i5-10310U Processor
+reconnaissance and imaging tasks. It is designed for use in security and military applications.
+512 GB SSD
+General Features 16 GB RAM
+AREA OF USE
+Domestic / Original Design 8 Functional Button
+• Control of unmanned vehicles
+3 Functional Joystick
+Aluminium Mechanical Body
+• Semi-autonomous and autonomous
+control 2 Functional Round Button
+Hand Portable
+• Reconnaissance and imaging system External USB Port
+Safety Precautionary Shooting
+External ETH Port
+System Dimensions: 450*250*10mm
+Military Standard Connector
+Weight < 4.5kg
+Operating Voltage: 24V
+Replaceable Li-Ion Battery
+Meteorological Conditions
+Customised datalink integration Operating Temperature: -10ºC ~50ºC
+Storage Temperature: -10ºC ~50ºC
+Operating Time > 2 hours
+95 96
+
+=== PAGE 6 ===
+Sınırların Ötesinde Teknoloji
+Technology Beyond Borders

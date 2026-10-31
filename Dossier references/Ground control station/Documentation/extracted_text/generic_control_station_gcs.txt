@@ -1,0 +1,53 @@
+=== PAGE 1 ===
+COMMUNICATIONS
+G C S
+GROUND CONTROL STATION
+UAV GROUND CONTROL STATION
+AU’s UAV Ground Control Station (GCS) is a single, lightweight
+computer control station for easy and portable handling.
+Features include:
+ Multiple vehicle control
+ Cross-platform UAV control: aerial, ground and
+submersible types for increased interoperability
+ Live video display, with ground stabilizing and
+scenery tracking features
+ Moving map display shows position and heading,
+both for UAV and sensor. Also displays GCS position
+and distance between UAV and GCS
+ Digital Elevation Model (DEM) support for topographic
+information; shows height AGL at waypoints, and can
+do collision estimates
+ Artifi cial horizon, with elevation, heading, speed, and Comes installed on a ruggedized laptop with Linux operating system
+controller commands
+ Tracking range dependent on radio equipment, the
+software has no tracking limitation  Engineering mode for setup and tuning
+ TCP/IP communication to radio equipment  Can be used with software in the loop (SIL) or hardware
+in the loop (HIL) simulator for testing and training
+OPERATION
+DATA
+ UAVs can be flown by point-and-click, by joystick,
+or by predefined routes  Supports logging of both telemetric data and video
+ Sensors are controlled either by pointing with the mouse  Supports exporting of selected telemetric data and
+or joystick on the live video or by predefi ning the target video to other equipment (using a separate LAN
+ Supports complex emergency routes card for protection)
+ Can import/export routes to external equipment
+like Battle Management and Command & Control
+systems. Already integrated into the Maria BMS and
+the BMS Flex BMS systems
+Designed for future implementation of STANAG-4586
+The Ground Control Station software is fully developed and
+programmed by AU, with no other company holding any
+IPR of any part of the software, which makes the system
+cost effective when integrating new or other sensors, as
+well as integation of the Ground Control Station or the UAS
+system into any Command and Control or Battle Manage-
+ment System.
+
+=== PAGE 2 ===
+G C S
+GROUND CONTROL STATION
+COMMUNICATIONS
+Automasjonsutvikling AS Fakkelgården • Postboks 293 • N-2602 Lillehammer • Norway
+Grinaker linna 115 • 2760 Brandbu • Norway enquiries@rodiangroup.com
+info@automasjonsutvikling.no www.rodiangroup.com
+www.automasjonsutvikling.no

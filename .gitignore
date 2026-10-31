@@ -1,0 +1,26 @@
+# Dependencies & Virtual Environments
+node_modules/
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+
+# Large third-party binary installers (>100MB GitHub limit & OS installers)
+Dossier references/Ground control station/Applications/
+*.dmg
+*.apk
+*.exe
+*.msi
+*.AppImage
+*.deb
+
+# System & OS artifacts
+.DS_Store
+Thumbs.db
+*.log
+
+# Build outputs
+dist/
+build/
+.cache/

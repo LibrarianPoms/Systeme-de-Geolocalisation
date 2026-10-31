@@ -1,0 +1,588 @@
+=== PAGE 1 ===
+Titre: Guidage et planification réactive de trajectoire d'un drone
+Title: monoculaire contrôlé par intelligence artificielle
+Auteur:
+Alexandre Duperré
+Author:
+Date: 2020
+Type: Mémoire ou thèse / Dissertation or Thesis
+Duperré, A. (2020). Guidage et planification réactive de trajectoire d'un drone
+Référence:
+monoculaire contrôlé par intelligence artificielle [Mémoire de maîtrise,
+Citation:
+Polytechnique Montréal]. PolyPublie. https://publications.polymtl.ca/5399/
+Document en libre accès dans PolyPublie
+Open Access document in PolyPublie
+URL de PolyPublie:
+https://publications.polymtl.ca/5399/
+PolyPublie URL:
+Directeurs de
+recherche: Sofiane Achiche, & David Saussié
+Advisors:
+Programme:
+Génie aérospatial
+Program:
+Ce fichier a été téléchargé à partir de PolyPublie, le dépôt institutionnel de Polytechnique Montréal
+This file has been downloaded from PolyPublie, the institutional repository of Polytechnique Montréal
+https://publications.polymtl.ca
+
+=== PAGE 2 ===
+POLYTECHNIQUE MONTRÉAL
+affiliée à l’Université de Montréal
+Guidage et planification réactive de trajectoire d’un drone monoculaire
+contrôlé par intelligence artificielle
+ALEXANDRE DUPERRÉ
+Département de génie mécanique
+Mémoire présenté en vue de l’obtention du diplôme de Maîtrise ès sciences appliquées
+Génie aérospatial
+Août 2020
+© Alexandre Duperré, 2020.
+
+=== PAGE 3 ===
+POLYTECHNIQUE MONTRÉAL
+affiliée à l’Université de Montréal
+Ce mémoire intitulé :
+Guidage et planification réactive de trajectoire d’un drone monoculaire
+contrôlé par intelligence artificielle
+présenté par Alexandre DUPERRÉ
+en vue de l’obtention du diplôme de Maîtrise ès sciences appliquées
+a été dûment accepté par le jury d’examen constitué de :
+Maxime RAISON, président
+Sofiane ACHICHE, membre et directeur de recherche
+David SAUSSIÉ, membre et codirecteur de recherche
+Giovanni BELTRAME, membre
+
+=== PAGE 4 ===
+iii
+REMERCIEMENTS
+J’aimerais commencer par remercier mes superviseurs, Prof. Sofiane Achiche et Prof. David
+Saussié, professeurs aux Départements de génie mécanique et de génie électrique de Polytechnique
+Montréal. Merci de votre soutien, de vos précieux conseils, du temps investi dans vos étudiants et
+de la merveilleuse opportunité que vous avez su m’offrir. Ce fut un immense plaisir d’entreprendre
+ce projet académique d’envergure sous votre tutelle.
+J’aimerais également remercier le Prof. Reza Hoseinnezhad et Prof. Alireza Bab-Hadiashar pour
+m’avoir accueilli si chaleureusement au sein du Intelligent Automation Research Group. Mon
+expérience au RMIT fut définitivement inoubliable. Ce séjour en Australie m’a permis de
+rencontrer des personnes exceptionnelles, dont mes colocataires Reza Omrani et Colorful Shih, que
+j’aimerais remercier du fond du cœur pour leur générosité, leur hospitalité et surtout pour les
+merveilleux moments passés ensemble.
+J’aimerais exprimer ma reconnaissance aux membres du jury, constitué des professeurs Giovanni
+Beltrame et Maxime Raison, pour avoir accepté la tâche d’évaluer le travail effectué dans cette
+Maîtrise ès sciences appliquées. Je tiens à remercier spécialement Gabriel Bernard ainsi que Cédric
+Leblond Ménard pour leurs précieux conseils et leur volonté à aider leurs pairs. Merci à mon cousin
+Olivier Brochu-Dufour pour avoir entrepris une maîtrise recherche avec moi; j’ai énormément
+apprécié le temps passé en ta compagnie. Je te promets que je vais faire de mon mieux pour mieux
+organiser mes scripts de programmation! J’en profite aussi pour remercier tous les membres du
+laboratoire CoSIM, pour avoir su rendre l’atmosphère si agréable tout au long de mon passage. Je
+vais beaucoup m’ennuyer de jouer aux cartes chaque midi avec vous.
+Le travail présenté ci-après a nécessité l’utilisation d’une installation particulière du système
+d’exploitation Linux en concordance avec l’infrastructure informatique du département de génie
+mécanique. Je remercie donc Alain Robidoux et Richard Mottet pour leur constant support dans la
+gestion de tous les problèmes informatiques rencontrés au cours de ce projet.
+Je souhaite adresser une mention spéciale à ma famille, soit mon père Michel, ma mère Nathalie
+ainsi que mon frère Samuel, qui malgré la distance, ont toujours été proches de moi et ont su me
+soutenir et à m’encourager dans mes projets. Votre soutien à travers mes années aux études
+supérieures m’a toujours fait chaud au cœur.
+
+=== PAGE 5 ===
+iv
+Merci à mes amis d’avoir contribué à tous les beaux souvenirs qui ont découlé de ces deux dernières
+années. Une mention spéciale à mes colocataires Mathieu Ashby et Manuel Génier qui ont toujours
+su montrer leur intérêt pour mon projet et ont partagé leur expertise. Vos conseils m’ont
+énormément aidé à l’atteinte de mes objectifs. Sans vous mon confinement dû au COVID-19 aurait
+été beaucoup moins agréable…
+Enfin, j’aimerais remercier les organismes subventionnaires du Fonds de Recherche du Québec -
+Nature et Technologies (FRQNT), du Conseil de Recherches en Sciences Naturelles et en Génie
+du Canada (CRSNG), du Programme de bourse du Ministère de l’Éducation et de l’Enseignement
+Supérieur (MEES), Mitacs et finalement la Fondation et alumni de Poytechnique Montréal. Votre
+soutien financier a rendu possible l’obtention des résultats présentés dans ce mémoire et je vous en
+suis infiniment reconnaissant.
+
+=== PAGE 6 ===
+v
+RÉSUMÉ
+Le problème de guidage autonome est un domaine de recherche en constante évolution. La
+popularisation des drones a étendu ce domaine de recherche au cours des dernières années. La
+nature de ce type d’engins amène plusieurs nouveaux défis à surmonter, notamment en lien avec
+la variété d’environnements auxquels ils peuvent être confrontés. Contrairement aux voitures
+autonomes, les drones se retrouvent souvent dans des milieux inconnus non cartographiés et
+dépourvus de signal GPS. De nouvelles méthodes ont donc été développées pour mitiger ces défis.
+Les solutions au problème de guidage autonome dans la littérature peuvent dans ce mémoire de
+maîtrise être classées dans deux catégories : le guidage réactif localement à des fins d’exploration
+et le guidage orienté. La première catégorie regroupe les solutions de guidage local d’engins
+naviguant sans destination précise alors que la seconde regroupe celles de guidage tentant
+d’atteindre une destination. Les deux catégories de guidage en milieu inconnu utilisent
+majoritairement des approches incluant l’apprentissage par renforcement ainsi que l’apprentissage
+par imitation. Cependant, peu d’études abordent le problème de guidage orienté dans des
+environnements complexes de grandeur nature.
+L’objectif de ce projet de recherche est donc de concevoir un agent intelligent capable d’imiter la
+logique de guidage d’un humain dans un environnement inconnu complexe en se basant sur la
+vision de profondeur et une estimation de sa destination. Une approche utilisant l’apprentissage par
+imitation est employée pour minimiser les coûts et les temps de calcul. Un environnement de
+simulation sophistiqué est donc mis sur place afin de créer un ensemble de données pour
+l’entraînement par imitation. L’ensemble de données qui a été créé comporte 624 trajectoires parmi
+9 environnements différents effectuées par un expert suboptimal pour un total de 296 466 paires
+d’entraînement. L’attributif suboptimal est employé pour qualifier l’humain à imiter puisque ce
+dernier devra dresser les trajets au meilleur de ses capacités sans avoir recours à des algorithmes
+de planification de trajectoire optimale.
+Un modèle de classification capable de prédire la prochaine commande de guidage à effectuer
+compte tenu des observations actuelles et précédentes a été implémenté. Le modèle est entraîné à
+encoder une représentation de l’image de profondeur obtenue à partir de l’image RGB ainsi qu’une
+représentation des coordonnées relative à sa destination. Ces représentations sont traitées par un
+réseau récurrent à mémoire court et long terme («Long Short-Term Memory» ou LSTM) ainsi
+
+=== PAGE 7 ===
+vi
+qu’un perceptron multicouches («Multilayer Perceptron» ou MLP) afin de prédire la direction à
+emprunter. Une fonction coût adaptée au problème ainsi que des techniques d’augmentation de
+l’ensemble de données sont incorporées lors de l’entraînement afin d’améliorer la précision du
+modèle en validation et en test. Une recherche d’hyperparamètres de type grid search a été
+effectuée afin de sélectionner le meilleur modèle selon la précision obtenue sur l’ensemble de
+données de test. Des précisions entre 77.10% et 82.59% ont été atteintes indiquant un impact
+significatif des méthodes d’augmentation de l’ensemble de données.
+Les résultats de simulation n’ont cependant pas été corrélés directement avec les performances en
+entraînement. Il a été confirmé que l’hypothèse selon laquelle les paires d’entraînement sont
+identiquement indépendamment distribuées est en fait erroné dans un contexte de processus de
+décision Markovien tel que prédit par la théorie, car chaque action induit un nouvel état dépendant
+du précédent. Les erreurs effectuées par le modèle peuvent donc s’accumuler et le pousser dans
+une situation jamais rencontrée par l’expert. Il est dans ce cas très difficile pour le modèle de choisir
+la bonne action à poser et peut occasionner des accidents. Malgré les techniques d’augmentation
+introduites, les meilleurs modèles en entraînement prennent ainsi les dernières positions dans le
+tableau des performances de simulation, laissant les modèles initialement en deuxième position en
+entraînement au podium en simulation. Les modèles performants en simulation semblent donc
+avoir appris une représentation plus précise et moins rigide de la politique de guidage de l’expert.
+Les modèles performants en simulations ont en fait été en mesure d’imiter le comportement de
+l’expert et atteindre toutes les destinations en obtenant des erreurs entre 1.9 m et 3.2 m par rapport
+aux trajectoires effectués par l’expert. Plusieurs expérimentations ont été effectuées afin d’évaluer
+les aptitudes de généralisation du modèle en simulation. Les variations en vitesse, en altitude et en
+fréquence de rafraîchissement de la mémoire du modèle ont prouvé que l’agent autonome obtenu
+parvient tout de même à atteindre les destinations. Des analyses supplémentaires justifient
+l’utilisation d’images de profondeur par opposition aux images RGB ainsi que l’utilisation d’un
+module récurrent dans la représentation de l’état observé.
+Une multitude d’améliorations sont suggérées concernant l’utilisation et la création d’un ensemble
+de données destiné à l’apprentissage par imitation pour le guidage autonome. Il est également
+suggéré d’incorporer l’image RGB à l’image de profondeur considérant certains éléments de
+comportement du modèle entraîné sur les images RGB. Les résultats encourageants obtenus
+motivent donc à entreprendre les tests hors simulation dans la suite du projet.
+
+=== PAGE 8 ===
+vii
+ABSTRACT
+The autonomous guidance field is a continuously evolving research topic. The popularization of
+micro aerial vehicles such as quadcopters has contributed to the expansion of this research topic.
+Because of the wide range of different environments they can navigate into, quadcopters have many
+challenges on their own. In contrast with autonomous cars, quadcopters will most likely navigate
+more often in unknown environments with limited or no GPS service. New methods for
+autonomous guidance were needed for quadcopters.
+The literature review reveals two main categories relevant to the autonomous guidance problem:
+locally passive-reactive guidance and oriented guidance. The former includes all forms of guidance
+not aiming for a specific target while the latter focuses on reaching a destination. Both categories
+are considering guidance in unknown environments and use mostly reinforcement learning or
+imitation learning as a solving method. However, most of the studies on autonomous oriented
+guidance are not executed in a full size, complex environment setting.
+The objective of this research project is to create an intelligent agent capable of imitating a human
+guidance policy in a complex and unknown environment based on a depth map image and relative
+goal inputs. Considering the lower cost in development and computation time, the imitation
+learning approach was chosen. A sophisticated simulation environment was set up to create an
+imitation learning datasets. A total of 624 suboptimal demonstration paths from 9 different 3D
+environments were gathered, which represent 296 466 learning pairs. The demonstrations are
+qualified as suboptimal since the expert is a human trying its best to solve the guidance problem
+without any optimal planners.
+A classification model was introduced for predicting the appropriate guidance command based on
+the observations over time. The model learned a meaningful representation of its inputs which can
+be processed by a long short-term memory network (LSTM) followed by a fully connected
+network. In this way, the depth image obtained from the RGB original image along with the relative
+coordinates to the destination are converted into a guidance command at each time step. In order
+to improve the classification accuracy on the test set, a custom loss function and data augmentation
+techniques were implemented.
+
+=== PAGE 9 ===
+viii
+A grid search over possible combination of dataset augmentation proportions was conveyed to
+optimize the hyperparameters. Accuracy ranging between 77.10% and 82.59% were obtained for
+this experiment, revealing a significant dependency to the augmentation technique.
+Simulation results were, however, not directly correlated with the classification accuracy on the
+test set. We found that the independent and identically distributed assumption of the training
+examples was in fact no longer valid in an MDP problem as predicted by the theory since each
+state is influenced by the action taken at the previous state. Errors made by the agent can then add
+up over time and lead the agent into a state never encountered by the expert during the training. It
+is in this case extremely difficult fort the agent to choose the proper action and can cause a crash.
+Despite the augmentation techniques used, the best models according to the test accuracy were in
+fact the worst in simulation, leaving the second-best models in first place in the simulation. Thus,
+models performing well in simulation appeared to have learned a better representation and a less
+rigid formulation of the expert’s guidance policy. The simulation’s high-performing models were
+in fact, able to imitate the expert’s behavior and reach all destinations with a mean error ranging
+between 1.9 m and 3.2 m.
+The generalization ability of the policy learned by the model was also evaluated in this work. The
+model has shown its ability to perform through a wide range of speed, altitude and memory refresh
+rate. Cross-validation was also carried out to test the impact of the selected validation and test sets.
+Experiments with the model also validate the hypothesis in favor of using depth maps as opposed
+to RGB images as well as using recurrent models.
+Various improvements concerning the use and the creation of an imitation learning dataset are then
+proposed. Considering certain positive behaviors when using RGB image inputs, it is also proposed
+to incorporate RGB image to the depth input in future works. In the light of the results obtained in
+this thesis, it is fair to say that the next step of this work will include real-world testing.
+
+=== PAGE 10 ===
+ix
+TABLE DES MATIÈRES
+REMERCIEMENTS ..................................................................................................................... III
+RÉSUMÉ ........................................................................................................................................ V
+ABSTRACT .................................................................................................................................VII
+TABLE DES MATIÈRES ............................................................................................................ IX
+LISTE DES TABLEAUX ............................................................................................................XII
+LISTE DES FIGURES ............................................................................................................... XIV
+LISTE DES SIGLES ET ABRÉVIATIONS ............................................................................ XVII
+LISTE DES ANNEXES ............................................................................................................. XIX
+CHAPITRE 1 INTRODUCTION ............................................................................................... 1
+1.1 Problématique ................................................................................................................... 1
+1.2 Objectifs ........................................................................................................................... 3
+1.3 Plan du mémoire ............................................................................................................... 3
+CHAPITRE 2 REVUE DE LITTÉRATURE ............................................................................. 5
+2.1 Notions d’apprentissage profond ..................................................................................... 5
+2.1.1 Méthodes d’apprentissage ............................................................................................ 5
+2.1.2 Types de réseaux communs .......................................................................................... 7
+2.2 Estimation de profondeur ................................................................................................. 9
+2.3 Guidage autonome .......................................................................................................... 12
+2.3.1 Exploration non structurée ......................................................................................... 13
+2.3.2 Planification de trajectoire globale ............................................................................. 17
+CHAPITRE 3 MÉTHODOLOGIE ........................................................................................... 24
+3.1 Interprétation de la profondeur ....................................................................................... 24
+3.2 Sélection du drone .......................................................................................................... 25
+
+=== PAGE 11 ===
+x
+3.2.1 Caractéristiques recherchées ...................................................................................... 25
+3.2.2 AR Drone 2.0 ............................................................................................................. 27
+3.3 Environnement de simulation ......................................................................................... 27
+3.3.1 Robot Operating System ............................................................................................ 28
+3.3.2 Gazebo ........................................................................................................................ 28
+3.3.3 Modèle du drone ......................................................................................................... 28
+3.3.4 Communication interprogrammes .............................................................................. 30
+3.4 Ensemble de données ..................................................................................................... 31
+3.4.1 Sélection des environnements .................................................................................... 32
+3.4.2 Sélection des classes du modèle ................................................................................. 34
+3.4.3 Collecte de l’ensemble de données ............................................................................ 36
+3.4.4 Variantes de l’ensemble de données .......................................................................... 43
+3.5 Modèle de guidage autonome pour drone ...................................................................... 45
+3.5.1 Traitement d’image .................................................................................................... 47
+3.5.2 Représentation des entrées scalaires .......................................................................... 50
+3.5.3 Traitement temporel des entrées ................................................................................ 51
+3.5.4 Interprétation de la classe ........................................................................................... 51
+3.6 Fonction de coût ............................................................................................................. 52
+3.6.1 Pondération du contexte 𝒘𝒄𝒐𝒏𝒕𝒆𝒙𝒕𝒆 ........................................................................ 53
+3.6.2 Coût de distance 𝑪𝒅 ................................................................................................... 54
+3.6.3 Coût d’orientation 𝑪𝒐 ................................................................................................. 54
+3.6.4 Coût des fins de trajectoires 𝑪𝒇𝒕 ................................................................................ 55
+3.7 Entraînement .................................................................................................................. 56
+3.7.1 Utilisation de l’ensemble de données ......................................................................... 56
+
+=== PAGE 12 ===
+xi
+3.7.2 Augmentations de l’ensemble de données ................................................................. 58
+3.7.3 Optimisation des hyperparamètres ............................................................................. 58
+CHAPITRE 4 RÉSULTATS ET DICUSSION ........................................................................ 61
+4.1 Résultats de l’entraînement ............................................................................................ 61
+4.1.1 Analyse des tendances ................................................................................................ 61
+4.1.2 Mitigation du décalage du modèle avec l’expert ....................................................... 66
+4.1.3 Analyse des modèles obtenus ..................................................................................... 68
+4.2 Résultats de simulation ................................................................................................... 70
+4.2.1 Comparaison des modèles obtenus ............................................................................ 72
+4.2.2 Étude d’un modèle performant ................................................................................... 77
+4.2.3 Impact de l’ensemble de validation et de test ............................................................ 84
+4.2.4 Nécessité du module récurrent ................................................................................... 87
+4.2.5 Étude de l’effet de la profondeur ................................................................................ 89
+4.3 Discussion et pistes de travaux futurs ............................................................................ 91
+CHAPITRE 5 CONCLUSION ................................................................................................. 95
+RÉFÉRENCES .............................................................................................................................. 97
+ANNEXES .................................................................................................................................. 108
+
+=== PAGE 13 ===
+xii
+LISTE DES TABLEAUX
+Tableau 3.1 Modèles de prédiction de profondeur considérés pour le projet ................................ 24
+Tableau 3.2 Caractéristiques recherchées pour la sélection du drone ............................................ 26
+Tableau 3.3 Caractéristiques du modèle AR.Drone 2.0 ................................................................. 29
+Tableau 3.4 Description des modèles 3D sélectionnés [123] ......................................................... 34
+Tableau 3.5 Commandes utilisées pour la création de l'ensemble de données .............................. 36
+Tableau 3.6 Éléments enregistrés lors de la création de l’ensemble de données ........................... 41
+Tableau 3.7 Tableau récapitulatif des différentes itérations de l’ensemble de données DGD ....... 43
+Tableau 3.8 Description des données finales constituant l’ensemble de donné DGD ................... 44
+Tableau 3.9 Learning rates des différents modules du modèle ADG ............................................ 56
+Tableau 4.1 Statistiques sur les erreurs obtenues pour la recherche d'hyperparamètres ................ 62
+Tableau 4.2 Précision de classification sur l'ensemble de validation ............................................. 69
+Tableau 4.3 Précision de classification sur l'ensemble de test ....................................................... 69
+Tableau 4.4 Performances moyennes par trajectoire par rapport à l'expert ................................... 72
+Tableau 4.5 Erreur moyenne en mètres entre les agents autonomes et l'expert ............................. 75
+Tableau 4.6 Résumé des facteurs étudiés et leurs objectifs ........................................................... 77
+Tableau 4.7 Erreur entre l’agent autonome et l’expert en mètres pour chaque trajectoire en fonction
+de la vitesse du drone ............................................................................................................. 78
+Tableau 4.8 Écart entre l’agent autonome et l’expert en mètres pour chaque trajectoire en fonction
+du scénario d’altitude ............................................................................................................. 80
+Tableau 4.9 Effet de la fréquence de rafraîchissement de la mémoire sur l’erreur entre l’agent
+autonome et l’expert en mètres pour chaque trajectoire ........................................................ 83
+Tableau 4.10 Ensembles utilisés pour la pseudo-validation croisée à k blocs. ............................ 85
+
+=== PAGE 14 ===
+xiii
+Tableau 4.11 Performances obtenues en fonction de l’ensemble de données de validation et de test
+................................................................................................................................................ 86
+Tableau 4.12 Effet du module récurrent sur l’erreur relative entre l’agent autonome et l’expert en
+mètres pour chaque trajectoire ............................................................................................... 89
+Tableau 4.13 Effet du type de vision sur l’erreur relative entre l’agent autonome et l’expert en
+mètres pour chaque trajectoire ............................................................................................... 90
+
+=== PAGE 15 ===
+xiv
+LISTE DES FIGURES
+Figure 2.1 Représentation schématique d’un «octomap» [34, Fig. 3 et 4] .................................... 10
+Figure 2.2 Architecture multiéchelle proposée par [43, Fig. 2] ..................................................... 11
+Figure 2.3 Image de profondeur discrétisée pour le calcul des vélocités [87, Fig. 2] .................... 17
+Figure 2.4 Guidage vers une image de référence [92, Fig. 1] ........................................................ 19
+Figure 3.1 AR Drone 2.0 de la compagnie Parrot [124] ................................................................ 27
+Figure 3.2 Diagramme de communication des nœuds ROS .......................................................... 30
+Figure 3.3 Diagramme de communication de l'interface ROS et du programme externe ............. 31
+Figure 3.4 Vue isométrique (gauche) et intérieure (droite) du modèle 3D Resto-Bar [130] ......... 33
+Figure 3.5 Trajectoires typiques obtenues avec les trois commandes de base (gauche) versus avec
+les commandes combinées (droite) ........................................................................................ 35
+Figure 3.6 Annotation des points d'intérêts dans l'environnement Maison 2 ................................. 37
+Figure 3.7 Fenêtre de référence pour le guidage et la création de l’ensemble de données. Contient
+la carte de profondeur, la distance euclidienne et l’orientation entre la position actuelle et
+l’objectif. ................................................................................................................................ 38
+Figure 3.8 Diagramme décisionnel pour l'expert ........................................................................... 40
+Figure 3.9 Quantités scalaires mesurées lors de la réalisation d'une trajectoire ............................ 42
+Figure 3.10 Répartition des classes de l'ensemble de données DGD ............................................. 45
+Figure 3.11 Architecture déroulée dans le temps du réseau de guidage autonome pour drones
+(ADG) ..................................................................................................................................... 46
+Figure 3.12 Vue détaillée du CNN REP1 de l'Encodeur. ............................................................. 48
+Figure 3.13 Exemple de reconstruction des images de profondeur. .............................................. 49
+Figure 3.14 Architecture du réseau de guidage autonome pour drones (ADG) ............................. 50
+
+=== PAGE 16 ===
+xv
+Figure 3.15 Vue isométrique (gauche) et orthogonale supérieure (droite) du Bar à Billard [144].
+................................................................................................................................................ 60
+Figure 4.1 Courbes d'apprentissage de la recherche d'hyperparamètres. ...................................... 63
+Figure 4.2 Exemple de matrice de confusion typique .................................................................... 65
+Figure 4.3 Tracé d'une trajectoire de l'expert comparée à celle de l'agent autonome .................... 67
+Figure 4.4 Comparaison et évaluation de la qualité des trajectoires (2 à 6) de 3 modèles avec l'expert
+................................................................................................................................................ 73
+Figure 4.5 Comparaison des trajectoires 1 à 6 par l’expert (gauche) et le modèle 60% DA et 40%
+SM (droite) ............................................................................................................................. 74
+Figure 4.6 Comparaison de la trajectoire 10 à 4 de l'expert (haut) et de l'agent autonome (bas) .. 76
+Figure 4.7 Comparaison des trajectoires 1 à 6 pour une vitesse de 0.3 m/s (gauche) et 0.5 m/s
+(droite) .................................................................................................................................... 79
+Figure 4.8 Scénario encourageant l'agent à s'approcher dangereusement d'un obstacle. .............. 81
+Figure 4.9 Avant et après le cloisonnement complet des tables de billard. ................................... 81
+Figure 4.10 Trajectoire typique lorsque le modèle est incertain. ................................................... 82
+Figure 4.11 Trajectoire (10 à 1) où le drone reste pris dans le coin en raison du non-rafraîchissement
+de la mémoire. ........................................................................................................................ 84
+Figure 4.12 Exemples de trajectoires dans des environnements plus grands (bureau : droite) et plus
+complexes (salle de machine : gauche). ................................................................................. 87
+Figure 4.13 Exemple de trajectoire exécutée par le modèle dépourvu de module récurrent (trajet 4
+à 10) ........................................................................................................................................ 88
+Figure 4.14 Comportements typiques du modèle RGB ................................................................ 91
+Figure A.1 Vue intérieur d’une des pièces du Bar à Billard [144]. ............................................. 108
+Figure A.2 Vue isométrique (gauche) et orthogonale supérieure (droite) du Bar à Billard [144].
+.............................................................................................................................................. 108
+Figure A.3 Numérotation des points d’intérêts du Bar à Billard ................................................. 109
+
+=== PAGE 17 ===
+xvi
+Figure A.4 Vue isométrique du premier étage de la Maison 1 [148]. .......................................... 109
+Figure A.5 Vue orthogonale du premier étage de la Maison 1 [148]. .......................................... 110
+Figure A.6 Vue isométrique du deuxième étage de la Maison 1 [148]. ....................................... 110
+Figure A.7 Vues intérieures du salon, d’un couloir et de la cuisine de la Maison 1 [148]. ......... 111
+Figure A.8 Numérotation des points d’intérêt de la Maison 1, vue de côté en perspective. ........ 112
+Figure A.9 Numérotation des points d’intérêt de la Maison 1, vue orthogonale. ........................ 113
+Figure A.10 Numérotation des points d’intérêt de la Maison 1, vue isométrique. ...................... 114
+Figure A.11 Vue intérieure 1 de la Salle de machines ................................................................. 115
+Figure A.12 Vue intérieure 2 de la Salle de machines ................................................................. 115
+Figure A.13 Numérotation des points d’intérêt de la Salle de machines. .................................... 116
+Figure A.14 Numérotation des points d’intérêt de la Salle de serveurs. ...................................... 117
+Figure A.15 Vue isométrique du Bureau [149]. ........................................................................... 118
+Figure A.16 Vues intérieure du Bureau ....................................................................................... 118
+Figure A.17 Numérotation des points d’intérêt du Bureau. ......................................................... 119
+Figure A.18 Vue isométrique du Resto-Bar [130]. ...................................................................... 120
+Figure A.19 Vue intérieure du Resto-Bar [130].. ......................................................................... 120
+Figure A.20 Numérotation des points d’intérêt du Resto-Bar. .................................................... 121
+Figure A.21 Vue orthogonale du premier étage de la Maison 2 [150]. ........................................ 122
+Figure A.22 Vues intérieur du salon et de la cuisine de la Maison 2 [150]. ................................ 122
+Figure A.23 Numérotation des points d’intérêt de la Maison 2, vue avant. ................................. 123
+Figure A.24 Numérotation des points d’intérêt de la Maison 2, vue orthogonale supérieure. .... 123
+Figure A.25 Numérotation des points d’intérêt de la Maison 2, vue arrière. ............................... 124
+
+=== PAGE 18 ===
+xvii
+LISTE DES SIGLES ET ABRÉVIATIONS
+ADG Autonomous Drone Guidance
+DGD Drone Guidance Dataset
+IA Intelligence Artificielle
+i.i.d. Identiquement indépendamment distribué
+MLP Multilayer Perceptron
+CNN Convolutional Neural Network
+RNN Recurrent Neural Networks
+NLP Natural Language Processing
+GRU Gated Recurrent Unit
+LSTM Long Short-Term Memory
+MRF Markov Random Field
+MDP Markov Decision Process
+CRF Conditional Random Fields
+SLAM Simultaneous Localisation and Mapping
+VI Value Iteration
+GAN Generative Adversarial Network
+ICM Intrinsic Curiosity Module
+API Application Programming Interface
+SfM Structure from Movements
+SDK Software Development Kit
+ROS Robot Operating System
+FCRN Fully Convolutional Residual Networks
+DA Destination Artificielle
+
+=== PAGE 19 ===
+xviii
+SM Séquence Miroir
+KLD Kullback Leibler Divergence
+MACN Memory Augmented Control Network
+DARPA Defense Advanced Research Project Agency
+DAGGER Dataset Aggregation
+CoSIM Conception de Systèmes Intelligents et Mécatroniques
+
+=== PAGE 20 ===
+xix
+LISTE DES ANNEXES
+Annexe A : Caractéristiques des modèles 3D des environnements ............................................. 108
+
+=== PAGE 21 ===
+1
+CHAPITRE 1 INTRODUCTION
+1.1 Problématique
+Depuis quelques années, les drones de type quadricoptère ou multicoptère ont connu une
+maturation intense au niveau technologique qui les a rendus à la fois très populaires et accessibles
+au public. Leur utilité est maintenant très variée et comprend notamment des tâches de surveillance,
+de transport et aussi de recherche et sauvetage [1]–[3]. Certaines compagnies comme Amazon, ont
+même déjà commencé à utiliser des drones pour la livraison de colis à domicile [2]. En revanche,
+de ces nouvelles applications découlent aussi de nouveaux défis. L’un de ces défis provient du fait
+que les vols à basse altitude sont souvent synonymes d’un environnement non cartographié et
+dépourvu d’assistance GPS, notamment dans le cas de vols à l’intérieur ou dans des
+environnements urbains achalandés. Les drones doivent donc se baser sur de nouveaux outils pour
+naviguer dans ces nouveaux espaces.
+Malgré la présence de plusieurs technologies dédiées à la localisation indépendante des GPS,
+incluant l’odométrie visuelle et la fusion sensorielle utilisant les filtres de Kalman [4], peu d’études
+s’attaquent au problème de guidage orienté en milieu inconnu. La possibilité d’utiliser une carte de
+l’environnement pour la planification de trajectoire et le guidage étant pour la plupart du temps non
+envisageable, il devient nécessaire de créer une perception de l’environnement sur laquelle se
+baser. Plusieurs études ont donc envisagé d’utiliser différents types de technologie tel que le
+LIDAR 3D ou les dispositifs de stéréovision afin d’acquérir une perception de la profondeur des
+environs. Le problème de ces technologies est cependant en lien avec la puissance de calcul sur les
+drones [5] ainsi que le coût. Il est donc devenu intéressant d’utiliser une seule caméra pour
+interpréter l’environnement de navigation [6].
+L’intelligence artificielle ayant atteint un niveau de performance inégalé au cours des dernières
+années, elle est maintenant mieux adaptée que jamais à l’interprétation d’images [7]. La majorité
+des études s’intéressant au problème de guidage autonome se classent selon deux catégories : le
+guidage réactif localement pour exploration et le guidage orienté. Le guidage réactif localement
+permet aux engins de naviguer et d’éviter des obstacles en réagissant à l’environnement sans
+destination précise. Le guidage orienté reprend quant à lui les caractéristiques de guidage réactif
+mais, comme son nom l’indique, permet de se diriger vers un objectif quelconque. Les deux
+
+=== PAGE 22 ===
+2
+catégories utilisent majoritairement l’apprentissage par imitation ou l’apprentissage par
+renforcement afin de résoudre leur problématique.
+Même si les deux catégories n’utilisent pas de cartes de l’environnement à des fins de guidage, la
+deuxième catégorie nécessite une estimation de la position relative à son objectif. La source
+responsable de l’acquisition de la position peut varier parmi celles mentionnées plus haut ainsi que
+selon les domaines d’application. Dans le cadre de cette étude, l’estimation de la position peut
+tolérer une incertitude comparable à la taille de la zone de destination sans diminution de
+performances.
+Considérant que la majorité des études sur le guidage autonome orienté en milieux inconnus
+s’applique à des robots terrestres et que bon nombre d’entre elles se limitent à des simulations de
+guidage dans des environnements simples et sur de courtes distances, concevoir un agent intelligent
+de guidage pour drones représenterait une contribution aux connaissances. Considérant aussi que
+cette étude constitue une preuve de concept à planification de trajectoire dans des environnements
+inconnus complexes, et qu’il devient très compliqué d’établir une fonction de récompense dans des
+problèmes complexes tels que celui-ci ou celui abordé dans [8], l’apprentissage par imitation est
+préférable pour résoudre le problème de guidage autonome. Ce type d’apprentissage permet
+d’ailleurs d’utiliser un humain comme expert, ce qui répond directement à la question de recherche
+en plus d’éliminer le besoin des ressources de calcul pour l’apprentissage par renforcement.
+L’utilisation d’un expert humain pour une tâche d’apprentissage par imitation permettra d’obtenir
+des démonstrations dans lesquelles l’expert effectuerait des trajectoires en explorant véritablement
+les environnements, contrairement à si l’expert humain était remplacé par un algorithme de
+planification optimal. Il serait en effet beaucoup plus complexe d’implémenter un système de
+guidage contrôlé par un algorithme de planification optimale, tel que A* ou RTT*, agissant comme
+un humain dans une tâche de guidage orienté en se basant sur la vision en plus d’une distance et
+orientation relative à sa destination. Dans des travaux futurs ayant pour objectif de surpasser les
+performances de cette preuve de concept, les avantages de l’apprentissage par renforcement
+pourraient être mis à profit en utilisant le modèle obtenu par apprentissage par imitation à des fins
+d’initialisation pour la procédure d’apprentissage par renforcement tel que dans [9].
+
+=== PAGE 23 ===
+3
+1.2 Objectifs
+L’objectif principal de ce projet de recherche est donc de :
+Concevoir un agent intelligent capable d’imiter la logique de guidage d’un humain dans un
+environnement inconnu complexe.
+La réussite de ce projet repose sur l’atteinte de trois sous objectifs :
+SO1. Créer la logique de guidage nécessaire à la résolution du problème d’apprentissage par
+imitation.
+SO2. Développer une architecture d’apprentissage profond capable d’extraire la logique de
+guidage.
+SO3. Caractériser les modèles d’apprentissage profond obtenus dans un environnement de
+simulation virtuel.
+Quatre hypothèses reliées à la méthodologie employée pour atteindre ces objectifs devront être
+vérifiées. La première hypothèse concerne l’aspect de la vision du problème et suggère que
+l’utilisation de la profondeur d’image permettra d’établir la logique plus facilement.
+L’indépendance des couleurs et des textures dans l’obtention d’une image de profondeur
+améliorera ainsi la capacité de généralisation à de nouveaux environnements. La seconde
+hypothèse suggère que les démonstrations d’un expert humain constituant l’ensemble de données
+sont suffisamment bien exécutées de façon à ce que la logique de guidage puisse être extraite.
+Ainsi, les images de profondeur de même que les données de position relatives à la destination à
+atteindre qui sont contenues dans les démonstrations seront nécessaires à l’extraction de la logique
+de guidage. La troisième hypothèse stipule donc que le modèle d’apprentissage par imitation sera
+en mesure d’extraire cette logique. Enfin, la quatrième hypothèse veut que les environnements
+virtuels choisis pour la génération de l’ensemble de données et des tests en simulation soient
+suffisamment riches en détail pour s’apparenter à un contexte hors simulation et permettre une
+caractérisation satisfaisante des performances de l’agent autonome.
+1.3 Plan du mémoire
+Une description détaillée des approches employées dans la littérature pour résoudre le problème de
+guidage autonome sera premièrement présentée dans la Revue de littérature (Chapitre 2). Suivra
+
+=== PAGE 24 ===
+4
+ensuite le Chapitre 3, portant sur la méthodologie expliquant le processus qui permet d’atteindre
+les objectifs du projet. Chaque section de ce chapitre comportera une justification motivant les
+choix qui ont été faits. Les performances du modèle de guidage autonome pour drones
+(Autonomous Drone guidance, ADG) seront ensuite présentées et analysées au Chapitre 4, allant
+de l’analyse des performances de l’entraînement du modèle jusqu’aux performances obtenues en
+simulation. Ce chapitre fera également état des limitations et des améliorations potentielles à
+apporter au modèle via une discussion des résultats. Enfin, le Chapitre 5 comprendra un retour sur
+les principaux résultats avant de conclure le mémoire.
+
+=== PAGE 25 ===
+5
+CHAPITRE 2 REVUE DE LITTÉRATURE
+2.1 Notions d’apprentissage profond
+L’intelligence artificielle (IA) est parmi les disciplines ayant le plus évolué au cours des dernières
+années. Bien que l’apprentissage machine soit connu et utilisé depuis les années 50, l’apprentissage
+profond fait quant à lui son arrivée dans les années 80. Les algorithmes d’apprentissage profond
+sont développés en profondeur dans ces années, mais ce n’est que tout récemment que ce type
+d’algorithmes ont vu leur popularité augmenter. La période suivant leur découverte et leur gain en
+popularité est référée comme étant l’hiver de l’IA, une période durant laquelle l’intérêt envers cette
+science a été moins marqué en raison d’un découragement face aux performances de l’IA [10].
+Suivant la loi de Moore, la puissance de calcul des processeurs doubla environ chaque deux ans
+jusqu’à aujourd’hui, accordant ainsi une plus grande capacité de calculs pour la résolution des
+problèmes d’IA [11]. L es plateformes d’apprentissage profond facilitant l’implémentation
+de ces algorithmes ont finalement vu le jour [12]–[16], rendant plus accessible son utilisation.
+2.1.1 Méthodes d’apprentissage
+La plupart des algorithmes d’intelligence artificielle peuvent généralement être catégorisés comme
+étant supervisés ou non supervisés. Les deux types d’algorithmes effectuent leur apprentissage à
+partir d’un ensemble de données. Dans le contexte de l’apprentissage supervisé, l’algorithme aura
+comme objectif de prédire une sortie 𝒚 en fonction d’une entrée 𝒙. L’ensemble de données est dans
+ce cas constitué de paires d’exemples de la forme (𝒙,𝒚). Pour ce qui est de l’apprentissage non
+supervisé, l’algorithme peut avoir plusieurs types d’objectifs, soit la prédiction de densités à des
+fins de synthèse ou de suppression de bruit ( «denoising»), l’agrégation de caractéristiques
+communes, etc. L’ensemble de données pour ce type de problème est constitué d’exemples de la
+forme 𝒙 seulement. La plupart des algorithmes abordés dans le contexte de ce mémoire utilisent
+l’apprentissage supervisé pour des tâches de classification ou de régression [17]. Des ensembles de
+données pour la classification et la régression sont maintenant souvent disponibles en ligne pour
+permettre la comparaison des nouveaux algorithmes [18], [19].

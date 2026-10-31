@@ -1,0 +1,353 @@
+=== PAGE 1 ===
+Qu’est-ce qu’un drone ?
+STARDICE
+https://www.wearefpv.fr/le-drone-fpv-pour-les-nuls/
+Un drone, ou véhicule sans pilote (UV), est un véhicule robotique
+contrôlé manuellement ou de manière autonome.
+Il existe plusieurs types :
+• UAV (aérien),
+• UGV (terrestre),
+• USV (de surface sur l’eau),
+• UUV (sous-marin).
+Le système complet comprenant le drone, la station au sol (GCS), et
+d'autres composants est appelé Système Aérien sans Pilote (UAS).
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 2 ===
+Types de drones
+Types de drones
+• Multirotors (Multicopters) : Décollage vertical précis, adaptés à la prise de vue, mais
+autonomie réduite.
+• Hélicoptères : Plus complexes mais efficaces.
+• Avions (Aile fixe) : Vol rapide et longue portée, mais nécessitent une piste d’atterrissage.
+• VTOL (décollage/atterrissage vertical) : Combinaison d’aile fixe et multirotor.
+• Dirigeables/Ballons : Pour des vols prolongés avec contrôle limité.
+• Rovers (terrestres) et bateaux : Stables, capables de porter des charges lourdes.
+• Submersibles : Véhicules sous-marins.
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 3 ===
+Autopilotes
+Autopilotes
+Un autopilote est le "cerveau" d’un drone. Il se compose d’un logiciel (par exemple stack de
+vol PX4) fonctionnant sur un système d’exploitation en temps réel (RTOS) sur un contrôleur
+de vol (FC).
+Par exemple le PX4 offre :
+• Compatibilité avec plusieurs types de véhicules.
+• Modes de vol flexibles et intégration avec ordinateurs compagnons et API comme ROS 2
+(Robot Operating System) .
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 4 ===
+De quoi est constitué un drone ?
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 5 ===
+1. Structure de base
+•Châssis : Cadre principal du drone, fabriqué en matériaux légers comme la fibre de
+carbone ou le plastique pour offrir à la fois solidité et légèreté.
+•Hélices : Génèrent la poussée nécessaire pour faire voler le drone.
+•Bras : Prolongements du châssis qui supportent les moteurs et les hélices.
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 6 ===
+2. Contrôleur de Vol et Système de
+Propulsion d'un Drone
+•Le contrôleur de vol est l'unité centrale qui gère la stabilité et le comportement du drone. Il reçoit des données
+des capteurs (IMU, GPS, baromètre) et calcule l'orientation, la position et l'altitude du drone. En fonction de ces
+données et des commandes de l'utilisateur, il envoie des signaux PWM aux ESC (Electronic Speed Controllers), qui
+régulent la vitesse des moteurs brushless.
+•Moteurs Brushless : Génèrent la poussée pour le décollage, les manœuvres et la stabilité du drone.
+•ESC : Recevront les commandes PWM du contrôleur de vol et ajustent la vitesse des moteurs en conséquence.
+•Ce système garantit la stabilité, la navigation autonome et la réactivité du drone.
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 7 ===
+3. Système de commande et de
+contrôle
+•Carte de contrôle de vol (Flight Controller) : Cerveau du drone, gère la stabilité,
+interprète les signaux des capteurs et applique les commandes de vol.
+•Radio (Émetteur et Récepteur) : Facilite la communication entre le pilote et le drone,
+permettant un contrôle à distance.
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 8 ===
+4. Système d'Alimentation et Énergie
+•Batterie (LiPo) : Fournit l'alimentation principale au drone, alimentant les moteurs via les ESC, ainsi
+que les capteurs et autres composants via le contrôleur de vol.
+•Connecteurs et câbles : Assurent la liaison entre la batterie, les ESC, et le contrôleur de vol pour
+distribuer l'énergie.
+•Connexion : La batterie alimente directement les ESC pour les moteurs et le contrôleur de vol pour
+les capteurs et autres systèmes via un régulateur de tension intégré
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 9 ===
+5. Capteurs
+IMU (Gyroscope +
+GPS (u-blox NEO-M8N) :
+Accéléromètre) : Connecté Baromètre (BMP388) :
+Connecté via UART, il
+via I2C au contrôleur de vol, Connecté via I2C, il mesure
+permet la navigation
+il fournit des données pour l'altitude pour maintenir une
+autonome et le
+stabiliser et corriger hauteur constante en vol.
+positionnement précis.
+l'orientation du drone.
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 10 ===
+6. Système de Communication
+et Bus I2C
+•Système de Communication :
+•Transmetteur vidéo : Diffuse des images en temps réel pour le vol FPV.
+•Antenne : Améliore la portée et la qualité des transmissions.
+•Contrôleur de vol : Traite les données des capteurs (IMU, baromètre, GPS) et ajuste les signaux PWM des ESC pour contrôler les moteurs.
+•Bus I2C :
+•SDA et SCL : Lignes pour la communication entre le contrôleur de vol et les capteurs.
+•Connexion : Capteurs connectés en parallèle sur SDA et SCL pour la communication bidirectionnelle.
+•Pull-up Resistors : Résistances (4.7kΩ) stabilisant la communication.
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 11 ===
+7. Caméra (optionnelle)
+•Caméra embarquée : Capture des images ou vidéos aériennes pour diverses applications
+(loisir, inspection, surveillance).
+•Gimbal : Stabilisateur mécanique ou électronique pour garantir des prises de vue nettes et
+stables malgré les mouvements du drone. ( 3 axes (pitch, roll, yaw) )
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 12 ===
+8. Logiciels et applications
+•Firmware : Logiciel intégré à la carte de contrôle, responsable de la gestion des
+algorithmes de vol.
+•Application mobile : Interface utilisateur pour configurer le drone, programmer des
+missions ou accéder au retour vidéo en direct.
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 13 ===
+9. Synoptique de l'électronique
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 14 ===
+Composants principaux
+Composants principaux
+• Contrôleur de vol (Flight Controller, FC) : Matériel pour exécuter PX4, connecter les capteurs et actionner les moteurs.
+• Capteurs : Gyroscope, accéléromètre, magnétomètre, baromètre, GNSS, capteurs de distance.
+• Moteurs et ESC : Contrôle de la puissance des moteurs.
+• Batteries/Alimentation : Typiquement des batteries LiPo connectées via un module d’alimentation.
+• Commandes manuelles : Par émetteur radio (RC) ou joystick connecté via QGroundControl.
+• Switch de sécurité : Interrupteur pour armer le drone en sécurité.
+• LED et buzzer : Notifications visuelles et sonores de l’état du drone.
+• Radio télémétrique : Liaison de données entre le drone et la station au sol.
+• Ordinateurs compagnons : Fournissent des commandes de haut niveau via des API comme MAVSDK.
+• Cartes SD : Stockage des journaux de vol et gestion des missions.
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 15 ===
+10.Kit de développement X650 - Holybro
+https://holybro.com/collections/x650-kits/products/x650-development-kit
+https://docs.holybro.com/
+https://holybro.com/collections/autopilot-flight-controllers
+https://en.wikipedia.org/wiki/Pixhawk
+Kit de développement X650 – Holybro:
+1 x Contrôleur de volPixhawk 6X & PM02D
+1 x Module GPS M10
+1 x Module de télémétrie radio V3 433/915MHz
+1 x Châssis X650 V2
+4 x Moteurs T-Motor MN4014 330Kv
+4 x Module LED NeoPixel WS2812
+4 x ESC Tekko32 F4 45A
+4 x Hélices en carbone Gemfan 1555
+1 x Carte de distribution d'alimentation (XT60 pour batterie, XT30 pour périphériques)
+4 x Bras pliables
+Compatible PX4 et Ardupilot
+Charge Utile : 4,5kg (sans Batterie) , 3.5kg (avec 5200mAh [0,750kg), 3.1kg (avec 10000mAh 1,2kg)
+PX4:
+https://docs.px4.io/main/en/
+https://docs.px4.io/v1.15/en/
+https://docs.px4.io/main/en/flight_controller/pixhawk6x.html
+https://docs.px4.io/main/en/assembly/quick_start_pixhawk6x.html
+Ardupilot:
+https://docs.holybro.com/autopilot/pixhawk-6x/supported-firmware
+https://ardupilot.org/copter/docs/common-holybro-pixhawk6X.html
+Holybro:
+https://docs.holybro.com/autopilot/pixhawk-6x
+https://holybro.com/pages/downloads
+https://docs.holybro.com/autopilot/pixhawk-6x/supported-firmware
+https://docs.holybro.com/drone-development-kit/x650-development-kit/neopixel-ws2812-led-setup-instruction
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 16 ===
+11. Kit de développement X650 – Holybro:
+PM02D
+Pixhawk 6X Hélices GPS M10
+1555
+Modules télémétrie SiK V3 100mW
+433MHz - Holybro
+X
+Led neopixel ws2812,
+Châssis X650 V2 seule ou en ring
+avec bras pliables
+Tekko32 F4
+45A ESC Distribution d'alimentation
+T-Motor MN4014 330Kv (AM32) (XT60 pour batterie, XT30 pour
+périphériques)
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 17 ===
+12. Châssis X650 V2
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 18 ===
+13. Accessoires de Pilotage
+Batterie LiPo 6S 4000mAh
+130C (XT60) - ManiaX
+Pour alimenter le Drone ou Kit Avatar HD Moonlight - Goggles X Avatar HD -
+Cinelifter Walksnail Walksnail
+Récepteur Nano RP1/RP2
+2 X Accu US18650
+ExpressLRS 2.4GHz -
+VTC6 3000mAh – Radiocomma
+Sony pour RadioMaster
+nde TX16S
+radiocomande
+Max Mark II
+AG01 -
+Batterie Li-Ion VTC6 4S
+RadioMaster
+3000mAh 10C (XT60) -
+Auline
+Chargeur M6DAC –
+ToolkitRC pour charger
+pack entre 1S et 16S
+Clef Steam TRYP FPV
+(Logiciel de Simulation Drone)
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 19 ===
+14.Pixhawk 6X Flight Controller
+https://en.wikipedia.org/wiki/Pixhawk
+https://docs.holybro.com/autopilot/pixhawk-6x
+https://docs.holybro.com/autopilot/pixhawk-baseboards/pixhawk-baseboard-v2-ports
+https://docs.holybro.com/autopilot/pixhawk-6x/dimensions/rev-8-current
+2A ou 2B ?
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 20 ===
+15.Pixhawk 6X Flight Controller
+Le Pixhawk® 6X un outil parfait pour les devepllement des laboratoires de recherche d'entreprise,
+des startups, des universitaires (recherche, professeurs, étudiants) et des applications commerciales.
+Technical Specification Interfaces
+• 16-PWM servo outputs
+Processors & Sensors • R/C input for Spektrum / DSM
+• FMU Processor: STM32H753 • Dedicated R/C input for PPM and S.Businput
+• 32 Bit Arm® Cortex®-M7, 480MHz, 2MB flash memory, 1MB RAM • Dedicated analog / PWM RSSI input and S.Busoutput
+• IO Processor: STM32F103 • 4 general purpose serial ports
+• 32 Bit Arm® Cortex®-M3, 72MHz, 64KB SRAM • 3 with full flow control
+• On-board sensors (Shipping Currently, Rev8) • 1 with separate 1.5A current limit (Telem1)
+• Accel/Gyro: 3x ICM-45686 (with BalancedGyro Technology) • 1 with I2C and additional GPIO line for external NFC reader
+• Barometer: ICP20100 & BMP388 • 2 GPS ports
+• Mag: BMM150 • 1 full GPS plus Safety Switch Port
+Mechanical data • 1 basic GPS port
+• Dimensions • 1 I2C port
+• Flight Controller Module: 38.8 x 31.8 x 14.6mm • 1 Ethernet port
+• Standard Baseboard: 52.4 x 103.4 x 16.7mm • TransformerlessApplications (AN2190 50 Ohm termination)
+• Mini Baseboard: 43.4 x 72.8 x 14.2 mm • 100Mbps
+• Weight • 1 SPI bus
+• Flight Controller Module: 23g • 2 chip select lines
+• Standard Baseboard: 51g • 2 data-ready lines
+• Mini Baseboard: 26.5g • 1 SPI SYNC line
+Electrical data • 1 SPI reset line
+• Voltage Ratings: • 2 CAN Buses for CAN peripheral
+• Max input voltage: 6V • CAN Bus has individual silent controls or ESC RX-MUX control
+• USB Power Input: 4.75~5.25V • 2 Power input ports with SMBus
+• Servo Rail Input: 0~36V • 1 AD & IO port
+• Current Ratings: • 2 additional analog input
+• Telem1 output current limiter: 1.5A • 1 PWM/Capture input
+• All other port combined output current limiter: 1.5A • 2 Dedicated debug and GPIO lines
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 21 ===
+16.Pixhawk 6X Flight Controller
+https://docs.px4.io/main/en/assembly/quick_start_pixhawk6x.html#pixhawk-6x-standard-set
+https://docs.px4.io/main/en/assembly/mount_gps_compass.html
+https://docs.px4.io/main/en/config/flight_controller_orientation.html#calculating-orientation
+Les décalagesROLL, PITCH and/or YAWdu contrôleurde vol sontcalculéspar rapport au véhiculeautourdes axes avant(x), droit (y) et bas (z).
+Pitch (y)
+Roll (x)
+Yaw (z)
+Le GPS/la boussole doit être monté sur le châssis aussi loin Le Pixhawk 6X peut être monté sur le châssis à l'aide du ruban
+que possible des autres appareils électroniques, avec le adhésif double face inclus dans le kit. Il doit être positionné
+marqueur de direction vers l'avant du véhicule (séparer aussi près que possible du centre de gravité de votre véhicule,
+la boussole des autres appareils électroniques réduira les orienté vers le haut avec la flèche pointant vers l'avant du
+interférences). véhicule.
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 22 ===
+17.Pixhawk 6X Flight
+Controller
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 23 ===
+18.Les axes du drone
+et les sticks de la radiocommande
+https://www.youtube.com/watch?v=pQ24NtnaLl8
+Pour se déplacer, un drone évolue suivant 4 axes, retenez les nom anglais, ils sont
+les plus utilisés :
+• Le Roll (roulis) : qui permet de pencher d’un côté ou de l’autre.
+• Le Pitch (tangage) : qui permet de se pencher vers l’avant ou l’arrière.
+• Le Yaw (lacet) : permet de tourner au drone de tourner sur lui même tout en
+restant à plat.
+• Le Throttle (les gaz, l’altitude) : qui permet d’appliquer une poussée dans la
+direction définie par l’ensemble des 3 autres axes.
+Les sticks des radiocommandes permettent de déplacer les gimbals sur deux axes,
+transmettant ces mouvements au drone via des capteurs.
+•Entrée de gamme : Gimbals avec potentiomètres, suffisants pour débuter, mais
+sujets à l’usure à cause des frottements, ce qui réduit leur précision avec le temps.
+•Milieu et haut de gamme : Gimbals à capteurs à effet Hall, utilisant des
+phénomènes magnétiques. Sans frottement, ils offrent une meilleure précision et
+une durabilité accrue.
+•Très haut de gamme : Gimbals Full CNC, entièrement en métal, garantissant une
+durabilité et une précision exceptionnelles, avec un ressenti supérieur pour les
+pilotes exigeants.
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 24 ===
+19. Le Gimbal c'est quoi ?
+Un gimbal est un stabilisateur mécanique qui réduit les tremblements en
+stabilisant un appareil sur trois axes (Roll, Pitch, Yaw) pour une orientation
+optimale.
+Grâce à des moteurs et capteurs, il ajuste en temps réel l’orientation sur 3
+axes :
+o Rouge (Roll): Stabilise l'inclinaisonlatérale.
+o Vert (Pitch): Stabiliseles mouvementsde haut enbas.
+o Bleu (Yaw): Stabiliseles rotations horizontales.
+o Le cadre noirreprésenteunecaméraouun dispositifstabilisé
+Utilité :
+o Vidéos fluides et cinématographiques.
+o Prises de vue créatives avec des angles dynamiques.
+o Applications avancées comme la réalité virtuelle ou le suivi
+Image Sans Stabilisateur
+d'objets.
+Les gimbals sont courants en vidéo, photographie, drones et smartphones.
+Dans notreapplication, le gimbal sera utilisépour affinerla calibration
+d’un instrument au sol, asservipar un dispositifde moinsde 0,5 kg
+installésur un drone, afinde maximiser la réceptiond’uneonde.
+Fabien FREROT Service Electronique 16/10/2024
+
+=== PAGE 25 ===
+19. Le Gimbal DIY 2 Axe
+https://rctimer.com/rctimer-asp-2-axis-nex-gh5-series-brushless-gimbal-p0455.html
+RCTIMER ASP 2-Axis Nex-GH5 Series Brushless Gimbal :
+• Matériau : Alliage d'aluminium, léger et durable.
+• Mécanisme : Entraînement direct par moteurs brushless.
+• Compatibilité : Caméras Sony Nex (276 –353g) et Panasonic GH5 (725 grammes),
+à adapter pour STARDICE ajouter 3 éme axe .
+• Poids : 311 g (sans moteurs).
+• Inclus : 2 moteurs BGM5010
+(dia = 50mm, ep = 10mm , poids =150g , U = 6V et 12V)
+Idéal pour un gimbal personnalisé sans carte de contrôle.
+Prix = 88.01€
+Poid total = 311g + 2*150g = 611g
+Fabien FREROT Service Electronique 16/10/2024

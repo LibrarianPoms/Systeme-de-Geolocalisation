@@ -1,0 +1,43 @@
+=== PAGE 1 ===
+Contrôle d’altitude d’un drone à effet de sol
+Objectif du projet
+L’objectif du projet est de concevoir un système de régulation de vol d’un drone à
+voilure fixe qui optimise la portance par l’utilisation de l’effet de sol.
+Méthodes | Expériences | Résultats
+Actuellement, les drones conventionnels ont une autonomie limitée par la
+capacité de leur batterie. Un drone à voilure fixe utilisant l’effet de sol pourrait y
+remédier. Un aéronef peut bénéficier de cet effet en volant à basse altitude sur
+des surfaces relativement planes telles que des plans d’eau ou des déserts. En
+utilisant l’augmentation de la portance générée par l’effet de sol, il glisse plus
+efficacement dans l’air et augmente sa rentabilité énergétique.
+Un tel drone serait idéal pour le transport rapide, économique et écologique de
+marchandises vitales, comme des médicaments ou du sang, dans les pays où le
+réseau routier est peu développé.
+Ce projet vise à concevoir un système de contrôle de l’altitude de vol d’un drone
+à voilure fixe permettant une utilisation optimale et autonome de l’effet de sol. Le
+drone sera équipé d’appareils de mesure tels que des capteurs de distance,
+gyroscopes, accéléromètres, GPS et capteurs de vitesse d’air. Le drone est
+équipé d’un contrôleur autopilote « Pixhawk 4 » pour gérer tous les composants.
+HES-SO Valais-Wallis • rte du Rawil 47 • C.P. • 1950 Sion 2
++41 27 606 85 23 • hei@hevs.ch • www.hevs.ch
+Diplômant/e Maël Forestal
+Travail de diplôme
+| édition 2020 |
+Filière
+Systèmes industriels
+Domaine d’application
+Power & Control
+Professeur responsable
+Dr. Fariba Moghaddam
+Fariba.moghaddam@hevs.ch
+Partenaire Image du TD Image du TD (facultative)
+Hepia-Haute école du paysage, (facultative)
+300 dpi
+d’ingénierie et d’architecture de
+Genève 300 dpi
+6.5 x 5cm
+6.5 x 5cm
+En volant proche du sol, une L’avion actuellement en
+surpression se crée sous les ailes ce qui développement à l’Hepia qui
+augmentera la force de portance. Ce maximisera l’effet de sol.
+phénomène est appelé l’effet de sol.

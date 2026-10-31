@@ -1,0 +1,321 @@
+=== PAGE 1 ===
+Design, Development and Validation of a
+Ground Control Station for Aerial Manipulators
+A. Gonz´alez-MorgadoQ, C. A´lvarez-C´ıa, G. Heredia, and A. Ollero
+GRVC - Robotics Lab Seville, University of Seville, Seville, Spain
+mantonio@us.es
+Abstract. In the last years, aerial manipulators, UAVs (Unmanned
+Aerial Vehicles) with robotic manipulators, have been used for several
+applicationssuchasinspectiontasks,systemsmonitoringortransporta-
+tionofloads.Inordertosupervisethemissions,aGCS(GroundControl
+Station)isused.However,theGCSofthecommercialautopilotsarejust
+designed to monitor the state of the aerial platform, forcing the use of
+othersoftwaretomonitorthestateoftheroboticmanipulator.Thispa-
+perpresentsthedesign,developmentandvalidationofaGroundControl
+Station for aerial manipulators. The GCS developed in this work allows
+theintegrationoftheUAVstateandmanipulatorstateinthesameGUI
+(Graphical User Interface). In order to plan missions, it also allows the
+definitionofwaypointsinasimpleway.Inaddition,theGCSintegrates
+aslavemodeforteleoperationoftheaerialmanipulator,usingaground
+manipulator and a video streaming to facilitate the task of the ground
+operator.AllthefunctionalitiesoftheGCSarevalidatedthroughexper-
+iments.ThisGCSwillbeusefultoperformaerialmanipulationmission,
+allowing the monitoring of the complete aerial manipulator in only one
+software.
+Keywords: AerialManipulators·GroundControlStation·Multirotors
+1 Introduction
+Inrecentyears,thefieldsofapplicationofaerialmanipulatorshaveexpanded,
+allowing the manipulation of objects in flight [1][2] and the interaction with the
+environment [3]. Some application examples are the inspection of oil and gas
+refineries, chemical plants [4], power lines [5], or civil infrastructures [6,7]. In
+order to monitor these missions, a GCS (Ground Control Station) is necessary.
+Ground Control Stations have an important role in the aerial manipulation, as
+theyareusedforplanningmissions,monitoringthestatusoftheaerialplatform
+orestablishingcommunicationlinks.SomegoodexamplesofGCSareQGround-
+Control [8], Mission Planner [9] or MAVProxy [10].
+However, these GCS are primarily intended for the flight of aerial vehicles,
+without taking into account the robotic manipulator. In addition, most of them
+are designed for outdoor flight, using GPS. This makes it difficult to integrate
+an indoor positioning system such as OptiTrack. Furthermore, waypoints are
+
+=== PAGE 2 ===
+2 A. Gonza´lez-Morgado et al.
+defined in geographical coordinates, longitude and latitude, rather than in local
+axes, referenced to the centre of the OptiTrack system, for example.
+Fig.1: GCS examples: a) GRVC GCS b) QGround-Control c) Mission Planner.
+These disadvantages can be overcome by incorporating a second on-board
+computer to receive the OptiTrack position and waypoints, typically via ROS,
+andtransmitthesemessagestotheautopilot.Anon-boardcomputercanrelieve
+the autopilot of complex calculations, but it increases the weight, consumption
+and cost of the aerial platform. Although some GCSs allow the incorporation of
+different actuators in the multirotor, such as a gripper, a camera or a parachute
+releasemechanism;theyarenotdesignedforamultirotorwitharoboticmanip-
+ulator.
+So, the main contribution of this paper is the design, development and val-
+idation of a Ground Control Station that incorporates the state of the robotic
+arm, as Figure 1a shows. Furthermore, the GCS developed can incorporate the
+indoor positioning system OptiTrack in a simple way, as well as the waypoint
+definitiononlocalaxes.Finally,theGCSincorporatesdifferentmanipulatorcon-
+trol modes, such as manual mode, predefined movements or slave mode with a
+ground manipulator.
+The paper is structured as follows: Section 2 introduces the main feautures
+of the GCS designed. Section 3 presents the software structure of the Ground
+Control Station. Section 4 introduces the aerial platform used for experiments.
+Section5coversthevalidationoftheGCSthroughindoorexperimentsusingthe
+OptiTrack system. Finally, Section 6 summarizes the conclusions and proposes
+future lines of work.
+2 Features of the Ground Control Station
+This section presents the GUI (Graphical User Interface) of the GCS de-
+signed. Figure 2 presents the GUI of the GCS, divided in five different regions.
+The utilities of each region are presented below.
+
+=== PAGE 3 ===
+Design, Development and Validation of a GCS for Aerial Manipulators 3
+Region A: Connections.Inthisregion,theconnectionswiththeautopilot
+areconfigured.AsFigure2ashows,theGCSallowstheuseofOptiTracksystem,
+aswellastheuseoftheothersGCS(MAVProxyorMissionPlanner)atthesame
+time. This feature has been incorporated in order to reuse the characteristics of
+other GCS, such as the GUI for the parameters of Mission Planner. In addition,
+this region shows the status of the autopilot connection, which is continuously
+checked.
+Region B: Robotic Arm Control. This region integrates the state of the
+robotic arm, as Figure 2b shows. The connection with the robotic arm software
+is established in this region. In this case, the robotic arm is a 2DoF (Degree of
+Freedom) manipulator. However, the code can be easily changed for the modi-
+fication of the arm configuration. The robotic arm can be controlled in manual
+mode,bysendingthejointcoordinates.Furthermore,twopredefinedmovements
+are available: a sine movement in the shoulder articulation, while the elbow ar-
+ticulationisblocked,andareachmovement,wherethearmextendsandretracts
+to the maximum. Finally, the robotic arm can be controlled using a master arm
+in ground. In this mode, the GCS represents both the slave manipulator (UAV
+manipulator) and the master manipulator (ground manipulator), as Figure 3a
+shows. This region also allows the activation of a video streaming platform.
+Fig.2: GUI of the GRVC GCS.
+Region C: Actions of the Aerial Platform. This region allows some
+predefinedactions,asFigure2cshows.Someofthemare:arming/disarmingthe
+aerialplatform,testingthemotors,rebootingtheautopilotorlanding/takingoff
+
+=== PAGE 4 ===
+4 A. Gonza´lez-Morgado et al.
+the platform. If some MAVLink command not defined in the GUI needs to be
+sent,itcanbedonebyusingthecommandIDaswellasthenecessaryarguments.
+(a) Arms in the slave mode. (b) Waypoint definition example.
+Fig.3: Some features of the Ground Control Station
+Region D: Waypoints definition. This region allows the definition of the
+waypoints of a mission. The waypoints are defined in a txt file, using the format
+presented in Figure 3b. Once that the waypoints have been loaded, the mission
+can start.
+Region E: Messages. Finally, this region shows the messages that the
+autopilot send to the GCS. In addition, it shows the current position of the
+platform.
+3 Implementation of the Ground Control Station
+TheGroundControlStationhasbeendevelopedcompletelyinPython,using
+Tkinter forthedesignoftheGUI(GraphicalUserInterface),andPymavlink for
+the implementation of the MAVLink protocol.
+3.1 Threads
+Thesoftwareconsistsoffivemainthreads,plusauxiliarythreads,runningin
+parallel. Figure 4 summarizes the main threads, and their inputs and outputs.
+1) GUI thread. It is responsible for updating the content on the screen, as
+well as responding to button presses.
+2)MAVLinkreceptionthread. Thisthreadreceivesthemessagessenttothe
+GCS by the aerial manipulator using MAVLink protocol. It also processes them
+and generates the corresponding actions. It continuously checks the connection
+status, displaying on screen if the connection with the aerial platform has been
+lost.
+
+=== PAGE 5 ===
+Design, Development and Validation of a GCS for Aerial Manipulators 5
+3) OptiTrack thread. It receives the messages sent by Motive, the OptiTrack
+software, converts them into MAVLink message and sends them to the aerial
+manipulator.
+4) Manipulator thread. Thisthreadisinchargeofseveraltasksrelatedwith
+the manipulator of the aerial platform. It continuously checks the status of the
+connectionwiththemanipulatoroftheUAV,displayingamessageonthescreen
+iftheconnectionislost.ItupdatestheGUIwiththevaluesofthearmjoints.In
+theSlaveMode,itreadsthestateofthemasterarm,andsendsthesecoordinates
+as references to the arm of the aerial platform.
+5) Streaming thread. This thread receives the images sent by the UAV and
+displays them on the screen.
+Fig.4: Threads of the GCS software and their functions.
+3.2 Communications
+The GCS establishes a connection between the different devices. This con-
+nectioniseitherwireless,aswiththeaerialmanipulator,orbycableiftheother
+deviceisclosetothegroundcomputer,likewiththegroundmanipulatorusedin
+theslavemode.Figure5showsageneralschemeoftheconnectionstotheGCS.
+The connection between the autopilot and the GRVC GCS is established us-
+ing the MAVLink protocol. MAVLink has been configured to operate over UDP
+protocol. In this way, fast data transmission is achieved, although with lower
+reliability than the TCP protocol. In the same way, the connection between the
+GRVC GCS and other GCSs is established via MAVLink over UDP.
+
+=== PAGE 6 ===
+6 A. Gonza´lez-Morgado et al.
+TheUAV’smanipulatorisconnectedtotheUAV’sRaspberryPiviatheserial
+port.Inthisway,theGRVCGCScommunicateswirelesslywiththemanipulator
+via the Raspberry Pi. There are two connections to the GRVC GCS. One via
+UDP protocol, by which references of movement and manipulator status are
+sent, and another connection by which an emergency stop would be sent, via
+TCP protocol to increase reliability. In the same way, the camera is connected
+via USB to the Raspberry Pi, which sends the image to the GRVC GCS using
+the UDP protocol.
+Fig.5: Connection diagram between the GRVC GCS and other devices
+In addition, the OptiTrack system publishes the position of the UAV via
+UDPprotocol.TheGCSestablishesaUDPconnectiontoMotive,theOptiTrack
+software, and receives the messages in order to send them to the autopilot.
+Finally, the ground manipulator, used during slave mode, is connected to the
+GRVC GCS via serial port.
+4 System for the Experimental Validation
+For the experimental validation of the GCS in Section 5, an aerial manip-
+ulator, presented in Section 4.1 and a ground manipulator for the slave mode,
+presented in Section 4.2, have been designed and built.
+4.1 Aerial Manipulator
+The aerial manipulator used for the experimental validation of the GCS is
+composedofanhexarotorasaerialplatformandofa2DoFmanipulator.Figure
+6 shows all the components of the aerial manipulator.
+The aerial platform is composed of a DJI F550 frame, which includes the
+DJI 2312E rotors as propulsive system. It also includes the DJI 9x4.5 propellers
+and the XRotor 40A ESCs. The autopilot selected for the aerial platform is
+
+=== PAGE 7 ===
+Design, Development and Validation of a GCS for Aerial Manipulators 7
+Ardupilot, running in a Raspberry Pi 4 connected to the Emlid’s sensors shield
+Navio2.Tostreamthevideo,theaerialplatformincludestheLogitechC920HD
+PRO camera. The frame has been modified using 3D printed pieces in PLA in
+order to increase the space in the avionics bay. All is powered by a 4S LiPo
+battery.
+Fig.6: Parts of the aerial platform used during the experimental validation.
+The aerial platform is equipped with a 2DoF manipulator. The 2DoF arm is
+composed of a Herkulex-DRS-0602 for the shoulder joint, and a Herkulex-DRS-
+0402 for the elbow joint. Link 1 and link 2 are composed of carbon fiber tubes.
+The assembly between the joints and the links are made using ABS 3D printed
+pieces. In order to manipulate objects, the manipulator is equipped with a hook
+attheend.Themanipulatorispoweredbythe4SLiPobatteryofthehexarotor,
+using a buck converter to reduce the supply voltage.
+To control the aerial manipulator, a decoupled control scheme is used, i. e.
+themanipulatorandtheaerialplatformarecontrolledastwoseparatedsystems.
+In Slave Mode, the angles of the ground arm are readed and sent directly to the
+UAVarm.Then,theinternalscontrollersoftheHerkulexservomotorstakethem
+as references to move the arm.
+4.2 Manipulator for the Slave Mode
+To validate the Slave Mode of the GRVC GCS, another 2DoF manipulator
+has been designed and built. This manipulator is similar to the manipulator of
+the aerial platform, since it has the same joints: an elbow joint and a shoulder
+joint. Likewise, the links are made with carbon fiber tubes, and the union be-
+tweenthelinksandthejointsaremadewithABS3Dprintedpieces.However,as
+itishandledbytheoperatoranddoesnothavetoexertanyeffort,thejointsare
+equipped with less powerful servos. For both joints, an Herkulex-DRS-0102 has
+beenselected.Furthermore,thisarmhasbeenbuiltwitha3:4scalewithrespect
+to the aerial manipulator arm. As Figure 7 shows, this master manipulator is
+installed in a ground structure to facilitate its operations.
+
+=== PAGE 8 ===
+8 A. Gonza´lez-Morgado et al.
+Fig.7: Master 2DoF manipulator in the slave mode.
+5 Experiments
+The experimental validation of the GCS is done through three different ex-
+periments. First, the integration of OptiTrack system is tested by performing a
+defined mission with waypoints in Section 5.1. Then, the two predefined move-
+ments of the aerial manipulator are validated in Section 5.2. Finally, Section 5.3
+validates the slave mode by a capture operation of an object.
+All the experiments are carried out in the GRVC indoor facilities, which is
+equipped with the OptiTrack positioning system composed of 28 cameras. The
+videos of the experiments are available in [11].
+5.1 Mission using waypoints
+For validating the integration of the OptiTrack system within the GRVC
+GCS, as well as the waypoint sending system, a mission has been programmed
+using the waypoint structure presented in section 2.
+Table 1: Coordinates of the trajectory points.
+InitialWP1WP2WP3WP4WP5End
+X [m] -4.8 -4.8 -2.8 -2.8 -4.8 -4.8 -4.8
+Y [m] 3.0 3.0 3.0 1.0 1.0 3.0 3.0
+Z [m] 0.0 2.0 2.0 2.0 2.0 2.0 0.0
+
+=== PAGE 9 ===
+Design, Development and Validation of a GCS for Aerial Manipulators 9
+Fig.8: Square trajectory: a)Trajectory of the UAV b)UAV during the mission.
+The mission performed is a square trajectory. Table 1 shows the coordinates
+oftheinitialpoint,thefivewaypointsofthesquareandtheendpoint.Figure8a
+shows the trajectory of the aerial manipulator during the mission. In addition,
+some pictures of the aerial platform during the mission are added in Figure 8b.
+As the mission has been successfully completed, the integration of OptiTrack
+and the sending of waypoints in the GRVC GCS is validated.
+5.2 Predefined movement of the aerial manipulator
+After the validation of the integration of OptiTrack in the GRVC GCS, the
+predefinedmovementsoftheaerialmanipulatorarevalidated.Thesemovements
+are presented in Section 2.
+Fig.9: Predefined movement A: a)Trajectory of the UAV b)Angles of the joints.
+
+=== PAGE 10 ===
+10 A. Gonza´lez-Morgado et al.
+Both movements are validated in the same way: the UAV takes off au-
+tonomously, the aerial manipulator performs the movement to be validated and
+finally the UAV lands once the arm is retracted. Both movements are validated
+at low speeds, to avoid disturbing the aerial platform too much. Figure 9a and
+Figure 10a show the trajectories of the aerial platform during the experiment.
+Fig.10:PredefinedmovementB:a)TrajectoryoftheUAVb)Anglesofthejoints.
+The deviations from the initial point are due to the movement of the ma-
+nipulator, which disturbs the aerial platform. In addition, Figure 9b and Figure
+10b show the values of the joints arm during the predefined movements.
+5.3 Aerial Manipulation Mission with the Slave Mode
+Finally,thevalidationofthevideostreamingandtheslavemodeisperformed
+with an aerial manipulation mission.
+Fig.11: Mission in slave mode: a)Trajectory of the UAV b)Angles of the joints.
+
+=== PAGE 11 ===
+Design, Development and Validation of a GCS for Aerial Manipulators 11
+The mission consists of picking up an object on a table with the hook, tele-
+operating the aerial manipulator in slave mode with the ground manipulator.
+In addition, the ground operator will use the video streaming to perform the
+capture of the object. Figure 11a shows the trajectory of the aerial manipulator
+duringthemission.Inaddition,Figure11bshowsthevaluesofthejointsduring
+themission.Furthermore,somepicturesofthemissionarerepresentedinFigure
+12. After these three experiments, the GRVC GCS is completely validated.
+Fig.12: Some instants of the mission in slave mode.
+6 Conclusion
+This paper has presented the development and validation of a Ground Con-
+trol Station for Aerial Manipulators. The objective of this GCS is to integrate
+the information of the manipulator and the aerial platform in only one GUI.
+The paper has presented a functional design that allows the integration of the
+OptiTrack positioning system, the sending of messages to the autopilot and the
+simple definition of waypoints. The solution presented also allows the control
+of the aerial manipulator in different modes (sending joints coordinates, with
+predefined movements or slave mode) and the video streaming to facilitate the
+manipulation tasks. All the functionalities of the GRVC GCS have been tested
+in indoor tests with an aerial manipulator.
+
+=== PAGE 12 ===
+12 A. Gonza´lez-Morgado et al.
+It is proposed as future work the integration of the totalstation positioning
+system. In this way, the GCS could be used to perfom outdoors experiments
+using a positioning system more accurate than GPS.
+Acknowledgment
+This work has been supported by the ROBMIND project, funded by the
+SpanishMinisteriodeEconom´ıa,IndustriayCompetitividad(PDC2021-121524-
+I00),andtheAERIAL-CORE(H2020-2019-871479)andtheAEROTRAINMarie
+Skl(cid:32)odowska-Curie (MSCA-ITN-2020-953454) projects, funded by the European
+Commission.
+References
+1. H. Seo, S. Kim, and H. J. Kim, “Aerial Grasping of Cylindrical Object using
+Visual Servoing based on Stochastic Model Predictive Control,” in 2017 IEEE
+International Conference on Robotics and Automation (ICRA), pp. 6362–6368.
+2. H. Chen, F. Quan, L. Fang, and S. Zhang, “Aerial Grasping with a Lightweight
+Manipulator Based on Multi-Objective Optimization and Visual Compensation,”
+Sensors, vol. 19, no. 19, 2019.
+3. M. Fumagalli, R. Naldi, A. Macchelli, F. Forte, A. Q. Keemink, S. Stramigioli,
+R. Carloni, and L. Marconi, “Developing an Aerial Manipulator Prototype: Phys-
+ical Interaction with the Environment,” IEEE Robotics Automation Magazine,
+vol. 21, no. 3, pp. 41–50, 2014.
+4. A.Olleroetal.,“TheAEROARMSProject:AerialRobotswithAdvancedManip-
+ulation Capabilities for Inspection and Maintenance,” IEEE Robotics Automation
+Magazine, vol. 25, no. 4, pp. 12–23, 2018.
+5. The AERIAL-CORE Project. [Online]. Available: https://aerial-core.eu/
+6. P. J. Sanchez-Cuevas, A. Gonzalez-Morgado, N. Cortes, D. B. Gayango, A. E.
+Jimenez-Cano,A.Ollero,andG.Heredia,“Fully-ActuatedAerialManipulatorfor
+Infrastructure Contact Inspection: Design, Modeling, Localization, and Control,”
+Sensors, vol. 20, no. 17, 2020.
+7. The RESIST Project. [Online]. Available: https://www.resistproject.eu/
+8. QGroundControl Software. [Online]. Available: http://qgroundcontrol.com/
+9. Mission Planner Software. [Online]. Available: https://ardupilot.org/planner/
+10. MAVProxy Software. [Online]. Available: https://ardupilot.org/mavproxy/
+11. Videos of the experiments. [Online]. Available: https://hdvirtual.us.es/discovirt/
+index.php/s/9wKqKopHPGaBcTx

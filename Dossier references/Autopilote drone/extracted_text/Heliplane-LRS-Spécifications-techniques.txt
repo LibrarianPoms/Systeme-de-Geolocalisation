@@ -1,0 +1,81 @@
+=== PAGE 1 ===
+Spécifications techniques :
+Appareil
+Type Drone UAV QuadPlane VTOL, Avion à décollage et atterrissage vertical
+Poids max au décollage 7.5 kg
+Poids à vide 4.65 kg
+Poids max de la charge utile 1 kg
+Envergure 240 cm
+Dimensions Envergure 2400mm, Length 1150mm, Height 300mm
+Capacité de la batterie 27000 mAh
+ortée radio CE 12 km – FFC 20 km
+GPS GNSS embarqué GPS, Glonass, Beidou et Galiléo
+Caisse de transport Faible encombrement : 50x44x130 cm
+Vitesse de croisière 72-80 km/h
+Vitesse maximum 108 km/h
+Résistance au vent 50 km/h
+Durée de vol max 110 min
+Durée de vol avec un Sony RX1RII 100 min
+indice de protection IP IP54
+Température -10 to +50 °C
+Chargeur de batteries 1200W : 2 sorties
+Altitude plafond 4000m
+Lien radio et télémétrique
+Module radio et télémétrique Herelink Controller
+Fréquence radio 2.4GHz ISM
+Portée de transmission FCC 20km CE 12km
+Résolution du retour vidéo (option) 720p@30fps - 1080p@30/60fps
+Capteurs compatible
+Caméra RVB: Caméra 61MP ou Sony RX1R II 42MP Full Frame
+Thermal Camera: Résolution Vidéo: 1080p60
+FLIR DUO PRO R Résolution Thermique: 640 x 512 /336 x 256
+Caméra Multispectrale Bleu, vert, rouge, bord rouge, proche infrarouge (obturateur global, bande
+MicaSense RedEdge- MX étroite) avec Caméra RVB, Global Shutter, aligné avec toutes les bandes
+Details:
+- Aile à assemblage rapide, conception modulaire, aucun outil nécessaire
+- Assemblage complet en 1 min
+- Support de payload amovible et facile d’accès
+- Flight case peut encombrante et facile à transporter.
+
+=== PAGE 2 ===
+En détail
+Appareil photo: Sony RX1R II 42MP Full Frame
+Grande autonomie et precision des images Couverture jusqu’à 800 Ha en fonction du GSD
+Images haute resolution 42,4 mégapixels (7952 x 5304)
+Navigation par GNSS et centrales inertielles Entièrement automatique
+Type de voilure VTOL à voilure fixe
+Positionnement centimetrique PPK et RTK (géo-référencement direct)
+Gestion puissante des fonctions critiques Navigation et gestion du vol Gestion des capteurs. Communication et
+enregistrement des données
+Procédures d’urgence Déclenchement manuel ou automatique
+Temps de montage très rapide 1 minute
+Matériaux Composite de haute qualité
+Caisse de transport à très faible 130cm*44cm*50cm
+encombrement
+Surface de scan Jusqu’à 800Ha par batterie
+Ailes et empennage arrière démontables Encombrement réduit
+Motorisation électrique à haut rendement Faible bruit
+Portée radio FCC 20km ou CE 12km en fonction de la norme local
+Capteur Sony RX1R II 42MP Full Frame 42,4 Mp
+Décollage et atterrissage Entièrement automatique (manuel en option)
+Gestion du vol Entièrement automatique (manuel en option)
+Vitesse de croisière 20m/s 72km/h
+Vitesse max 30m/s 108km/h
+Distance parcourue totale maximale 132 km
+Résistance au vent 10m/s 36km/h
+Température -10 to +50 °C
+Précision absolue De 1 à 3 cm (x-y) et 5cm en (z)
+Système GNSS PPK, RTK
+Satellites GPS/QZSS L1C/A, L2C GLONASS L1OF, L2OF
+BeiDou B1I, B2I Galileo E1-B/C, E5b
+Système de projection Paramétrable, par défaut WGS84 UTM Zone 32 Nord
+Planificateur de vol Mission planner ou QGC QGroundControl
+Analyse du trafic aérien Intégré à l’autopilote et en temps réel
+Traitement des données GNSS RTKlib
+Traitement des images photogrammétrique Pix4d ou autres
+Résolution caméra 42,4 Mp Full Frame
+Continuous Shooting 1.2 shutter flaps/s
+TimeSync Oui
+Protection à la poussière et au choc Oui
+Fréquence radio commande / Télémétrie 2.4 GHz
+Retour vidéo 2.4 GHz (en option)

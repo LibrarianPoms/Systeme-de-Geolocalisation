@@ -1,0 +1,126 @@
+=== PAGE 1 ===
+Autopilot to maintain movement of a drone in a vertical plane at a constant height
+in the presence of vision-based navigation
+Alexander Domoshnitsky1, Max Kogan1, Oleg Kupervaser1,2,Roman Yavich1
+1 Department of Mathematics, Ariel University, Israel; 2 TRANSIST VIDEO LLC, Skolkovo,
+Russia
+Abstract
+In this report we describe correct operation of autopilot for supply correct drone flight. There exists
+noticeable delay in getting information about position and orientation of a drone to autopilot in the
+presence of vision-based navigation. In spite of this fact, we demonstrate that it is possible to
+provide stable flight at a constant height in a vertical plane. We describe how to form relevant
+controlling signal for autopilot in the case of the navigation information delay.
+References
+[1] Alexander Domoshnitsky, Emilia Fridman "A positivity-based approach to delay-dependent
+stability of systems with large time-varying delays", Elsevier Journal, Systems & Control Letters
+97 (2016)
+[2] V.A. Bodner, M.S. Kozlov "Stabilization of aerial vehicles and autopilots", Oborongiz,
+Moscow, 1961 (in Russian)
+
+=== PAGE 2 ===
+Unmanned vehicles
+- Unmanned aerial vehicles, satellites, ground robots
+Domoshnitsky, Kupervasser, Yavich, Kogan Autopilot TDS 30/06/2018 2/19
+
+=== PAGE 3 ===
+Navigation systems
+Inertial Navigation Vision-based
+System Navigation System
+GPS Navigation
+System
+Domoshnitsky, Kupervasser, Yavich, Kogan Autopilot TDS 30/06/2018 3/19
+
+=== PAGE 4 ===
+Automatic control
+Domoshnitsky, Kupervasser, Yavich, Kogan Autopilot TDS 30/06/2018 4/19
+
+=== PAGE 5 ===
+Delay of vision-based navigation
+The goal is to maintain stable movement :
+- Estimate max value of delay
+- Select control parameters
+Domoshnitsky, Kupervasser, Yavich, Kogan Autopilot TDS 30/06/2018 5/19
+
+=== PAGE 6 ===
+Scientific studies this paper is based on
+- A. Domoshnitsky, E. Fridman, “A positivity-based approach to delay-
+dependent stability of systems with large time-varying delays”
+- R.P. Agarwal, L. Berezansky, E.Braverman, A. Domoshnitsky, “Nonoscillation
+Theory of Functional Differential Equations with Applications”
+- V. A. Bodner, M.S. Kozlov “Aircraft Stabilization and Autopilots”
+Domoshnitsky, Kupervasser, Yavich, Kogan Autopilot TDS 30/06/2018 6/19
+
+=== PAGE 7 ===
+Working process overview
+What have we done?
+- Considered a real system of differential equations which describes movement
+of a flying drone
+- Adjusted it to a proper way so that a theory of delay-dependent stability could
+be applied
+- Applied the theory to the concrete case
+- Estimated max value of delay at which a stable flight of a drone is possible
+- Calculated the control parameters for a stable flight of a drone
+Domoshnitsky, Kupervasser, Yavich, Kogan Autopilot TDS 30/06/2018 7/19
+
+=== PAGE 8 ===
+Stability of the system. Theorem
+We study stability of the following system:
+Domoshnitsky, Kupervasser, Yavich, Kogan Autopilot TDS 30/06/2018 8/19
+
+=== PAGE 9 ===
+Stability of the system. Theorem
+Theorem. If the following conditions are fulfilled, then the system is
+exponentially stable.
+Domoshnitsky, Kupervasser, Yavich, Kogan Autopilot TDS 30/06/2018 9/19
+
+=== PAGE 10 ===
+Parameters of drone’s motion
+Domoshnitsky, Kupervasser, Yavich, Kogan Autopilot TDS 30/06/2018 10/19
+
+=== PAGE 11 ===
+Nonlinear equations of motion
+Domoshnitsky, Kupervasser, Yavich, Kogan Autopilot TDS 30/06/2018 11/19
+
+=== PAGE 12 ===
+Linear equations of motion
+Desirable steady state trajectory:
+Deviations:
+Autonomous controls try to decrease deviations to zero.
+Domoshnitsky, Kupervasser, Yavich, Kogan Autopilot TDS 30/06/2018 12/19
+
+=== PAGE 13 ===
+Linear equations of motion. Processing
+To decrease the order of the system
+To get non-zero diagonal coefficients
+Domoshnitsky, Kupervasser, Yavich, Kogan Autopilot TDS 30/06/2018 13/19
+
+=== PAGE 14 ===
+Linear equations of motion. Processing
+Domoshnitsky, Kupervasser, Yavich, Kogan Autopilot TDS 30/06/2018 14/19
+
+=== PAGE 15 ===
+Stability of the system. Applying
+Domoshnitsky, Kupervasser, Yavich, Kogan Autopilot TDS 30/06/2018 15/19
+
+=== PAGE 16 ===
+Stability of the system. Calculation
+- Get from
+- Handle
+- Express
+the table
+analytically
+- Calculate the rest in
+MatLab
+Domoshnitsky, Kupervasser, Yavich, Kogan Autopilot TDS 30/06/2018 16/19
+
+=== PAGE 17 ===
+Stability of the system. Results
+Delay estimation
+Control parameters
+Domoshnitsky, Kupervasser, Yavich, Kogan Autopilot TDS 30/06/2018 17/19
+
+=== PAGE 18 ===
+Future plans
+Actual path Inertial system Vision-based
+system
+Domoshnitsky, Kupervasser, Yavich, Kogan Autopilot TDS 30/06/2018 18/19

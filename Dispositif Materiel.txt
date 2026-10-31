@@ -1,0 +1,45 @@
+Module HArdware :
+- Module GPRS	: Envois et reception de données via GPRS/GSM/3G/4G/5G
+- Module GSM	: Reception de données GPS/GLONASS/Galileo/Beidou
+- Module LORAWAN	: Envois et reception de données via Reseau LORA
+- Module GyroScope Accelerometre	: Dynamique du vehicule
+- Module traitement Local	: Stockage local de données 
+- Module Interface Mesh	: connexion vehicule to vehicule
+- Module Telemetrie	: WiFi/Bluetooth/LTE/LORAWAN/Radio 433-915 Mhz
+- Module Carburant	: Capteur de niveau carburan dans reservoires
+- Module Diagnostic	: X-431 Euro Link HD) - Launch HD/Multi-DiagTrucks (ACTIA)
+- Mesure de pression pneumatiques
+- Tableau de board Conducteur
+- Systeme de communication (Micros/Enceinte audio)
+- Camera 360
+- Camera Cabine
+
+Module Software : 
+- Module Geolocalisation sur Open street Map
+ -- Alertes de zone 
+ -- Points d'intérêt (POI)
+ -- Geofencing 
+- Module Controle etat vehicule sur la base d'analyse des données ODB-II/Valise
+- Module Diagnostique vehicule en accées ODB-II/Valise
+- Module Analyse de conduite
+ -- Gestion des temps de conduite
+ -- Analyse du comportement conducteur
+ -- Gestion de l'identification conducteur
+ -- Maintenance préventive
+Fonctions : 
+- Profil du véhicule : Définir avec précision la longueur, largeur, hauteur, le poids, et le nombre d'essieux.
+- Alertes de zone : Configurer des alertes pour les zones interdites, les arrêts prolongés, ou les franchissements de périmètre.
+- Points d'intérêt (POI) : Rechercher des zones industrielles (ZI) et des parkings sécurisés sur l'itinéraire.
+- Réduction des détours et optimisation de la consommation de carburant.
+Sécurité renforcée (recherche en cas de vol).
+- Gestion du temps et des trajets.
+Fonctions de localisation et suivi :
+- Suivi en temps réel : Visualisation instantanée de la position des camions sur carte.
+- Historique des trajets : Analyse des itinéraires empruntés, des temps de parcours et des arrêts.
+- Geofencing (Barrièrage géographique) : Alertes automatiques en cas d'entrée ou sortie de zones prédéfinies.
+- Gestion des temps de conduite : Suivi des heures de conduite pour respecter les réglementations. 
+Analyse de conduite et de performance :
+- Analyse du comportement conducteur (éco-conduite) : Détection des freinages brusques, virages dangereux, et temps de moteur au ralenti.
+- Suivi du carburant : Surveillance de la consommation pour identifier les gaspillages.
+- Maintenance préventive : Alertes basées sur les données moteur pour éviter les pannes.
+- Gestion de l'identification conducteur : Liaison des données à un conducteur spécifique via sa carte. 

@@ -1,0 +1,790 @@
+=== PAGE 1 ===
+(19)
+Printed by Jouve, 75001 PARIS (FR)
+1A
+433
+282
+3
+PE
+TEPZZ¥ 8 ¥¥4A_T
+EP 3 282 334 A1
+(11)
+(12) DEMANDE DE BREVET EUROPEEN
+(43) Date de publication: (51) Int Cl.:
+14.02.2018 Bulletin2018/07 G05D1/00(2006.01) G05D1/08(2006.01)
+(21) Numéro de dépôt: 17182759.5
+(22) Date de dépôt: 24.07.2017
+(84) Etats contractants désignés: (72) Inventeurs:
+AL AT BE BG CH CY CZ DE DK EE ES FI FR GB • RIMOUX, Ariel
+GR HR HU IE IS IT LI LT LU LV MC MK MT NL NO 75005 Paris (FR)
+PL PT RO RS SE SI SK SM TR • PIRAT, Frédéric
+Etats d’extension désignés: 75011 Paris (FR)
+BA ME
+Etats de validation désignés: (74) Mandataire: Dupuis-Latour, Dominique et al
+MA MD Bardehle Pagenberg
+10, boulevard Haussmann
+(30) Priorité: 08.08.2016 FR 1657623 75009 Paris (FR)
+(71) Demandeur: Parrot Drones
+75010 Paris (FR)
+(54) DRONE A VOILURE FIXE, NOTAMMENT DE TYPE AILE VOLANTE, AVEC PILOTAGE MANUEL
+ASSISTE ET PILOTAGE AUTOMATIQUE
+(57) Le drone comprend un système de pilotage vitesse (V) et/ou des consignes d’altitude (z) correspon-
+automatique (24) qui reçoit des instructions internes dant aux instructions internes et/ou externes de pilotage
+et/ou externes de pilotage, ainsi que des données d’at- reçues. Des circuits de correction et de contrôle (44, 44,
+titude (ϕ*, θ*), d’altitude (z*) et de vitesse (V*) instanta- 52, 54, 64) commandent le système de propulsion (28)
+nées délivrées par des capteurs (48, 50, 58, 60, 62, 68, et les servomécanismes (30) des gouvernes du drone.
+70). Des circuits de calcul de consignes (36, 38, 40) cal- Un système (26) permet en outre de générer en interne
+culent, en fonction d’un modèle du comportement aéro- des instructions de pilotage pour des modes de vol auto-
+dynamique du drone en vol, des consignes d’angles de nome tels que décollage automatique ou atterrissage
+roulis (ϕ) et/ou de tangage (θ) et/ou des consignes de automatique.
+
+=== PAGE 2 ===
+1 EP3 282 334A1 2
+Description pour les utilisateurs novices ou simplement occasion-
+nels, le pilotage d’un drone à voilure fixe n’est pas intuitif,
+[0001] L’invention concerne les appareils motorisés et les risques d’erreurs sont importants, avec pour con-
+volants pilotés à distance, ci-après désignés générale- séquence des risques de chute, de perte de contrôle du
+ment sous la dénomination de "drones". 5 drone, etc.
+[0002] L’invention s’applique spécifiquement aux dro- [0008] Ces difficultés sont accrues de façon particuliè-
+nes à voilure fixe, notamment de type "aile volante" tel rement critique dans le cas des drones de type aile vo-
+que par exemple le modèle eBee de SenseFly, Che- lante. En effet, ces drones sont dépourvus d’empennage
+seaux-Lausanne, Suisse, qui est un drone de cartogra- et de dérive, et ne disposent donc d’aucune surface ver-
+phie professionnelle de terrain, ou encore le modèle 10 ticale mobile de contrôle de direction (comme un volet
+Disco récemment présenté par Parrot SA, Paris, France placé sur la dérive, dans le cas d’un aéronef convention-
+(cf. la brève de B Popper "Parrot’s new Disco drone dit- nel). L’aile volante n’est pourvue, comme gouvernes, que
+ches quadcopter design for a fixed-wing aircraft" postée de deux volets mobiles placés sur les bords de fuite des
+sur theverge.com le 4 janvier 2016). ailes: des déplacements de ces volets dans le même
+[0003] Ces drones sont pilotés à distance par un utili- 15 sens modifient l’attitude en tangage (angle θ) du drone,
+sateur muni d’une télécommande lui permettant d’en- tandis que des déplacements en sens opposés de ces
+voyer des instructions de pilotage telles que montée, des- deux volets modifient l’attitude en roulis (angle ϕ) du dro-
+cente, virage à droite ou à gauche, accélération/ralentis- ne, et celui-ci ne dispose pas d’autre moyen aérodyna-
+sement, etc., et de visualiser sur un écran installé sur la mique de contrôle de trajectoire, mis à part la commande
+télécommande les images captées par une caméra du 20 du régime moteur.
+drone. Le drone, de son côté, génère des commandes [0009] Pour faire évoluer le drone, l’utilisateur doit donc
+de contrôle de vol en fonction des instructions reçues de contrôler depuis sa télécommande la position des deux
+la télécommande: régime moteur du système de propul- volets pour modifier l’attitude en tangage et en roulis du
+sion, commandes de gouvernes, etc. Ces commandes drone, modification éventuellement accompagnée d’une
+sont asservies en fonction de données fournies par de 25 augmentation ou d’une diminution de la vitesse.
+multiples capteurs embarqués par le drone, tels que cen- [0010] Un tel mode de pilotage est tout sauf facile et
+trale inertielle (accéléromètres et gyromètres trois axes), intuitif, et la difficulté est en outre accrue par le caractère
+capteurs d’altitude (baromètre, télémètre à ultrasons), très instable, en particulier en virage, d’une aile volante
+dispositif de mesure de la vitesse air et/ou de la vitesse par rapport à un aéronef muni d’une dérive, et c’est pour-
+sol, etc. 30 quoi les aéronefs de ce type sont assez peu répandus.
+[0004] Les drones à voilure fixe, tout particulièrement [0011] Pour pallier cette difficulté, il a été proposé,
+ceux de type "aile volante", peuvent évoluer à des vites- comme cela est décrit dans l’article de A Bittar et al.,
+ses élevées, typiquement jusqu’à 80 km/h, et sont sou- "Central Processing Unit for an Autopilot: Description and
+vent assez difficiles à piloter compte tenu de leur très Hardware-in-the-Loop Simulation", Journal of Intelligent
+grande réactivité aux instructions de pilotage envoyées 35 and Robotic Systems, Vol. 70, No 1-4, 4 août 2012, pp.
+depuis la télécommande, et de la nécessité de conserver 557-574, de préserver l’agrément du pilotage manuel par
+une vitesse de vol minimale, supérieure à la vitesse de l’utilisateur, en lui offrant un mode de pilotage assisté où
+décrochage. Ces contraintes n’existent pas avec les dro- il n’a besoin de gérer que des commandes simplifiées
+nes à voilure tournante, par exemple de type quadricop- (ci-après "instructions") du type "tourner à droite" ou
+tère, qui peuvent tenir un point fixe et évoluer aussi len- 40 "tourner à gauche", "monter" ou "descendre", "accélérer"
+tement que souhaité, ce qui les rend beaucoup plus fa- ou "ralentir", ces instructions étant générées par exemple
+ciles à piloter même par des utilisateurs inexpérimentés. à l’aide de manches à balai de l’appareil de radio-com-
+[0005] Un drone à voilure fixe comprend un système mande.
+de propulsion avec une ou plusieurs hélices entrainées [0012] Un logiciel embarqué d’autopilotage traduit ces
+par un moteur, et des gouvernes contrôlées par des ser- 45 instructions très simples en consignes d’attitude de l’aé-
+vomécanismes respectifs. Les évolutions en vol du drone ronef, c’est-à-dire en consignes d’angle de roulis et con-
+sont commandées en faisant varier le régime du ou des signes d’angle de tangage, ainsi qu’en consignes de vi-
+moteurs (variation contrôlée du courant d’alimentation) tesse. Les consignes ainsi produites par l’autopilote sont
+et en agissant sur les gouvernes afin de contrôler la tra- comparées, au sein de boucles de régulation appro-
+jectoire du drone. 50 priées, aux données produites par des capteurs embar-
+[0006] Avec sa télécommande munie de commandes qués qui évaluent à tout moment l’attitude instantanée
+proportionnelles de type manche à balai, l’utilisateur fait réelle de l’aéronef, son altitude, sa vitesse air et/ou sol,
+varier le régime moteur pour augmenter ou réduire la etc. pour élaborer des commandes appropriées des ser-
+force propulsive, et agit sur les différentes gouvernes du vomécanismes d’orientation des gouvernes pour le con-
+drone pour modifier l’attitude de celui-ci. 55 trôle de l’attitude, et des commandes du système de pro-
+[0007] Le pilotage d’un tel drone nécessite une certai- pulsion pour le contrôle de la vitesse.
+ne habitude, que savent acquérir les utilisateurs qui évo- [0013] Toutefois, même avec ces commandes simpli-
+luent dans l’univers de l’aéromodélisme. En revanche, fiées, l’utilisateur doit en tout état de cause assurer le
+2
+
+=== PAGE 3 ===
+3 EP3 282 334A1 4
+pilotage de façon ininterrompue et quelles que soient les res nécessitent des actions simultanées sur plusieurs
+circonstances. commandes, non seulement pour suivre la trajectoire
+[0014] Il n’a pas, par exemple, la possibilité de lâcher voulue, mais également pour compenser les perturba-
+les commandes de son appareil de télécommande, en tions diverses que peut subir l’aéronef, tout particulière-
+ne touchant plus aux manches à balai, en n’appuyant 5 ment l’effet d’un vent latéral.
+sur aucun bouton, etc. [0023] Ainsi, pour résoudre ce problème et de façon
+[0015] Avec un drone à voilure tournante tel qu’un qua- générale pour faciliter autant que faire se peut le pilotage
+dricoptère, une telle manoeuvre provoquerait immédia- d’un drone à voilure fixe, un autre but de l’invention est
+tement le passage à une configuration de vol stationnaire d’offrir à l’utilisateur un certain nombre de modes de vol
+où le drone est maintenu en vol, en point fixe, à l’altitude 10 autonome du drone, gérés par un système automatique.
+où il se trouvait au moment du lâcher des commandes. [0024] Il s’agit en particulier de gérer de façon entiè-
+[0016] En revanche, dans le cas d’un drone à voilure rement automatique et dans les meilleures conditions les
+fixe, cette manière de procéder n’est pas possible, car phases critiques de décollage et/ou d’atterrissage du dro-
+le drone ne peut pas s’immobiliser, au risque d’un décro- ne, sans que l’utilisateur n’ait à intervenir - en réservant
+chage. 15 éventuellement une option pour lui ménager une possi-
+[0017] L’un des buts de la présente invention est de bilité de "surpilotage", c’est-à-dire de superposition d’ins-
+permettre à l’utilisateur de s’affranchir de cette limitation, tructions manuelles aux instructions générées en interne
+en lui offrant la possibilité de quitter le mode de pilotage par l’autopilote embarqué.
+manuel (assisté par l’autopilote) pour un mode de pilo- [0025] Pour atteindre ces buts, l’invention propose un
+tage entièrement automatique, enclenché par exemple 20 drone à voilure fixe d’un type divulgué par l’article de A
+par une commande intuitive consistant à simplement lâ- Bittar et al. précité, comprenant un système de propul-
+cher les commandes de l’appareil de télécommande. sion, des gouvernes et un pilote automatique.
+[0018] Selon un autre aspect du problème, on souli- [0026] Plus précisément, le pilote automatique est
+gnera le caractère très délicat des phases de décollage configuré pour:
+et d’atterrissage d’un drone à voilure fixe, qui demandent 25
+beaucoup d’expérience. - calculer des consignes en fonction d’instructions,
+[0019] En effet, dans le cas d’un drone à voilure tour- lesdites instructions comprenant des instructions in-
+nante, par exemple un quadricoptère, le décollage se fait ternes de pilotage générées par le pilote automati-
+avec le drone posé au sol; la mise en route et la montée que et des instructions externes reçues par le drone,
+en régime progressive des moteurs permettent au drone 30 lesdites instructions internes et/ou externes compre-
+de s’élever lentement, généralement jusqu’à une posi- nant des instructions de virage, des instructions de
+tion de point fixe à une distance prédéterminée au-des- montée/descente et des instructions de changement
+sus du sol, à partir de laquelle il pourra commencer à de vitesse, et lesdites consignes incluant une con-
+évoluer selon une trajectoire choisie et contrôlée. Inver- signe d’angle de roulis, une consigne d’angle de tan-
+sement, pour l’atterrissage le drone commence par se 35 gage et une consigne de vitesse pour la mise en
+mettre en point fixe puis descend lentement vers le sol oeuvre des instructions internes et/ou externes; et
+par réduction progressive du régime des moteurs. - commander le système de propulsion et les gouver-
+[0020] En revanche, dans le cas d’un drone à voilure nes en fonction des consignes calculées.
+fixe une telle procédure n’est pas possible compte tenu
+de la contrainte d’une vitesse de sustentation minimale. 40 [0027] Le pilote automatique est en outre configuré
+Pour le décollage, le drone doit être tenu à la main par pour, sur application d’une instruction de virage et/ou
+l’utilisateur puis lancé face au vent avec le moteur fonc- d’une instruction de changement de vitesse, calculer la-
+tionnant à un régime suffisant pour empêcher le décro- dite consigne d’angle de roulis, ladite consigne d’angle
+chage. Et pour l’atterrissage, il convient de réduire pro- de tangage et ladite consigne de vitesse de manière à
+gressivement la vitesse du drone pour le faire descendre 45 effectuer un virage et/ou à changer de vitesse en main-
+en pente douce depuis son altitude de croisière jusqu’au tenant constante une altitude du drone lors du virage
+niveau du sol à la vitesse la plus faible possible, de ma- et/ou du changement de vitesse.
+nière que le décrochage ne survienne qu’à proximité im- [0028] De façon caractéristique de l’invention, le pilote
+médiate du niveau du sol pour ne pas endommager le automatique est en outre configuré pour, sur cessation
+drone au moment de l’atterrissage. 50 de réception d’au moins certaines desdites instructions
+[0021] Comme on le conçoit aisément, ces phases ex- externes de pilotage, générer ladite consigne d’angle de
+trêmement critiques nécessitent une habileté particulière roulis, ladite consigne d’angle de tangage et ladite con-
+de l’utilisateur, et donc beaucoup d’expérience du pilo- signe de vitesse de manière à maintenir constants le cap
+tage de ce type d’aéronefs. et l’altitude qu’avait le drone au moment de ladite cessa-
+[0022] Il en est de même si l’utilisateur cherche à faire 55 tion de réception d’au moins certaines desdites instruc-
+évoluer l’aéronef sur une trajectoire prédéterminée, telle tions externes de pilotage.
+qu’une orbite circulaire stable (loiter en terminologie aé- [0029] De préférence, le pilote automatique est confi-
+ronautique), une trajectoire en spirale, etc. Ces trajectoi- guré pour, sur cessation de réception de toute instruction
+3
+
+=== PAGE 4 ===
+5 EP3 282 334A1 6
+externe de pilotage, générer ladite consigne d’angle de - le pilote automatique est configuré pour générer des
+roulis, ladite consigne d’angle de tangage et ladite con- instructions internes de pilotage selon un mode d’at-
+signe de vitesse de manière à maintenir en outre cons- terrissage automatique avec superposition éven-
+tante la vitesse qu’avait le drone au moment de ladite tuelle, aux instructions de pilotage générées par le
+cessation de réception de toute instruction externe de 5 pilote automatique, d’instructions externes de pilo-
+pilotage. tage reçues par le drone;
+[0030] Dans une forme particulière, avantageuses de - ce mode d’atterrissage automatique comprend
+mise en oeuvre, lesdites au moins certaines instructions successivement: une phase de descente à une al-
+externes de pilotage comprennent les instructions exter- titude prédéterminée, une phase de descente selon
+nes de pilotage en virage et les instructions externes de 10 une trajectoire hélicoïdale ou selon une trajectoire
+pilotage en montée/descente, et ne comprennent pas les linéaire, et une phase d’inversion du sens de rotation
+instructions externes de pilotage en vitesse. du groupe propulseur du système de propulsion;
+[0031] Dans ce cas, le pilote automatique peut être en - le pilote automatique est configuré pour calculer les
+outre configuré pour, sur réception d’instructions exter- consignes en fonction d’une différence entre la vi-
+nes de pilotage en vitesse et sans réception d’instruc- 15 tesse air du drone et la vitesse sol du drone;
+tions externes de pilotage en virage ni réception d’ins- - le pilote automatique est configuré pour calculer les
+tructions externes de pilotage en montée/descente, con- consignes de manière à voler à vitesse air constante
+tinuer de générer ladite consigne d’angle de roulis et la- ou à vitesse sol constante dans un mode de fonc-
+dite consigne d’angle de tangage de manière à maintenir tionnement à vitesse constante;
+constants le cap et l’altitude qu’avait le drone au moment 20 - pour la réalisation d’une instruction de virage, le pi-
+de ladite cessation de réception d’instructions externes lote automatique est configuré pour calculer les con-
+de pilotage en virage et d’instructions externes de pilo- signes de manière à réaliser le virage avec un taux
+tage en montée/descente, et générer ladite consigne de de virage constant par rapport au sol.
+vitesse à partir des instructions externes de pilotage en
+montée/descente reçues. 25 [0034] La présente invention vise également un pro-
+[0032] Dans ce même cas, le pilote automatique peut cédé de pilotage d’un drone, ce procédé comprenant les
+également être configuré pou, sur réception d’instruc- étapes ci-dessus exposées mises en oeuvre par le pilote
+tions externes de pilotage en virage ou d’instructions ex- automatique du drone.
+ternes de pilotage en montée/descente, cesser de gé- [0035] On va maintenant décrire un exemple de mise
+nérer ladite consigne d’angle de roulis, ladite consigne 30 en oeuvre de la présente invention, en référence aux
+d’angle de tangage et ladite consigne de vitesse qui dessins annexés où les mêmes références désignent
+avaient été générées de manière à maintenir constants d’une figure à l’autre des éléments identiques ou fonc-
+le cap et l’altitude qu’avait le drone au moment de ladite tionnellement semblables.
+cessation de réception d’instructions externes de pilota-
+ge en virage et d’instructions externes de pilotage en 35 La Figure 1 est une vue générale montrant un drone
+montée/descente. à voilure fixe de type aile volante, évoluant dans les
+[0033] Selon diverses caractéristiques subsidiaires airs sous le contrôle d’un équipement de télécom-
+avantageuses de la présente invention: mande distant.
+La Figure 2 est un schéma très simplifié des diffé-
+- dans un mode de fonctionnement autonome, le pi- 40 rents blocs fonctionnels du drone et de la télécom-
+lote automatique est configuré pour générer des ins- mande.
+tructions internes de pilotage incluant des instruc- La Figure 3 est un schéma par blocs fonctionnels
+tions de virage, des instructions de montée/descen- d’un pilote automatique intégré au sein du drone
+te, et/ou des instructions de vitesse; pour la mise en oeuvre de la présente invention.
+- le pilote automatique est configuré pour générer des 45 La Figure 4 illustre un exemple de répartition ergo-
+instructions internes de pilotage selon un mode de nomique de commandes mises à disposition de l’uti-
+décollage automatique avec une phase de montée lisateur sur sa télécommande.
+à une altitude prédéterminée suivie d’une phase d’at- La Figure 5 est un diagramme d’étapes illustrant no-
+tente en vol orbital à l’altitude prédéterminée; tamment les possibilités de transition entre mode de
+- ce mode de décollage automatique comprend 50 pilotage manuel assisté et mode de pilotage en vol
+successivement: une phase de mise en fonctionne- autonome.
+ment du groupe propulseur du système de propul- La Figure 6 illustre le mode de vol autonome de mise
+sion à un régime lent, une phase de mise en fonc- en orbite et de retour automatique au point de départ.
+tionnement du groupe propulseur à un régime plus La Figure 7 illustre la manoeuvre de lancement du
+rapide, une phase de montée en ligne droite avec 55 drone au décollage.
+maintien du cap, et ladite phase d’attente en vol or- La Figure 8 est un diagramme d’étapes illustrant le
+bital lorsque ladite altitude prédéterminée est mode de vol autonome de décollage du drone.
+atteinte; Les Figures 9a et 9b illustrent la manoeuvre d’atter-
+4
+
+=== PAGE 5 ===
+7 EP3 282 334A1 8
+rissage du drone, respectivement circulaire ou li- etc. On notera que dans un mode particulier de "surpilo-
+néaire. tage" l’utilisateur a la faculté de superposer ses propres
+La Figure 10 est un diagramme d’étapes illustrant le instructions à celles automatiquement générées par le
+mode de vol autonome d’atterrissage du drone. module de vol autonome 26, par exemple pour intervenir
+5 sur une trajectoire imposée par ce système afin de cor-
+[0036] On va maintenant décrire un exemple de réali- riger cette trajectoire au gré de l’utilisateur.
+sation du dispositif de l’invention. [0042] Le système de propulsion du drone 10 com-
+[0037] Sur la Figure 1, on a illustré un drone 10, ici un prend un groupe propulseur comprenant l’hélice 14 et un
+drone à voilure fixe de type aile volante tel que le modèle moteur 28 pour l’entrainement en rotation de l’hélice 14.
+Disco de Parrot. 10 Le drone 10 comprend des servomoteurs 30 pour com-
+[0038] Ce drone 10 comprend un corps de drone (fu- mander la position des gouvernes 18.
+selage) 12 muni en partie arrière d’un système de pro- [0043] À partir des instructions de pilotage ainsi re-
+pulsion composé par exemple d’un moteur et d’une hé- çues, le pilote automatique 24 génère des commandes
+lice 14 et latéralement de deux ailes 16, ces ailes pro- à destination du moteur 28, et des servomoteurs 30 de
+longeant le corps de drone 12 dans la configuration illus- 15 commande des gouvernes 18.
+trée de type "aile volante". Du côté du bord de fuite, les [0044] Dans l’exemple illustré d’un drone de type "aile
+ailes 16 sont munies de gouvernes 18 orientables au volante", le moteur 28 est unique et les servomoteurs 30
+moyen de servomécanismes pour contrôler la trajectoire sont au nombre de deux seulement (un servomoteur res-
+du drone. Le drone est également muni d’une caméra pectif pour chacune des deux gouvernes 18). Il ne s’agit
+frontale 20 permettant d’obtenir une image de la scène 20 là toutefois que d’un exemple illustratif, un drone pouvant
+vers laquelle progresse le drone. être doté de plusieurs groupes propulseurs donc de plu-
+[0039] Le drone 10 est piloté par un appareil de télé- sieurs moteurs correspondants, et de gouvernes supplé-
+commande distant 22 pourvu d’un écran tactile configuré mentaires, par exemple dans le cas d’un drone à voilure
+pour afficher l’image captée par la caméra 20, ainsi que fixe muni d’un empennage et d’une dérive en partie ar-
+de diverses commandes de pilotage à disposition de l’uti- 25 rière, qui ne serait donc pas de type aile volante.
+lisateur. L’appareil de télécommande 22 est par exemple [0045] Le drone est également muni d’un ensemble 32
+le modèle Skycon-troller de Parrot, sur lequel a été mon- de capteurs délivrant de façon dynamique au pilote auto-
+tée une tablette numérique multimedia à écran tactile. matique 24 des informations sur l’attitude, l’altitude et la
+L’appareil de télécommande 22 est également pourvu vitesse instantanées réelles du drone.
+de moyens de liaison radio avec le drone, par exemple 30 [0046] L’ensemble de capteurs 32 comprend par
+de type réseau local WiFi (IEEE 802.11), pour l’échange exemple:
+bidirectionnel de données: du drone 10 vers l’appareil de
+télécommande 22 notamment par la transmission de - une centrale inertielle (IMU) comprenant des accé-
+l’image captée par la caméra 20, et de l’appareil de té- léromètres et des gyromètres trois axes;
+lécommande 22 vers le drone pour l’envoi à ce dernier 35 - un capteur de mesure de la vitesse air du drone, relié
+d’instructions de pilotage. L’utilisateur peut également à une prise de pression dynamique d’un élément de
+faire usage de lunettes de pilotage en immersion, dites type "sonde de Pitot";
+"lunettes FPV" (First Person View). - un module GPS donnant la position absolue du dro-
+[0040] La Figure 2 est un schéma fonctionnel très sim- ne dans un repère géographique;
+plifié de l’ensemble constitué par le drone 10 et l’appareil 40 - un capteur barométrique permettant de déterminer
+de télécommande 22. Le drone 10 comprend un pilote les variations d’altitude du drone (variations instan-
+automatique 24 configuré pour implémenter une assis- tanées et variations par rapport à une altitude de
+tance au pilotage du drone 10. Le pilote automatique départ connue);
+inclut un certain nombre de modules. Le pilote automa- - un capteur magnétométrique donnant l’orientation
+tique 24 reçoit en entrée des instructions de pilotage en 45 du drone par rapport au nord géographique;
+provenance de l’appareil de télécommande 22 ("instruc- - un capteur télémétrique à ultrasons donnant l’altitu-
+tions externes de pilotage"), c’est-à-dire des instructions de du drone par rapport au terrain survolé; et
+envoyées par l’utilisateur depuis l’appareil de télécom- - une caméra à visée verticale donnant une image du
+mande 22 en mode de pilotage assisté, instructions qui terrain survolé et permettant de déterminer, par un
+sont transmises par voie hertzienne entre l’appareil de 50 traitement d’images, la vitesse du drone par rapport
+télécommande 22 et le drone 10. à ce terrain (vitesse sol, par opposition à la vitesse
+[0041] Le pilote automatique est en outre configuré air donnée par la sonde de Pitot).
+pour générer automatiquement des instructions de pilo-
+tage ("instructions internes de pilotage"). Le pilote auto- [0047] On va maintenant décrire, en référence au
+matique comprend à cet effet un module 26 de vol auto- 55 schéma par blocs de la Figure 3, les différents organes
+nome. Le pilote automatique est configuré pour générer de pilotage assisté et de pilotage en vol autonome du
+des instructions internes de pilotage, par exemple en mo- drone, selon l’invention.
+de de décollage automatique, atterrissage automatique, [0048] Les instructions de pilotage provenant de la té-
+5
+
+=== PAGE 6 ===
+9 EP3 282 334A1 10
+lécommande utilisateur en mode de pilotage assisté [0053] Pour une instruction interne ou externe de vira-
+("instructions externes") sont reçues et décodées par un ge, le module 36 de calcul de consignes d’angles déter-
+module décodeur 34, qui délivre des instructions de type mine au moins une consigne d’angle telle que le roulis
+"tourner à droite" ou "tourner à gauche", "monter" ou ϕ, une consigne de tangage θ étant produite par un mo-
+"descendre", "accélérer" ou "ralentir". Ces instructions 5 dule de correction d’altitude 42, qui sera décrit en détail
+sont par exemple des instructions proportionnelles gé- plus bas. En effet, une instruction en virage nécessite
+nérées au moyen de manipulateurs ou commandes tels d’agir sur le moteur et sur les gouvernes, car en tournant
+que des manches à balai de l’appareil de télécommande le drone va perdre de la vitesse. Si aucune instruction
+22 en fonction de l’évolution que l’utilisateur souhaite de changement de vitesse ou d’altitude n’est donnée par
+donner à la trajectoire du drone. 10 l’utilisateur avec l’instruction de virage, pour compenser
+[0049] La Figure 4 illustre un exemple de répartition la perte d’altitude le module de correction d’altitude 42
+ergonomique des commandes à disposition de l’utilisa- détermine des consignes de tangage et de vitesse, cal-
+teur sur l’appareil de télécommande 22: culées à partir de la dernière instruction avant l’instruction
+de virage pour maintenir le drone à vitesse et altitude
+- avec le manche à balai (joystick) situé côté gauche: 15 constante pendant le virage.
+[0054] Les consignes d’angle de tangage θ et d’angle
+• manche actionné vers le haut ou vers le bas: de roulis ϕ produites par le module 36 et par le module
+accélérer/ralentir 42 sont appliquées à un module de correction d’attitude
+• manche actionné vers la droite ou vers la 44 de type régulateur PID. Ce module 44 corrige les con-
+gauche: vol stationnaire en orbite (loiter) droite 20 signes délivrées par les modules 36 et 42 en fonction de
+ou gauche, l’attitude instantanée effective du drone (angle de tanga-
+ge θ* et angle de roulis ϕ*), déterminée par un module
+- avec le manche à balai (joystick) situé côté droit: 46 d’estimation d’attitude à partir des données gyromé-
+triques et accélérométriques fournies par les capteurs
+• manche actionné vers le haut ou vers le bas: 25 48 et 50 de la centrale inertielle du drone.
+monter/descendre [0055] Les consignes corrigées résultantes produites
+• manche actionné vers la droite ou vers la en sortie du module 44 sont transmises à un module de
+gauche: tourner à gauche/tourner à droite. puissance 52 de contrôle des servomoteurs des gouver-
+nes. Ce module génère des signaux PWM contrôlés, ap-
+[0050] En mode de vol autonome, le module de vol 30 pliqués aux différents servomoteurs 30 d’entrainement
+autonome 26 du pilote automatique 24 génère lui-même des gouvernes. Pour une instruction interne ou externe
+des instructions ("instructions internes") correspondant d’augmentation/diminution de vitesse, le module 38 de
+à une trajectoire imposée telle que par exemple décol- calcul de consignes de vitesse détermine une consigne
+lage automatique, atterrissage automatique, orbite de vitesse V. Une seconde consigne de vitesse V est
+autour d’un point prédéterminé, etc. On notera par 35 déterminée par le module 42 précité de correction d’al-
+ailleurs que, dans un mode particulier de "surpilotage" titude (module qui détermine également la consigne de
+l’utilisateur a la faculté de superposer ses propres ins- tangage θ).
+tructions (externes) à celles automatiquement générées [0056] Les consignes de vitesse V produites par le mo-
+(internes) par le module de vol autonome 26, par exemple dule 38 et par le module 42 sont appliquées à un module
+pour intervenir sur une trajectoire imposée par le module 40 de correction de vitesse 54 de type régulateur PID (les
+de vol autonome 26 afin de corriger cette trajectoire. deux consignes de vitesse étant combinées avec priorité
+de correction donnée au maintien de l’altitude). Ce mo-
+Fonctionnement de l’autopilote dule 54 corrige la consigne de vitesse V délivrée par les
+modules 38 et 42 et en fonction des vitesses sol V* et
+sol
+[0051] Les instructions externes de pilotage et/ou in- 45 air V* instantanées effectives du drone, telles que dé-
+air
+ternes sont appliquées à un module 36 de calcul de con- terminées par un module 56 d’estimation des vitesses
+signes d’angles d’attitude du drone (consignes θ d’angle air et sol du drone à partir des données délivrées par la
+de tangage et ϕ d’angle de roulis), à un module 38 de sonde de Pitot 58 (pour la vitesse air) et par l’analyse de
+calcul de consignes de vitesse du drone (consigne V de l’image de la caméra verticale 60 ainsi que par les don-
+vitesse), et à un module 40 de calcul de consignes d’al- 50 nées du module GPS 62 (pour la vitesse sol).
+titude du drone (consigne z d’altitude). [0057] Les consignes de vitesse corrigées résultantes
+[0052] À partir i) des instructions externes et/ou inter- produites en sortie du module 54 sont transmises à un
+nes de pilotage telles que définies plus haut et ii) d’un module de puissance 64 de contrôle du groupe propul-
+modèle du comportement aérodynamique du drone en seur 28. Ce module 64 génère un courant contrôlé per-
+vol, préalablement déterminé et conservé en mémoire, 55 mettant de faire varier de la manière voulue le régime du
+chacun des modules 36, 38, 40 détermine des consignes groupe propulseur 28, et donc la poussée de l’hélice 14.
+correspondantes, respectivement d’angle de tangage θ [0058] Les instructions, internes ou externes, de mon-
+et d’angle de roulis ϕ, de vitesse V et d’altitude z. tée/descente et/ou de virage sont appliquées au module
+6
+
+=== PAGE 7 ===
+11 EP3 282 334A1 12
+de calcul de consigne d’altitude 40, qui délivre une con- virant automatiquement dans le sens prescrit et sans per-
+signe z d’altitude du drone. Cette consigne z est appli- dre d’altitude. Selon un autre aspect, l’utilisateur peut
+quée au module 42 de correction d’altitude, qui est par envoyer des instructions d’accélération ou de ralentisse-
+exemple un module de type régulateur PID. Ce module ment, c’est-à-dire de diminution ou d’augmentation de la
+42 corrige la consigne d’altitude z en fonction de l’altitude 5 vitesse. Grâce au pilotage assisté, dans tous les choix
+instantanée effective z* du drone, déterminée par un mo- de vitesse possibles l’aile maintient automatiquement
+dule 66 d’estimation d’altitude à partir des données four- son altitude, sans qu’il soit nécessaire pour l’utilisateur
+nies par le module GPS 62, par le télémètre à ultrasons de donner des instructions de modification du tangage
+68 et par le capteur barométrique 70. Ici encore, lors- (pour éviter que l’aile ne prenne de l’altitude quand la
+qu’une instruction de vitesse est donnée, les modules de 10 vitesse augmente) s’il veut seulement accélérer le drone,
+correction d’altitude 42 et d’attitude 44 calculent les con- à altitude constante. Par défaut, la vitesse du drone gérée
+signes de manière à donner la priorité au maintien de par le pilotage assisté est celle privilégiant l’autonomie
+l’altitude et du cap du drone. maximale. Si, sur réception d’une instruction utilisateur
+[0059] Les consignes corrigées résultantes de correc- quelle qu’elle soit (virage, montée/descente) la vitesse
+tion d’altitude délivrées par le module 42 comprennent 15 du drone est trop faible pour que l’action demandée puis-
+une consigne de tangage θ et une consigne de vitesse se être exécutée sans décrochage, le pilotage assisté
+V, car l’augmentation de l’altitude du drone est produite augmente automatiquement la vitesse de rotation pour
+en augmentant le régime moteur et en cabrant le drone, augmenter la poussée, et donc la vitesse, et permettre
+et vice versa pour une diminution de l’altitude (une perte ainsi l’exécution de l’instruction adressée par l’utilisateur.
+d’altitude pouvant également, comme expliqué plus haut, 20 [0065] En ce qui concerne la gestion de l’altitude, celle-
+résulter d’une instruction de virage, cette perte d’altitude ci est, comme décrit plus haut, commandée par le régu-
+devant être compensée). lateur PID du module 42, en fonction de la différence
+[0060] Dans un mode de réalisation particulier, les mo- entre la consigne d’altitude z que l’on veut que le drone
+dules du pilote automatique 24 sont mis en oeuvre de maintienne, et l’altitude effective instantanée z* estimée
+manière logicielle. Les modules sont prévus sous la for- 25 à partir des mesures des capteurs. Une compensation
+me d’applications logicielles enregistrées dans une mé- supplémentaire de vitesse peut être produite lorsque cet-
+moire du drone 10 et exécutée par un processeur du te différence est supérieure à une valeur prédéterminée,
+drone 10. En variante, au moins un des modules est un par exemple lorsque l’altitude réelle du drone est à plus
+circuit électronique spécifique ou un circuit logique pro- de 3 mètres en dessous de l’altitude de consigne. D’autre
+grammable. 30 part, une limitation physique peut être activée pour limiter
+[0061] On va maintenant exposer la manière dont est l’altitude du drone entre des valeurs minimale et maxi-
+opéré, manuellement ou automatiquement, le pilotage male.
+de l’aile volante grâce aux circuits que l’on vient de dé- [0066] Un autre aspect avantageux du pilotage assisté
+crire. est celui de la compensation des effets du vent latéral
+35 (la direction et l’intensité du vent latéral peuvent être es-
+Pilotage manuel assisté timées en calculant la différence entre la vitesse air et la
+vitesse sol, pour différentes valeurs d’angles de lacet).
+[0062] En mode manuel (ou pilotage assisté), l’assis- [0067] Le pilotage assisté dispose des données pro-
+tance au pilotage assure en particulier la gestion auto- duites par le module GPS, notamment la direction du cap
+matique du roulis, du tangage et de la vitesse du drone. 40 suivi par le drone, ce qui permet de conserver une tra-
+[0063] Dans une configuration de pilotage convention- jectoire rectiligne. En présence de vent moyen ou de ra-
+nel d’une aile volante, l’utilisateur tente d’ajuster au fales, le pilotage assisté compense automatiquement la
+mieux le roulis et le tangage par une manoeuvre séparée poussée exercée par le vent sur le drone et maintient
+des deux gouvernes du drone. Si l’utilisateur imprime à une direction de vol en ligne droite. Pour que le drone
+l’aile une inclinaison en roulis, l’aile va pencher sur le 45 aille dans une direction droite, un point de repère ou way-
+côté et commencera à tourner du côté où elle s’incline. point (voir plus bas) est calculé à partir de la position
+Mais, du fait qu’elle n’est plus à plat, l’aile perd de la estimée du drone et de sa direction de déplacement, et
+portance, et donc de l’altitude. L’utilisateur doit donc, le pilotage assisté asservit la trajectoire du drone de ma-
+pour compenser cette perte d’altitude, augmenter la com- nière que celui-ci suive la ligne allant à ce waypoint.
+mande de tangage, de manière à cabrer légèrement le 50 [0068] Dans le cas d’un vent de face, qui peut même
+drone et augmenter ainsi la force ascensionnelle et/ou empêcher le drone d’avancer (la vitesse sol étant alors
+la vitesse du drone. Ainsi, avec un pilotage convention- négative), le pilotage assisté peut compenser le vent par
+nel, pour un simple virage il est nécessaire d’agir à la fois analyse de la vitesse sol et par correction de la consigne
+sur le roulis, sur le tangage et sur la vitesse du drone. de vitesse de manière à garantir une vitesse sol minima-
+[0064] Avec un pilotage assisté, l’ajustement du roulis, 55 le, par exemple de 5 m/s, pour que le drone puisse tou-
+du tangage et de la vitesse est opéré de façon transpa- jours avancer par rapport au sol. En ce qui concerne les
+rente pour l’utilisateur, qui adresse seulement une ins- instructions de virage à droite ou à gauche, celles-ci sont
+truction "tourner à gauche" ou "tourner à droite", l’aile très avantageusement des instructions de virage à taux
+7
+
+=== PAGE 8 ===
+13 EP3 282 334A1 14
+de virage constant. tactile, etc., ou bien adresser au drone un ordre de pas-
+[0069] Un virage à taux constant consiste à faire suivre sage en vol autonome, par exemple d’atterrissage ou de
+au drone une trajectoire circulaire, avec une vitesse li- mise en orbite (bloc 104). Cette action va générer une
+néaire prédéterminée et une altitude constante. L’utilisa- instruction externe de pilotage, reçue et détectée par le
+teur n’aura alors qu’un seul degré de liberté à maitriser 5 drone qui basculera alors en retour au mode de pilotage
+(le "taux de virage"), essentiellement lié au rayon plus manuel assisté (bloc 102), ou en vol autonome (bloc
+ou moins grand de la trajectoire circulaire (le virage étant 106), selon le cas. Dans une variante de mise en oeuvre,
+d’autant plus serré que le rayon de courbure est plus l’abandon du mode de pilotage automatique se produit
+faible), ce qui rend la maitrise du drone en virage très dans les conditions ci-dessus, à l’exception de la récep-
+aisée et intuitive. Il devient ainsi possible de négocier 10 tion d’une commande externe de vitesse, qui ne déclen-
+très facilement des virages, de les enchainer à un rythme che pas de retour au mode de pilotage manuel assisté
+soutenu, etc., bien plus facilement qu’en pilotage tradi- ou à un mode de vol autonome.
+tionnel où l’utilisateur doit combiner et maitriser des com- [0075] Il s’agit de ménager ainsi à l’utilisateur la pos-
+mandes de roulis et de tangage. Avec le système de sibilité d’accélérer ou de ralentir le drone alors même que
+pilotage assisté de l’invention, il suffit à l’utilisateur de 15 celui-ci poursuit sa trajectoire sous le contrôle du pilote
+donner une simple consigne de taux de virage (virage automatique, avec les avantages procurés par le pilotage
+plus ou moins serré), éventuellement complété par une automatique, notamment la compensation des perturba-
+instruction d’accélération ou de ralentissement. tions externes telles que celles résultant d’un vent latéral.
+[0070] Bien entendu, le pilotage assisté fait en sorte
+que, quelles que soient les instructions produites par l’uti- 20 Modes de vol autonome spécifiques
+lisateur, les consignes calculées en fonction de ces ins-
+tructions restent toujours dans les limites aérodynami- [0076] Le module de vol autonome embarqué peut
+quement acceptables de vol du drone, notamment: contrôler le comportement du drone de manière à lui faire
+suivre des trajectoires particulières prépro-grammées.
+- vitesse maximale du drone, 25 [0077] Ainsi, sur une instruction de "mise en orbite"
+- vitesse minimale du drone (vitesse de décrochage), reçue de l’utilisateur, le module de vol autonome prend
+- taux maximal de virage (principalement fonction de la main et génère des instructions permettant au drone
+la vitesse air), et de tourner indéfiniment en rond, sur des cercles plats par
+- taux maximal de montée/descente. exemple de 30 m de rayon et sans perte d’altitude, ce
+30 mode de vol étant dénommé loiter dans la technique aé-
+Transition pilotage manuel assisté/pilotage en vol auto- ronautique.
+nome [0078] La Figure 6 illustre ce mode de vol autonome
+de mise en orbite du drone 10 sur une orbite circulaire L.
+[0071] Une fonctionnalité avantageuse, caractéristi- [0079] Dès que l’utilisateur touche au manche à balai
+que de l’invention, est la possibilité de quitter le mode de 35 ou à toute autre commande, il reprend la main, le drone
+pilotage manuel assisté pour un mode de pilotage entiè- passant en mode de pilotage manuel assisté.
+rement automatique par une commande intuitive où l’uti- [0080] Dans une fonction de mise en sécurité, l’utilisa-
+lisateur lâche simplement les commandes de son appa- teur peut à tout moment adresser une instruction au dro-
+reil de télécommande, par exemple ne touche plus aux ne pour lui demander de revenir à son point de décollage,
+manches à balai, n’appuie sur aucun bouton, ne touche 40 les coordonnées de ce point étant connues par les don-
+plus l’écran tactile, etc. nées du module GPS qui ont été conservées en mémoire.
+[0072] Cet aspect de l’invention est notamment illustré Le module de vol autonome prend alors la main et exé-
+par le diagramme d’étapes de la Figure 5. cute les actions nécessaires. Avantageusement, si au
+[0073] La cessation de la réception d’instructions ex- moment du passage en mode automatique le drone est
+ternes de pilotage par l’utilisateur (bloc 100 sur la Figure 45 à une altitude inférieure à 50 m par exemple, le pilote
+5) enclenche le pilotage automatique du drone suivant automatique le fait remonter à 50 m pour engager la tra-
+une trajectoire à altitude constante et à vitesse air cons- jectoire de retour au point de décollage. Si au moment
+tante, dans la même direction (angle de cap) que celle du passage en mode automatique le drone est à plus de
+qu’il avait au moment où l’utilisateur a lâché les comman- 50 m d’altitude, il reste à son altitude courante pour en-
+des (à savoir les commandes de virage ou de mon- 50 tamer la phase de retour au point de décollage.
+tée/descente, car si l’utilisateur n’agit que sur la vitesse, [0081] Une variante consiste à mémoriser l’altitude
+le drone conservera son altitude et son cap, comme in- maximale prise par le drone dans la phase de vol précé-
+diqué plus haut). Le module de vol autonome conserve dant l’envoi de l’instruction de retour au point de décol-
+alors le cap de cette trajectoire, en compensant si besoin lage, et à faire remonter le drone à cette valeur d’altitude
+le vent latéral. 55 maximale avant d’entamer le retour automatique au point
+[0074] L’utilisateur peut à tout moment reprendre la de décollage. Ceci permet par exemple d’éviter une col-
+main (bloc 102), par exemple en actionnant un manche line qui aurait été survolée pendant le vol aller.
+à balai, en appuyant sur un bouton, en touchant l’écran [0082] De façon comparable, lorsque la liaison du dro-
+8
+
+=== PAGE 9 ===
+15 EP3 282 334A1 16
+ne avec la télécommande est perdue, quelle qu’en soit effet de mettre le moteur en fonctionnement à un premier
+la raison, une procédure de retour automatique au point régime, lent et sans danger pour l’utilisateur (bloc 202),
+de décollage est automatiquement initiée. Le drone vé- puis à un second régime, plus rapide, qui indique à l’uti-
+rifie le rétablissement éventuellement de la connexion lisateur que le drone est prêt à décoller (bloc 204)). L’uti-
+au cours de cette phase de retour, et si aucune connexion 5 lisateur lance alors le drone face au vent (bloc 206, et
+n’est rétablie le drone effectue, comme illustré Figure 6, illustration de la Figure 7) et le drone, contrôlé par le
+une orbite L autour du point de décollage H, puis atterrit module de vol autonome, monte en ligne droite (bloc 208)
+au bout d’un temps prédéterminé, paramétrable, si la par exemple avec une incidence de 30° jusqu’à 50 m
+liaison radio n’est toujours pas rétablie, ce qui permet de d’altitude en maintenant son cap (c’est-à-dire que même
+ne pas perdre le drone si la batterie de la télécommande 10 en présence de vent latéral, le drone ne dévie pas de
+est déchargée. cette trajectoire). Par le biais des manches à balai, l’uti-
+[0083] Une autre possibilité offerte par le module de lisateur peut éventuellement "surpiloter" le drone s’il sou-
+vol autonome est celle de gérer automatiquement la tra- haite changer le cap.
+jectoire du drone selon un plan de vol préétabli. Le plan [0089] Une fois l’altitude atteinte (50 m dans l’exemple
+de vol est déterminé préalablement par une série de 15 ci-dessus), le drone se met de manière entièrement auto-
+"points de contrôle" ou waypoints et le module de vol nome en orbite (voir ci-dessus), par exemple avec des
+autonome maintient le drone en vol et le dirige vers ces cercles de 30 m de rayon (bloc 210). L’utilisateur a ainsi
+waypoints: le drone se dirige vers le waypoint courant la garantie qu’en attendant de prendre les commandes
+du plan de vol selon une trajectoire rectiligne puis, lors- le drone reste proche de l’endroit où il se trouve. Pendant
+que le waypoint est atteint, il tourne autour de celui-ci 20 cette phase d’orbite, le drone peut avantageusement re-
+suivant une trajectoire circulaire, par exemple avec un cueillir les données des capteurs pour mesurer la direc-
+rayon de 30 m. Pour suivre au mieux le cercle, le module tion et l’intensité du vent latéral.
+de vol autonome calcule des consignes en altitude et en [0090] Dès que l’utilisateur touche aux manches à ba-
+roulis appropriées. Le drone détermine alors la direction lai de la télécommande ou à toute autre commande, il
+entre le waypoint courant et le prochain waypoint, et as- 25 récupère alors la main (bloc 212), et le vol devient alors
+servit sa trajectoire suivant un nouveau cap, l’asservis- un vol en pilotage assisté, ou bien un mode de vol auto-
+sement en cap étant déterminé en fonction de la distance nome ordonné par l’utilisateur, avec les caractéristiques
+entre la position estimée du drone (donnée par le GPS) décrites plus haut.
+et la ligne séparant les deux waypoints.
+[0084] Enfin, le module de vol autonome permet, pour 30 Atterrissage automatique
+des raisons de sécurité, d’implémenter un "cylindre de
+vol", défini comme étant une zone dans laquelle le drone [0091] L’atterrissage automatique est un autre mode
+sera autorisé à évoluer, dont le centre est le point de géré par le module de vol autonome.
+décollage du drone, et qui est bornée en distance et en [0092] Cet aspect de l’invention est notamment illustré
+altitude (altitude minimale et altitude maximale). 35 par les Figures 9a et 9b et par le diagramme d’étapes de
+[0085] Si le drone dépasse la distance maximale auto- la Figure 10.
+risée, le module de vol autonome reprend la main et ra- [0093] L’utilisateur dispose sur sa télécommande
+mène le drone en direction de l’utilisateur. Tant que le d’une touche appropriée d’instruction d’atterrissage, qui,
+drone n’est pas revenu dans le cylindre de vol, le pilotage à partir de la phase de vol courante, qu’elle soit en mode
+manuel, même assisté, n’est pas autorisé. Si le drone 40 manuel ou en vol autonome (bloc 300), déclenche (bloc
+dépasse l’altitude maximale autorisée, le module de vol 302) l’exécution de la procédure correspondante que l’on
+autonome le ramène automatiquement sous l’altitude va décrire. S’il appuie à nouveau sur cette même touche
+maximale, et les instructions externes de montée que (blocs 304, 306), la procédure d’atterrissage en cours
+l’utilisateur pourrait envoyer ne seront pas prises en est abandonnée.
+compte tant que le drone sera au-dessus de cette altitude 45 [0094] L’atterrissage automatique peut être opéré en
+plafond. De même, le drone ne pourra pas voler en des- mode circulaire (le drone atterrissant en faisant une des-
+sous d’une altitude minimale, pour éviter tout risque d’ac- cente selon une trajectoire hélicoïdale d’un rayon prédé-
+cident par un vol trop près du sol. terminé, par exemple de rayon 30 m), ou en mode linéaire
+(le drone atterrissant en ligne droite).
+Décollage automatique 50 [0095] Dans le cas d’un atterrissage circulaire, comme
+illustré Figure 9a, le drone effectue au moins un cercle
+[0086] Le module de vol autonome permet de gérer de complet en descendant par exemple à 25 m d’altitude
+façon entièrement automatique le décollage du drone. (bloc 308), ce qui permet de mesurer la direction et la
+[0087] Cet aspect de l’invention est notamment illustré force du vent latéral. Dans un second temps, une fois
+par la Figure 7 et par le diagramme d’étapes de la Figure 55 cette mesure de vent effectuée, il initie la descente finale
+8. (bloc 310) selon une trajectoire hélicoïdale, en calculant
+[0088] L’utilisateur actionne un bouton approprié de la la trajectoire idéale permettant d’arriver au niveau du sol
+télécommande (bloc 200 de la Figure 8), ce qui a pour face au vent. Durant la descente, lorsque le drone atteint
+9
+
+=== PAGE 10 ===
+17 EP3 282 334A1 18
+une altitude et une vitesse prédéterminées le sens de constante une altitude (z) du drone lors du virage
+rotation du groupe propulseur est inversé (bloc 312), ce et/ou du changement de vitesse,
+qui permet au drone de freiner et d’arriver au sol (bloc
+314) avec une vitesse faible permettant de minimiser l’im- caractérisé en ce que le pilote automatique (24) est
+pact du choc à l’atterrissage. On notera que, comme in- 5 en outre configuré pour, sur cessation de réception
+diqué plus haut, l’utilisateur peut à tout moment annuler d’au moins certaines desdites instructions externes
+la procédure d’atterrissage (blocs 304, 306), le système de pilotage:
+basculant alors automatiquement en mode de décollage
+automatique pour permettre au drone de reprendre de - générer ladite consigne d’angle de roulis (ϕ),
+l’altitude et de la vitesse. 10 ladite consigne d’angle de tangage (θ) et ladite
+[0096] Dans le cas d’un atterrissage linéaire, comme consigne de vitesse (V) de manière à maintenir
+illustré Figure 9b, la phase finale de l’atterrissage est constants le cap et l’altitude qu’avait le drone au
+initiée lorsque le drone se trouve à faible altitude, par moment de ladite cessation de réception d’au
+exemple une altitude de l’ordre de 3 à 5 m. Le drone moins certaines desdites instructions externes
+freine avec rotation du moteur en sens inverse, pour tou- 15 de pilotage.
+cher le sol à faible vitesse.
+[0097] Il est également possible, dans une procédure 2. Drone selon la revendication 1, dans lequel le pilote
+d’"atterrissage assisté" d’autoriser une action de l’utilisa- automatique (24) est en outre configuré pour, sur
+teur pour que le drone descende en ligne droite en main- cessation de réception de toute instruction externe
+tenant son cap, l’utilisateur opérant un "surpilotage" du- 20 de pilotage:
+rant l’atterrissage (bloc 316) pour contrôler l’angle de rou-
+lis ainsi que l’angle de tangage. - générer ladite consigne d’angle de roulis (ϕ),
+ladite consigne d’angle de tangage (θ) et ladite
+consigne de vitesse (V) de manière à maintenir
+Revendications 25 en outre constante la vitesse qu’avait le drone
+au moment de ladite cessation de réception de
+1. Drone à voilure fixe (10), comprenant un système toute instruction externe de pilotage.
+de propulsion (14, 28), des gouvernes (18) et un pi-
+lote automatique (24), 3. Drone selon la revendication 1, dans lequel lesdites
+dans lequel le pilote automatique est configuré pour: 30 au moins certaines instructions externes de pilotage
+comprennent les instructions externes de pilotage
+- calculer des consignes en fonction d’instruc- en virage et les instructions externes de pilotage en
+tions, montée/descente, et ne comprennent pas les ins-
+lesdites instructions comprenant des instruc- tructions externes de pilotage en vitesse.
+tions internes de pilotage générées par le pilote 35
+automatique et des instructions externes reçues 4. Drone selon la revendication 3, dans lequel le pilote
+par le drone, automatique (24) est en outre configuré pour, sur
+lesdites instructions internes et/ou externes réception d’instructions externes de pilotage en vi-
+comprenant des instructions de virage, des ins- tesse et sans réception d’instructions externes de
+tructions de montée/descente et des instruc- 40 pilotage en virage ni réception d’instructions exter-
+tions de changement de vitesse, nes de pilotage en montée/descente:
+lesdites consignes incluant une consigne d’an-
+gle de roulis (ϕ), une consigne d’angle de tan- - continuer de générer ladite consigne d’angle
+gage (θ) et une consigne de vitesse (V) pour la de roulis (ϕ) et ladite consigne d’angle de tan-
+mise en oeuvre des instructions internes et/ou 45 gage (θ) de manière à maintenir constants le
+externes; et cap et l’altitude qu’avait le drone au moment de
+- commander le système de propulsion et les ladite cessation de réception d’instructions ex-
+gouvernes en fonction des consignes calculées, ternes de pilotage en virage et d’instructions ex-
+ternes de pilotage en montée/descente, et
+le pilote automatique (24) étant en outre configuré 50 - générer ladite consigne de vitesse (V) à partir
+pour: des instructions externes de pilotage en mon-
+tée/descente reçues.
+- sur application d’une instruction de virage et/ou
+d’une instruction de changement de vitesse, cal- 5. Drone selon la revendication 3, dans lequel le pilote
+culer ladite consigne d’angle de roulis (ϕ), ladite 55 automatique (24) est en outre configuré pour, sur
+consigne d’angle de tangage (θ) et ladite consi- réception d’instructions externes de pilotage en vi-
+gne de vitesse (V) de manière à effectuer un rage ou d’instructions externes de pilotage en
+virage et/ou à changer de vitesse en maintenant montée/descente:
+10
+
+=== PAGE 11 ===
+19 EP3 282 334A1 20
+- cesser de générer ladite consigne d’angle de à vitesse sol constante dans un mode de fonction-
+roulis (ϕ), ladite consigne d’angle de tangage nement à vitesse constante.
+(θ) et ladite consigne de vitesse (V) qui avaient
+été générées de manière à maintenir constants 13. Drone selon la revendication 1, dans lequel, pour la
+le cap et l’altitude qu’avait le drone au moment 5 réalisation d’une instruction de virage, le pilote auto-
+de ladite cessation de réception d’instructions matique (24) est configuré pour calculer les consi-
+externes de pilotage en virage et d’instructions gnes de manière à réaliser le virage avec un taux de
+externes de pilotage en montée/descente. virage constant par rapport au sol.
+6. Drone selon la revendication 1, dans lequel, dans 10 14. Procédé de pilotage d’un drone à voilure fixe (10)
+un mode de fonctionnement autonome, le pilote comprenant un système de propulsion (14, 28), des
+automatique (24) est configuré pour générer des ins- gouvernes (18) et un pilote automatique (24), ce pro-
+tructions internes de pilotage incluant des instruc- cédé comprenant des étapes consistant à:
+tions de virage, des instructions de montée/descen-
+te, et/ou des instructions de vitesse. 15 - calculer des consignes en fonction d’instruc-
+tions,
+7. Drone selon la revendication 1, dans lequel le pilote lesdites instructions étant des instruction de pi-
+automatique (24) est configuré pour générer des ins- lotage comprenant des instructions internes, gé-
+tructions internes de pilotage selon un mode de dé- nérées par le pilote automatique, et/ou des ins-
+collage automatique avec une phase de montée à 20 tructions externes, reçues par le drone,
+une altitude prédéterminée suivie d’une phase d’at- lesdites instructions internes et/ou externes
+tente en vol orbital à l’altitude prédéterminée. comprenant des instructions de virage, des ins-
+tructions de montée/descente et des instruc-
+8. Drone selon la revendication 7, dans lequel le mode tions de changement de vitesse,
+de décollage automatique comprend 25 lesdites consignes incluant une consigne d’an-
+successivement: une phase de mise en fonctionne- gle de roulis (ϕ), une consigne d’angle de tan-
+ment du groupe propulseur du système de propul- gage (θ) et une consigne de vitesse (V) pour la
+sion à un régime lent, une phase de mise en fonc- mise en oeuvre des instructions internes et/ou
+tionnement du groupe propulseur à un régime plus externes;
+rapide, une phase de montée en ligne droite avec 30 - sur application d’une instruction de virage et/ou
+maintien du cap, et ladite phase d’attente en vol or- d’une instruction de changement de vitesse, cal-
+bital lorsque ladite altitude prédéterminée est attein- culer ladite consigne d’angle de roulis (ϕ), ladite
+te. consigne d’angle de tangage (θ) et ladite consi-
+gne de vitesse (V) de manière à effectuer un
+9. Drone selon la revendication 1, dans lequel le pilote 35 virage et/ou à changer de vitesse en maintenant
+automatique (24) est configuré pour générer des ins- constante une altitude (z) du drone lors du virage
+tructions internes de pilotage selon un mode d’atter- et/ou du changement de vitesse; et
+rissage automatique avec superposition éventuelle, - commander le système de propulsion et les
+aux instructions de pilotage générées par le pilote gouvernes du drone en
+automatique, d’instructions externes de pilotage re- 40 fonction des consignes calculées;
+çues par le drone.
+caractérisé en ce qu’il comprend en outre une éta-
+10. Drone selon la revendication 9, dans lequel le mode pe consistant, sur cessation de réception d’au moins
+d’atterrissage automatique comprend certaines desdites instructions externes de pilotage,
+successivement: une phase de descente à une al- 45 à:
+titude prédéterminée, une phase de descente selon
+une trajectoire hélicoïdale ou selon une trajectoire - générer ladite consigne d’angle de roulis (ϕ),
+linéaire, et une phase d’inversion du sens de rotation ladite consigne d’angle de tangage (θ) et ladite
+du groupe propulseur du système de propulsion. consigne de vitesse (V) de manière à maintenir
+50 constants le cap et l’altitude qu’avait le drone au
+11. Drone selon la revendication 1, dans lequel le pilote moment de ladite cessation de réception d’au
+automatique (24) est configuré pour calculer les con- moins certaines desdites instructions externes
+signes en fonction d’une différence entre la vitesse de pilotage.
+air du drone et la vitesse sol du drone.
+55 15. Procédé selon la revendication 14, dans lequel, sur
+12. Drone selon la revendication 1, dans lequel le pilote cessation de réception de toute instruction externe
+automatique (24) est configuré pour calculer les con- de pilotage, ladite consigne d’angle de roulis (ϕ), la-
+signes de manière à voler à vitesse air constante ou dite consigne d’angle de tangage (θ) et ladite consi-
+11
+
+=== PAGE 12 ===
+21 EP3 282 334A1 22
+gne de vitesse (V) sont générées de manière à main-
+tenir en outre constante la vitesse qu’avait le drone
+au moment de ladite cessation de réception de toute
+instruction externe de pilotage.
+5
+16. Procédé selon la revendication 14, dans lequel les-
+dites au moins certaines instructions externes de pi-
+lotage comprennent les instructions externes de pi-
+lotage en virage et les instructions externes de pilo-
+tage en montée/descente, et ne comprennent pas 10
+les instructions externes de pilotage en vitesse.
+17. Procédé selon la revendication 16, comprenant en
+outre une étape consistant, sur réception d’instruc-
+tions externes de pilotage en vitesse et sans récep- 15
+tion d’instructions externes de pilotage en virage ni
+réception d’instructions externes de pilotage en
+montée/descente, à:
+- continuer de générer ladite consigne d’angle 20
+de roulis (ϕ) et ladite consigne d’angle de tan-
+gage (θ) de manière à maintenir constants le
+cap et l’altitude qu’avait le drone au moment de
+ladite cessation de réception d’instructions ex-
+ternes de pilotage en virage et d’instructions ex- 25
+ternes de pilotage en montée/descente, et
+- générer ladite consigne de vitesse (V) à partir
+des instructions externes de pilotage en mon-
+tée/descente reçues.
+30
+18. Procédé selon la revendication 16, comprenant en
+outre une étape consistant, sur réception d’instruc-
+tions externes de pilotage en virage ou d’instructions
+externes de pilotage en montée/descente, à:
+35
+- cesser de générer ladite consigne d’angle de
+roulis (ϕ), ladite consigne d’angle de tangage
+(θ) et ladite consigne de vitesse (V) qui avaient
+été générées de manière à maintenir constants
+le cap et l’altitude qu’avait le drone au moment 40
+de ladite cessation de réception d’instructions
+externes de pilotage en virage et d’instructions
+externes de pilotage en montée/descente.
+45
+50
+55
+12
+
+=== PAGE 13 ===
+EP3 282 334A1
+13
+
+=== PAGE 14 ===
+EP3 282 334A1
+14
+
+=== PAGE 15 ===
+EP3 282 334A1
+15
+
+=== PAGE 16 ===
+EP3 282 334A1
+16
+
+=== PAGE 17 ===
+EP3 282 334A1
+17
+
+=== PAGE 18 ===
+EP3 282 334A1
+18
+
+=== PAGE 19 ===
+EP3 282 334A1
+5
+10
+15
+20
+25
+30
+35
+40
+45
+50
+55
+19
+
+=== PAGE 20 ===
+EP3 282 334A1
+5
+10
+15
+20
+25
+30
+35
+40
+45
+50
+55
+20
+
+=== PAGE 21 ===
+EP3 282 334A1
+5
+10
+15
+20
+25
+30
+35
+40
+45
+50
+55
+21
+
+=== PAGE 22 ===
+EP3 282 334A1
+RÉFÉRENCES CITÉES DANS LA DESCRIPTION
+Cette liste de références citées par le demandeur vise uniquement à aider le lecteur et ne fait pas partie du document
+de brevet européen. Même si le plus grand soin a été accordé à sa conception, des erreurs ou des omissions ne peuvent
+être exclues et l’OEB décline toute responsabilité à cet égard.
+Littérature non-brevet citée dans la description
+• A BITTAR et al. Central Processing Unit for an Au-
+topilot: Description and Hardware-in-the-Loop Simu-
+lation. Journal of Intelligent and Robotic Systems, 04
+Août 2012, vol. 70 (1-4), 557-574 [0011]
+22

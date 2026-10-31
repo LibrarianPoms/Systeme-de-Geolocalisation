@@ -1,0 +1,699 @@
+=== PAGE 1 ===
+POLITECNICO DI TORINO
+Master Degree Course in Mechatronic Engineering
+Master Degree Thesis
+Implementation of an Ultralight
+Autopilot Drone for Service Robotics
+Supervisor Candidate
+Prof. Marcello Chiaberge Salvatore Romano
+December 2018
+
+=== PAGE 2 ===
+This work is subject to the Creative Commons Licence
+
+=== PAGE 3 ===
+Abstract
+AccordingtotheInternationalFederationofRoboticsanyrobotthatoperatesautonomously
+or semi-autonomously to help the human being in his activities (excluding manufacturing)
+is a service robot. Today the use of drones has grown exponentially for different types of
+applications, including service robotics.
+In this thesis, after a brief introduction on the regulation and classification of UAVs, the
+main sizing criteria of each component of a multirotor will be shown.
+Startingfromthedesignconstraintsandastateoftheartofthemainflightcontrollers,the
+hardware and firmware components chosen for the implementation of an autopilot quad-
+copter under 250 grams will be described. The sizing of the components will be strongly
+influenced by the weight of each of them and will be flanked by a test on the motor / pro-
+peller coupling to evaluate the performance and then to choose the most suitable devices
+for the purpose. Once the Pixracer FC has been identified as the best flight controller for
+theproject, thePX4firmwareandtherelatedsoftwareforremotecontrol(MissionPlanner
+and QgraounControl) will be described. Finally, after the assembly phase, the evaluation
+testsoftheperformanceoftheaircraft,theproblemsencounteredandthepossiblesolutions
+and improvements will be described.
+iii
+
+=== PAGE 4 ===
+Contents
+List of Tables vii
+List of Figures viii
+List of Acronyms ix
+1 Introduction 1
+1.1 Service robotics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+1.2 Drones for service robotics . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+1.3 UAVs classification . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+1.4 Why an ultralight drone . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+2 Drone anatomy 5
+2.1 Frame . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+2.2 Flight controller . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+2.3 GPS . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+2.4 Motors . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+2.5 Propellers . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+2.6 ESC . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+2.7 Telemetry module . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+2.8 Receiver . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+2.9 Battery . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+2.10 Additional components . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+3 Design 13
+3.1 Design constraints . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+3.2 Firmware . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+3.3 Flight controller; state of the art . . . . . . . . . . . . . . . . . . . . . . . . 14
+3.4 Peripherals . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+3.4.1 mRo ® PixRacer R15 DIY multicopter kit . . . . . . . . . . . . . . 16
+3.4.2 Motors, propellers and ESC . . . . . . . . . . . . . . . . . . . . . . 17
+3.4.3 Receiver . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+3.4.4 Battery . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+3.4.5 Frame . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+3.4.6 Payload . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+3.4.7 Alternative components . . . . . . . . . . . . . . . . . . . . . . . . 23
+iv
+
+=== PAGE 5 ===
+3.5 Weight analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+3.6 eCalc tool . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25
+4 First test; motor and propeller coupling 27
+4.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+4.2 Setting . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+4.3 V = 7.4 V; varying PWM. . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+N
+4.3.1 “Pulling thrust” . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+4.3.2 “Pushing thrust” . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+4.3.3 Pulling thrust VS pushing thrust . . . . . . . . . . . . . . . . . . . 30
+4.3.4 Flight time computation . . . . . . . . . . . . . . . . . . . . . . . . 31
+4.4 Varying V ; 100% PWM . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32
+N
+4.4.1 “Pulling thrust” . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32
+4.4.2 “Pushing thrust” . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32
+4.4.3 Pulling thrust VS pushing thrust . . . . . . . . . . . . . . . . . . . 33
+4.4.4 KV computation . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+4.5 Considerations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+5 Firmware and software 37
+5.1 PX4 architectural overview . . . . . . . . . . . . . . . . . . . . . . . . . . . 37
+5.1.1 High level software architecture . . . . . . . . . . . . . . . . . . . . 37
+5.1.2 Flight stack . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+5.1.3 Middleware . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+5.1.4 Update rates . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 40
+5.1.5 Runtime environment . . . . . . . . . . . . . . . . . . . . . . . . . . 40
+5.1.6 OS specific information . . . . . . . . . . . . . . . . . . . . . . . . . 40
+5.1.7 Multicopter position controller algorithm . . . . . . . . . . . . . . . 40
+5.2 Ground control station . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
+5.2.1 Mission Planner . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
+5.2.2 QGroundControl . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
+6 Troubleshootig 45
+6.1 Assembly . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+6.1.1 Shopping list . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+6.1.2 Components placement . . . . . . . . . . . . . . . . . . . . . . . . . 45
+6.2 Testing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+6.2.1 One motor in protection mode . . . . . . . . . . . . . . . . . . . . . 46
+6.2.2 No signal from GPS . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+6.2.3 No binding between receiver and transmitter . . . . . . . . . . . . . 47
+7 Conclusion 49
+7.1 Final weight analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
+7.2 TOF test . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
+7.3 Improvements . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
+A Flight controllers specifications 53
+v
+
+=== PAGE 6 ===
+Bibliography 61
+vi
+
+=== PAGE 7 ===
+List of Tables
+1.1 EASA UAVs classification . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+2.1 Thrust data table for a MT1806 motor . . . . . . . . . . . . . . . . . . . . 9
+3.1 Flight controller firmware compatibility . . . . . . . . . . . . . . . . . . . . 15
+3.2 Tiger Motor ® MT-1306-10 3100 KV technical specifications . . . . . . . . 18
+3.3 Tiger Motor ® MT-1306-10 3100 KV thrust table . . . . . . . . . . . . . . 18
+3.4 Thunderpower ® battery set technical specifications . . . . . . . . . . . . . 21
+3.5 Weight of the components . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+3.6 Hardware configuration weight analysis . . . . . . . . . . . . . . . . . . . . 25
+3.7 eCalc Tool results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26
+4.1 V = 7.4 V, varying PWM; pulling test measurements . . . . . . . . . . . 29
+N
+4.2 V = 7.4 V, varying PWM; pushing test measurements . . . . . . . . . . . 29
+N
+4.3 Experimental data VS eCalc data . . . . . . . . . . . . . . . . . . . . . . . 32
+4.4 Varying V , 100% PWM; pulling test measurements . . . . . . . . . . . . 32
+N
+4.5 Varying V , 100% PWM; pushing test measurements . . . . . . . . . . . . 32
+N
+4.6 Pulling configuration; KV computation . . . . . . . . . . . . . . . . . . . . 34
+4.7 Pushing configuration; KV computation . . . . . . . . . . . . . . . . . . . 35
+7.1 Final weight analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 50
+7.2 TOF; test VS theoretical values . . . . . . . . . . . . . . . . . . . . . . . . 51
+vii
+
+=== PAGE 8 ===
+List of Figures
+1.1 Fixed wing UAV (Parrot ® Disco) . . . . . . . . . . . . . . . . . . . . . . . 2
+1.2 Single rotor UAV (Prodrone ®) . . . . . . . . . . . . . . . . . . . . . . . . 3
+1.3 Multi-rotor (quadcopter) UAV (Intel ®) . . . . . . . . . . . . . . . . . . . 3
+1.4 Fixed-wing hybrid UAV (Flyingwings ®) . . . . . . . . . . . . . . . . . . . 3
+2.1 UAS schematic . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+2.2 Common frame shapes and size indication . . . . . . . . . . . . . . . . . . 6
+2.3 Pixhawk V2 flight controller . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+2.4 12N14P brushless motor anatomy (Greprc ®) . . . . . . . . . . . . . . . . 8
+2.5 Drone anatomy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+3.1 Flight controllers weight analysis . . . . . . . . . . . . . . . . . . . . . . . 15
+3.2 Pixracer flight controller (mRobotics ®) . . . . . . . . . . . . . . . . . . . 16
+3.3 Pixracer starter kit (mRobotics ®) . . . . . . . . . . . . . . . . . . . . . . 17
+3.4 Tiger Motor ® MT 1306-10 3100 KV . . . . . . . . . . . . . . . . . . . . . 19
+3.5 Tiger Motor ® 6020 carbon fiber propellers . . . . . . . . . . . . . . . . . . 19
+3.6 Lumenier ® Mini BLHeli 12A 4 in 1 OPTO ESC . . . . . . . . . . . . . . 20
+3.7 FrSky ® X4R-SB-3/16 Channel receiver . . . . . . . . . . . . . . . . . . . . 20
+3.8 Three layer frame . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+3.9 Runcam ® camera (a), Tramp ® video TX (b), Triumph ® antenna (c) . . 22
+3.10 mRo ® WiFi Module ESP8266 (a), Ublox ® SAM-M8Q GPS module (b),
+Diatone blade 200 carbon fiber frame (c) . . . . . . . . . . . . . . . . . . . 23
+4.1 Test bench setting . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+4.2 Thrust VS RPM (pushing VS pulling) . . . . . . . . . . . . . . . . . . . . 30
+4.3 c VS RPM (pushing VS pulling) . . . . . . . . . . . . . . . . . . . . . . . 30
+T
+4.4 Pulling and pushing test configurations . . . . . . . . . . . . . . . . . . . . 31
+4.5 Thrust VS RPM (pushing VS pulling) . . . . . . . . . . . . . . . . . . . . 33
+4.6 c VS RPM (pushing VS pulling) . . . . . . . . . . . . . . . . . . . . . . 33
+T
+4.7 System scheme . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+5.1 PX4 Architecture . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38
+5.2 PX4 Flight stack . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+5.3 Multicopter position controller diagram . . . . . . . . . . . . . . . . . . . . 41
+5.4 Mssion Planner interface . . . . . . . . . . . . . . . . . . . . . . . . . . . . 43
+5.5 QGroundControl interface . . . . . . . . . . . . . . . . . . . . . . . . . . . 43
+6.1 Frame support layer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+6.2 U-center interface during the cold start procedure . . . . . . . . . . . . . . 47
+7.1 Final prototype . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 52
+viii
+
+=== PAGE 9 ===
+List of Acronyms
+AC Alternating Current
+API Application Programming Interface
+APM ArduPilot Mega
+BSD Berkeley Software Distribution
+CAN Controller Area Network
+CF Carbon Fiber
+CPU Central Processing Unit
+DC Direct Current
+EASA European Aviation Safety Agency
+EKF Extended Kalman Filter
+ENAC Ente Nazionale per l’Aviazione Civile
+ESC Electronic Speed Controller
+FC Flight Controller
+FPV First Person View
+GPS Global Positioning System
+GCS Ground Control Station
+GLONASS Global Navigation Satellite System
+HDOP Horizontal Dilution of Precision
+IMU Inertial Measurement Unit
+IFR International Federation of Robotics
+LiPo Lithium Polymer
+MAVlink Micro Air Vehicle Communication Protocol
+ix
+
+=== PAGE 10 ===
+MTOW Maximum Take Off Weight
+OEM Original Equipment Manufacturer
+OS Operating System
+PCB Printed Circuit Board
+PLA Polylactic Acid
+POSIX Portable Operating System Interface for Unix
+PWM Pulse-Width Modulation
+QGC QGroundControl
+RAM Random Access Memory
+RC Radio Control
+RHPC Remote Host Configuration Protocol
+ROS Robot Operating System
+SPI Serial Peripheral Interface
+TOF Time of Flight
+UART Universal Asynchronous Receiver-Transmitter
+UAS Unmanned Aerial System
+UAV Unmanned Aerial Vehicle
+UDP User Datagram Protocol
+uORB Micro Object Request Broker
+USB Universal Serial Bus
+VTOL Vertical Take Off and Landing
+x
+
+=== PAGE 11 ===
+Chapter 1
+Introduction
+1.1 Service robotics
+Roboticsintheindustrialsectorisnowawell-establishedandconsolidatedrealitythatuses
+technologies widely used in all modern companies. The consequent evolution of industrial
+robotics, is called service robotics, which is characterized by being currently in a phase of
+major expansion and is one of the most promising emerging technology trends. The term
+“service robot” does not have a strict technical definition but the International Federation
+of Robotics (IFR) has proposed a tentative definition:
+“A service robot is a robot which operates semi- or fully autonomously to perform services
+useful to the well-being of humans and equipment, excluding manufacturing operations”.
+Serviceroboticsthusdefinesanewclassofintelligentrobotsabletooperatebothinworking
+and domestic contexts with the aim of increasing the quality of life of the human being by
+avoiding exposure to risk factors and facilitating daily operations. The main applications
+ofserviceroboticsarerepresentedbyrescueandsafetyoperationsperformedbydronesand
+underwater robots; professional cleaning, to build and demolish urban infrastructures, for
+archaeologicalinvestigation, forinspectionandmaintenance, robotsinthemedicalfieldfor
+surgery and medical rehabilitation, in logistics and precision agriculture. The main types
+ofrobotssuitableforthistypeofapplicationsarerovers,submarinesandUAVs(unmanned
+aerial vehicles).
+1.2 Drones for service robotics
+Thanks to their adaptability and versatility UAVs are used in different fields and applica-
+tionsandinrecentyearstheirusehasincreasedconsiderably. Commonlyknownasdrones,
+they are able to perform different applications even in critical situations with different ob-
+jectives. For all these reasons the UAVs are protagonists of service robotics[1]. They are
+used for:
+• Saving life: a drone can intervene in a disaster environment by providing first-class
+services without endangering the lives of life-saving operators.
+1
+
+=== PAGE 12 ===
+1 – Introduction
+• Forecast of hurricanes: adronecanreachareassubjecttodevastatingmeteorolog-
+ical events in order to collect useful data for the study and forecasts of similar events
+in the future.
+• Infrastructure maintenance: a drone can be used by a specialized operator to
+assess the condition of an infrastructure thus avoiding costly and risky operations for
+buildings such as bridges and skyscrapers.
+• Agriculture monitoring: farmers can use drones to monitor, irrigate, seed and
+care for their crops in general.
+• Support law enforcement: drones can be used to perform surveillance operations,
+accident investigation, suspect tracking and crowd monitoring.
+• Aerial photography: drones allow low-cost and risk-free aerial shooting even for
+harsh and hazardous environments.
+• Packages Delivery: drones can be used as a means of delivery for small-sized
+packages.
+• 3D mapping: drones can be used to capture images and scans of a territory and
+then process them in three-dimensional maps.
+1.3 UAVs classification
+TherearedifferenttypesofUAVsthatareclassifiedaccordingtodifferentparameters. The
+most important classification is shown below[2]:
+• Fixed wing: this type of aircrafts are equipped with a fixed wing and a rotor
+positioned on the front or back; they are able to cover long distances having a high
+autonomy but they are not able to take off and land vertically (they need a certain
+space).
+Figure 1.1: Fixed wing UAV (Parrot ® Disco)
+• Single rotor: These UAVs have a single propeller positioned in the middle. They
+are able to take off and land vertically but are difficult to pilot.
+2
+
+=== PAGE 13 ===
+1.3 – UAVs classification
+Figure 1.2: Single rotor UAV (Prodrone ®)
+• Multi-rotor: This is the most common category. Multirotors can have two or more
+propellers (bicopter, quadcopter, hexacopter and so on). They can take off and land
+verticallyandareabletoworkindifferentconditionsforvarioustypesofapplications.
+Figure 1.3: Multi-rotor (quadcopter) UAV (Intel ®)
+• Fixed-wing hybrid: This category is born as a hybrid between the fixed wing and
+the multi-rotor category. This model of aircraft assume a similar behavior to the
+multi-rotors during take-off and landing and similar to a fixed wing during the flight
+phase. Theyarethereforeabletotravellongdistancesandtakeoffandlandvertically.
+Figure 1.4: Fixed-wing hybrid UAV (Flyingwings ®)
+3
+
+=== PAGE 14 ===
+1 – Introduction
+1.4 Why an ultralight drone
+CivilaviationsecuritymanagementiscoordinatedbytheEuropeanAviationSafetyAgency
+(EASA). In addition to carry out monitoring activities, it issues certifications, regulations
+and standardization. The AESA agency is also responsible for collecting and processing
+data, providing advice on civil aviation laws and collaborating with various aeronautical
+authorities.[3]
+In one of the latest releases of the European regulation on the use of UAVs, EASA has
+introduced a new category of aircraft according to the MTOW called Open Category A1
+C0. This class of aircraft includes all the UAVs with MTOW less than 250 grams and
+therefore do not require registration or possession of an electronic on-board identification
+system. Drones belonging to this category can therefore be used freely in compliance
+with the flight rules, without any distinction between recreational and professional use [4].
+Therefore, the main objective of this thesis is to design and build an autopilot quadcopter
+with a MTOW of less than 250 grams for service robotics applications.
+UAS
+Subcategory
+Electronic ID/ UAS operation
+Class MTOW
+geo awareness registration
+C0 < 250 g No No
+A1
+C1 < 900 g
+A2 C2 < 4 kg Yes
+C3 Yes
+A3 < 25 kg If required from the
+C4
+zone of operation
+Table 1.1: EASA UAVs classification
+4
+
+=== PAGE 15 ===
+Chapter 2
+Drone anatomy
+A UAV is an aircraft without a pilot aboard able to move by remote control of an operator
+usingaremotecontrolleroranintegratedautopilotsystem. Asystemcomposedbycontrol
+station, UAV and communications system is called UAS (Unmanned Aerial System).
+UnmannedAerialVehicle UnmannedAerialSystem
+AircrafBody
+CompuntingPower
+Fly-by-Wire
+Recorder
+Remote Control
+Energy Communication
+(Ground Control
+Supply Module
+Station)
+Sensors Actuators
+Figure 2.1: UAS schematic
+Taking a quadcopter as reference, a drone is composed of the following components:
+• Frame • ESC
+• Flight controller • Telemetry module
+• GPS • Receiver
+• Motors • Battery
+• Propellers • Additional components (payload)
+5
+
+=== PAGE 16 ===
+2 – Drone anatomy
+2.1 Frame
+The frame is the supporting structure of the whole aircraft. It aims to support the various
+components in the right position, to guarantee stiffness, stability and the most precise
+weight balance as possible. The size of a quadcopter is simply the distance along the
+diagonal between two motors. The choice of the frame size is very important for the design
+of a drone as it affects on: max propeller size, motor size, moment of inertia of the aircraft,
+air resistance and total weight.
+Theframecantakedifferentshapesandlayoutsdependingonthearrangementofthearms
+with respect to the main body; the main configurations are H, X and X+.
+Figure 2.2: Common frame shapes and size indication
+Therefore, it must be chosen according to the application that the aircraft has to per-
+form (aerial photography, racing, packages delivery, etc). The most used materials for the
+construction of the frames are: Wood, 3D printed plastic, injection molded plastic, fiber
+glass, aluminum, PVC pipes or carbon fiber (the most common solution for the character-
+istics of this material as stiffness, strength and lightness) [5].
+2.2 Flight controller
+The flight controller is the brain of the aircraft. It is able to measure the movements of
+the drone through sensors such as gyroscopes, accelerometer, barometric pressure sensor
+and compass (IMU). The board hold the firmware that elaborates the data collected by
+these sensors and through particular algorithms it computes how fast the motor should
+be spun for the craft to behave as the pilot is instructing via stick inputs on the TX. All
+the components of the drone are therefore connected directly or indirectly to the flight
+controller which, through the telemetry system, communicates with the ground control
+station to receive commands and send the collected data[5].
+6
+
+=== PAGE 17 ===
+2.3 – GPS
+Figure 2.3: Pixhawk V2 flight controller
+2.3 GPS
+Theglobalpositionsystemisasatellitenavigationsystemthatprovidesinformationabout
+the position and time of any point on the Earth. Localization occurs by transmitting a
+radio signal from each satellite and processing the signals received by the receiver. The
+integration of a GPS module on a drone, not only allows to monitor the position and speed
+of the aircraft but also to perform operations such as:
+• Position Hold: the drone maintains a fixed position and altitude.
+• Return to home: during take-off, the drone memorizes its coordinates. When this
+function is activated, the aircraft automatically returns to the starting point to make
+a landing.
+• Autonomous flight: the flight path of the drone is established through GPS way-
+points that define the trajectory. Once this mode is started, the drone will follow this
+route thanks to the autopilot[6].
+2.4 Motors
+Motors are some of the most important components of a drone because they are responsi-
+ble, coupled to the propellers, of the thrust generation. The motor-prop coupling is in fact
+fundamental for optimizing the performance of the aircraft. Motors and propellers must
+therefore be sizedin order to generate athrust that guarantees good stabilityand response
+of the drone; The thrust must be at least double of the total weight of the aircraft (if the
+drone has a mass of 500 grams the thrust must be at least 1 kg, 250 grams per motor).
+Brushless motors are classified by using 4 digit (AABB) which describe their dimensions in
+millimeters. The first two indicate the stator width (or stator diameter) while the second
+thestatorheight. TallerstatormeansmorepowerathigherRPMwhilewiderstatormeans
+more torque at lower RPM.
+The anatomy of the motor is described by an abbreviation of the type: 12N14P. N stands
+for number of electromagnets in the stator and P stands for number of permanent magnets
+in the bell. Then the 12N14P code means that the motor is built with 12 electromagnets
+7
+
+=== PAGE 18 ===
+2 – Drone anatomy
+in the stator and 14 permanent magnets in the bell.
+Another important parameter of a motor is the KV factor (RPM per volt). It’s an impor-
+tant parameter of brushless motors, which indicates how much the rotation speed increase
+in relation to the voltage. (for example, when powering a 3100 KV motor with a 2S LiPo
+battery (7.4 V), it will spin at around 22940 RPM)[7].
+PermanentMagnets
+Shaft Bearing
+Winding
+t
+h
+g
+Bell i H e
+r
+o
+t
+a
+t
+S
+Stator
+StatorWidht
+Figure 2.4: 12N14P brushless motor anatomy (Greprc ®)
+2.5 Propellers
+Propellers are directly responsible of the thrust generation. By rotating faster they are
+able to move more air and therefore generate more thrust.
+The main features of a propeller are length and pitch:
+• The length of a propeller is the diameter of a disc the prop makes when it’s spinning.
+• Pitch can be defined as the travel distance of one single prop rotation.
+If on one hand a propeller with a higher value of length and pitch generates more thrust,
+on the other it will require more energy to generate the rotation.
+Propellers are classified according to two types of formats: L×P×B or LLPP×B (lenght,
+pitch, numeber of blades). For example 6×4.5 (also known as 6045) propellers are 6 inch
+long and has a pitch of 4.5 inch. 5x4x3 (sometimes 5040×3) is a 3-blade 5 inch propeller
+that has a pitch of 4 inch[8].
+2.6 ESC
+ESC stands for Electronic Speed Controller. As the name suggests, they take care of the
+regulation of the rotation speed of the motors. The ESC provides the optimum energy
+level to the motors by receiving an acceleration signal that comes from the controller as
+8
+
+=== PAGE 19 ===
+2.7 – Telemetry module
+input.
+The maximum amount of continuous current which the ESC can safely handle is the
+“continuous current rating” while the higher current for which ESCs are usually designed
+to withstand for short periods of time is the “burst current rating”[9].
+The motor, propeller and ESC system is called power train system. As these components
+work together, the sizing of the ESC must be performed taking into account the motor-
+propeller coupling and the absorbed current necessary for the generation of the required
+thrust. This procedure is usually carried out through the thrust data table that should
+be provided with any multi-rotor motors. An example of one such thrust data table for a
+MT1806 is given below:
+Motor Voltage Current Thrust Power Efficiency Speed
+Paddle size
+Type (V) (A) (g) (W) (g/W) (RPM)
+5030 Carbon
+4.4 210 2.6 6.4 13530
+Fiber Prop
+7.4
+APC 6*4 6.8 280 50.3 5.6 12030
+MT1806-
+5*4.5 three-blade
+2280KV 6.2 240 45.9 5.2 12330
+prop
+5030 Carbon
+8 380 88.8 4.3 18510
+Fiber Prop
+11.1
+APC 6*4 11.3 460 125.4 3.7 15160
+5*4.5 three-blade
+10.6 410 117.7 3.5 15910
+prop
+Table 2.1: Thrust data table for a MT1806 motor
+Depending on the required thrust (must be at least twice the weight of the drone), it
+is possible to derive the current absorbed by that motor with different types of propellers
+and batteries. Once this value is obtained, it is possible to size the ESC choosing a current
+value slightly higher than that obtained from the table. For example:
+A 500-gram quadcopter equipped with the MT1806-2280KV needs a thrust of at least 1 kg
+(250 grams per motor). From the table it is deduced that a thrust of 280 grams per motor
+can be obtained by using the APC 6×4 propeller and a 7.4 V (2S) battery. The current
+absorbed with this configuration is equal to 6.8 A, therefore a 10 or 12 Amps ESC will be
+needed[10].
+2.7 Telemetry module
+Telemetry is a technology that allows data transmission from remote or inaccessible points
+to a control station. The use of a telemetry module on a drone is not required but can
+be very useful especially for certain types of applications. The use of telemetry involves
+the installation of a device on board and one on the ground connected to the ground
+9
+
+=== PAGE 20 ===
+2 – Drone anatomy
+station.[11]. The communication takes place on different frequencies depending on the
+region (433 MHz for Europe and 915 MHz for US).
+2.8 Receiver
+The commands sent by the transmitter on the ground are received by the radio receiver.
+This device sends signals to the flight controller that converts them into specific actions to
+control the aircraft. Radio communication protocols can be classified into two groups:
+• TX Protocols between Radio Transmitter and Radio Receiver.
+• RX Protocols between Radio Receiver and Flight Controller.
+TX Protocols are in most cases specific to brands (FrSky: D8, D16, LR12; Spektrum:
+DSM, DSM2, DSMX; FlySky: AFHDS, AFHDS 2A; Futaba: FASST; Hitec: A-FHSS;
+Devo: Hi-Sky) while for RX Protocols, some of them are universal (PCM, PWM, PPM,
+SBUS).
+Therefore, to work correctly, the receivers and the transmitter must speak to the same
+language. This means that the two devices must belong to the same brand. But there are
+some exceptions of devices of different brands which are able to communicate because they
+use the same protocol. Therefore, The RC and TX must work on the same frequency[12].
+2.9 Battery
+The battery (LiPo) is the energy source of the whole quadcopter. It is characterized by a
+high energy density, high discharge rate and consists of individual cells connected in series
+witheachother. Eachcellhasanominalvoltageof3.7Vforthisreasonthebatteryvoltage
+is indicated with the letter S, which indicates the number of cells inside the battery (1S =
+3.7 V; 2S = 7.4 V; 3S = 11.1 V etc)[13].
+ThebatterycapacityinsteadisindicatedinmAh. Choosingahighcapacitybatterymeans
+increasing the performance in terms of TOF but on the other hand it means increasing the
+weight and the physical dimensions of the device[14].
+Another important parameter that characterizes a LiPo battery is the C rating which in-
+dicates the discharge rate. By knowing this value it is possible to compute the maximum
+discharge current of the battery:
+Maximum Discharge Current = C-Rating×Capacity (2.1)
+Forexamplean1300mAh50Cbatteryhasanestimatedcontinuousmaximumdischarge
+current of 65 A.
+Sometimes some batteries may have two C-ratings on the label: the continuous and the
+burst rate. The second is only applicable for a short period of time (usually 10 s).
+So the parameters to be evaluated to size a battery are not just voltage and capacity. The
+C-rate must be chosen to ensure that the current required by the motors is lower than the
+maximum discharge current. For example:
+taking into consideration the example given in paragraph 2.6, the current absorbed by
+10
+
+=== PAGE 21 ===
+2.10 – Additional components
+each motor is 6.8 A, therefore the total current will be 27.2 A (6.8×4). The capacity and
+C-rating of the battery must therefore be higher than this value. In fact, if you choose a
+1300 mHa 55 C battery, the maximum discharge current will be:
+Maximum Discharge Current = 55·1.3 = 71.5A > 27.2A (2.2)
+Once the battery, motors, propellers and ESC have been chosen, it will also be possible to
+compute the TOF of the aircraft by consulting the thrust table of the motor:
+Battery Capacity
+TOF = (2.3)
+Current absorbed by motors
+2.10 Additional components
+Depending on the type of application that the drone must be able to perform, it is possible
+to equip the drone with other components such as battery alarm, gimball, camera etc. The
+video streaming system is definitely the most used equipment and it is composed of the
+following components:
+• Camera
+• Video TX
+• Antenna
+The equipment of this system on the drone allows the pilot on the ground to have a view
+of the aircraft in first person and in real time. This system allows to operate also in case
+of visual loss of the drone and to carry out visual monitoring operations.
+Figure 2.5: Drone anatomy
+11
+
+=== PAGE 22 ===
+12
+
+=== PAGE 23 ===
+Chapter 3
+Design
+As reported in the paragraph 1.4, the aim of this thesis is to design and build a quadcopter
+withamassoflessthan250gramsintendedforserviceroboticsapplications. Theprocedure
+usedwastostartfromthedesignconstraintstoobtainastateoftheartofflightcontrollers
+currently available. Once the most appropriate controller has been chosen, the parts have
+been sized and tested accordingly, always taking into consideration the weight of each of
+them.
+3.1 Design constraints
+That of weight is not the only constraint of the project. The drone must in fact comply
+with the following specifications:
+• Autopilot drone: the term autopilot refers to a system able to manage part of the
+movement of an aircraft (trajectory management, speed control, height maintenance,
+etc.) without the constant intervention of an operator. An autopilot drone then
+allowstheoperatortofocusonotheraspectsofthemissionsuchastelemetrycontrol,
+data processing or video monitoring. It is important to underline that this system
+does not completely replace the control by an operator but it simply facilitates its
+use[15].
+• Open platform: The whole system must be based on open standards (such as
+publishedandfullydocumentedexternalAPI).Anopenplatformsystemallowsusers
+tointerveneandimprovetheprojectproposedbythesellerwhogivesthemthemeans
+to do it. In this way the project will always be growing and updated with current
+technology.
+• MAVLink communication protocol: TheMAVlinkcommunicationprotocol(Mi-
+cro Air Vehicle Link) is a system created specifically for vehicles with remote piloting
+systems that allows communication between aircraft and ground control station but
+also between devices inside the vehicle. Thanks to this protocol it is possible to send
+and receive data such as position, height, speed, orientation, etc[16].
+13
+
+=== PAGE 24 ===
+3 – Design
+• ROS compatible: ROS(RobotOperatingSystem)istheoperatingsystemthatpro-
+videsdeveloperswiththenecessarytoolstocreaterobotcontrolapplications[17]. The
+communicationbetweenUAVsandrunningROSgroundcontrolstations,isperformed
+by using a special package called MAVROS. This package provides communication
+drivers for different autopilots with MAVLink communication protocol and provides
+a MAVLink UDP bridge for ground control stations[18].
+• Ultralight: This is the most difficult constraint to comply. The quadcopter must
+have a MTOW of less than 250 grams in order to be classified as an A1C0 aircraft.
+Therefore all the components must be sized in order to obtain the maximum perfor-
+mance (in terms of TOF) with a very low total mass.
+3.2 Firmware
+The starting point of the project was initially to identify the available firmware able to
+satisfy the design constraints described in the previous paragraph. Most of the constraints
+canbecompliedbysimplychoosingasuitablefirmware. Thetwomostusedflightmanage-
+ment firmware of a multirotor are Ardupilot and PX4. Both can be used on most available
+flight controllers:
+• Ardupilot: Ardupilot is definitely one of the most used application in the field of
+autopilotfirmware. Itcanbeinstallednotonlyonaircraftsuchasdronesorairplanes
+butalsoonlandandmarinevehiclessuchasrovers,boatsandsubmarines. Beingvery
+used Ardupilot is also one of the most tested and continuously evolving software (it is
+open source code based). The software suite is installed in aircraft from many OEM
+UAV companies, such as 3DR, jDrones, PrecisionHawk, AgEagle and Kespry. It is
+also used for testing and development by several large institutions and corporations
+such as NASA, Intel and Insitu/Boeing, as well as countless colleges and universities
+around the world [19].
+• PX4: PX4 autopilot is an open-source autopilot system oriented toward inexpensive
+autonomous aircraft. Low cost and availability enable hobbyist use in small remotely
+piloted aircraft. The project started in 2009 and is being further developed and
+used at Computer Vision and Geometry Lab of ETH Zurich (Swiss Federal Institute
+of Technology) and supported by the Autonomous Systems Lab and the Automatic
+Control Laboratory. Several vendors are currently producing PX4 autopilots and
+accessories[20].
+Ardupilot and PX4 fully comply the design constraints as they are both open platform
+andautopilotfirmwareandusetheMAVLinkcommunicationprotocolthatcanbemanaged
+by ROS through the MAVROS package.
+3.3 Flight controller; state of the art
+Once the most suitable firmware for the project have been identified, the next step was
+performing an analysis of the compatible flight controllers. The boards compatible with
+Ardupilot and PX4 firmware are listed in the following table:
+14
+
+=== PAGE 25 ===
+3.3 – Flight controller; state of the art
+Firmware Compatibility
+Flight Controller
+Ardupilot PX4
+mRo Pixhawk (cid:88) (cid:88)
+Pixhawk 2 (cid:88) (cid:88)
+Pixhawk mini (cid:88) (cid:88)
+mRo Pixracer (cid:88) (cid:88)
+Pixhawk 4 (cid:88) (cid:88)
+Pixhawk v5 (cid:88) (cid:88)
+Beagle Bone Blue (cid:88)
+Erle-Brain 3 (cid:88)
+F4BY (cid:88)
+OpenPilot Revolution (cid:88)
+PXFmini RPi Zero Shield (cid:88)
+TauLabs Sparky2 (cid:88)
+Table 3.1: Flight controller firmware compatibility
+All the technical specifications of the aforementioned controllers are given in the ap-
+pendix A.
+The choice of the flight controller must therefore be performed taking into consideration
+not only the technical specifications but also the physical ones; in particular the weight:
+TauLabs Sparky2 13,5
+PXF mini 15
+OpenPilot Revo mini 9
+F4BY FMU 20
+Erle-Brain 3 100
+Beagle Bone Blue 36
+Pixhawk v5 90
+Pixhawk 4 15,8
+mRo Pixracer 10,54
+Pixhawk mini 15,8
+Pixhawk 2 75
+mRo Pixhawk 38
+0 20 40 60 80 100
+Weight [g]
+Figure 3.1: Flight controllers weight analysis
+15

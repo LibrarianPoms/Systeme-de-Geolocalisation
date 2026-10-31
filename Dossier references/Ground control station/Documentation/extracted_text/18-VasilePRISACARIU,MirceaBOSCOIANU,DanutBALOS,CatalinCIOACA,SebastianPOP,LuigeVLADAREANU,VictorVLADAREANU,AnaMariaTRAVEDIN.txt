@@ -1,0 +1,380 @@
+=== PAGE 1 ===
+SCIENTIFIC RESEARCH AND EDUCATION IN THE AIR FORCE – AFASES 2021
+CONSIDERATIONS ABOUT CONSTRUCTION OF UAV GROUND
+CONTROL STATIONS
+Vasile PRISACARIU * , Mircea BOȘCOIANU ** , Dănuț BĂLOS*, Cătălin CIOACĂ*,
+Sebastian POP***, Luige VLĂDĂREANU****, Victor VLĂDĂREANU****,
+Ana-Maria TRAVEDIU****
+*”Henri Coandă” Air Force Academy, Brașov, Romania
+(prisacariu.vasile@afahc.ro, danut.balos@gmail.com, catalin_cioaca@yahoo.com),
+**”Transilvania” University of Brașov, Romania (boscoianu.mircea@yahoo.com),
+***Aerodrone Ltd. Brașov, Romania (aerodrone.uav@gmail.com)
+****IMSAR București, Romania (luigiv2007@yahoo.com.sg, vladareanuv@gmail.com
+ana.travediu@yahoo.com)
+DOI: 10.19062/2247-3173.2021.22.18
+Abstract: The safety levels of the flight have determined the operating standards of the UAS
+which are transposed into the operating capabilities and the high levels of reliability of the
+ground command and control systems / ground equipment. The ground control station (GCS) or
+C3 is a subsystem of the UAS that has its own command and control technologies in flight and
+communications with high speeds of data transfer over long distances. The ground control
+stations (GCS) of unmanned aerial vehicles allow a single operator to handle all flight-related
+tasks simultaneously with the acquisition of data from areas of interest.
+The article contains an overview of the construction stages of an experimental model of the
+portable ground station for the command and control of unmanned aerial vehicles on board.
+Keywords: ground control station, unmanned aerial vehicles UAS, experimental model.
+Acronyms
+BNC Bayonet Neill-Concelman C5I Command, Control, Communications,
+(connector) Computers, Collaboration and Intelligence
+GCS Ground control station EASA European Union Aviation Safety Agency
+FAA Federal Aviation Administration HALE High Altitude Long Endurance
+ITAR International Traffic Arms ISTAR Intelligence surveillance target acquisition
+Regulations
+MALE Medium Altitude Long Endurance OS Operating system
+RCA Radio Corporation of America RC Radio Control
+(connector) MCS Mission control System
+RJ Registered Jack (connector) NCW Network Centric Warfare
+NDAA National Defence Authorization Act NVG Night Vision Google
+UCAV Unmanned combat aerial vehicles WLAN Wireless local area network
+1. INTRODUCTION
+1.1.Overview
+The intensive use of UAS technologies in various military and civilian fields has
+raised the level of complexity of (ground) command and control equipment on hardware
+and software components.
+129
+
+=== PAGE 2 ===
+Considerations about Construction of UAV Ground Control Stations
+Flight safety levels have determined UAS operating standards that translate into
+operational capabilities and high levels of reliability of GCS/ equipment, depending on
+the complexity of the air system from a simple phone or smart tablet PC, for the operation
+of commercial UAVs up to the control systems (mobile or fixed) of the HALE/MALE/
+UCAV UAS.
+The ground control station (GCS) or C3 is a subsystem of the UAS that has its own
+command and control technologies in flight and communications with high speeds of data
+transfer over long distances [1, 2]. The C3 infrastructure involves complex capabilities,
+such as: human-machine interface, C3 multivector, voice control, operation of mission
+sensors (eg in ISTAR concept). These capabilities allow operators to control air carriers
+for the safe and efficient conduct of flight operations through: planning, logistics
+functions, personnel and technical procedures [2, 3].
+According to the references [4, 5] we have a series of categories and constructive
+examples regarding the ground control stations (see Fig. 1.1) that serve the unmanned
+aerial systems on board, such as: tablet PC, laptop, and fixed GCS.
+(a) (b)
+(c)
+FIG. 1.1 Ground control system (at the ground). (a.laptop, b. GCS portable, c.GCS virtual cockpit), [4, 5]
+1.2. GCS risk analysis
+The design and development of a ground control station must follow all the specific
+stages of the systems engineering process. The initiation of a risk analysis is based
+primarily on the identification of operational, functional and performance requirements
+(table 1.1).
+Table. 1.1 Requirements list
+Operational Hardware and software Performance
+• operating environment conditions (eg. day/ • integrating COTS • Time operation
+night; radio interferences; electromagnetic equipment and/ or custom • Size and
+restrictions) technologies (eg. open system dimensions
+• use conditions (eg. ergonomics; vibration/ architecture) • Easy to operate
+shocks; mobile/ stationary/ shipboard; • Modularity and • Setup time
+transportability) interoperability (eg. • Reliability
+• technical operating requirements (eg. operating computing solution) • Serviceability
+system; joysticks; switches and buttons; display) • redundancy items (eg.
+• security requirements (eg. cyber-attacks power supply)
+protection)
+130
+
+=== PAGE 3 ===
+SCIENTIFIC RESEARCH AND EDUCATION IN THE AIR FORCE – AFASES 2021
+In order to finalize the technical solution, the identification of the requirements
+categories is completed with system analysis and control. This stage balances
+requirements, costs and risks in a top-down, iterative and recursive manner. Adopting the
+technical solution also involves the analysis of risks that are associated with software,
+hardware and communications elements.
+The operating system and the software applications are susceptible to cyber-attacks.
+Once it takes control of the operating system, it also translates into control over hardware
+resources [8]. As a central node, the intentional or natural risks associated with the
+communications field should not be ignored. The main risks and solutions identified for
+their mitigation are represented in table 1.2.
+Table. 1.2 GCS risks register
+Domain Risks Mitigation solutions
+Software − disrupt the service − updated software
+− loss control − antivirus software
+− loss data − network firewall
+Hardware − disrupt the service − testing in-house
+− malfunction − redundant architecture
+− reduce performance − standard protocols
+Communication − disrupt the service − control access
+− loss control − resource management
+− loss data − encryption common
+1.3.Criteria for the construction of command and control stations (GCS)
+The design, construction and use of GCS are based on critical criteria, such as
+regulations and standards for design, construction (technology, materials) and operating
+(performance, C2, human resources), [16]. The construction of the GCS starts from the
+compliance of the civil and/or military aeronautical regulations (updated and consolidated
+variants), regulations valid for the international area where the GCS equipment will be
+used, [17, 18, 19].
+The design concept of the GCS can determine both the functional performance of the
+final model and the capabilities of the controlled units (UAVs), therefore the following
+aspects must be considered from the design phase [20]:
+a. the environment and operating conditions that may affect the reliability of GCS,
+day / night / NVG operation or radio interference;
+b. the duration of the flight operations/missions involves the performance of the
+accumulators / energy sources and the GCS ergonomics (shape/ dimensions, weight);
+c. on screen display requirements (monitor size) involving values of image data
+processing performance or operation under natural solar lighting conditions;
+d. the number and type of switches and IT peripherals, they influence the performance
+of the operator and the security of the flight operations;
+e. setting time, it has an impact on the results of flight missions, integrated software
+solutions are recommended;
+f. operating systems, it is recommended to use fully functional OS that reduces
+operator stress and advanced and efficient control of the GCS unit;
+g. maintenance level, refers to the options regarding spare parts/ IT products for
+maintenance;
+h. compliance aspects, designs, manufacturers/ integrators and GCS users are required
+to meet compliance requirements by areas of competence (NDAA standard, ITAR [21],
+UAV-GCS operator licensing regulations / standards), [17, 18, 19];
+131
+
+=== PAGE 4 ===
+Considerations about Construction of UAV Ground Control Stations
+i. the security level of the GCS platform, involves the issue of hijacking, blocking,
+GCS availability, encryption / data loss, cyber security policies;
+j. software integration, involves the level of assignment of the firmware interface with
+the GCS equipment (GCS specific integration, input device integration protocols, input
+hardware modules, communications modules / USB/ COM).
+1.4. Research and development directions
+The research-development and operation directions of the GCS are focused on both
+manufacturing technologies and operationalization in civilian and military activities.
+According to the references [11, 12, and 13], GCS technologies already incorporate
+some robotic functions based on artificial intelligence (AI) and machine learning (neural
+network).
+FIG. 1.2 Pipistrel eVTOL cargo, [14] FIG. 1.3 VTOL cargo drone, [15]
+The preoccupation of researchers and specialists in the field of civil uses have been
+oriented for several years towards the field of transport (UAS cargo), see Fig. 1.2 /1.3 and
+integrated uses for the acquisition of data on atmospheric and environmental monitoring,
+[14, 15].
+Military uses are primarily focused on Network Centric Warfare (NCW) approaches,
+which involve swarm coordination of UASs through the possible use of wireless local
+area networks (WLANs) based on WLAN hubs and two-way broadband. of satellite
+communications [9]. The command and control functions available on GCSs can be
+developed up to C3I or C6ISR [10].
+International research focuses on GCSs that can use three-dimensional maps for 3D
+transposition of operational situations and smart peripherals for real-time data and
+command input (from flight stick / switch to verbal and gesture commands), [26 , 27].
+2. EXPERIMENTAL MODEL OF GROUND CONTROL STATION
+2.1. GCS operation
+The ground control station (GCS) of unmanned aerial vehicles allows a single
+operator to handle all flight-related tasks simultaneously with the acquisition of data. The
+developed GCS is based on 3 interconnected hardware platforms (two tablets and a laptop
+PC) being integrated in a shock and water resistant transport box [25], see Fig. 2.1. The
+control station offers a standard autonomy of 3 hours in terms of portability and
+modularity depending on the type of mission.
+FIG. 2.1 GCS, computer layout and startup panel and connections.
+132
+
+=== PAGE 5 ===
+SCIENTIFIC RESEARCH AND EDUCATION IN THE AIR FORCE – AFASES 2021
+2.2. Technical data and performances
+The most significant data on construction and operating performance are shown in
+Table 2.1. The ground control station consists of structural and transport elements,
+hardware, software tools and data connections, as follows:
+Tabel 2.1. GCS technical data and performances
+Parameter Value Parameter Value
+Dimensions 820x540x510 mm Autonomy 3 h
+Mass 10 kg Software system Android / Windows
+Connectivity USB, RJ, Ethernet, RCA, Software management Mission planner / Qground
+BNC control
+a. structural and transport elements: sealed box and panels for the arrangement and
+fixing of control elements and connections, see Fig. 2.2, [25];
+FIG. 2.2 Sealed box, [25]
+Table 2.2 Technical data and performances - Tablet Samsung Tab S5e, [22]
+DISPLAY MEMORY / STORAGE
+Parameter Value Parameter Value
+Display 10.5 inch RAM 4 Gb
+Resolution 2560x1600 Internal / external memory 64 / 512 Gb microSD
+CONECTIVITY SENZORS
+Wired microUSB Video 13/8 MPx
+Wireless / Bluetooth 802.11/ 5.0 GPS/gyroscope/accelerometer yes/ yes/ yes
+BATTERY DIMENSIONS / MASS
+Capacity 7040 mAh Dimensions 245x160x5,5 mm
+Type LiIon Mass 400 g
+b. connected hardware: two Samsung Tab S5e tablets (Table 2.2) with Android
+operating system [22, 23], Fig. 2.3; an HP Probook 450 G6 laptop companion computer
+with Windows 10 operating system (Fig. 2.4. and Table 2.3); control panel and in / out
+panel;
+FIG. 2.3 Samsung Tab S5e, [22] FIG. 2.4 Laptop HP Probook 450 G6 [24]
+133
+
+=== PAGE 6 ===
+Considerations about Construction of UAV Ground Control Stations
+c. data connections: radio control system on the 3D trajectory (2.4 GHz), telemetry
+data transmission system (data link telemetry, 433 MHz), graphic data transmission
+system (image / video), storage system and data transmission from environmental
+sensors, see Fig. 2.5.
+Data transmission can import / export specific signal both physically via USB, RCA,
+Ethernet, video and radio signal via Wi-Fi / Bluetooth standard via the two tablets and the
+laptop.
+Table 2.3. Technical data and performances - laptop HP Probook 450 G6 [24]
+DISPLAY CPU
+Parameter Value Parameter Value
+Display 15.6 inch Tipe / model / cores Intel i5 / 8265U / 4
+Resolution 1920x1080 Nominal /turbo frequency 1,6 / 3,9 GHz
+MEMORY / STORAGE VIDEO
+RAM / Frequency 8 Gb / 2400 MHz Tipe nVidia Gforce MX
+130
+HDD type / storage SSD 256 Gb Memory 2048 Gb
+CONECTIVITY GEOMETRIE / MASA
+USB / HDMI / RJ / Yes/ yes / yes / yes Geometry 364.9 x 19 x 256.9
+Audio mm
+Wireless / bluethooth 802.11 / 5.0 Mass 2 kg
+Starting from the GCS concept from Fig. 2.5 we have the functional UAS architecture
+from Fig. 2.6.
+FIG. 2.5 Data and power diagram FIG. 2.6 UAS architecture, V-tail plane
+Modules and connection diagram. The UAS architecture contains the two functional
+entities: the air vector (UAV) and the ground control station (GCS).
+Air vectors (drone 1 and drone 2). It transmits telemetry (ex 433/915 MHz) and video
+(ex 5.8 GHz) data on flight and navigation performance. Receives RC routing signal for
+trajectory maneuvering from the RC transmitter (which can be integrated into GCS or
+standalone), frequencies used 2.4 GHz.
+RC transmitter. Transmits the signal on the trajectory (optional depending on the
+degree of level equipment, receives telemetry data on the operation of air vectors).
+FPV-GCS module. It receives telemetry and imaging data from aerial vectors (RCA
+port) and transmits it to display devices (companion laptop / tablet monitor) using the
+graphical interface of the Qground control software tool (USB port).
+134
+
+=== PAGE 7 ===
+SCIENTIFIC RESEARCH AND EDUCATION IN THE AIR FORCE – AFASES 2021
+Laptop companion (PC operator). It offers the operator GCS (Qground Control), a
+series of facilities regarding the calibration, operation and simulation of the UAV flight. It
+receives image and telemetry data (USB port) on the mission management user interface.
+Tablet PC. These provide the operator with visual data by navigation sensors (eg.
+navigation camera) and / or mission-specific sensors (FLIR / NIR camera, atmospheric
+sensors) via the microUSB port.
+GCS management module. It consists of the connection and control panel that offers
+connection and management functions of the component electronic devices (receiver
+modules, laptop companion, tablets PC). This module also provides energy management
+with overvoltage protection to all GCS consumers.
+3. ASPECTS REGARDING THE CONSTRUCTION OF THE GCS
+EXPERIMENTAL MODEL
+The constructive stages of the experimental model are: establishing the GCS operating
+requirements (pre-design), design (in detail), manufacturing the structure and spare parts,
+bench running tests of the component systems, assembling and equipping the GCS,
+operating tests in real conditions of use, see Fig. 3.1.
+FIG. 3.1 Stage of GCS
+a. starting from the selected concept [6], the requirements / missions of GCS
+determine the management of data connections from the air vector and the surface vector.
+Requirements for the implementation of the GCS are determined by design, operational
+and technological limitations see Fig. 3.2, [7].
+FIG. 3.2 GCS implementation management stage, [7]
+b.GCS design is limited by the concept of low cost and portability, see Fig. 3.3. CAD
+tools (Solidworks, Autocad) were used for the design stage for geometric and functional
+aspects.
+135
+
+=== PAGE 8 ===
+Considerations about Construction of UAV Ground Control Stations
+c. GCS manufacturing/realization is performed with the help of CAD / CAM
+technologies (3D and CNC printing), see Fig. 3.4;
+d. the functional tests considered the verification of the functionality for connections
+and of the equipment.
+FIG. 3.3 Aspects regarding of the GCS main panel FIG. 3.4 Realization of the upper signaling panel
+(design image) through CNC technology
+e. assembly and equipment of the GCS, considered the portability conditions without
+affecting the operating performance (anti-vibration/anti-shock mounts), see Fig. 3.5;
+f. the tests in real operating conditions were performed in normal weather conditions
+(without precipitation) during the day with temperature values in the range of 10oC-22oC,
+and included a series of aspects, the most relevant being: the preparation operations/
+completion of missions; operation / acquisition of data within the mission;
+(a) (b)
+(c)
+FIG. 3.5 GCS equipment, a. lower panels, b. upper panels, c. Power management panel.
+CONCLUSIONS
+The design, construction, testing and operation of unmanned aerial systems (GCS-
+UAS) involve a number of limitations that govern the life cycle of specialized technical
+systems. The GCS design provides an optimized approach to information on both the
+operating environment and data on the behavior of aerial vectors connected to the GCS,
+an optimized approach that determines the speed and accuracy of the operator by
+reducing cognitive load per unit time.
+136
+
+=== PAGE 9 ===
+SCIENTIFIC RESEARCH AND EDUCATION IN THE AIR FORCE – AFASES 2021
+The paper exposed in the first part aspects regarding the theoretical considerations for
+the low cost design of a GCS-UAS and in the second part the concrete constructive stages
+are revealed, starting from the structure to the radio electronic equipment.
+Future activities include the development of the Mission Control System (MCS)
+together with the Payload Control System (PCS) and the Communication System (CS).
+ACKNOWLEDGMENT
+This article was produced with the support of the documentation of the complex
+project, acronym MultiMonD2, code PNIII-P1-1.2-PCDDI-2017-0637, contract
+33PCCDI/2018 funded by UEFISCDI.
+REFERENCES
+[1] Department of Defense (DoD) (2010). U.S. Army ―Unmanned Aircraft Systems Roadmap 2010-2035‖.
+Office of the Secretary of Defense. US Fort Rucker, Alabama;
+[2] CAP 722, - Unmanned Aircraft System Operations in UK Airspace – Guidance‖ (www.caa.co.uk),
+ISBN 978 0 11792 372 0, Civil Aviation Authority 2010;
+[3] K. Nonami, F. Kendoul, S. Suzuki Wei Wang, D. Nakazawa, ―Autonomous Flying Robots, Unmanned
+Aerial Vehicles and Micro Aerial Vehicles‖, ISBN 978-4-431-53855-4, Springer 2010;
+[4] UXV Technologies, https://uxvtechnologies.com/, accesed at 11.12.2021;
+[5] https://www.nbcnews.com/technolog/virtual-cockpit-what-it-takes-fly-drone-1c9319684, accessed at
+11.12.2021;
+[6] V. Prisacariu, C. Cioacă, D. Luculescu, A. Luchian, S. Pop, Consideration about UAV command and
+control. Ground Control Station, Journal of Physics: Conference Series, 5th International Scientific
+Conference SEA-CONF 2019, 1297(2019)/ 012007, doi:10.1088/1742-6596/1297/1/012007, IOP
+Publishing;
+[7] V. Prisacariu, M. Boşcoianu, I. Cîrciu, Management of robotic aerial systems accomplishment,
+RECENT Journal 2/2012, Transilvania University of Brasov, Romania, ISSN 1582-0246, p. 203-217;
+[8] K. Mansfield, T. Eveleigh, T. H. Holzer and S. Sarkani, "Unmanned aerial vehicle smart device ground
+control station cyber security threat model", 2013 IEEE International Conference on Technologies for
+Homeland Security (HST), 2013, pp. 722-728, doi: 10.1109/THS.2013.6699093;
+[9] Barnard Microsystems, Grounf control system, https://barnardmicrosystems.com/UAV/features
+/ground_control.html, accessed at16.12.2021;
+[10] Command and control, https://en.wikipedia.org/wiki/Command_and_control, accesed at 16.12.2021;
+[11] C. Oren, A. Verity, Artificial intelligence (AI) applied to unmanned aerial vehicles and impact on
+humanitarian action, Digital Humanitarian Network, 2020, https://www.updwg.org/wp-
+content/uploads/2021/02/Artificial-Intelligence-Applied-to-Unmanned-Aerial-Vehicles-And-its-
+Impact-on-Humanitarian-Action-May-2020-2.pdf;
+[12] A.I. Khan, Yaseen A. Al-Mulla, Unmanned Aerial Vehicle in the Machine Learning
+Environment. EUSPN/ICTH conference (2019), doi https://doi.org/10.1016/j.procs.2019.09.442;
+[13] Y. Liu, H..N. Dai, Unmanned Aerial Vehicle for Internet of Everything: Opportunities and Challenges,
+Computer Communications, Volume 155, 1 April 2020, Pages 66-83, doi: https://doi.org/
+10.1016/j.comcom.2020.03.017;
+[14] UAS vision, https://www.uasvision.com/2020/09/10/pipistrel-accepting-orders-for-nuuva-evtol-cargo-
+drones , accessed at 19.12.2021;
+[15] L. Kinthaert, Cargo drones and data swarms: experts weight in on difgital transformation in shipping
+and maritime, Seatrade maritime News-Technology, 2017, https://www.seatrade-
+maritime.com/technology/cargo-drones-and-data-swarms-experts-weigh-digital-transformation-
+shipping-maritime, accessed at 20.12.2021;
+[16] A. Sabri Abdalla, V. Marojevic, Communications Standards for Unmanned Aircraft Systems: The
+3GPP Perspective and Research Drivers, 2021, IEEE Communications Standards Magazine 5(1):70-
+77, DOI: 10.1109/MCOMSTD.001.2000032;
+[17] Federal Aviation Administration - FAA, PART 107 - SMALL UNMANNED AIRCRAFT SYSTEMS,
+2020, https://www.faa.gov/newsroom/small-unmanned-aircraft-systems-uas-regulations-part-107,
+accessed 10.11.2021;
+[18] European Union Aviation Safety Agency - EASA, Unmanned Aerial Systems regulation
+https://www.easa.europa.eu/regulations/uas-unmanned-aircraft-systems, accessed at 12.12.2021;
+137
+
+=== PAGE 10 ===
+Considerations about Construction of UAV Ground Control Stations
+[19] Autoritatea Aeronautică Civilă Română – AACR, Legislatie drone, Aeronave civile fără pilot la bord –
+operațiuni UAS, https://www.caa.ro/ro/pages/legislatie-drone , accessed at 10.11.2021;
+[20] Ball M., Guide to choosing a Ground Control Station, UXV Technologies – UAV components, 2021,
+https://www.unmannedsystemstechnology.com/2021/10/guide-to-choosing-a-ground-control-station/,
+accessed at 01.12.2021;
+[21] National District Attorneys Association, National Prosecution Standards (third editions),
+https://ndaa.org/wp-content/uploads/NDAA-NPS-3rd-Ed.-w-Revised-Commentary.pdf, accessed at
+05.12.2021;
+[22] Samsung Galaxy S5e, https://www.samsung.com/us/mobile/tablets/galaxy-tab-s/galaxy-tab-s5e-10-5-
+2019-wi-fi-sm-t720nzkaxar/, accessed at 05.12.2021;
+[23] Samsung Galaxy S5e, User manual, SAM_T727_EN_UM_TN_UE2_070721_FINAL, 140p,
+https://downloadcenter.samsung.com/content/UM/202107/20210723053331076/SAM_T727_EN_UM_
+R_11.0_070721_FINAL_AC.pdf;
+[24] https://store.hp.com/us/en/pdp/hp-probook-450-g6-notebook-pc-customizable-4sz43av-mb, accessed at
+09.12.2021;
+[25] https://www.echip.ro/genti-cutii-pentru-scule/972-cutie-pentru-scule-max-430.html, accessed at
+05.12.2021;
+[26] ONUR, Communication for UAVs and GCS: voice communication and recording system, airborne
+radio gateways, Ankara-Turkey, https://www.onur.net/, accessed at 19.12.2021;
+[27] UAS voice, https://www.uasvoice.com/unmanned-traffic/voice-communication-recording-system-for-
+uas-applications/, accessed at 19.12.2021.
+138

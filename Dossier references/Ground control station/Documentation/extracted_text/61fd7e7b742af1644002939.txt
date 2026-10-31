@@ -1,0 +1,61 @@
+=== PAGE 1 ===
+Integrated Ground Control Station (GCS)
+DISTINCT FEATURES
+SINGLE MODEM TRANSMISSION NUMEROUS CONNECTING PORTS
+Control and telemetry are transmitted through a Variety of connecting options including an ethernet
+single modem rather than a separate arrangement. jack for expandability and HDMI video output.
+STREAM TELEMETRY TO MULTIPLE DEVICES COMFORTABLE ERGONOMIC DESIGN
+Built-in access point provides a wireless telemetry Textured, ergonomically-designed control casing for
+bridge to the centrally mounted tablet or other nearby an optimized, comfortable grip.
+smart devices or PCs.
+COMPATIBILITY
+The Integrated Ground Controller is directly compatible with air vehicles using Ardupilot and PX4 firmware. It
+is generally compatible with any flight controller which uses PPM for R/C control and the MAVLINK messaging
+protocol for telemetry. On the ground side, telemetry can be streamed to a number of ground station applications
+such as Hitec Mission Control, Mission Planner, QGroundControl and Solex.
+HIGH-PRECISION MAPPING
+DATA ACQUISITION APP
+• High-Precision Data Acquisition (DAQ) App
+• Intuitive Layout on Easy-To-Use Tablet
+• Simulate Complete Missions in Advance or On Location
+• Monitor Mission Parameters of Vehicle and Payload
+• Updateable for Future Payloads, Vehicles and Criteria
+• Fast Image Pre-Processing / Pre-Stitching Capabilities
+• Ability to Store and Share Missions and Data
+• Direct Upload to Post Processors from App
+• Previous Mapping Drone Experience Not Required
+
+=== PAGE 2 ===
+TECHNICAL SPECIFICATIONS
+Hall Effect Gimbals (2x)
+Proportional R/C Inputs Side-mounted Proportional Toggles (2x)
+Rotary Potentiometer (1x)
+2-Position Switches (2x)
+3-Position Switch (1x)
+Switch Inputs
+3-Way Momentary Rocker (1x)
+Momentary Button (1x)
+Radio Modem Microhard pMDDL
+Encryption 128-bit AES (Optional 256-bit AES Available)
+Battery Internal Li-Ion with Built-in Battery Management System
+Battery Life 6-7h Continuous Use
+Tablet Size Supported 8” Screen Size Typical (150mm Max Width in Portrait Mode)
+Mount Provisions Back-mounted ¼”-20 Threads for Belt or Harness Mount
+US-Based Customer Service, Support & Training
+SHAWN SPIKER / GENERAL SALES MANAGER
+9320 Hazard Way, Suite D, San Diego, CA 92123
+shawn.spiker@hiteccs.com | www.hiteccs.com
+SEGAKCAP
+SCG
+CUSTOMIZABLE OPTIONS FOR OEM APPLICATIONS
+• Microhard pMDDL Version Supporting v • R/C Channel Count, Order, Scaling, Mixing
+Full Motion Video Streaming and Special Functions
+• Data Link and Access Point Security • Switch Type and Layout
+• Telemetry Stream Configuration • Printed Labeling and Branding
+GCS w/MICROHARD 2.4GHz
+For High-Quality Video Streaming
+CONTACT FOR PRICING*
+GCS w/.MICROHARD 2.4GHz
+& MIMO 2.4GHz Picoradio
+*Prices are subject to change based on technology improvements and material
+Includes Air-Side Radio Modem sourcing. Base pricing does not include setup, training or repair contracts.

@@ -1,0 +1,373 @@
+=== PAGE 1 ===
+sUAS Ground Control Station Capabilities
+Impact on Fleet Management
+Meghan Chandarana Saephan⋆1, Garrett G. Sadler⋆2, Krish Pradhan3, Jillian Keeler2, Victoria Dulchinos2,
+Crystal Kirkley2, Linnea Holm4, and Dominic Wong5
+Abstract—FutureSmallUncrewedAerialSystems(sUAS)mis-
+sions will require multiple operators to collaborate and manage
+large fleets of highly automated vehicles. It is critical that
+these operators maintain the necessary situational awareness to
+modify vehicle missions if/when unexpected situations arise in
+theoperatingenvironment.Ithasbeensuggestedthathighlyau-
+tomated vehicle capabilities can lead to reducing the capabilities
+given to operators to modify/direct vehicle missions. This paper
+exploresvariousconfigurationsofGroundControlStation(GCS)
+capabilitiesandtheirimpactonsUASfleetmanagement.Results
+show that a GCS with a combination of manual and automated
+capabilitiesallowedparticipantstomakemoreeffectivedecisions Fig. 1. The displays included in the simulated Ground Control Station. It
+while maintaining workload and response times similar to that includes the Tactical Situation Display (TSD), the Play Selector, the Chat,
+of a GCS with only automated capabilities. andtheMissionPanel.
+Index Terms—sUAS, ground control system capabilities, fleet
+management control of multiple sUAS may require the operator to peri-
+odically switch attention/control among the vehicles. Basic
+I. INTRODUCTION research on the cost of constant task switching shows that
+Small Uncrewed Aerial Systems (sUAS) are applicable people’s responses tend to be substantially slower and more
+across a variety of domains including search and rescue [1], error-prone after task switching [7] [8].
+military operations [2], and package delivery [3] [4]. Future As sUAS companies rely more on highly automated, on-
+envisioned sUAS operations will include human operators board vehicle capabilities, ensuring the required situational
+managing fleets of highly automated vehicles. To enable fleet awarenesstomodifyvehiclemissionsbecomesmorechalleng-
+management at scale, the concept of operations for UAS ing.Increasesinonboardcapabilitiesontheflycanreducethe
+TrafficManagementassumesashiftfromonehumanoperator needtoprovidecapabilitiestothehumanoperatorstaskedwith
+remotely managing one highly automated vehicle, to multiple managingthefleet.Theaimofthispaperistoexplorevarious
+human operators collaborating to remotely manage multiple configurations of Ground Control Station (GCS) capabilities
+highly automated vehicles [5]. This new operating paradigm and their impact on fleet management.
+is referred to as m:N operations, where m is the number
+II. GROUNDCONTROLSTATION
+of human operators and N is the number of vehicles being
+A modified version of the Air Force Research Laboratory’s
+managed [6]. Mature m:N operations of sUAS will require
+VigilantSpiritControlStation(VSCS)wasusedforthisstudy
+coordination with a UAS Service Supplier (USS) for route
+[9]. VSCS provides a graphical user interface (GUI) that
+approvals and deconfliction [5].
+includes various baseline functions and tools such as alarms,
+A critical factor for achieving effective supervisory control
+warnings,aneventtimeline,amovingmapdisplay,andachat
+of multiple sUAS is situational awareness of both the overall
+interface for operators to control and manage missions for
+tasking environment and the individual assets. Simultaneous
+multiplevehicles.Inaddition,a“playselector”wasdeveloped
+⋆ Theseauthorscontributedequally. to enable users to automate the execution of actions. By
+1Intelligent Systems Division at NASA Ames Research Center, Moffett incorporatingthebaselinefunctionalityprovidedinVSCS,the
+Field,CA,USA{meghan.saephan@nasa.gov}
+2Human Systems Integration Division at NASA Ames Research Center, GCS(Fig.1)includesaTacticalSituationDisplay(TSD,left),
+MoffettField,CA,USA{garrett.g.sadler, jillian.n.keeler, thePlaySelectorandChat(middle),andMissionPanel(right).
+victoria.l.dulchinos, crystal.l.kirkley}@nasa.gov
+3Department of Psychology, San Jose State University, San Jose, CA A. Tactical Situation Display
+{krish.pradhan@sjsu.edu}
+4Department of Psychology, California State University – Long Beach, The TSD is the main display used by operators and is
+LongBeach,CA{linnea.holm01@student.csulb.edu} usually shown on the screen directly in front of them (Fig. 2).
+5ASRC Federal Data Solutions, LLC, Mountain View, CA This display is a moving map display that includes airspace
+{dominic.wong@nasa.gov}
+and vehicle information. Vehicles are shown on the TSD as
+U.S.GovernmentworknotprotectedbyU.S.copyright chevrons pointing in the direction of their travel. Vehicles
+
+=== PAGE 2 ===
+B. Play Selector and Chat
+The Chat is shown beside the TSD and below the Play
+Selector. It provides a method for operators to communicate
+with the UAS Service Supplier (USS) tasked with managing
+the airspace. The USS and the operator leverage the Chat
+to send and receive status messages about the airspace and
+vehicles. The Play Selector located above the Chat includes
+several plays that allow for quick execution of actions on one
+or multiple vehicles: emergency land, return to base, loiter,
+and propagate action (Fig. 3). Once executed, the emergency
+land and loiter plays send selected vehicles to the closest
+emergency land or loiter point. The emergency land plays
+assume that vehicles deploy emergency landing capability
+available onboard the vehicle and thus require ground crew
+to collect vehicles and reconfigure them before they can be
+used again. Loitering vehicles enter a circular hold pattern.
+Fig. 2. A sample Tactical Situation Display (TSD) is shown. It includes TheReturntoBaseplaydropsthevehicle(s)belowthealtitude
+airpsaceandvehicleinformation.
+of the corridor and sends them back to the hub to be reused
+managed by the operator are in blue while background traffic later. The Propagate play allowed operators to “propagate”
+vehiclesareshowninwhite.Bothincludedatatagsthatdisplay flight path modifications done to one vehicle due to expected
+each vehicle’s unique callsign. The data tags for operator- airspace constraints to one or more additional vehicles that
+managed vehicles also shows vehicles’ airspeed in knots, may be affected by the same airspace constraint; this is
+altitude in feet mean sea level, and a vertical trend arrow if accomplished by copying the new flight path of a vehicle to
+the vehicle is climbing or descending. In this experiment, all other selected vehicles.
+ownship vehicles are flying waypoint-to-waypoint. Operators
+C. Mission Panel
+have the ability to modify waypoints via lateral or vertical
+The Mission Panel is displayed on the right screen of the
+adjustments in the interface. Selected vehicles are indicated
+GCS. It includes the Timeline display at the top and the
+by a blue halo around their chevrons.
+Mission Status & Log at the bottom. The Timeline provides
+Airspace information such as corridors are shown as white
+the vehicle’s battery life and the progress of the planned
+rectangles with inbound and outbound lanes separated. In
+mission for each of the vehicles managed by the operator.
+addition, the fleet’s hub is marked with a green flag and its
+This includes information about any airspace restrictions that
+boundary is displayed as a white circle. Lastly, predefined
+may affect the flight plan of a particular vehicle such as a
+emergencylandandloiterpointsareprovidedalongbothsides
+UAS Volume Reservation (UVR). The Mission Status & Log
+of each corridor. Emergency land points are shown as yellow
+provides itemized, chronological table of major events, alerts,
+X’s and loiter points are shown as yellow bullseyes. Vehicles
+and warnings for each vehicle.
+could be sent to an emergency landing point, loiter point, or
+returned to the hub (i.e., Return to Base) either manually or III. EXPERIMENTALDESIGN
+using the Play Selector. If done manually, only one vehicle
+Twelve Part 107 certified pilots participated in the study
+couldberedirectedatatimewhereasthePlaySelectorallowed
+(10 male, 2 female). Their average age was 30 years old.
+for new actions to be sent to multiple vehicles.
+The participant pool had an average of 1226.25 hours of
+crewed flight experience and 562.5 hours of uncrewed flight
+experience. They also had an average of 127.25 sUAS flight
+hours and 475 large UAS flight hours.
+During the study, each subject played the role of a Pilot-
+in-Command responsible for managing the operations of a
+fleet of 28 highly automated sUAS vehicles tasked with
+delivering packages. The experiment was conducted using a
+3×2×3 within-subjects design. Subjects completed each of
+the 18 experiment configurations one time. All experimental
+trials were five minutes in length. Every trial included one
+UAS Volume Reservation (UVR) that affected 2-4 vehicles
+within a single corridor (Fig. 4). Trials were blocked by GCS
+Configuration. The study manipulated the GCS Configuration
+(Manual,Auto,orHybrid),theairspacedensity(lowvs.high),
+Fig.3. ThePlaySelectormoduleincludedseveralquickplaysthatcouldbe
+executedononeormultiplevehicles. and the number of vehicles affected by the UVR (2, 3, or 4
+
+=== PAGE 3 ===
+In the Auto configuration, subjects were able to use the
+quickplaysprovidedinthePlaySelector.Theseplaysincluded
+the ability to send one or multiple vehicles to loiter points,
+emergency landing sites, or back to the base. The Auto
+GCS Configuration did not provide a method for subjects to
+explicitly reroute vehicles via waypoint modifications. This
+configuration mimics the envisioned capabilities of GCS sta-
+tions that leverage automation to simplify operator tasks.
+The Hybrid configuration integrated capabilities from both
+the Manual and Hybrid systems. In this GCS, subjects were
+able to leverage the automated plays provided by the Play
+Selector to send vehicles to loiter points, emergency landing
+sites,andreturnthemtothebaseastheycouldintheAutocon-
+figuration. They were also able to manually reroute vehicles
+Fig.4. AnexampleofanUASVolumeReservation(UVR)thatisaffecting
+2vehicles.VehiclesaffectedbytheUVRareshowninyellow(cautionalert). via waypoint modifications (lateral and vertical) as they could
+in the Manual configuration. In addition to the capabilities
+vehicles).Subjects’primarytaskwastocompletethepackage adopted from the other two GCS configurations, the Hybrid
+deliveries to the best of their ability. They were able to utilize configuration included the Propagate play, which allowed
+the capabilities provided by the GCS to make modifications subjectstoreroutemultiplevehiclesquicklybymodifyingone
+to vehicles’ flight paths as they saw fit. Their secondary task vehicle’s flight path and then copying the new flight path to
+was to relay any change to vehicles’ flight paths to the USS thatofadditionalvehicles(i.e.,propagatethenewflightpath).
+via the chat system.
+B. Airspace
+Each UVR was assumed to restrict the airspace through all
+The trials included the use of two different airspace maps
+altitudes and therefore vehicles could be routed around them,
+(Fig. 5). One airspace was located in the San Francisco Bay
+butnotaboveorbelowthem.Ifvehicleswerereroutedoutside
+Area and represented potential high density airspace opera-
+designated corridors, terrain was a potential issue. When a
+tions where corridors are located in the vicinity of multiple
+UVRappeared,thevehiclesaffectedbytheUVRwereshown
+airports (commercial and general aviation) and are impacted
+in yellow with a caution level warning. If the vehicle flight
+bylocalterrainshouldvehiclesleavethedesignatedcorridors.
+paths were not altered and the vehicles were allowed to enter
+The low density airspace was located to the East, in the
+the UVR airspace, the vehicles were shown in red with a
+CaliforniaCentralValleyregion,wherefeweraircrafttraveled
+warning level alert. When a vehicle’s flight path was affected
+in and out of only a few general aviation airports. Both
+by a UVR, the portion of the flight path that was predicted to
+airspaces included one centrally-located hub and 8 corridors
+intersect with the UVR was shown with a cyan outline on the
+spread out in a “spoke” pattern. Adjacent corridors alternated
+Timeline portion of the Mission Panel.
+between 350ft and 400ft AGL (above ground level). Each
+corridor was assumed to be segregated airspace from other
+A. GCS Configurations
+localtraffic.Localbackgroundtrafficwasshowninbothmaps.
+ThreeGCSconfigurationswereusedforthestudy:Manual, IV. RESULTS
+Auto, and Hybrid. The Manual configuration allowed subjects
+ResultswereanalyzedtodeterminetheeffectsofGCSCon-
+to reroute each vehicle by manually modifying waypoints
+figuration, airspace density, and number of vehicles affected
+along its flight path. The waypoints could be moved laterally
+on the types of maneuvers performed, maneuver and response
+and/or their altitude could be adjusted. Additionally, subjects
+time, and subjective workload ratings. Descriptive statistics
+were able to send vehicles to predefined loiter points, emer-
+for maneuver type are provided. The NASA Task Load Index
+gency landing sites, or send them back to the base (i.e.,
+(TLX) was used to collect subjective workload ratings [10]
+return to base). Loiter points and vehicles returned to the
+[11]. Subjective post-block and post-simulation ratings were
+base were assumed to be temporary changes in a vehicle’s
+alsocollected.Insometrials,participantsexperiencedextreme
+mission as they could return to their route in the future
+system lag which greatly impacted their performance. For
+without necessitating any changes to the physical vehicle or
+trialswherethiswasnoted,thedatawasremovedfromtheset
+its payload. In contrast, emergency landing sites permanently
+of data used for the analysis shown here. A post-hoc analysis
+endedthemissionofavehiclebyaskingthevehicletodeploy
+found no statistically significant effect of participants’ prior
+its emergency landing parachute capability, requiring ground
+piloting experience level on the dependent variables herein;
+personnel to retrieve and reset them before they could be
+therefore, flight hours are not included in the analysis below.
+redeployed. In the Manual configuration, only one vehicle’s
+A. Maneuver Type
+flight path could be modified at a time. This configuration
+wasmeanttomimiccurrent,basiccapabilitiesgiventoremote There were 10 different maneuver types chosen by subjects
+Uncrewed Aerial Vehicle (UAV) pilots. to mitigate the effect of UVRs on vehicles in their fleet:
+
+=== PAGE 4 ===
+Fig.5. HighandLowDensityairspacemapsusedforthestudy.TheHighDensitymapislocatedintheSFBayAreaandincludesahubinFremont.The
+LowDensitymapislocatedintheCACentralValleyandincludesahubinStockton.Corridorsareshownasrectanglesandlocalairportsaremarked.
+TABLEI took the longest to choose maneuvers and respond to UVRs
+MANEUVERTYPECOUNTSANDPERCENTAGE whentherewerefourvehiclesaffected(M =86.0s),followed
+by three vehicles (M =75.5s), and the least time when there
+ManeuverType Count Percentage
+EmergencyLand 31 5% were only two vehicles affected by a UVR (M = 58.0s).
+Loiter 172 29% Overall,theAutoGCSConfigurationhadtheshortestresponse
+ReturntoBase 36 6%
+time(M =66.4s),followedbytheHybridGCS(M =75.9s),
+WaypointMod.Lateral 277 46%
+WaypointMod.Altitude 0 0% and finally the Manual GCS (M =84.2s).
+WaypointMod.Combo 17 1% When comparing the effect of the UVR complexity (i.e.,
+WaypointMod.LateralviaPropagate 54 9% number of vehicles affected) on the maneuver and response
+WaypointMod.AltitudeviaPropagate 0 0%
+times across the three GCS configurations, the data show
+WaypointMod.ComboviaPropagate 0 0%
+Combo 10 2% that for the Manual and the Auto GCS configurations, the
+maneuver (Fig. 6) and response (Fig. 7) times follow the
+trend of the overall data with the four vehicle condition
+(1) emergency land, (2) loiter, (3) return to base, (4) lateral taking the most time and the two vehicle condition taking the
+waypoint modification, (5) altitude waypoint modification, (6) least. However, looking at the Hybrid GCS condition, there
+combination of lateral and altitude waypoint modification, is minimal difference between trials with different number of
+(7) lateral waypoint modification via propagation, (8) altitude vehicles affected by the UVR.
+waypoint modification via propagation, (9) combination of
+lateralandaltitudewaypointmodificationviapropagation,and C. Subjective Ratings
+(10)acombinationofmultipleothermaneuvers.TableIshows Subjective workload ratings were collected after each trial.
+the count and percentage of each maneuver type. Overall, Overall, the Auto GCS had the least workload, followed by
+subjects’ chosen maneuver resulted in vehicles entering a the Hybrid GCS, and finally the Manual GCS. As a result of
+warning state (due to terrain conflicts or entering a UVR) terrainconflictsthatarosewhenvehicleswerereroutedoutside
+7.3%ofthetime.Themostcommonmaneuverchoseninboth of some corridors on the eastern portion of the high density
+the Manual and Hybrid GCS configurations was a Waypoint map,participantsreportedhigherworkloadinthehighdensity
+Modification - Lateral (72% and 85% respectively), while trials than in the lower density trials. Workload appeared to
+Loiter was the most common maneuver in the Auto GCS plateau when more than two vehicles were affected by the
+configuration (68%). UVR (Fig. 8).
+TheaverageworkloadratingacrosstheGCSConfigurations
+B. Maneuver and Response Time
+appears to be fairly even and low for low density map trials
+On average, subjects required more time to choose ma- (Fig. 9a). In contrast, the Manual GCS Configuration appears
+neuvers for vehicles and to completely respond to UVRs to have higher workload than the other two GCS Configura-
+(resolve all vehicles’ conflicts with the UVR and report all tions (Fig. 9b). For simpler UVRs (fewer vehicles affected),
+changesto theUSS)whentrials wereinthe highdensitymap the Auto GCS Configuration has the lowest workload (Fig.
+(M =83.3s) versus the low density map (M =69.2s). They 10a), whereas the Hybrid GCS Configuration has the lowest
+
+=== PAGE 5 ===
+Fig.6. ThemaneuvertimeshownbyGCSConfigurationandthenumberof
+vehiclesaffectedbytheUVR.
+Fig.9. TheworkloadratingsbyGCSConfigurationandnumberofvehicles
+affectedbytheUVR.Ratingsareshownseparatelyforthelowdensitymap
+(a)andhighdensitymap(b).
+situationalawarenesstocompletethetaskthattheyweregiven
+(with responses of Somewhat Agree and Strongly Agree).
+Fig.7. TheresponsetimeshownbytheGCSConfigurationandthenumber Only one subject responded in the negative with a Strongly
+ofvehiclesaffectedbytheUVR.
+Disagree when using the Auto GCS. It was reported by 86%
+of subjects that the GCS Configurations provided sufficient
+capabilities for them to complete the tasks given (responding
+with Strongly Agree or Somewhat Agree). Only when using
+the Auto GCS did subjects have responses distributed across
+neutral and negative options. No subject reported that there
+was insufficient information provided on the displays. In
+general, subjects believed that the capabilities provided were
+necessary. There was no indication from subjects that more
+capabilities were required when using the Hybrid GCS. Most
+participants preferred the Hybrid GCS (11/12 ranked it first),
+followed by the Manual GCS (8/12 ranked it second), and
+finally the Auto GCS (8/12 ranked it third).
+V. DISCUSSION
+Fig.8. Theoverallweightedworkloadratingsbynumberofvehiclesaffected
+bytheUVR. Subjects’ choices to reroute vehicles around UVRs or send
+vehicles to Loiter points most of the time indicate that they
+workload when more vehicles are affected by the UVR (Fig. did in fact prioritize finishing the vehicle missions. This
+10b). resulted in subjects preferring the Hybrid GCS, although it
+Post-block and post-simulation questionnaires showed that resulted in higher response time than using the Auto GCS,
+97% of subjects believed that the displays provided sufficient as it gave them the ability to do both manual maneuvers
+
+=== PAGE 6 ===
+SubjectsindicatedthatManualGCSoftenrequiredmoresteps
+and time to complete desired actions. Thus, results indicate
+that the Manual GCS resulted in the highest overall workload
+and highest response time.
+VI. CONCLUSIONANDFUTUREWORK
+Overall, the Hybrid GCS was preferred. Its combination of
+manualandautomatedcapabilitiesenabledsubjectstomitigate
+the effects of additional UVR complexity (i.e., increased
+number of vehicles affected) by producing lower workload
+and reducing the impact of UVR complexity on the time
+required to choose a maneuver and respond to UVRs. The
+Auto GCS provided effective plays during lower complexity
+scenarios. The Manual GCS was the most complex interface
+to use and produced the highest workload. Future studies will
+explore additional automated plays and the impact of plays
+during other contingency scenarios such as Detect and Avoid
+encounters.
+ACKNOWLEDGEMENT
+The work presented in this paper was done in collaboration
+with Zipline and was supported by NASA’s Autonomous
+SystemsEnduringDisciplineundertheTransformationalTools
+andTechnologiesRevolutionaryAviationMobilitySubproject.
+The views expressed are those of the authors and do not
+reflect the official policy or position of NASA or the U.S.
+Government.
+REFERENCES
+Fig.10. TheworkloadratingsbymapdensityandGCSConfiguration.Ratings [1] M. Chandarana, D. Hughes, M. Lewis, K. Sycara, and S. Scherer,
+areshownfor2vehicleUVRs(a)and4vehicleUVRs(b). “Planning and monitoring multi-job type swarm search and service
+missions,” Journal of Intelligent & Robotic Systems, vol. 101, pp. 1–
+14,2021.
+[2] J. Y. Chen and M. J. Barnes, “Supervisory control of multiple robots:
+and automated play calling. The Hybrid GCS also enabled Effects of imperfect automation and individual differences,” Human
+Factors,vol.54,no.2,pp.157–174,2012.
+subjects to mitigate the effects of the additional complexity
+[3] J. Grzybowski, K. Latos, and R. Czyba, “Low-cost autonomous uav-
+introduced as the number of vehicles affected by a UVR based solutions to package delivery logistics,” in Advanced, Contem-
+increases. This is seen in the minimal difference in maneuver porary Control: Proceedings of KKA 2020—The 20th Polish Control
+Conference,Ło´dz´,Poland,2020. Springer,2020,pp.500–507.
+(Fig. 6) and response times (Fig. 7) as the number of vehicles
+[4] E.R.Magsino,M.F.Say,andJ.A.Tan,“Achievingcompleteuavde-
+affected by the UVR increases. In addition, while the Hybrid liveryinthepresenceofmotorfailures,”in2020IEEE10thSymposium
+and Manual GCS configurations resulted in higher response on Computer Applications & Industrial Electronics (ISCAIE). IEEE,
+2020,pp.1–5.
+timesthantheAutoGCS,theyenabledparticipantstoproduce
+[5] F. Administration. (2020) Concept of operations v2.0, unmanned
+flight path modifications that resulted in the least impact aircraft systems uas traffic management utm. [Online]. Available:
+to mission success as reroutes had less impact on meeting https://www.faa.gov/sites/faa.gov/files/2022-08/UTM ConOps v2.pdf
+[6] G.Sadler,M.Chandarana,R.C.Rorie,T.L.Tyson,J.N.Keeler,C.L.
+planned delivery times than sending vehicles to indefinite
+Smith, M. C. Shyr, D. Wong, S. Scheff, and I. Dolgov, “A remote,
+loiters. human-in-the-loop evaluation of a multiple-drone delivery operation,”
+The Auto GCS condition resulted in the lowest workload inAIAAAviation2022Forum,2022,p.4002.
+[7] S.Monsell,“Taskswitching,”Trendsincognitivesciences,vol.7,no.3,
+when the number of vehicles affected by the UVR was low
+pp.134–140,2003.
+andtheHybridGCSresultedinthelowestworkloadwhenthe [8] J. S. Rubinstein, D. E. Meyer, and J. E. Evans, “Executive control
+numberofvehiclesaffectedbytheUVRwashigh.Thisresult of cognitive processes in task switching.” Journal of experimental
+psychology:humanperceptionandperformance,vol.27,no.4,p.763,
+wassupportedbyobservationsandpost-simdebriefs.Subjects
+2001.
+indicated that they liked the automated capability provided [9] G.Feitshans,A.Rowe,J.Davis,M.Holland,andL.Berger,“Vigilant
+by the Play Selector in general. However, in high workload spirit control station (vscs): The face of counter,” in AIAA guidance,
+navigationandcontrolconferenceandexhibit,2008,p.6309.
+scenarios (larger number of vehicles affected by the UVR)
+[10] J. Byers, A. Bittner, and S. Hill, “Traditional and raw task load index
+there was often not enough time to determine which play to (tlx) correlations: Are paired comparisons necessary?” Advances in
+execute;therefore,subjectspreferredtheabilitytofirstreroute IndustrialEngineeringandSafety,pp.481–485,1989.
+[11] S. G. Hart and L. E. Staveland, “Development of nasa-tlx (task load
+vehicles most proximal to the UVR so that they could make
+index): Results of empirical and theoretical research,” Advances in
+time to select effective plays for remaining impacted vehicles. psychology,vol.52,pp.139–183,1988.

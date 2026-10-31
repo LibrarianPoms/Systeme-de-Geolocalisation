@@ -1,0 +1,469 @@
+=== PAGE 1 ===
+Un framework d’aide au déploiement et à la personnalisation
+des systèmes temps réel: application aux autopilotes de
+drones
+Soulimane Kamni
+To cite this version:
+Soulimane Kamni. Un framework d’aide au déploiement et à la personnalisation des systèmes temps réel:
+applicationauxautopilotesdedrones. Autre[cs.OH].ISAE-ENSMAEcoleNationaleSupérieuredeMécanique
+etd’Aérotechique-Poitiers,2023. Français. ⟨NNT:2023ESMA0014⟩. ⟨tel-04399687⟩
+HAL Id: tel-04399687
+https://theses.hal.science/tel-04399687v1
+Submittedon17Jan2024
+HAL is a multi-disciplinary open access archive L’archiveouvertepluridisciplinaireHAL,estdes-
+for the deposit and dissemination of scientific re- tinée au dépôt et à la diffusion de documents scien-
+searchdocuments,whethertheyarepublishedornot. tifiquesdeniveaurecherche,publiésounon,émanant
+Thedocumentsmaycomefromteachingandresearch des établissements d’enseignement et de recherche
+institutionsinFranceorabroad,orfrompublicorpri- français ou étrangers, des laboratoires publics ou
+vateresearchcenters. privés.
+HALAuthorization
+
+=== PAGE 2 ===
+THÈSE
+pour l’obtention du Grade de
+Docteur de l’Ecole Nationale Supérieure de Mécanique et d’Aérotechnique
+(Diplôme National – Arrêté du 25 mai 2016 Modifié par l’Arrêté du 26 Août 2022)
+École Doctorale :
+MIMME Mathématiques, Informatique, Matériaux, Mécanique, Énergétique
+Secteur de Recherche : Informatique et applications
+Présentée par :
+Soulimane KAMNI
+Un Framework d’aide au déploiement et à la
+personnalisation des systèmes temps réel : application
+aux autopilotes de drones
+Directeur de thèse : Emmanuel GROLLEAU
+Co-encadrant de thèse : Yassine OUHAMMOU
+Co-encadrant de thèse : Antoine BERTOUT
+Soutenue le 20 décembre 2023
+devant la Commission d’Examen
+JURY
+Présidente
+Annie CHOQUET-GENIET Professeur, Université de Poitiers, Poitiers
+Rapporteurs
+Jean-Philippe BABAU Professeur, Université de Bretagne Occidentale, Brest
+Pierre-Emmanuel HLADIK Maître de Conférences HDR, École Centrale de Nantes, Nantes
+Membre du jury
+Jérôme ERMONT Maître de Conférences, INP-ENSEEIHT, Toulouse
+Emmanuel GROLLEAU Professeur, ISAE-ENSMA, Poitiers
+Antoine BERTOUT Maître de Conférences, Université de Poitiers, Poitiers
+
+=== PAGE 4 ===
+Résumé
+Cette thèse porte sur la conception des systèmes embarqués temps réel critiques. Elle se concentre
+plus particulièrement sur la phase cruciale de déploiement, où les fonctions du système sont allouées aux
+tâches logicielles.
+La thèse débute par une présentation approfondie du contexte des systèmes embarqués temps réel,
+de leurs spécificités et de leur cycle de vie logiciel. Puis, le domaine de l’ordonnancement temps réel est
+introduit, endétaillantlesmodèlesdetâches, lesalgorithmesd’ordonnancementetlestestsdevalidation
+temporelle.
+Sur ces bases, deux contributions originales sont proposées pour faciliter le déploiement dans un
+contexte où les informations sur le comportement temporel des fonctions restent limitées. La première
+est la méthode RYM, une technique de pré-déploiement des systèmes mono-processeur basée sur les
+rythmes d’activation. Un outil logiciel est également développé pour valider cette approche. La seconde
+contribution est un framework pour extraire, modéliser et analyser l’architecture interne des autopilotes
+open-source de drones à partir du code source. Ce framework est appliqué pour adapter une technique
+avancée d’ordonnancement à l’autopilote Paparazzi.
+Ces deux contributions apportent des réponses au problème difficile du déploiement des systèmes
+embarqués critiques avec des informations partielles. Elles s’appuient toutes les deux sur des développe-
+ments de prototypes ouverts basés ingénierie dirigée par les modèles, permettant une adaptation rapide
+à d’autres outils d’analyse.
+Mots-clefs : systèmes embarqués temps réel, conception, déploiement, ingénierie dirigée par les
+modèles, ordonnancement temps réel.
+Abstract
+Thisthesisfocusesonthedesignofreal-timecriticalembeddedsystems. Itconcentratesmorespecif-
+ically on the crucial deployment phase, where system functions are allocated to software tasks.
+The thesis begins with an in-depth presentation of the context of real-time embedded systems, their
+specificities and their software lifecycle. Then, the field of real-time scheduling is introduced, detailing
+task models, scheduling algorithms and timing validation tests.
+On these foundations, two original contributions are proposed to facilitate deployment in a context
+whereinformationonthetemporalbehavioroffunctionsremainslimited. ThefirstistheRYMmethod,a
+single-processorpre-deploymenttechniquebasedonactivationrhythms. Asoftwaretoolisalsodeveloped
+to validate this approach. The second contribution is a framework to extract, model and analyze the
+internal architecture of open-source drone autopilots from the source code. This framework is applied to
+adapt an advanced scheduling technique to the Paparazzi autopilot.
+These two contributions provide answers to the difficult problem of deploying critical embedded
+systems with partial information. They are both based on open prototyping developments based on
+model-driven engineering, allowing rapid adaptation to other analysis tools.
+Keywords: real-time embedded systems, design, deployment, model-driven engineering, real-time
+scheduling.
+Secteur de recherche : Informatique et applications
+LABORATOIRE D’INFORMATIQUE ET D’AUTOMATIQUE POUR LES SYSTÈMES
+École Nationale Supérieure de Mécanique et d’Aérotechnique
+Téléport 2 – 1 avenue Clément Ader BP 40109 86961 Futuroscope Chasseneuil Cedex
+Tél. +33 (0)5 49 49 80 80 Fax : +33 (0)5 49 49 80 00
+iii
+
+=== PAGE 5 ===
+Mots clés RAMEAU :
+Drones / Drone aircraft
+Durée de vie (ingénierie) / Service life (Engineering)
+Ingénierie dirigée par les modèles / Model-Driven Engineering
+Ordonnancement (informatique) / Computer scheduling Systèmes, Conception de /
+System design Systèmes embarqués (informatique) / Embedded computer systems
+Temps réel (informatique) / Real-time data processing
+Mots clés libres :
+Déploiement de systèmes, Framework, Méthode RYM
+iv
+
+=== PAGE 6 ===
+Remerciements
+Cette thèse représente l’aboutissement de nombreuses années de travail acharné et
+l’accomplissement d’un rêve qui me tenait à cœur. Je suis extrêmement fier d’être arrivé
+au bout de ce marathon intellectuel et je mesure la chance que j’ai de pouvoir célébrer
+cette réussite avec mes proches.
+Je tiens à remercier chaleureusement mon directeur de thèse, Emmanuel GROLLEAU,
+dont la rigueur scientifique et les conseils pointilleux m’ont permis d’élever mon travail.
+Yassine OUHAMMOU, qui par ses connaissances approfondies du sujet et sa vivacité
+d’esprit, a su me guider aux moments opportuns. Et Antoine BERTOUT, dont la bien-
+veillance, la disponibilité et le réconfort dans les moments de doute ont été précieux.
+Je souhaite adresser mes plus sincères remerciements aux membres du jury, qui ont
+grandement contribué à l’évaluation rigoureuse de ce travail par leur expertise et leur
+lecture attentive. Je tiens à exprimer ma gratitude envers professeur Annie CHOQUET-
+GENIET, présidente du jury et examinatrice, ainsi que professeur Jean-Philippe BABAU
+et docteur Pierre-Emmanuel HLADIK, rapporteurs de la thèse, pour leur temps consacré
+à évaluer attentivement mon travail et pour leurs commentaires constructifs. Un grand
+merciégalementàdocteurJérômeERMONTd’avoiracceptédefairepartiedujurychargé
+d’évaluer mes travaux de recherche.
+J’adresse mes plus sincères remerciements à mes collègues enseignants du département
+d’informatique et d’automatique, qui m’ont accueilli chaleureusement parmi eux pendant
+mes années d’attaché temporaire d’enseignement et de recherche.
+Je souhaite adresser mes plus sincères remerciements à Ladjel BELLATRECHE pour
+son aide précieuse qui a grandement contribué à l’avancée de cette thèse. Son énergie
+communicative au sein du laboratoire a été une source de motivation constante.
+Je tiens à remercier chaleureusement Amin MESMOUDI pour ses encouragements et
+pour m’avoir soutenu à continuer dans les moments les plus difficiles de cette thèse. Son
+soutien a été essentiel pour persévérer et mener à bien ce travail.
+Je souhaite également adresser ma gratitude à notre dévouée secrétaire Bénédicte
+BOINOT pour son aide précieuse dans toutes les démarches administratives liées à la
+préparation et à la soutenance de cette thèse. Sa réactivité et son efficacité m’ont fait
+gagner un temps considérable.
+Je tiens à exprimer ma reconnaissance à Mickael BARON, pour les nombreuses discus-
+sions enrichissantes que nous avons eues et ses précieux conseils qui m’ont guidé pendant
+cette thèse.
+Ungrandmerciàtousmescollèguesderechercheavecquij’aieulachancedetravailler
+au cours de cette aventure. Vos discussions, votre camaraderie et votre soutien mutuel
+ont été une source d’inspiration constante. Ensemble, nous avons surmonté les défis et
+célébré les réussites, créant ainsi des souvenirs inoubliables.
+À mes amis, Abdelkrim BOUDAOUD, Zakaria MADI, Boumedienne SAIDI, Nadir
+GUERMOUDI, Abderrezzaq SENDJASNI, Stephan DE BRA, Abdellah KHELIL et tous
+les autres, qui m’ont soutenu avec amour et compréhension tout au long de ce parcours
+académique exigeant, je vous remercie du fond du cœur. Votre présence, vos encourage-
+mentsetlesmomentsdedétentequenousavonspartagésontétéessentielspourmaintenir
+mon équilibre et ma motivation.
+v
+
+=== PAGE 7 ===
+Enfin, je souhaite dédier cette thèse à ma famille. Votre soutien inconditionnel, votre
+amour et votre foi en moi ont été la force qui m’a incité à persévérer même dans les
+moments les plus difficiles. Cette réalisation est aussi la vôtre. Je suis profondément
+reconnaissant envers chacun d’entre vous, et cette thèse porte l’empreinte de vos contri-
+butions, de votre soutien. Merci du fond du cœur pour avoir fait partie de ce voyage
+académique.
+vi
+
+=== PAGE 8 ===
+Table des matières
+vii
+
+=== PAGE 9 ===
+Résumé iii
+Remerciements v
+Liste des figures xiii
+Liste des tableaux xvii
+Liste des abréviations xix
+Liste des symboles xxiii
+1 Introduction générale 3
+1.1 Contexte et motivations . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+1.2 Objectifs de la thèse . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+1.3 Organisation de la thèse . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+1.4 Publications scientifiques . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+1.4.1 Conférences internationales . . . . . . . . . . . . . . . . . . . . . . 7
+1.4.2 Revues internationales . . . . . . . . . . . . . . . . . . . . . . . . . 7
+1.4.3 Soumission en cours . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+2 Systèmes embarqués temps réel et conception à base des modèles 9
+2.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+2.2 Système embarqué temps réel . . . . . . . . . . . . . . . . . . . . . . . . . 11
+2.2.1 Système informatique . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+2.2.2 Système de contrôle-commande . . . . . . . . . . . . . . . . . . . . 12
+2.2.3 Systèmes embarqués . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+2.2.4 Systèmes temps réel . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+2.3 Cycle de vie de développement des systèmes temps réel . . . . . . . . . . . 14
+2.4 Méthodologies et langages de conception standardisés . . . . . . . . . . . . 15
+2.4.1 AUTOSAR . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+2.4.2 ARCADIA . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+2.4.3 Architecture dirigée par les modèles (MDA) . . . . . . . . . . . . . 22
+2.4.4 AADL . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26
+2.4.5 UML MARTE . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+2.4.6 Comparaison entre AADL et UML-MARTE . . . . . . . . . . . . . 33
+2.4.7 EAST-ADL . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33
+2.4.8 EAST-ADL et AUTOSAR . . . . . . . . . . . . . . . . . . . . . . . 33
+viii
+
+=== PAGE 10 ===
+2.4.9 Comparaison entre AADL et EAST-ADL . . . . . . . . . . . . . . . 35
+2.5 Conception des systèmes temps réel . . . . . . . . . . . . . . . . . . . . . . 36
+2.5.1 Modèle fonctionnel . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+2.5.2 Modèle matériel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+2.5.3 Modèle opérationnel . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+2.6 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+3 Ordonnancement et validation des systèmes temps réel 41
+3.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 43
+3.2 Modèles de tâche . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 43
+3.2.1 État d’une tâche . . . . . . . . . . . . . . . . . . . . . . . . . . . . 44
+3.2.2 Hiérarchie des modèles de tâches . . . . . . . . . . . . . . . . . . . 45
+3.2.3 Classification des systèmes de tâches . . . . . . . . . . . . . . . . . 47
+3.3 Ordonnancement monoprocesseur . . . . . . . . . . . . . . . . . . . . . . . 49
+3.3.1 Ordonnancement hors ligne . . . . . . . . . . . . . . . . . . . . . . 49
+3.3.2 Ordonnancement en ligne . . . . . . . . . . . . . . . . . . . . . . . 49
+3.3.3 Classification et algorithmes d’ordonnancement . . . . . . . . . . . 50
+3.4 Ordonnancement multiprocesseur . . . . . . . . . . . . . . . . . . . . . . . 50
+3.4.1 Ordonnancement partitionné . . . . . . . . . . . . . . . . . . . . . . 51
+3.4.2 Ordonnancement semi-partitionné . . . . . . . . . . . . . . . . . . . 51
+3.4.3 Ordonnancement global . . . . . . . . . . . . . . . . . . . . . . . . 51
+3.5 Analyse d’ordonnançabilité et validation . . . . . . . . . . . . . . . . . . . 51
+3.5.1 Contexte d’analyse . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
+3.5.2 Optimalité . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
+3.5.3 Conditions d’ordonnançabilité . . . . . . . . . . . . . . . . . . . . . 52
+3.5.4 Hyperpériode . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 53
+3.5.5 Analyse d’ordonnançabilité . . . . . . . . . . . . . . . . . . . . . . . 53
+3.5.6 Notion de viabilité . . . . . . . . . . . . . . . . . . . . . . . . . . . 55
+3.5.7 Protocoles de gestion de ressources . . . . . . . . . . . . . . . . . . 56
+3.6 Outils d’analyse basés sur les modèles . . . . . . . . . . . . . . . . . . . . . 57
+3.6.1 Cheddar . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 57
+3.6.2 MAST . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 58
+3.6.3 ASIIST . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 58
+3.6.4 Rt-Druid . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 58
+3.7 État de l’art sur les méthodes de déploiement des systèmes temps réel . . . 59
+3.8 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 65
+ix
+
+=== PAGE 11 ===
+4 RYM : Une approche basée sur les rythmes pour le pré-déploiement des
+RTES critiques 67
+4.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 69
+4.2 Principe général . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 69
+4.2.1 Identification des chaînes fonctionnelles . . . . . . . . . . . . . . . . 70
+4.2.2 Acquisition de données . . . . . . . . . . . . . . . . . . . . . . . . . 71
+4.2.3 Placement d’une fonction ayant un seul flot de données entrant . . . 72
+4.2.4 Communications inter-tâches . . . . . . . . . . . . . . . . . . . . . . 73
+4.2.5 Allocation d’une fonction avec plusieurs flots de données entrants . 73
+4.2.6 Algorithme . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 75
+4.2.7 Discussion sur l’optimalité . . . . . . . . . . . . . . . . . . . . . . . 78
+4.2.8 Cas particuliers . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 80
+4.3 Étude de cas . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 81
+4.3.1 Application . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 81
+4.3.2 Étude d’ordonnançabilité . . . . . . . . . . . . . . . . . . . . . . . . 85
+4.3.3 Extension du système de contrôle de la mine . . . . . . . . . . . . . 86
+4.4 Comparaison . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 91
+4.4.1 Description des deux algorithmes . . . . . . . . . . . . . . . . . . . 91
+4.4.2 Comparaison avec l’état de l’art . . . . . . . . . . . . . . . . . . . . 92
+4.5 Outil . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 96
+4.6 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 99
+5 Personnalisation du logiciel d’autopilotes de drone à travers un frame-
+work de rétro-ingénierie 103
+5.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 105
+5.2 État de l’art sur la visualisation logicielle et la rétro-ingénierie . . . . . . . 106
+5.2.1 Analyser le code pour faire de la rétro-ingénierie . . . . . . . . . . . 106
+5.2.2 Visualisation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 106
+5.3 Conception des autopilotes des UAV . . . . . . . . . . . . . . . . . . . . . 107
+5.4 Architecture logicielle abstraite d’un autopilote . . . . . . . . . . . . . . . 108
+5.5 Exemple motivationnel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 110
+5.6 Architecture de Paparazzi . . . . . . . . . . . . . . . . . . . . . . . . . . . 112
+5.6.1 Autopilotes pour UAV . . . . . . . . . . . . . . . . . . . . . . . . . 112
+5.7 Concepts spécifiques dans l’architecture logicielle des autopilotes . . . . . . 116
+5.8 Implémentation du Framework . . . . . . . . . . . . . . . . . . . . . . . . . 119
+5.8.1 Extraction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 119
+x
+
+=== PAGE 12 ===
+5.8.2 Visualisation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 120
+5.8.3 Évaluation du framework . . . . . . . . . . . . . . . . . . . . . . . . 122
+5.9 État de l’art sur les systèmes à décalage libre (offset-free) . . . . . . . . . . 125
+5.10 Application . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 126
+5.11 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 129
+6 Conclusion générale 131
+Bibliographie 135
+Résumé 147
+xi
+
+=== PAGE 14 ===
+Liste des figures
+xiii
+
+=== PAGE 15 ===
+2.1 Illustration d’un système de contrôle temps réel . . . . . . . . . . . . . . . 12
+2.2 Cycle de vie en V . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+2.3 L’architecture logicielle AUTOSAR [AUT23b] . . . . . . . . . . . . . . . . 18
+2.4 Aperçu de l’approche AUTOSAR [AUT23b] . . . . . . . . . . . . . . . . . 19
+2.5 Les phases de l’ingénierie d’ARCADIA [Tha23] . . . . . . . . . . . . . . . 21
+2.6 Niveaux d’abstraction de la MDA . . . . . . . . . . . . . . . . . . . . . . . 24
+2.7 Composants graphiques d’AADL . . . . . . . . . . . . . . . . . . . . . . . 29
+2.8 Architecture du profil MARTE . . . . . . . . . . . . . . . . . . . . . . . . 31
+2.9 Aperçu des différentes parties d’un système temps réel . . . . . . . . . . . 38
+3.1 Modèle de tâches . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+3.2 État d’une tâche [GRO+13] . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+3.3 Hiérarchie des modèles de tâches [TGY20] . . . . . . . . . . . . . . . . . . 47
+3.4 Aperçu de la phase déploiement . . . . . . . . . . . . . . . . . . . . . . . . 60
+4.1 Pire délai entre changement de l’entrée et terminaison d’une tâche dans le
+cas asynchrone : le délai entre activation de la tâche et changement est
+arbitrairement petit . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 70
+4.2 Pire délai entre changement de l’entrée et terminaison d’une tâche dans le
+cas synchrone . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 70
+4.3 Identification des chaînes fonctionnelles . . . . . . . . . . . . . . . . . . . . 71
+4.4 Création de tâche d’acquisition . . . . . . . . . . . . . . . . . . . . . . . . 72
+4.5 Exécution séquentielle de 3 fonctions dans la même tâche. . . . . . . . . . 72
+4.6 Différents types de communication. . . . . . . . . . . . . . . . . . . . . . . 73
+4.7 Convergence de plusieurs flots de données en une seule fonction. . . . . . . 74
+4.8 Sémantique d’activation en OU et en ET. . . . . . . . . . . . . . . . . . . . 75
+4.9 Illustration du système de contrôle de la mine . . . . . . . . . . . . . . . . 82
+4.10 Modèle fonctionnel du système de contrôle de la mine . . . . . . . . . . . . 83
+4.11 Créationdetâchepouracquisitiondedonnéesàpartirducapteurdeméthane 83
+4.12 Modèle de pré-déploiement du système de contrôle de la mine . . . . . . . 85
+4.13 Résultat de l’ordonnancement selon la politique RM . . . . . . . . . . . . . 86
+4.14 Résultat de l’ordonnancement selon la politique EDF . . . . . . . . . . . . 86
+4.15 Modèle fonctionnel du système étendu de contrôle de la mine . . . . . . . . 88
+4.16 Modèle de pré-déploiement du système étendu de contrôle de la mine . . . 89
+4.17 Modèle de pré-déploiement optimal du système étendu de contrôle de la mine 90
+4.18 Le modèle fonctionnel utilisé dans l’article pour illustrer les algorithmes
+LA et JLA [BLD05]. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 92
+xiv
+
+=== PAGE 16 ===
+4.19 Résultat du mapping selon LA. . . . . . . . . . . . . . . . . . . . . . . . . 93
+4.20 Résultat du mapping selon JLA. . . . . . . . . . . . . . . . . . . . . . . . . 94
+4.21 Résultat du mapping selon RYM avec une communication asynchrone. . . 95
+4.22 Résultat du mapping selon RYM avec une communication synchrone. . . . 95
+4.23 Métamodèle de la partie fonctionnelle du point de vue AADL-Like . . . . . 97
+4.24 Métamodèle de la partie fonctionnelle du point de vue AADL-Like . . . . . 98
+4.26 Palette d’outils. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 99
+4.25 Diagramme de l’architecture logique de Capella enrichi pas les propriétés
+non-fonctionnelles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 100
+4.27 Le résultat du déploiement sous Capella . . . . . . . . . . . . . . . . . . . 101
+5.1 Principaux composants d’un autopilote . . . . . . . . . . . . . . . . . . . . 109
+5.2 Temps d’exécution (temps minimum et maximum) de la phase de com-
+mande de la boucle principale pour le cas 1 en utilisant les décalages natifs
+de Paparazzi. Chaque point représente une seconde d’exécution. La zone
+bleu clair indique l’intervalle min/max. La ligne bleu foncé représente la
+moyenne (très proche du minimum dans ce cas, montrant que généralement
+l’autopilote utilise peu de ressources processeur). . . . . . . . . . . . . . . . 112
+5.3 Boucle de stabilité interne dans un autopilote . . . . . . . . . . . . . . . . 113
+5.4 Boucle principale de l’autopilote Paparazzi . . . . . . . . . . . . . . . . . . 114
+5.5 Métamodèle de la partie fonctionnelle du point de vue AADL-Like . . . . . 117
+5.6 Aperçu de la mise en œuvre du framework . . . . . . . . . . . . . . . . . . 121
+5.7 Extrait de la représentation de Paparazzi dans le point de vue AADL-like . 123
+5.8 Les quatre tâches en charge de l’UART . . . . . . . . . . . . . . . . . . . . 124
+5.9 La fonction périodique appelée pour la télémétrie utilise plusieurs variables
+globales non protégées regroupées dans une structure appelée radio_control.124
+5.10 Temps d’exécution (moyen, minimum et maximum sur un intervalle de 1
+seconde) de la phase de commande de la boucle principale pour le cas 1 en
+utilisant GCD+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 128
+xv
+
+=== PAGE 18 ===
+Liste des tableaux
+xvii
+
+=== PAGE 19 ===
+2.1 Comparaison multicritère entre AADL et UML-MARTE . . . . . . . . . . 34
+2.2 Comparaison des types de composants . . . . . . . . . . . . . . . . . . . . 35
+2.3 Comparaison des interfaces de composants . . . . . . . . . . . . . . . . . . 35
+3.1 Algorithmes optimaux en ordonnancement monoprocesseur . . . . . . . . . 52
+3.2 Classification des travaux existants . . . . . . . . . . . . . . . . . . . . . . 63
+4.1 Caractéristiques des tâches . . . . . . . . . . . . . . . . . . . . . . . . . . . 85
+4.2 Caractéristiques des dispositifs d’entrée . . . . . . . . . . . . . . . . . . . . 87
+4.3 Résumé des chaînes fonctionnelles . . . . . . . . . . . . . . . . . . . . . . . 88
+4.4 Caractéristiques de l’exemple de [BLD05] . . . . . . . . . . . . . . . . . . . 92
+4.5 Pires délais de bout en bout exacts calculés à l’aide d’un réseau de Petri
+temporel. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 96
+5.1 Nombre de fichiers et nombre total de lignes de code dans deux projets
+phares d’autopilotes open source en novembre 2022. . . . . . . . . . . . . . 105
+5.2 Outils d’analyse de code . . . . . . . . . . . . . . . . . . . . . . . . . . . . 107
+5.3 Mapping des instruction GIMPLE en concepts Capella et AADL-Like . . . 121
+5.4 Comparaison du temps d’exécution avec des instants critiques par hyper-
+période. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 129
+xviii
+
+=== PAGE 20 ===
+Liste des abréviations
+xix
+
+=== PAGE 21 ===
+RTES Real-Time Embedded System
+ADL Architecture Description Language
+AADL Architecture Analysis and Design Language
+ARCADIA ARChitecture Analysis and Design Integrated Approach
+AUTOSAR AUTomotive Open System ARchitecture
+BCET Best-Case Execution Time
+CWM Common Warehouse Metamodel
+DAG Directed Acyclic Graph
+DM Deadline Monotonic
+DRT Diagraph Real-time Task
+DSML Domain-Specific Modeling Language
+EAST-ADL ElectronicArchitectureandSoftwareTools- ArchitectureDescriptionLan-
+guage
+ECU Electronic Control Unit
+EDF Earliest Deadline First
+GMF Generalized Multiframe
+HMPSoC Heterogeneous Multiprocessor System-on-Chip
+IDM Ingénierie Dirigée par les Modèles
+LLF Least Laxity First
+MARTE Modeling and Analysis of Real-time Embedded Systems
+MDA Model Driven Architecture
+MOF Meta-Object Facility
+OCL Object Constraint Language
+OMG Object Management Group
+OPA Optimal Priority Assignment
+PCP Priority Ceiling Protocol
+PIM Platform Independent Model
+xx
+
+=== PAGE 22 ===
+PIP Priority Inheritance Protocol
+PSM Platform Specific Model
+QVT Query/View/Transformation
+RB Recurring Branching
+ROS Robot Operating System
+RRT Real-time Recurrent Task
+RTA Response Time Analysis
+RTOS Real-Time Operating System
+RTM Rate Monotonic
+SA/RT Structured Analysis for Real-Time
+SPT UML Profile for Schedulability, Performance and Time
+SRP Stack Resource Policy
+SysML Systems Modeling Language
+UAV Unmanned Aerial Vehicle
+xxi
+
+=== PAGE 24 ===
+Liste des symboles
+xxiii
+
+=== PAGE 25 ===
+T Période de la tâche i
+i
+D Échéance relative de la tâche i
+i
+r Instant d’activation de la tâche i
+i
+C Temps d’exécution pire cas de la tâche i
+i
+U Utilisation de la tâche i
+i
+L Laxité de la tâche i
+i
+RT Temps de réponse de la tâche i
+i
+T Période minimale
+min
+T Période maximale
+max
+df Flot de données i
+i
+F Fonction i
+i
+E Événement externe i
+i
+Hp(i) Ensemble des tâches avec priorité plus élevée que i
+w (j) Calcul itératif du temps de réponse
+i
+1

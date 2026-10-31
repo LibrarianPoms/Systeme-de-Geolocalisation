@@ -1,0 +1,661 @@
+=== PAGE 1 ===
+MANUEL D'UTILISATION
+
+=== PAGE 2 ===
+Table des matières
+>>> TABLE DES MATIÈRES
+Table des matières 2 Enregistrement 16 Appareils avec support magnétique 27
+Garantie de 24 mois 6 Réparation 16 Mise en marche/arrêt de l’appareil
+Garantie 6 Émissions et mise au rebut 16 de navigation 27
+Consignes de sécurité 7 Aperçu de la fourniture 17 Activation 28
+L’appareil de navigation 9 Aperçu de l’appareil de navigation 18 Arrêt 28
+Contenu du manuel d’utilisation 9 Utilisation générale 20 Règles de base concernant
+Utilisation 9 Entretien et nettoyage 20 l’écran tactile 29
+Navigation 9 Déclaration de qualité de l’accu 21 Utilisation 29
+Images* 9 Déclaration de qualité de l’écran 21 Calibrage (en fonction du modèle) 29
+Téléphone (certains modèles) 10 Mise en service 21 Règles de base concernant
+Déballage de l’appareil de navigation 10 Alimentation électrique 21 les menus 30
+Contrôle de la fourniture 10 Alimentation à l’aide de l’accumulateur 22 Le menu principal 30
+Aperçu des fonctions 11 Raccordement à l’allume-cigare 22 Saisies à l’aide du menu de saisie 31
+En cas de réclamations 13 Raccordement à la prise 23 Saisie des caractères 31
+Manipulation de l’emballage 13 Procéder au raccordement Validation des propositions 31
+Description de l’appareil 13 électrique de l’appareil 23 Navigation dans les listes 32
+Appareil de base 13 Antenne TMC (en fonction Caractères spéciaux et trémas 32
+Câble pour l’alimentation du modèle) 23 Autres jeux de caractères 33
+via l'allume-cigares 14 Antenne GPS 24 Saisie de chiffres 33
+Câble de charge intelligent (Smart) pour Antenne de l’appareil 24 Passage aux lettres majuscules/
+l'alimentation par le biais de l'allume- Câble pour intégration au véhicule minuscules 33
+cigare (en fonction du modèle) 14 (en fonction du modèle, en option) 24 Effacer des caractères 34
+Accu 15 Câble pour la caméra de recul Ajout d’espace 34
+Câble de raccordement USB 15 (en fonction du modèle, en option) 24 La touche Retour 34
+Support 15 Carte mémoire 25 Content Manager 34
+Accessoires 15 Insertion de la carte mémoire 25 Installer Content Manager 35
+Bloc d’alimentation pour réseau 15 Éjection de la carte mémoire 25 Démarrer Content Manager 35
+Câble pour intégration au véhicule Support 25 Gestionnaire de télécharg.
+(certains modèles) 36
+(pour certains modèles uniquement) 15 Mise en place du support 25
+Remarques relatives Au niveau du pare-brise 26 Mise à jour des cartes 37
+à la documentation 16 Réglage de la fixation de l’appareil 27 Mise à jour de l'avertisseur de radars 38
+Guide Quick Start 16 Pose de l’appareil de navigation 27 Poursuivre les téléchargements 39
+Manuel d’utilisation 16 Retrait de l’appareil de navigation 27 Installer des mises à jour 39
+Transfert des données 39
+2
+
+=== PAGE 3 ===
+TABLE DES MATIÈRES >>>
+En cas de dysfonctionnements 39 Sélection d’une adresse et Optimisation de l’itinéraire 64
+Mode Navigation 40 lancement du guidage 48 Réglages de la navigation 65
+Qu’est-ce que la navigation ? 40 Entrer une adresse par commande Touche Mode visualisation 65
+Sélection du mode navigation 41 vocale (certains modèles) 53 Zoom automatique 67
+Adresse du domicile 41 Système de dialogue vocal (certains Sélect. catégories POI 67
+Smart Guess 42 modèles) 54 Sélect. champs boîte info 68
+Liste « Dernières destinations » 42 Explication des symboles 54 Vues de villes 3D 68
+Liste des destinations 42 Destination 54 Touche Vue itinéraire 69
+Icônes utilisées 43 Itinéraire 55 Touche Directives 70
+Utilisation de la liste Plus... 55 Touche Options itinér. 71
+« Dernières destinations » 43 Recherche Live POI (en fonction Sélection du véhicule
+Démarrer avec la destination du modèle) 55 (en fonction du modèle) 71
+disponible 43 Destinations spéciales 55 Fonctions de camions et de camping
+Navigation dans la mémoire des Destination spéciale à proximité 56 car (en fonction du modèle) 72
+destinations 43 Destination spéciale à proximité Réglage des profils de camion 73
+Affichage ou édition de la destination 43 d’une adresse 57 Sélection de la catégorie de véhicule
+Destinations personnelles 44 Destination spéciale à proximité et du nom 75
+Contacts 44 de votre destination 58 Sélectionnez le type d'itinéraire 76
+Sélection d’une destination à partir POI sur l’itin. 58 Guidage en fonction de l'heure 76
+des Destinations personnelles 44 Saisie directe d’une destination Éviter certains types de routes 76
+Modification des Destinations spéciale 58 Touche TMC ou Circulation
+personnelles 45 Appeler le numéro de téléphone (en fonction du modèle) 77
+Sélection d’une destination à partir d'une destination spéciale La touche Circulation
+des Contacts 45 (en fonction du modèle) 58 (en fonction du modèle) 77
+Menu «Nouvelle destin...» 46 Informations complémentaires Touche Guide vocale 78
+Structure du menu « Nouvelle destin... » 47 sur la destination spéciale 59 Réglage de la Voix 79
+Saisir l’adresse 47 Travel Guide (en fonction du modèle) 59 Réglage du Volume 79
+Sélect. point d’intérêt 47 Sélectionner une destination à partir Touche Avertissements 79
+Travel Guide (en fonction du modèle) 47 de la carte 59 Réglage des Alertes aux conducteurs 81
+Sélect. sur carte 47 Saisie des coordonnées 60 Réglage des zones
+Entrer géo-coordonnées 47 Planification d’itinéraire 61 environnementales
+Planification d’itinéraire 47 Simulation de l'itinéraire 62 (en fonction du modèle) 81
+Saisie d’une adresse 47 Création d’un nouvel itinéraire 63 Avertissements relatifs au camion
+Sélection d’un pays 48 Édition de l’itinéraire 64 (en fonction du modèle) 82
+3
+
+=== PAGE 4 ===
+>>> TABLE DES MATIÈRES
+Réglage de l’Info vitesse 82 Vue tunnel 94 Avertissements avec itinéraire
+Touche Itinéraires bloqués 83 Utilisation de l’affichage cartographique 94 planifié 107
+Touche Données véhicule 84 Répétition du dernier message 94 Avertissements sans itinéraire
+Touche Format 85 Modification du volume sonore des planifié 108
+Touche Heure 85 annonces 94 Afficher l'itinéraire 108
+Touche Réinit. 86 Zoom de la carte 95 Autres fonctions supplémentaires
+Informations routières via TMC Déplacement de la carte 96 (seulement certains modèles) 109
+(en fonction du modèle) 86 Orientation de la carte 96 Afficher le profil pour la hauteur 109
+Live Traffic - Informations trafic via La vue d’ensemble de l’itinéraire 97 Mode Téléphone 110
+un transfert de données SituationScan 98 Sélectionner le mode Téléphone
+(enfonction du modèle) 87 L’assistant de déviation 98 (uniquement certains modèles) 110
+Représentation des messages L’assistance parking 98 Menu Téléphone
+de circulation sur la carte 87 L’assistant de sortie d’autoroute 99 (uniquement certains modèles) 111
+Utilisation de TMC ou Live-Traffic 88 Options de l’affichage de carte 99 Composer un numéro 111
+Lecture du message 89 Affichage de l’itinéraire complet 100 Répertoire 112
+Prise en compte des messages Déplacer l'itinéraire (en fonction Liste d'appels 114
+pour le calcul d’itinéraire 89 du modèle) 100 Icônes utilisées 114
+Nouveau calcul automatique 89 Sélectionner différents itinéraires 102 Feuilleter dans la liste d'appels 114
+Nouveau calcul manuel 89 Modification des options d’itinéraire 102 Composer un numéro existant 115
+Affichage cartographique 90 Interruption du guidage 102 Afficher ou éditer des entrées 115
+Sélection de l’affichage cartographique 90 Saisie/suppression d’une étape 103 Listes chargées du téléphone
+Structure de l’affichage cartographique 90 Blocage temporaire d’une section portable 115
+Affichage cartographique du trajet 103 Connexion des téléphones Bluetooth® 116
+sans guidage 90 Réglage du mode d'affichage jour/nuit 104 Accéder à une liste d'appareils 116
+Affichage cartographique Affichage de la position actuelle Connexion automatique 117
+avec guidage 91 (Oùsuis-je?) 104 Recherche de téléphones portables 117
+La boîte info 91 Saisie d’une destination 106 Raccorder de nouveaux appareils 118
+Écran divisé avec guidage 92 Ignorer une destination 106 Connexion d'un téléphone portable 118
+Guidage avec affichage de flèches 93 Fonctions supplémentaires camion et Déconnexion d'un téléphone raccordé 118
+Aide au choix de voie Pro 3D camping-car (seulement certains modèles) 107 Communications téléphoniques 119
+(en fonction du modèle) 93 Retour d'information après le calcul Établissement d’une communication 119
+Affichage cartographique avec de l'itinéraire 107 Acceptation d’une communication 119
+Vue du carrefour 93 Zoom sur la carte 107 Fin d’une communication 120
+4
+
+=== PAGE 5 ===
+TABLE DES MATIÈRES >>>
+Pendant une communication 120 Informations sur les pays 129 Calibrage (en fonction du modèle) 142
+Paramétrage du Bluetooth Blocage permanent de routes 130 Réglages Wi-Fi® (en fonction du modèle) 143
+(en fonction du modèle) 121 Calculateur de trajet Glossaire 144
+Bluetooth: marche/arrêt 121 (en fonction du modèle) 131 Index 146
+Paramétrage du téléphone 121 Réglages 133
+Aperçu des modèles et caractéristiques
+Connexion automatique 121 Sélection des réglages du système 133 techniques 149
+Prise automatique de l’appel 122 Menu des réglages du système 133
+REMARQUES 151
+Volume du téléphone 122 Utilisation 133
+Déclaration CE de conformité 151
+Mettre à jour le répertoire 122 Options possibles 133
+Mise au rebut 152
+Nom Bluetooth® 123 Fermeture du menu de réglage 133
+Mise au rebut de la batterie 153
+Paramétrage des données / partage Différentes options de menu 134
+Obligation d’information conformément
+de connexion Bluetooth Batterie 134
+à la directive sur les batteries 153
+(en fonction du modèle) 123 Connexion/déconnexion
+Dépose de la batterie 153
+Paramétrage de sortie audio automatique 135
+(en fonction du modèle) 124 Mode d’affichage jour/nuit 136 Les indications et données figurant dans la
+Extras 125 Luminosité 136 présente documentation peuvent faire l’ob-
+Travel Guide Design jour 136 jet de modifications sans préavis.
+(en fonction du modèle) 125 Design nuit 137 La reproduction ou la transmission du pré-
+Caméra de recul 125 Réglage des couleurs 137 sent document, même partielle, est inter-
+Affichage de la caméra de recul Langue 138 dite sans l'accord express écrit de la part de
+(enfonction du modèle) 125 Format de clavier 138 United Navigation GmbH. Toutes les carac-
+Visionneuse* 125 Tonalités 138
+téristiques techniques, illustrations, etc.
+Menu Visionneuse 126 Caméra vue arriére
+sont soumises à la législation de protection
+Sélection de l’image 126 (en fonction du modèle) 139
+des droits d’auteur.
+Agrandissement de l’image 127 Animations à l'écran 139
+© Copyright 2015, United Navigation GmbH
+Faire pivoter l’image 127 Profils de conducteurs
+Tous droits réservés.
+Affichage des informations relatives (en fonction du modèle) 139
+La désignation Bluetooth® est une marque
+à l’image 127 Renommer le profil de conducteur 140
+déposée de la société Bluetooth SIG, Inc.
+Diaporama 128 Suppression du profil du conducteur 140
+Toute utilisation de cette marque par
+Réglages 128 Profils de conducteurs Pro
+United Navigation GmbH doit faire l'objet
+Où suis-je? 128 (en fonction du modèle) 141
+Prévision du trafic Informations sur le service 141 d'une licence.
+(en fonction du modèle) 128 Réglages d'usine 142 Wi-Fi® est une marque déposée de la Wi-Fi
+Alliance.
+5
+
+=== PAGE 6 ===
+Garantie
+>>> GARANTIE
+Garantie de 24 mois un déparasitage défectueux du véhicule,
+un chargement statique, ou encore un en-
+La société United Navigation GmbH,
+dommagement mécanique.
+Zeppelinstraße 41, 73760 Ostfildern,
+Les réparations ou interventions effec-
+Allemagne, accorde une garantie va-
+tuées par l’acheteur ou par des tiers non
+lable dans n’importe quel pays pour
+autorisés entraînent l’extinction des
+une durée de 24 mois (batterie : 6 mois)
+droits à la garantie.
+sur les appareils BECKER, à compter
+Seuls les ateliers de service et person-
+du jour de livraison au consommateur
+nes expressément autorisés, ou le fabri-
+final (acheteur).
+cant lui-même sont habilités à effectuer
+Dans le cadre de cette garantie, les dys-
+des réparations.
+fonctionnements seront éliminés gratui-
+Outre cette garantie, l’acheteur peut
+tement à condition que l’acheteur puisse
+se prévaloir des droits qui lui sont
+démontrer qu’ils sont dus à un vice de
+garantis par la loi en cas de défaut, et
+matériau ou de fabrication. Nous nous
+qui ne sont pas limités par la garantie.
+réservons le choix d’éliminer de tels dys-
+fonctionnements par une réparation ou
+la fourniture d’un nouvel appareil.
+L’acheteur doit formuler ses réclama-
+tions immédiatement après avoir cons-
+taté un défaut en présentant le contrat
+d’achat du premier acheteur.
+La garantie prend fin après 24 mois (bat-
+terie : 6 mois). Elle n’est prolongée ni par
+une réclamation du client, ni par l’élimi-
+nation d’un défaut par le fournisseur.
+La garantie ne s’applique pas à des défauts
+provoqués par une manipulation inadé-
+quate, un mauvais montage de l’appareil,
+6
+
+=== PAGE 7 ===
+CONSIGNES DE SÉCURITÉ >>>
+Consignes de sécurité
+Consignes de sécurité
+¤
+• N’utilisez l’appareil que lorsque la circulation routière le permet et lorsque vous êtes absolument sûr de ne mettre en
+danger ni votre vie ni celle de vos passagers ou d’autres automobilistes, cyclistes ou piétons et de ne pas gêner ou
+importuner qui que ce soit.
+Respectez le code de la route. N’entrez la destination dans le système de navigation que lorsque le véhicule est à l’arrêt.
+• Le système de navigation n’est qu’une aide à la conduite du véhicule, il est possible que les données ou les indications
+qu’il vous livre soient erronées dans certains cas. C’est au conducteur de décider de la marche à suivre et de tenir compte
+ou non des informations fournies par le système. Toute indication erronée du système de navigation n’engage en rien la
+responsabilité du constructeur ou du vendeur. Du fait des changements de sens de la circulation ou des données
+divergentes, il se peut que le système vous donne des instructions imprécises ou erronées. C’est pourquoi il est impératif
+de toujours prêter attention aux panneaux de signalisation et de respecter le code de la route. Le système de navigation
+ne doit pas vous servir à vous guider en cas de mauvaise visibilité.
+• N’utilisez l’appareil que pour l'usage auquel il est destiné. Réglez le volume de l’appareil de navigation de façon à bien
+entendre les bruits extérieurs.
+• En cas de dysfonctionnements (fumée ou émanation d'odeurs par exemple), éteignez tout de suite l'appareil.
+• Pour des raisons de sécurité, seul un spécialiste est autorisé à ouvrir l'appareil. Si une réparation est nécessaire, veuillez
+contacter votre revendeur.
+• Les navigateurs de Becker peuvent contenir des aimants. Ne pas placer à proximité de supports de données magnétiques
+(notebook) ou des cartes (cartes Eurochèque, cartes de crédit, etc.). Ils pourraient être endommagés ou devenir
+inutilisables. Les aimants peuvent nuire au fonctionnement de simulateurs cardiaques! Les personnes portant un
+simulateur cardiaque ne doivent pas approcher l'appareil trop près de leur corps.
+7
+
+=== PAGE 8 ===
+>>> CONSIGNES DE SÉCURITÉ
+• Les tensions de réseau (volt) indiquées sur le bloc d’alimentation, sur l’adaptateur chargeur automobile et sur l’appareil
+ne doivent pas être dépassées. Le non-respect de ces indications peut entraîner la destruction de l’appareil, du chargeur,
+et l’explosion de la batterie.
+• Vous ne devez en aucun cas ouvrir l’appareil ou la batterie. Toute modification effectuée sur l’appareil est interdite et
+entraînerait le retrait de l’autorisation d’exploitation.
+• Utilisez uniquement des pièces de rechange d’origine BECKER. Ainsi, vous êtes assuré de respecter toutes les
+dispositions importantes, et d’éviter tout dommage aux biens et aux personnes. Lorsque l’appareil ou la batterie ne sont
+plus utilisables, mettez-les au rebut conformément aux dispositions légales.
+• Une utilisation inadaptée annule tout droit à la garantie ! Ces consignes de sécurité s’appliquent également aux
+accessoires d’origine BECKER.
+• Plages de température autorisées : -20°C à 60°C en stockage / 0°C à 45°C en fonctionnement
+8
+
+=== PAGE 9 ===
+L’APPAREIL DE NAVIGATION >>>
+LC’apparoeil de nnavigatiotn enu du manuel d’utilisation Utilisation Navigation
+Le présent manuel d’utilisation décrit Cet appareil de navigation est un PND Avec le système GPS = Global
+votre appareil de navigation Becker. (Personal Navigation Device) Positioning System, finies les
+Il regroupe la description de différentes performant à utiliser dans les véhicules. recherches interminables sur les cartes
+variantes de modèle dans un seul L’appareil et les accessoires doivent être routières.
+document. Il se peut donc que certaines protégés de l’humidité et de la saleté. Grâce à l'antenne de réception intégrée
+des fonctions décrites ne soient pas dans l'appareil, vous avez - à l'extérieur
+disponibles le cas échéant sur votre des bâtiments - un accès permanent aux
+appareil. possibilités de navigation. A l'intérieur
+Les illustrations sont toutes semblables des bâtiments, la fonction de navigation
+à l'appareil. peut ne pas être accessible en fonction
+de la qualité de réception. Lors de
+l'utilisation dans des véhicules, selon la
+position de montage de l’appareil de
+navigation, une réception suffisante des
+données GPS peut ne pas être possible.
+Images*
+L’appareil de navigation dispose d'une
+visionneuse avec de nombreuses
+fonctions pour l’affichage de photos.
+*en fonction du modèle, à activer via le Content Manager 9
+
+=== PAGE 10 ===
+>>> L’APPAREIL DE NAVIGATION
+Téléphone (certains modèles) Votre appareil de navigation sert dans ce Déballage de l’appareil de
+Votre appareil de navigation est équipé cas de kit mains libres au grand confort navigation
+de la technologie sans fil Bluetooth®. Via d’utilisation. Vous avez également la
+Bluetooth®, vous pouvez vous connecter possibilité de lire le carnet d’adresses ou
+Remarque :
+à un téléphone portable équipé de la le répertoire du téléphone portable et de
+technologie sans fil Bluetooth®. faire lire les messages SMS reçus. Votre appareil de navigation est livré
+dans un emballage robuste. Si celui-ci
+ou son contenu présente des
+dommages importants, ne pas
+continuer à déballer l’appareil.
+Contactez dans ce cas votre revendeur.
+Contrôle de la fourniture
+Avant de mettre l’appareil de navigation,
+vérifiez l'intégralité et l'état de la
+fourniture (voir également page 17).
+>Déballez le contenu du colis avec
+précaution et contrôlez celui-ci.
+10
+
+=== PAGE 11 ===
+L’APPAREIL DE NAVIGATION >>>
+Aperçu des fonctions
+: de série Système de navigation
+- : non disponible : en option
+11
+UE
+/ EC
+s6.evitca
+00H
+EB
+sulp
+UE
+l6.ydaer
+69FBB
+/ 59B
+EB
+sulp
+UE
+s6.evitca
+01H
+EB
+sulp
+UE
+ls6.evitca
+04H
+EB
+UE ls6.lanoisseforp
+05H
+EB
+UE
+s6.tisnart 20H
+EB
+sulp
+UE
+ls6.tisnart
+05H
+EB
+TMC       
+Commande vocale OneShot Pro Becker – – – –  – 
+Avertisseur de radar gratuit pendant 1an (produit à télécharger)  – – – –  –
+Avertisseur de radar à vie (produit à télécharger) –  – – – – –
+Avertisseur de radar Live à vie – –    – 
+Avertissements pour le conducteur – – – –   
+Mains libres Bluetooth –     – 
+Ordinateur de bord  -     
+Zones environnementales       
+Navigation Pro pour camions et camping-cars – – – – –  
+Affichage du profil pour la hauteur – – – –   
+BECKER RouteMove  –     
+Guide de camping et de places de stationnement ADAC       
+MARCO POLO Travel Guide       
+Aide au choix de voie Pro 3D       
+Raccord pour caméra de recul – – – –  – 
+Interface WLAN –  –   – 
+Conditions de circulation Live (Bluetooth et/ou
+–     – 
+partage de connexion WLAN)
+Recherche Live POI (Bluetooth et/ou partage de connexion WLAN) –     – 
+Becker Connect / Gestionnaire de téléchargement –  –   – 
+Traçage de l'itinéraire – – – –   
+Calendrier européen des interdictions de rouler pour poids lourds – – – – –  
+Mode d'économie d'énergie  –     
+
+=== PAGE 12 ===
+>>> L’APPAREIL DE NAVIGATION
+: de série Système de navigation
+- : non disponible
+: en option
+12
+UE
+s5.evitca 00B2
+EB
+00B3
+EB
+UE
+s7.evitca 03B2
+EB
+03B3
+EB
+UE
+ls5.evitca 01B2
+EB
+01B3
+EB
+UE
+ls7.evitca 04B2
+EB
+04B3
+EB
+UE
+ls7.tisnart 04B3
+EB
+TMC     
+Commande vocale OneShot Pro Becker – – – – –
+Avertisseur de radar gratuit pendant 1an (produit à télécharger)   – – –
+Avertisseur de radar à vie (produit à télécharger) – –   
+Avertisseur de radar Live à vie – – – – –
+Avertissements pour le conducteur – – – – 
+Mains libres Bluetooth – – – – –
+Ordinateur de bord     
+Zones environnementales     
+Navigation Pro pour camions et camping-cars – – – – 
+Affichage du profil pour la hauteur – – – – 
+BECKER RouteMove     
+Guide de camping et de places de stationnement ADAC     
+MARCO POLO Travel Guide     
+Aide au choix de voie Pro 3D     
+Raccord pour caméra de recul – – – – –
+Interface WLAN – –   
+Conditions de circulation Live (Bluetooth et/ou
+– –   
+partage de connexion WLAN)
+Recherche Live POI (Bluetooth et/ou partage de connexion WLAN) – –   
+Becker Connect / Gestionnaire de téléchargement – –   
+Traçage de l'itinéraire – – – – 
+Calendrier européen des interdictions de rouler pour poids lourds – – – – 
+Mode d'économie d'énergie – – – – –
+
+=== PAGE 13 ===
+L’APPAREIL DE NAVIGATION >>>
+En cas de réclamations Description de l’appareil Appareil de base
+En cas de réclamations, contactez votre L’appareil de base dispose d’un système
+L'appareil de navigation se compose
+revendeur. L’appareil peut également électronique complet :
+d'une base et des accessoires compris
+être envoyé directement dans son • une antenne intégrée
+dans la livraison.
+emballage d’origine à United Navigation.
+• un récepteur TMC pour la réception
+Vous trouverez une représentation des
+des messages d’informations
+différentes pièces sous :
+Manipulation de l’emballage routières (en fonction du modèle)
+• «Aperçu de la fourniture» page 17
+L’emballage d’origine doit être conservé • un écran tactile
+dans un endroit sec au minimum Remarque :
+• un haut-parleur intégré
+pendant la période de garantie. L’appareil de base et les accessoires ne
+• un micro (en fonction du modèle).
+doivent pas être ouverts et en aucun cas
+Remarque : En outre diverses connexions et
+modifiés.
+L'élimination doit être effectuée de interfaces se trouvent sur le côté de
+manière appropriée conformément aux l’appareil.
+prescriptions légales en vigueur dans le Des informations supplémentaires sur
+pays. L’emballage ne doit pas être l’appareil sont fournies sous :
+brûlé. Selon le pays de destination, • «Aperçu des modèles et caractéris-
+l’emballage peut être rapporté chez le tiques techniques» page 149
+revendeur.
+13
+
+=== PAGE 14 ===
+>>> L’APPAREIL DE NAVIGATION
+Câble pour l’alimentation via l'allume- Ce câble permet d'utiliser la fonction
+Remarque:
+cigares «Connexion/déconnexion
+La fonction peut être désactivée dans
+Ce câble permet le branchement sur un automatique» décrite à la page135,
+les véhicules dotés d'une prise de tensi-
+allume-cigares d'un véhicule de même si l'allume-cigare du véhicule est
+on de bord activée. Elle ne fonctionne
+tourisme. éteint.
+pas dans les véhicules équipés d'une
+Pour cela, l’alimentation électrique doit Le câble détecte si le moteur tourne ou
+tension de bord de 24 V.
+présenter les caractéristiques suivantes : s'il est éteint, et active ou désactive en
+Dans les véhicules dotés d'un système
+• courant continu 12/24 volts conséquence l'alimentation électrique
+de démarrage et d'arrêt automatique, il
+1 ampère de votre système de navigation.
+est possible que votre système de
+La fonction est activée lorsque l'inter-
+navigation s'éteigne à chaque arrêt du
+Câble de charge intelligent (Smart) rupteur se trouve sur la position On.
+moteur.
+pour l'alimentation par le biais de l'al- La fonction est désactivée lorsque l'in-
+lume-cigare (en fonction du modèle) terrupteur se trouve sur la position Off.
+Ce câble permet le branchement sur l'al- Grâce à ce câble, la fonction «Connexion/
+lume-cigare du véhicule. déconnexion automatique» , décrite à la
+Pour cela, l'alimentation électrique doit page135 est opérationnelle, même si
+présenter les caractéristiques suivantes: l'allume-cigare du véhicule est éteint :
+• courant continu 12/24 volts • Pour les voitures dont l'allume-cigare
+1,3 ampère est éteint.
+• Le câble de charge détecte si le
+moteur tourne ou s'il est éteint, et
+active ou désactive en conséquence
+l'alimentation électrique du système
+de navigation.
+Si la fonction est désactivée, le système
+de navigation est toujours alimenté en
+courant si l'allume-cigare est sous
+tension.
+14
+
+=== PAGE 15 ===
+L’APPAREIL DE NAVIGATION >>>
+Accu Câble de raccordement USB Accessoires
+L’accu intégré peut être rechargé après Grâce au câble de raccordement USB
+Bloc d’alimentation pour réseau
+son déchargement en raccordant fourni, l’appareil de navigation peut être
+Ce bloc d’alimentation permet le
+l’appareil de navigation à l’alimentation raccordé à un ordinateur personnel cou-
+raccordement de l’appareil de navigation
+électrique. rant muni d’un port USB. La mémoire
+à une prise.
+Raccordez l’appareil à une prise 12 V/ flash intégrée et une carte SD, si elle a
+Pour cela, l’alimentation électrique doit
+24V dans le véhicule via l’adaptateur été mise en place, peuvent être utilisées
+présenter les caractéristiques suivantes:
+automobile, ou au réseau d’alimentation comme un support d'échange de don-
+230 V via le bloc d’alimentation en option. nées lorsque l'appareil est raccordé à un • Courant alternatif 100 à 240 volts
+PC. 50 à 60 Hertz
+Remarque :
+Vous pouvez charger votre appareil de Remarque: Câble pour intégration au véhicule
+navigation via le câble de chargement Éteignez complètement l'appareil de (pour certains modèles uniquement)
+fourni ou via le bloc d’alimentation navigation, voir «Mise en marche/arrêt Avec un câble à fiche jack de 3,5 mm,
+disponible en option pour la prise. de l’appareil de navigation» page27, vous pouvez intégrer votre appareil de
+Lorsque l’appareil de navigation est avant de raccorder l'appareil de naviga- navigation dans votre véhicule de façon
+connecté à un PC, il est alimenté en tion à l'ordinateur. optimale. Les explications concernant le
+courant de cette façon et ne nécessite branchement se trouvent sous «Câble
+pas de batterie. Support pour intégration au véhicule (en fonction
+du modèle, en option)» page 24.
+L’appareil de navigation peut être fixé
+dans le véhicule à l'aide de son support.
+15
+
+=== PAGE 16 ===
+>>> L’APPAREIL DE NAVIGATION
+Remarques relatives à la Enregistrement
+documentation
+Vous pouvez vous enregistrer auprès de
+notre service logiciel. Nous vous infor-
+Guide Quick Start mons alors des dernières actualisations
+et autres nouveautés.
+Le guide Quick Start vous offre une
+initiation rapide aux fonctions de
+L’enregistrement se fait dans le «Content
+commande de votre appareil de
+Manager» - voir aussi page34.
+navigation. Le guide Quick Start explique
+les fonctions de base les plus
+Réparation
+importantes de l’appareil de navigation.
+En cas de dommages, l’appareil ne doit
+Manuel d’utilisation pas être ouvert. Contactez votre reven-
+Vous trouverez dans ce mode d’emploi deur.
+une description détaillée des fonctionna-
+Émissions et mise au rebut
+lités de l’appareil de navigation.
+Vous trouverez les informations sur les
+émissions, la compatibilité électroma-
+gnétique et la mise au rebut sous les
+«REMARQUES» page 151.
+16
+
+=== PAGE 17 ===
+APERÇU DE LA FOURNITURE >>>
+3
+3
+4
+1
+5
+2
+FAperçuo de la ufournitrureniture
+1 Appareil de base – PND (Personal Navigation Device)
+2 Câble de raccordement USB
+3 Fixation d’appareil avec plaque-support (exécution en
+fonction du modèle)
+4 Câble d’alimentation par le biais de l'allume-cigare du
+véhicule (12/24 volts) avec antenne TMC intégrée (en
+fonction du modèle)
+5 Chargeur secteur micro-USB (certains modèles)
+Sur les appareils avec support magnétique, la plaque de
+support 2 et le câble d'adaptateur pour allume-cigare 4
+forment une unité.
+17
+
+=== PAGE 18 ===
+>>> APERÇU DE L’APPAREIL DE NAVIGATION
+2
+3
+4
+1
+3 Touche de l’écran tactile
+AFperçua de l’apcpareeil de na vigaationvant de l’appareil avec éléments de commande et Appui = activation de la fonction de la touche
+d’affichage correspondante
+1 Touche Retour 4 Micro (en fonction du modèle, parfois même dans le coin
+En fonction du modèle: soit sur la partie inférieure gauche supérieur droit))
+de l'écran, soit sous le coin gauche du boîtier.
+Appui simple = dans la plupart des applications :
+fonction retour
+Appui long = accès au menu principal
+2 Ecran tactile avec le menu principal sélectionné
+18
+
+=== PAGE 19 ===
+(en fonction du modèle) APERÇU DE L’APPAREIL DE NAVIGATION >>>
+En fonction du téléphone portable, la disposition des raccordements situés sur la partie inférieure de l'appareil peut différer.
+1 5 4 2 3
+Face supérieure de l'appareil Dessous de l'appareil
+1 Interrupteur Marche/Arrêt 2 Logement de carte Micro SD
+3 Douille de raccordement micro USB /
+raccord d’alimentation électrique
+4 Raccord de la caméra de recul
+5 Raccord d'intégration au véhicule
+19
+
+=== PAGE 20 ===
+>>> UTILISATION GÉNÉRALE
+UEtilisatnion génétraleretien et nettoyage Votre appareil de navigation a été mis au • Ne rangez pas votre appareil de
+point et fabriqué avec le plus grand soin, navigation mobile dans un
+L’appareil ne nécessite aucun entretien. il doit être manipulé avec tout autant de environnement froid. Lorsque
+Pour le nettoyage, vous pouvez précaution. Pour profiter encore long- l’appareil atteint à nouveau sa
+appliquer un produit de nettoyage temps de votre appareil de navigation température de service pendant son
+courant pour articles électroniques à mobile, respectez les recommandations fonctionnement, de l’humidité peut se
+l’aide d’un chiffon doux et humide. énumérées ci-après : former à l’intérieur qui peut
+Danger ! • Protégez votre appareil de navigation endommager les composants
+¤
+mobile et ses accessoires de l’eau et électroniques.
+Danger de mort par électrocution.
+l’humidité ! Si votre appareil a été • Ne faites pas tomber votre appareil de
+Avant le nettoyage, débranchez de
+exposé à l’humidité, éteignez-le et navigation, ne l’exposez pas à des
+l’appareil les composants fournis et
+débranchez-le de l’alimentation chocs et ne le secouez pas. Une
+les accessoires ainsi que l’appareil
+électrique. Faites sécher l’appareil à manipulation inappropriée peut
+lui-même et retirez le bloc
+température ambiante. endommager des composants dans
+d’alimentation.
+• N’utilisez pas votre appareil de l’appareil.
+navigation mobile dans un • Pour le nettoyage, n’utilisez en aucun
+Remarque :
+environnement poussiéreux ou sale, cas des solutions de nettoyage et des
+N’utilisez pas de produit agressif ou de
+et ne le rangez pas non plus dans un produits chimiques corrosifs, ou
+poudre à récurer, ou de chiffons
+tel environnement. encore des produits nettoyants
+présentant une surface grattante.
+• Ne rangez pas votre appareil de agressifs.
+Un chiffon microfibre est parfaitement
+navigation mobile dans un Toutes ces remarques s’appliquent aus-
+adapté à l'écran.
+environnement très chaud. Des si bien à l’appareil de navigation mobile,
+Ne nettoyez pas l’appareil à l’eau.
+températures élevées peuvent qu’à l’accu, l’adaptateur chargeur de ré-
+raccourcir la durée de vie des seau et d’automobile, ainsi qu’à tous les
+composants électroniques de votre accessoires. Si l’un de ces composants
+appareil, endommager les accus et ne fonctionne pas correctement, veuillez
+déformer ou faire fondre certaines vous adresser à votre spécialiste.
+pièces en matière plastique.
+20
